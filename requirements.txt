@@ -1,0 +1,8 @@
+setuptools>=46.4.0
+jupyterlab
+pylint
+ipykernel
+xeus-python
+notebook
+minio
+psycopg2-binary
