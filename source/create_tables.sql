@@ -1,3 +1,5 @@
+--java -jar schemaspy-6.1.0.jar -configFile schema_spy.properties
+
 BEGIN;
 
 CREATE SCHEMA bioacustica;
@@ -365,5 +367,8 @@ ALTER TABLE bioacustica.PHOTO_PATH
     ADD FOREIGN KEY (ID_CATALOGUE)
     REFERENCES bioacustica.CATALOGUE (ID_CATALOGUE)
     NOT VALID;
+
+COMMENT ON TABLE bioacustica.FUNDING is 'ESTA TABLA SIRVE PARA X COSA';
+COMMENT ON COLUMN bioacustica.FUNDING.ID_FUNDING is 'ID Auto incremental';
 
 END;
