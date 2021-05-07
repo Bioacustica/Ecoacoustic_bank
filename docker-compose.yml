@@ -2,16 +2,16 @@ version: "3"
 
 services:
 
-  develop:
-      build:
-          context: .
-          dockerfile: Jupyter.Dockerfile
-      container_name: develop
-      volumes:
-          - ./source:/data
-      ports:
-          - 8888:8888
-      restart: on-failure
+#  develop:
+#      build:
+#          context: .
+#          dockerfile: Jupyter.Dockerfile
+#      container_name: develop
+#      volumes:
+#          - ./source:/data
+#      ports:
+#          - 8888:8888
+#      restart: on-failure
 
   postgres:
     image: postgres
@@ -35,3 +35,6 @@ services:
       - credenciales_pgadmin.env
     depends_on:
       - postgres
+    volumes:
+      - ./diagrama_erd:/var/lib/pgadmin/storage
+    user: root
