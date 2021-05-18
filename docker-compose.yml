@@ -2,39 +2,55 @@ version: "3"
 
 services:
 
-#  develop:
-#      build:
-#          context: .
-#          dockerfile: Jupyter.Dockerfile
-#      container_name: develop
-#      volumes:
-#          - ./source:/data
-#      ports:
-#          - 8888:8888
-#      restart: on-failure
+    develop:
+        build:
+            context: .
+            dockerfile: Jupyter.Dockerfile  
+        container_name: develop
+        volumes:
+            - ./source:/data
+        ports:
+            - 8888:8888
+        restart: on-failure
 
-  postgres:
-    image: postgres
-    command: postgres -c "max_connections=300"
-    container_name: "postgres"
-    env_file:
-      - credenciales_postgres.env
-    user: root
-    ports:
-      - 5432:5432
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-      - ./source/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    postgres:
+        image: postgres
+        command: postgres -c "max_connections=300"
+        container_name: "postgres"
+        env_file:
+            - credenciales_postgres.env
+        user: root
+        ports:
+            - 5432:5432
+        volumes:
+            - ./postgres-data:/var/lib/postgresql/data
+            - ./source/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: "pgadmin"
-    ports:
-      - 8084:80
-    env_file:
-      - credenciales_pgadmin.env
-    depends_on:
-      - postgres
-    volumes:
-      - ./diagrama_erd:/var/lib/pgadmin/storage
-    user: root
+    pgadmin:
+        image: dpage/pgadmin4
+        container_name: "pgadmin"
+        ports:
+            - 8084:80
+        env_file:
+            - credenciales_pgadmin.env
+        depends_on:
+            - postgres
+        volumes:
+            - ./diagrama_erd:/var/lib/pgadmin/storage
+        user: root
+
+    djangoweb:
+        build:
+            context: .
+            dockerfile: Django.Dockerfile
+        # command: python ./apidev/manage.py migrate
+        command: python ./apidev/manage.py runserver 0.0.0.0:8000
+
+        container_name: djangoweb
+        volumes:
+            - ./code
+        ports:
+            - "8000:8000"
+        env_file: .env
+        depends_on:
+            - postgres

@@ -1,5 +1,6 @@
 FROM ubuntu:latest
 
+
 # Instalar OpenJDK 8
 RUN \
   apt-get update && \

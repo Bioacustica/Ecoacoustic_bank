@@ -6,3 +6,7 @@ xeus-python
 notebook
 minio
 psycopg2-binary
+Django
+django-environ==0.4.5
+djangorestframework
+django-rest-swagger 
