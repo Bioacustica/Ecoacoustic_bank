@@ -252,7 +252,7 @@
             <column ascending="true" name="id_datum"/>
          </index>
       </table>
-      <table name="django_admin_log" numRows="6" remarks="" schema="bioacustica" type="TABLE">
+      <table name="django_admin_log" numRows="8" remarks="" schema="bioacustica" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('bioacustica.django_admin_log_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="action_time" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="object_id" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
@@ -338,7 +338,7 @@
             <column ascending="true" name="id_format"/>
          </index>
       </table>
-      <table name="funding" numRows="2" remarks="ESTA TABLA SIRVE PARA X COSA" schema="bioacustica" type="TABLE">
+      <table name="funding" numRows="4" remarks="ESTA TABLA SIRVE PARA X COSA" schema="bioacustica" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('bioacustica.funding_id_funding_seq'::regclass)" digits="0" id="0" name="id_funding" nullable="false" remarks="ID Auto incremental" size="10" type="serial" typeCode="4">
             <child column="id_funding" foreignKey="project_id_funding_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="project"/>
          </column>

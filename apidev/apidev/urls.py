@@ -16,14 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from apiCRUD import views
+from rest_framework_swagger.views import get_swagger_view
+from rest_framework import routers
 
+
+schema_view = get_swagger_view(title='Crud con django')
 
 # Aqui creamos las urls con un sobrenombre memotecnico
 # apuntando a su vista correspondiente
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('addfunding', views.create_funding),
-    path('getfunding', views.get_funding),
-    path('updatefunding/<int:id_funding>', views.update_funding),
-    path('deletefunding/<int:id_funding>', views.delete_funding),
+    path("admin/", admin.site.urls),
+    path('fundings/', include('apiCRUD.urls')),
+    path('swagger/', schema_view),
 ]

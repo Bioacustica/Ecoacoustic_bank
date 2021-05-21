@@ -16,29 +16,29 @@ class AuthGroup(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'auth_group'
+        db_table = "auth_group"
 
 
 class AuthGroupPermissions(models.Model):
     id = models.BigAutoField(primary_key=True)
     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
+    permission = models.ForeignKey("AuthPermission", models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = 'auth_group_permissions'
-        unique_together = (('group', 'permission'),)
+        db_table = "auth_group_permissions"
+        unique_together = (("group", "permission"),)
 
 
 class AuthPermission(models.Model):
     name = models.CharField(max_length=255)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
+    content_type = models.ForeignKey("DjangoContentType", models.DO_NOTHING)
     codename = models.CharField(max_length=100)
 
     class Meta:
         managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
+        db_table = "auth_permission"
+        unique_together = (("content_type", "codename"),)
 
 
 class AuthUser(models.Model):
@@ -55,7 +55,7 @@ class AuthUser(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'auth_user'
+        db_table = "auth_user"
 
 
 class AuthUserGroups(models.Model):
@@ -65,8 +65,8 @@ class AuthUserGroups(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'auth_user_groups'
-        unique_together = (('user', 'group'),)
+        db_table = "auth_user_groups"
+        unique_together = (("user", "group"),)
 
 
 class AuthUserUserPermissions(models.Model):
@@ -76,8 +76,8 @@ class AuthUserUserPermissions(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'auth_user_user_permissions'
-        unique_together = (('user', 'permission'),)
+        db_table = "auth_user_user_permissions"
+        unique_together = (("user", "permission"),)
 
 
 class Case(models.Model):
@@ -86,15 +86,14 @@ class Case(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'case'
+        db_table = "case"
 
 
 class Catalogue(models.Model):
     id_catalogue = models.AutoField(primary_key=True)
     id_sampling = models.ForeignKey(
-        'Sampling',
-        models.DO_NOTHING,
-        db_column='id_sampling')
+        "Sampling", models.DO_NOTHING, db_column="id_sampling"
+    )
     id_country = models.IntegerField()
     id_department = models.IntegerField()
     id_municipality = models.IntegerField()
@@ -103,32 +102,19 @@ class Catalogue(models.Model):
     id_gain = models.IntegerField()
     id_filters = models.IntegerField()
     id_collector = models.ForeignKey(
-        'User', models.DO_NOTHING, db_column='id_collector')
+        "User", models.DO_NOTHING, db_column="id_collector"
+    )
     id_h_serial = models.ForeignKey(
-        'HSerial',
-        models.DO_NOTHING,
-        db_column='id_h_serial')
-    id_supply = models.ForeignKey(
-        'Supply',
-        models.DO_NOTHING,
-        db_column='id_supply')
-    id_case = models.ForeignKey(Case, models.DO_NOTHING, db_column='id_case')
-    id_memory = models.ForeignKey(
-        'Memory',
-        models.DO_NOTHING,
-        db_column='id_memory')
-    id_habitat = models.ForeignKey(
-        'Habitat',
-        models.DO_NOTHING,
-        db_column='id_habitat')
+        "HSerial", models.DO_NOTHING, db_column="id_h_serial"
+    )
+    id_supply = models.ForeignKey("Supply", models.DO_NOTHING, db_column="id_supply")
+    id_case = models.ForeignKey(Case, models.DO_NOTHING, db_column="id_case")
+    id_memory = models.ForeignKey("Memory", models.DO_NOTHING, db_column="id_memory")
+    id_habitat = models.ForeignKey("Habitat", models.DO_NOTHING, db_column="id_habitat")
     id_precision = models.ForeignKey(
-        'Precision',
-        models.DO_NOTHING,
-        db_column='id_precision')
-    id_datum = models.ForeignKey(
-        'Datum',
-        models.DO_NOTHING,
-        db_column='id_datum')
+        "Precision", models.DO_NOTHING, db_column="id_precision"
+    )
+    id_datum = models.ForeignKey("Datum", models.DO_NOTHING, db_column="id_datum")
     elevation = models.IntegerField(blank=True, null=True)
     # This field type is a guess.
     coordinates = models.TextField(blank=True, null=True)
@@ -138,20 +124,19 @@ class Catalogue(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'catalogue'
+        db_table = "catalogue"
 
 
 class CatalogueObs(models.Model):
     id_catalogue_obs = models.AutoField(primary_key=True)
     id_catalogue = models.ForeignKey(
-        Catalogue,
-        models.DO_NOTHING,
-        db_column='id_catalogue')
+        Catalogue, models.DO_NOTHING, db_column="id_catalogue"
+    )
     observation = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'catalogue_obs'
+        db_table = "catalogue_obs"
 
 
 class Datum(models.Model):
@@ -160,7 +145,7 @@ class Datum(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'datum'
+        db_table = "datum"
 
 
 class DjangoAdminLog(models.Model):
@@ -170,15 +155,13 @@ class DjangoAdminLog(models.Model):
     action_flag = models.SmallIntegerField()
     change_message = models.TextField()
     content_type = models.ForeignKey(
-        'DjangoContentType',
-        models.DO_NOTHING,
-        blank=True,
-        null=True)
+        "DjangoContentType", models.DO_NOTHING, blank=True, null=True
+    )
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = 'django_admin_log'
+        db_table = "django_admin_log"
 
 
 class DjangoContentType(models.Model):
@@ -187,8 +170,8 @@ class DjangoContentType(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'django_content_type'
-        unique_together = (('app_label', 'model'),)
+        db_table = "django_content_type"
+        unique_together = (("app_label", "model"),)
 
 
 class DjangoMigrations(models.Model):
@@ -199,7 +182,7 @@ class DjangoMigrations(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'django_migrations'
+        db_table = "django_migrations"
 
 
 class DjangoSession(models.Model):
@@ -209,7 +192,7 @@ class DjangoSession(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'django_session'
+        db_table = "django_session"
 
 
 class Evidence(models.Model):
@@ -218,7 +201,7 @@ class Evidence(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'evidence'
+        db_table = "evidence"
 
 
 class Format(models.Model):
@@ -227,7 +210,7 @@ class Format(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'format'
+        db_table = "format"
 
 
 class Funding(models.Model):
@@ -236,23 +219,22 @@ class Funding(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'funding'
+        db_table = "funding"
 
     def __str__(self):
-        return str(self.id_funding)+' , '+str(self.description)
+        return str(self.id_funding) + " , " + str(self.description)
 
 
 class HSerial(models.Model):
     id_h_serial = models.AutoField(primary_key=True)
     id_hardware = models.ForeignKey(
-        'Hardware',
-        models.DO_NOTHING,
-        db_column='id_hardware')
+        "Hardware", models.DO_NOTHING, db_column="id_hardware"
+    )
     h_serial = models.CharField(max_length=64, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'h_serial'
+        db_table = "h_serial"
 
 
 class Habitat(models.Model):
@@ -261,7 +243,7 @@ class Habitat(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'habitat'
+        db_table = "habitat"
 
 
 class Hardware(models.Model):
@@ -270,38 +252,32 @@ class Hardware(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'hardware'
+        db_table = "hardware"
 
 
 class Label(models.Model):
     id_label = models.AutoField(primary_key=True)
-    id_type = models.ForeignKey('Type', models.DO_NOTHING, db_column='id_type')
+    id_type = models.ForeignKey("Type", models.DO_NOTHING, db_column="id_type")
 
     class Meta:
         managed = False
-        db_table = 'label'
+        db_table = "label"
 
 
 class Labeled(models.Model):
     id_labeled = models.AutoField(primary_key=True)
-    id_label = models.ForeignKey(
-        Label, models.DO_NOTHING, db_column='id_label')
-    id_record = models.ForeignKey(
-        'Record',
-        models.DO_NOTHING,
-        db_column='id_record')
+    id_label = models.ForeignKey(Label, models.DO_NOTHING, db_column="id_label")
+    id_record = models.ForeignKey("Record", models.DO_NOTHING, db_column="id_record")
     id_evidence = models.ForeignKey(
-        Evidence,
-        models.DO_NOTHING,
-        db_column='id_evidence')
-    id_labeler = models.ForeignKey(
-        'User', models.DO_NOTHING, db_column='id_labeler')
+        Evidence, models.DO_NOTHING, db_column="id_evidence"
+    )
+    id_labeler = models.ForeignKey("User", models.DO_NOTHING, db_column="id_labeler")
     begin = models.IntegerField(blank=True, null=True)
     label_end = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'labeled'
+        db_table = "labeled"
 
 
 class Memory(models.Model):
@@ -310,18 +286,19 @@ class Memory(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'memory'
+        db_table = "memory"
 
 
 class PhotoPath(models.Model):
     id_photo_path = models.AutoField(primary_key=True)
     id_catalogue = models.OneToOneField(
-        Catalogue, models.DO_NOTHING, db_column='id_catalogue')
+        Catalogue, models.DO_NOTHING, db_column="id_catalogue"
+    )
     path = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'photo_path'
+        db_table = "photo_path"
 
 
 class Precision(models.Model):
@@ -330,32 +307,25 @@ class Precision(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'precision'
+        db_table = "precision"
 
 
 class Project(models.Model):
     id_project = models.AutoField(primary_key=True)
-    id_funding = models.ForeignKey(
-        Funding,
-        models.DO_NOTHING,
-        db_column='id_funding')
+    id_funding = models.ForeignKey(Funding, models.DO_NOTHING, db_column="id_funding")
     description = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'project'
+        db_table = "project"
 
 
 class Record(models.Model):
     id_record = models.AutoField(primary_key=True)
     id_catalogue = models.ForeignKey(
-        Catalogue,
-        models.DO_NOTHING,
-        db_column='id_catalogue')
-    id_format = models.ForeignKey(
-        Format,
-        models.DO_NOTHING,
-        db_column='id_format')
+        Catalogue, models.DO_NOTHING, db_column="id_catalogue"
+    )
+    id_format = models.ForeignKey(Format, models.DO_NOTHING, db_column="id_format")
     date = models.DateTimeField(blank=True, null=True)
     length = models.IntegerField(blank=True, null=True)
     size = models.FloatField(blank=True, null=True)
@@ -365,54 +335,43 @@ class Record(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'record'
+        db_table = "record"
 
 
 class RecordObs(models.Model):
     id_record_obs = models.AutoField(primary_key=True)
-    id_record = models.ForeignKey(
-        Record,
-        models.DO_NOTHING,
-        db_column='id_record')
+    id_record = models.ForeignKey(Record, models.DO_NOTHING, db_column="id_record")
     observation = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'record_obs'
+        db_table = "record_obs"
 
 
 class RecordPath(models.Model):
     id_record_path = models.AutoField(primary_key=True)
-    id_record = models.ForeignKey(
-        Record,
-        models.DO_NOTHING,
-        db_column='id_record')
+    id_record = models.ForeignKey(Record, models.DO_NOTHING, db_column="id_record")
     record_path = models.CharField(max_length=100, blank=True, null=True)
     fingerprint = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'record_path'
+        db_table = "record_path"
 
 
 class Sampling(models.Model):
     id_sampling = models.AutoField(primary_key=True)
-    id_project = models.ForeignKey(
-        Project,
-        models.DO_NOTHING,
-        db_column='id_project')
+    id_project = models.ForeignKey(Project, models.DO_NOTHING, db_column="id_project")
     id_cataloger = models.ForeignKey(
-        'User', models.DO_NOTHING, db_column='id_cataloger')
-    id_season = models.ForeignKey(
-            'Season',
-            models.DO_NOTHING,
-            db_column='id_season')
+        "User", models.DO_NOTHING, db_column="id_cataloger"
+    )
+    id_season = models.ForeignKey("Season", models.DO_NOTHING, db_column="id_season")
     date = models.DateTimeField(blank=True, null=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'sampling'
+        db_table = "sampling"
 
 
 class Season(models.Model):
@@ -421,7 +380,7 @@ class Season(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'season'
+        db_table = "season"
 
 
 class Supply(models.Model):
@@ -430,7 +389,7 @@ class Supply(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'supply'
+        db_table = "supply"
 
 
 class Type(models.Model):
@@ -439,7 +398,7 @@ class Type(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'type'
+        db_table = "type"
 
 
 class User(models.Model):
@@ -449,4 +408,4 @@ class User(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'user'
+        db_table = "user"

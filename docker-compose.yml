@@ -44,7 +44,7 @@ services:
             context: .
             dockerfile: Django.Dockerfile
         # command: python ./apidev/manage.py migrate
-        command: python ./apidev/manage.py runserver 0.0.0.0:8000
+        # command: python ./apidev/manage.py runserver 0.0.0.0:8000
 
         container_name: djangoweb
         volumes:
