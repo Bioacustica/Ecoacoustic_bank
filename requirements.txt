@@ -10,3 +10,4 @@ Django
 django-environ==0.4.5
 djangorestframework
 django-rest-swagger 
+sphinx

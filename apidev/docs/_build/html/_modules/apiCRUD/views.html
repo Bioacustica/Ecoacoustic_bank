@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>apiCRUD.views &mdash; documentación de apiCRUD - 1.0</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> apiCRUD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">apidev</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">apiCRUD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Código de módulo</a> &raquo;</li>
+        
+      <li>apiCRUD.views</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Código fuente para apiCRUD.views</h1><div class="highlight"><pre>
+<span></span><span class="c1"># librerias necesarias</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">coreapi</span>
+
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">response</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">status</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
+<span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span> <span class="nn">rest_framework.views</span> <span class="kn">import</span> <span class="n">APIView</span>
+<span class="kn">from</span> <span class="nn">rest_framework.schemas</span> <span class="kn">import</span> <span class="n">AutoSchema</span>
+<span class="kn">from</span> <span class="nn">django.core.serializers</span> <span class="kn">import</span> <span class="n">serialize</span>
+<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="n">FundingSerializer</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">indexes</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Funding</span>
+
+
+<div class="viewcode-block" id="ApiCrudSchema"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.ApiCrudSchema">[documentos]</a><span class="k">class</span> <span class="nc">ApiCrudSchema</span><span class="p">(</span><span class="n">AutoSchema</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    se creó esta clase con el fin de añadir</span>
+<span class="sd">    campos adicionales en el swagger pues</span>
+<span class="sd">    no se permitia ingresa la descripción en</span>
+<span class="sd">    el post, ni en el put</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO documentar</span>
+<div class="viewcode-block" id="ApiCrudSchema.get_manual_fields"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.ApiCrudSchema.get_manual_fields">[documentos]</a>    <span class="k">def</span> <span class="nf">get_manual_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">extra_fields</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">]:</span>
+            <span class="n">extra_fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">coreapi</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)]</span>
+        <span class="n">manual_fields</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_manual_fields</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">manual_fields</span> <span class="o">+</span> <span class="n">extra_fields</span></div></div>
+
+
+<span class="c1"># Create your views here.</span>
+
+<span class="c1"># Añadir datos al funding</span>
+<span class="c1"># TODO aplicar pep8,documentar con (docstring,sphinx)</span>
+<div class="viewcode-block" id="FundingsPG"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPG">[documentos]</a><span class="k">class</span> <span class="nc">FundingsPG</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    clase de la entidad Fundings empleada unicamente para</span>
+<span class="sd">    crear y obtener registros</span>
+
+
+<span class="sd">    :param APIView: Clase basada en las views de Django que nos permite operar</span>
+<span class="sd">    con los Response, la caracteristica principal es que soporta solicitudes</span>
+<span class="sd">    de tipo .get() y .post() usados en las apis</span>
+<span class="sd">    :type APIView: Rest_framework views</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">schema</span> <span class="o">=</span> <span class="n">ApiCrudSchema</span><span class="p">()</span>
+
+<div class="viewcode-block" id="FundingsPG.post"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPG.post">[documentos]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        funcion que sirve para hacer un request.post a la base de datos,</span>
+<span class="sd">        apuntando a la tabla funding en este caso</span>
+
+
+<span class="sd">        :param request: requerimiento, peticion de la funcion</span>
+<span class="sd">        con el metodo POST</span>
+<span class="sd">        :type request: HttpRequest</span>
+
+<span class="sd">        :return: Retorna un response con los datos del queryset serlializados</span>
+<span class="sd">        convertidos a Json de forma adicional retorna un HTTP status 201</span>
+<span class="sd">        :rtype: Json</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># payload = json.loads(request.body)</span>
+        <span class="c1"># funding = Funding.objects.create(description=payload[&quot;description&quot;])</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">FundingSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">errors</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
+
+    <span class="c1"># Obtener datos del funding</span>
+
+<div class="viewcode-block" id="FundingsPG.get"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPG.get">[documentos]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        funcion que sirve para hacer un request.Get a la base de datos,</span>
+<span class="sd">        apuntando a la tabla funding en este caso con un id especifico</span>
+
+
+<span class="sd">        :param request: requerimiento, peticion de la funcion con el metodo GET</span>
+<span class="sd">        :type request: HttpRequest</span>
+
+<span class="sd">        :param id_funding: id unico y autoincremental de la tabla fundings en</span>
+<span class="sd">        la base de datos.</span>
+<span class="sd">        :type  id_funding: int</span>
+
+
+<span class="sd">        :return: Retorna un response con los datos del queryset serlializados</span>
+<span class="sd">        convertidos a Json de forma adicional retorna un HTTP status 200</span>
+<span class="sd">        :rtype: Json</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fundings</span> <span class="o">=</span> <span class="n">Funding</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">FundingSerializer</span><span class="p">(</span><span class="n">fundings</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span></div></div>
+
+    <span class="c1"># Actualizar funding por id_funding</span>
+
+
+<div class="viewcode-block" id="FundingsPD"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPD">[documentos]</a><span class="k">class</span> <span class="nc">FundingsPD</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    clase de la entidad Fundings empleada unicamente para</span>
+<span class="sd">    actualizar y borrar registros</span>
+
+
+<span class="sd">    :param APIView: Clase basada en las views de Django que nos permite operar</span>
+<span class="sd">    con los Response, la caracteristica principal es que soporta solicitudes</span>
+<span class="sd">    de tipo .get() y .post() usados en las apis</span>
+<span class="sd">    :type APIView: Rest_framework views</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">schema</span> <span class="o">=</span> <span class="n">ApiCrudSchema</span><span class="p">()</span>
+
+<div class="viewcode-block" id="FundingsPD.put"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPD.put">[documentos]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">id_funding</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        funcion que sirve para hacer un request.put a la base de datos,</span>
+<span class="sd">        apuntando a la tabla funding en este caso.</span>
+<span class="sd">        Recibe como parametro un diccionario con el id_funding como clave</span>
+<span class="sd">        y el valor como parametro a reemplazar</span>
+
+
+<span class="sd">        :param request: requerimiento, peticion de la funcion con el metodo PUT</span>
+<span class="sd">        :type request: HttpRequest</span>
+
+<span class="sd">        :param id_funding: id unico y autoincremental de la tabla fundings en</span>
+<span class="sd">        la base de datos.</span>
+<span class="sd">        :type  id_funding: int</span>
+
+<span class="sd">        :return: Retorna un response con los datos del queryset serlializados</span>
+<span class="sd">        convertidos a Json de forma adicional retorna un HTTP status 200</span>
+<span class="sd">        :rtype: Json</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">update_funding</span> <span class="o">=</span> <span class="n">Funding</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">id_funding</span><span class="o">=</span><span class="n">id_funding</span><span class="p">)</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">FundingSerializer</span><span class="p">(</span><span class="n">update_funding</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">errors</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
+
+    <span class="c1"># Eliminar registro del funding</span>
+
+<div class="viewcode-block" id="FundingsPD.delete"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPD.delete">[documentos]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">id_funding</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        funcion que sirve para hacer un request.put a la base de datos,</span>
+<span class="sd">        apuntando a la tabla funding en este caso.</span>
+<span class="sd">        Recibe como parametro un diccionario con el id_funding donde eliminará</span>
+<span class="sd">        la descripcion correspondiente a ese id</span>
+
+
+<span class="sd">        :param request: requerimiento, peticion de la función</span>
+<span class="sd">        con el metodo DELETE</span>
+<span class="sd">        :type request: HttpRequest</span>
+
+<span class="sd">        :param id_funding: id unico y autoincremental de la tabla fundings en</span>
+<span class="sd">        la base de datos.</span>
+<span class="sd">        :type  id_funding: int</span>
+
+<span class="sd">        :return:Retorna un response con los datos del queryset serlializados</span>
+<span class="sd">        convertidos a Json de forma adicional retorna un HTTP status 204</span>
+<span class="sd">        :rtype: Json</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">funding</span> <span class="o">=</span> <span class="n">Funding</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">id_funding</span><span class="o">=</span><span class="n">id_funding</span><span class="p">)</span>
+        <span class="n">funding</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_204_NO_CONTENT</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FundingsPD.get"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPD.get">[documentos]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">id_funding</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        funcion que sirve para hacer un request.Get a la base de datos,</span>
+<span class="sd">        apuntando a la tabla funding en este caso</span>
+
+
+<span class="sd">        :param request: requerimiento, peticion de la funcion con el metodo GET</span>
+<span class="sd">        :type request: HttpRequest</span>
+
+<span class="sd">        :param id_funding: id unico y autoincremental de la tabla fundings en</span>
+<span class="sd">        la base de datos.</span>
+<span class="sd">        :type  id_funding: int</span>
+
+
+<span class="sd">        :return: Retorna un response con los datos del queryset serlializados</span>
+<span class="sd">        convertidos a Json de forma adicional retorna un HTTP status 200</span>
+<span class="sd">        :rtype: Json</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fundings</span> <span class="o">=</span> <span class="n">Funding</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_funding</span><span class="o">=</span><span class="n">id_funding</span><span class="p">)</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">FundingSerializer</span><span class="p">(</span><span class="n">fundings</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Derechos de autor 2021, victor.
+
+    </p>
+  </div>
+    
+    
+    
+    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

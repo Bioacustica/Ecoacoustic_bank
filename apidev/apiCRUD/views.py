@@ -50,7 +50,7 @@ class FundingsPG(APIView):
     """
     schema = ApiCrudSchema()
 
-    def post(self, request):
+    def post(self, request) -> dict:
         """
         funcion que sirve para hacer un request.post a la base de datos,
         apuntando a la tabla funding en este caso
@@ -75,8 +75,7 @@ class FundingsPG(APIView):
 
     # Obtener datos del funding
 
-
-    def get(self, request):
+    def get(self, request) -> dict:
         """
         funcion que sirve para hacer un request.Get a la base de datos,
         apuntando a la tabla funding en este caso con un id especifico
@@ -116,7 +115,7 @@ class FundingsPD(APIView):
 
     schema = ApiCrudSchema()
 
-    def put(self, request, id_funding):
+    def put(self, request, id_funding: int) -> dict:
         """
         funcion que sirve para hacer un request.put a la base de datos,
         apuntando a la tabla funding en este caso.
@@ -138,12 +137,13 @@ class FundingsPD(APIView):
         update_funding = Funding.objects.get(id_funding=id_funding)
         serializer = FundingSerializer(update_funding, data=request.data)
         if serializer.is_valid():
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # Eliminar registro del funding
 
-    def delete(self, request, id_funding):
+    def delete(self, request, id_funding: int) -> dict:
         """
         funcion que sirve para hacer un request.put a la base de datos,
         apuntando a la tabla funding en este caso.
@@ -167,7 +167,7 @@ class FundingsPD(APIView):
         funding.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def get(self, request, id_funding):
+    def get(self, request, id_funding: int) -> dict:
         """
         funcion que sirve para hacer un request.Get a la base de datos,
         apuntando a la tabla funding en este caso

@@ -19,8 +19,8 @@ RUN \
     apt-get update && \
     apt-get install -y wget python3 python3-pip python3-dev iputils-ping
 
-RUN ln -s /bin/pip3 /bin/pip
-
+# RUN ln -s /bin/pip3 /bin/pip
+COPY . /code
 COPY requirements.txt .
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
