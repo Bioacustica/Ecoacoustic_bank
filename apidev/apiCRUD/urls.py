@@ -6,11 +6,31 @@ from rest_framework.routers import DefaultRouter
 # Aqui creamos las urls con un sobrenombre memotecnico
 # apuntando a su vista correspondiente
 
-# router = DefaultRouter()
-# router.register('Fundings', viewset=views.FundingsPG)
-
+router = DefaultRouter()
+router.register("Funding", views.FundingsView)
+router.register("Case", views.CaseView)
+router.register("Catalogue", views.CatalogueView)
+router.register("CatalogueObs", views.CatalogueObsView)
+router.register("Datum", views.DatumView)
+router.register("Evidence", views. EvidenceView)
+router.register("Format", views.FormatView)
+router.register("HSerial", views.HSerialView)
+router.register("Habitat", views.HabitatView)
+router.register("Hardware", views.HardwareView)
+router.register("Label", views.LabelView)
+router.register("Labeled", views.LabeledView)
+router.register("Memory", views.MemoryView)
+router.register("PhotoPath", views.PhotoPathView)
+router.register("Precision", views.PrecisionView)
+router.register("Project", views.ProjectView)
+router.register("Record", views.RecordView)
+router.register("RecordObs", views.RecordObsView)
+router.register("RecordPath", views.RecordPathView)
+router.register("Sampling", views. SamplingView)
+router.register("Season", views.SeasonView)
+router.register("Supply", views.SupplyView)
+router.register("Type", views.TypeView)
+router.register("User", views.UserView)
 urlpatterns = [
-    # path('',include(router.urls)),
-    path('', views.FundingsPG.as_view()),
-    path("<int:id_funding>", views.FundingsPD.as_view())
+    path('', include(router.urls)),
 ]

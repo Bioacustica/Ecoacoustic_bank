@@ -163,188 +163,144 @@
 <span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">status</span>
 <span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
 <span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">viewsets</span>
 <span class="kn">from</span> <span class="nn">rest_framework.views</span> <span class="kn">import</span> <span class="n">APIView</span>
 <span class="kn">from</span> <span class="nn">rest_framework.schemas</span> <span class="kn">import</span> <span class="n">AutoSchema</span>
 <span class="kn">from</span> <span class="nn">django.core.serializers</span> <span class="kn">import</span> <span class="n">serialize</span>
-<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="n">FundingSerializer</span>
+<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">indexes</span>
 
 <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Funding</span>
 
 
-<div class="viewcode-block" id="ApiCrudSchema"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.ApiCrudSchema">[documentos]</a><span class="k">class</span> <span class="nc">ApiCrudSchema</span><span class="p">(</span><span class="n">AutoSchema</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    se creó esta clase con el fin de añadir</span>
-<span class="sd">    campos adicionales en el swagger pues</span>
-<span class="sd">    no se permitia ingresa la descripción en</span>
-<span class="sd">    el post, ni en el put</span>
+<span class="c1"># Vistas hechas con el model view set para hacer el CRUD</span>
+<span class="sd">&quot;&quot;&quot;La Clase ModelViewSet incluye implementaciones para</span>
+<span class="sd">hacer varias acciones como .list() , .create() , .update() , etc</span>
+<span class="sd">de forma automatica sin necesidad de crear las funciones, esta</span>
+<span class="sd">clase es muy util para un paronama general que no requiere personalización</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO documentar</span>
-<div class="viewcode-block" id="ApiCrudSchema.get_manual_fields"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.ApiCrudSchema.get_manual_fields">[documentos]</a>    <span class="k">def</span> <span class="nf">get_manual_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="n">extra_fields</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">]:</span>
-            <span class="n">extra_fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">coreapi</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)]</span>
-        <span class="n">manual_fields</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_manual_fields</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">manual_fields</span> <span class="o">+</span> <span class="n">extra_fields</span></div></div>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
-<span class="c1"># Create your views here.</span>
 
-<span class="c1"># Añadir datos al funding</span>
-<span class="c1"># TODO aplicar pep8,documentar con (docstring,sphinx)</span>
-<div class="viewcode-block" id="FundingsPG"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPG">[documentos]</a><span class="k">class</span> <span class="nc">FundingsPG</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    clase de la entidad Fundings empleada unicamente para</span>
-<span class="sd">    crear y obtener registros</span>
+<div class="viewcode-block" id="FundingsView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsView">[documentos]</a><span class="k">class</span> <span class="nc">FundingsView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Funding</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">FundingSerializer</span></div>
 
 
-<span class="sd">    :param APIView: Clase basada en las views de Django que nos permite operar</span>
-<span class="sd">    con los Response, la caracteristica principal es que soporta solicitudes</span>
-<span class="sd">    de tipo .get() y .post() usados en las apis</span>
-<span class="sd">    :type APIView: Rest_framework views</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">schema</span> <span class="o">=</span> <span class="n">ApiCrudSchema</span><span class="p">()</span>
-
-<div class="viewcode-block" id="FundingsPG.post"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPG.post">[documentos]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        funcion que sirve para hacer un request.post a la base de datos,</span>
-<span class="sd">        apuntando a la tabla funding en este caso</span>
+<div class="viewcode-block" id="CaseView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.CaseView">[documentos]</a><span class="k">class</span> <span class="nc">CaseView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Case</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">CaseSerializer</span></div>
 
 
-<span class="sd">        :param request: requerimiento, peticion de la funcion</span>
-<span class="sd">        con el metodo POST</span>
-<span class="sd">        :type request: HttpRequest</span>
-
-<span class="sd">        :return: Retorna un response con los datos del queryset serlializados</span>
-<span class="sd">        convertidos a Json de forma adicional retorna un HTTP status 201</span>
-<span class="sd">        :rtype: Json</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="c1"># payload = json.loads(request.body)</span>
-        <span class="c1"># funding = Funding.objects.create(description=payload[&quot;description&quot;])</span>
-        <span class="n">serializer</span> <span class="o">=</span> <span class="n">FundingSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
-            <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">errors</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
-
-    <span class="c1"># Obtener datos del funding</span>
-
-<div class="viewcode-block" id="FundingsPG.get"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPG.get">[documentos]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        funcion que sirve para hacer un request.Get a la base de datos,</span>
-<span class="sd">        apuntando a la tabla funding en este caso con un id especifico</span>
+<div class="viewcode-block" id="CatalogueView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.CatalogueView">[documentos]</a><span class="k">class</span> <span class="nc">CatalogueView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Catalogue</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">CatalogueSerializer</span></div>
 
 
-<span class="sd">        :param request: requerimiento, peticion de la funcion con el metodo GET</span>
-<span class="sd">        :type request: HttpRequest</span>
-
-<span class="sd">        :param id_funding: id unico y autoincremental de la tabla fundings en</span>
-<span class="sd">        la base de datos.</span>
-<span class="sd">        :type  id_funding: int</span>
+<div class="viewcode-block" id="CatalogueObsView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.CatalogueObsView">[documentos]</a><span class="k">class</span> <span class="nc">CatalogueObsView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">CatalogueObs</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">CatalogueObsSerializer</span></div>
 
 
-<span class="sd">        :return: Retorna un response con los datos del queryset serlializados</span>
-<span class="sd">        convertidos a Json de forma adicional retorna un HTTP status 200</span>
-<span class="sd">        :rtype: Json</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">fundings</span> <span class="o">=</span> <span class="n">Funding</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-        <span class="n">serializer</span> <span class="o">=</span> <span class="n">FundingSerializer</span><span class="p">(</span><span class="n">fundings</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span></div></div>
-
-    <span class="c1"># Actualizar funding por id_funding</span>
+<div class="viewcode-block" id="DatumView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.DatumView">[documentos]</a><span class="k">class</span> <span class="nc">DatumView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Datum</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">DatumSerializer</span></div>
 
 
-<div class="viewcode-block" id="FundingsPD"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPD">[documentos]</a><span class="k">class</span> <span class="nc">FundingsPD</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    clase de la entidad Fundings empleada unicamente para</span>
-<span class="sd">    actualizar y borrar registros</span>
+<div class="viewcode-block" id="EvidenceView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.EvidenceView">[documentos]</a><span class="k">class</span> <span class="nc">EvidenceView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Evidence</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">EvidenceSerializer</span></div>
 
 
-<span class="sd">    :param APIView: Clase basada en las views de Django que nos permite operar</span>
-<span class="sd">    con los Response, la caracteristica principal es que soporta solicitudes</span>
-<span class="sd">    de tipo .get() y .post() usados en las apis</span>
-<span class="sd">    :type APIView: Rest_framework views</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">schema</span> <span class="o">=</span> <span class="n">ApiCrudSchema</span><span class="p">()</span>
-
-<div class="viewcode-block" id="FundingsPD.put"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPD.put">[documentos]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">id_funding</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        funcion que sirve para hacer un request.put a la base de datos,</span>
-<span class="sd">        apuntando a la tabla funding en este caso.</span>
-<span class="sd">        Recibe como parametro un diccionario con el id_funding como clave</span>
-<span class="sd">        y el valor como parametro a reemplazar</span>
+<div class="viewcode-block" id="FormatView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FormatView">[documentos]</a><span class="k">class</span> <span class="nc">FormatView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Format</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">FormatSerializer</span></div>
 
 
-<span class="sd">        :param request: requerimiento, peticion de la funcion con el metodo PUT</span>
-<span class="sd">        :type request: HttpRequest</span>
-
-<span class="sd">        :param id_funding: id unico y autoincremental de la tabla fundings en</span>
-<span class="sd">        la base de datos.</span>
-<span class="sd">        :type  id_funding: int</span>
-
-<span class="sd">        :return: Retorna un response con los datos del queryset serlializados</span>
-<span class="sd">        convertidos a Json de forma adicional retorna un HTTP status 200</span>
-<span class="sd">        :rtype: Json</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">update_funding</span> <span class="o">=</span> <span class="n">Funding</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">id_funding</span><span class="o">=</span><span class="n">id_funding</span><span class="p">)</span>
-        <span class="n">serializer</span> <span class="o">=</span> <span class="n">FundingSerializer</span><span class="p">(</span><span class="n">update_funding</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
-            <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">errors</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
-
-    <span class="c1"># Eliminar registro del funding</span>
-
-<div class="viewcode-block" id="FundingsPD.delete"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPD.delete">[documentos]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">id_funding</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        funcion que sirve para hacer un request.put a la base de datos,</span>
-<span class="sd">        apuntando a la tabla funding en este caso.</span>
-<span class="sd">        Recibe como parametro un diccionario con el id_funding donde eliminará</span>
-<span class="sd">        la descripcion correspondiente a ese id</span>
+<div class="viewcode-block" id="HSerialView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.HSerialView">[documentos]</a><span class="k">class</span> <span class="nc">HSerialView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">HSerial</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">HSerialSerializer</span></div>
 
 
-<span class="sd">        :param request: requerimiento, peticion de la función</span>
-<span class="sd">        con el metodo DELETE</span>
-<span class="sd">        :type request: HttpRequest</span>
-
-<span class="sd">        :param id_funding: id unico y autoincremental de la tabla fundings en</span>
-<span class="sd">        la base de datos.</span>
-<span class="sd">        :type  id_funding: int</span>
-
-<span class="sd">        :return:Retorna un response con los datos del queryset serlializados</span>
-<span class="sd">        convertidos a Json de forma adicional retorna un HTTP status 204</span>
-<span class="sd">        :rtype: Json</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">funding</span> <span class="o">=</span> <span class="n">Funding</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">id_funding</span><span class="o">=</span><span class="n">id_funding</span><span class="p">)</span>
-        <span class="n">funding</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_204_NO_CONTENT</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FundingsPD.get"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.FundingsPD.get">[documentos]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">id_funding</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        funcion que sirve para hacer un request.Get a la base de datos,</span>
-<span class="sd">        apuntando a la tabla funding en este caso</span>
+<div class="viewcode-block" id="HabitatView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.HabitatView">[documentos]</a><span class="k">class</span> <span class="nc">HabitatView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Habitat</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">HabitatSerializer</span></div>
 
 
-<span class="sd">        :param request: requerimiento, peticion de la funcion con el metodo GET</span>
-<span class="sd">        :type request: HttpRequest</span>
-
-<span class="sd">        :param id_funding: id unico y autoincremental de la tabla fundings en</span>
-<span class="sd">        la base de datos.</span>
-<span class="sd">        :type  id_funding: int</span>
+<div class="viewcode-block" id="HardwareView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.HardwareView">[documentos]</a><span class="k">class</span> <span class="nc">HardwareView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Hardware</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">HardwareSerializer</span></div>
 
 
-<span class="sd">        :return: Retorna un response con los datos del queryset serlializados</span>
-<span class="sd">        convertidos a Json de forma adicional retorna un HTTP status 200</span>
-<span class="sd">        :rtype: Json</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">fundings</span> <span class="o">=</span> <span class="n">Funding</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_funding</span><span class="o">=</span><span class="n">id_funding</span><span class="p">)</span>
-        <span class="n">serializer</span> <span class="o">=</span> <span class="n">FundingSerializer</span><span class="p">(</span><span class="n">fundings</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span></div></div>
+<div class="viewcode-block" id="LabelView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.LabelView">[documentos]</a><span class="k">class</span> <span class="nc">LabelView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Label</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">LabelSerializer</span></div>
+
+
+<div class="viewcode-block" id="LabeledView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.LabeledView">[documentos]</a><span class="k">class</span> <span class="nc">LabeledView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Labeled</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">LabeledSerializer</span></div>
+
+
+<div class="viewcode-block" id="MemoryView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.MemoryView">[documentos]</a><span class="k">class</span> <span class="nc">MemoryView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Memory</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">MemorySerializer</span></div>
+
+
+<div class="viewcode-block" id="PhotoPathView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.PhotoPathView">[documentos]</a><span class="k">class</span> <span class="nc">PhotoPathView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">PhotoPath</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PhotoPathSerializer</span></div>
+
+
+<div class="viewcode-block" id="PrecisionView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.PrecisionView">[documentos]</a><span class="k">class</span> <span class="nc">PrecisionView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Precision</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PrecisionSerializer</span></div>
+
+
+<div class="viewcode-block" id="ProjectView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.ProjectView">[documentos]</a><span class="k">class</span> <span class="nc">ProjectView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">ProjectSerializer</span></div>
+
+
+<div class="viewcode-block" id="RecordView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.RecordView">[documentos]</a><span class="k">class</span> <span class="nc">RecordView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Record</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">RecordSerializer</span></div>
+
+
+<div class="viewcode-block" id="RecordObsView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.RecordObsView">[documentos]</a><span class="k">class</span> <span class="nc">RecordObsView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">RecordObs</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">RecordObsSerializer</span></div>
+
+
+<div class="viewcode-block" id="RecordPathView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.RecordPathView">[documentos]</a><span class="k">class</span> <span class="nc">RecordPathView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">RecordPath</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">RecordPathSerializer</span></div>
+
+
+<div class="viewcode-block" id="SamplingView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.SamplingView">[documentos]</a><span class="k">class</span> <span class="nc">SamplingView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Sampling</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">SamplingSerializer</span></div>
+
+
+<div class="viewcode-block" id="SeasonView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.SeasonView">[documentos]</a><span class="k">class</span> <span class="nc">SeasonView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Season</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">SeasonSerializer</span></div>
+
+
+<div class="viewcode-block" id="SupplyView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.SupplyView">[documentos]</a><span class="k">class</span> <span class="nc">SupplyView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Supply</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">SupplySerializer</span></div>
+
+
+<div class="viewcode-block" id="TypeView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.TypeView">[documentos]</a><span class="k">class</span> <span class="nc">TypeView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Type</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">TypeSerializer</span></div>
+
+
+<div class="viewcode-block" id="UserView"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.views.UserView">[documentos]</a><span class="k">class</span> <span class="nc">UserView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">UserSerializer</span></div>
 </pre></div>
 
            </div>

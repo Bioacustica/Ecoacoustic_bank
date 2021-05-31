@@ -14,6 +14,9 @@ from django.db import models
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         managed = False
         db_table = "auth_group"
@@ -23,6 +26,9 @@ class AuthGroupPermissions(models.Model):
     id = models.BigAutoField(primary_key=True)
     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
     permission = models.ForeignKey("AuthPermission", models.DO_NOTHING)
+
+    def __str__(self):
+        return self.group
 
     class Meta:
         managed = False
@@ -34,6 +40,9 @@ class AuthPermission(models.Model):
     name = models.CharField(max_length=255)
     content_type = models.ForeignKey("DjangoContentType", models.DO_NOTHING)
     codename = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         managed = False
@@ -84,6 +93,9 @@ class Case(models.Model):
     id_case = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
+    def __str__(self):
+        return self.description
+
     class Meta:
         managed = False
         db_table = "case"
@@ -126,6 +138,9 @@ class Catalogue(models.Model):
         managed = False
         db_table = "catalogue"
 
+    def __str__(self):
+        return self.elevation
+
 
 class CatalogueObs(models.Model):
     id_catalogue_obs = models.AutoField(primary_key=True)
@@ -133,6 +148,9 @@ class CatalogueObs(models.Model):
         Catalogue, models.DO_NOTHING, db_column="id_catalogue"
     )
     observation = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.id_catalogue
 
     class Meta:
         managed = False
@@ -142,6 +160,9 @@ class CatalogueObs(models.Model):
 class Datum(models.Model):
     id_datum = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.description
 
     class Meta:
         managed = False
@@ -199,6 +220,9 @@ class Evidence(models.Model):
     id_evidence = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
+    def __str__(self):
+        return self.description
+        
     class Meta:
         managed = False
         db_table = "evidence"
@@ -208,6 +232,8 @@ class Format(models.Model):
     id_format = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
+    def __str__(self):
+        return self.description
     class Meta:
         managed = False
         db_table = "format"
@@ -217,12 +243,13 @@ class Funding(models.Model):
     id_funding = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
+    def __str__(self):
+        return self.description
+
     class Meta:
         managed = False
         db_table = "funding"
 
-    def __str__(self):
-        return str(self.id_funding) + " , " + str(self.description)
 
 
 class HSerial(models.Model):
@@ -231,6 +258,9 @@ class HSerial(models.Model):
         "Hardware", models.DO_NOTHING, db_column="id_hardware"
     )
     h_serial = models.CharField(max_length=64, blank=True, null=True)
+
+    def __str__(self):
+        return self.id_h_serial
 
     class Meta:
         managed = False
@@ -241,6 +271,9 @@ class Habitat(models.Model):
     id_habitat = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
+    def __str__(self):
+        return self.description
+
     class Meta:
         managed = False
         db_table = "habitat"
@@ -250,6 +283,9 @@ class Hardware(models.Model):
     id_hardware = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
+    def __str__(self):
+        return self.description
+
     class Meta:
         managed = False
         db_table = "hardware"
@@ -258,6 +294,10 @@ class Hardware(models.Model):
 class Label(models.Model):
     id_label = models.AutoField(primary_key=True)
     id_type = models.ForeignKey("Type", models.DO_NOTHING, db_column="id_type")
+
+    def __str__(self):
+        return self.id_label
+
 
     class Meta:
         managed = False
@@ -274,6 +314,10 @@ class Labeled(models.Model):
     id_labeler = models.ForeignKey("User", models.DO_NOTHING, db_column="id_labeler")
     begin = models.IntegerField(blank=True, null=True)
     label_end = models.IntegerField(blank=True, null=True)
+    
+    def __str__(self):
+        return self.begin
+
 
     class Meta:
         managed = False
@@ -283,6 +327,9 @@ class Labeled(models.Model):
 class Memory(models.Model):
     id_memory = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
+    
+    def __str__(self):
+        return self.description
 
     class Meta:
         managed = False
@@ -296,6 +343,9 @@ class PhotoPath(models.Model):
     )
     path = models.CharField(max_length=100, blank=True, null=True)
 
+    def __str__(self):
+        return self.id_catalogue
+
     class Meta:
         managed = False
         db_table = "photo_path"
@@ -304,6 +354,9 @@ class PhotoPath(models.Model):
 class Precision(models.Model):
     id_precision = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.description
 
     class Meta:
         managed = False
@@ -314,6 +367,9 @@ class Project(models.Model):
     id_project = models.AutoField(primary_key=True)
     id_funding = models.ForeignKey(Funding, models.DO_NOTHING, db_column="id_funding")
     description = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.description
 
     class Meta:
         managed = False
@@ -333,6 +389,10 @@ class Record(models.Model):
     chunk = models.IntegerField(blank=True, null=True)
     channels = models.IntegerField(blank=True, null=True)
 
+
+    def __str__(self):
+        return self.date
+
     class Meta:
         managed = False
         db_table = "record"
@@ -342,6 +402,9 @@ class RecordObs(models.Model):
     id_record_obs = models.AutoField(primary_key=True)
     id_record = models.ForeignKey(Record, models.DO_NOTHING, db_column="id_record")
     observation = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.observation
 
     class Meta:
         managed = False
@@ -353,6 +416,9 @@ class RecordPath(models.Model):
     id_record = models.ForeignKey(Record, models.DO_NOTHING, db_column="id_record")
     record_path = models.CharField(max_length=100, blank=True, null=True)
     fingerprint = models.CharField(max_length=100, blank=True, null=True)
+    
+    def __str__(self):
+        return self.fingerprint
 
     class Meta:
         managed = False
@@ -369,6 +435,9 @@ class Sampling(models.Model):
     date = models.DateTimeField(blank=True, null=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
+    def __str__(self):
+        return self.description
+
     class Meta:
         managed = False
         db_table = "sampling"
@@ -377,6 +446,9 @@ class Sampling(models.Model):
 class Season(models.Model):
     id_season = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.description
 
     class Meta:
         managed = False
@@ -387,6 +459,10 @@ class Supply(models.Model):
     id_supply = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
+
+    def __str__(self):
+        return self.description
+
     class Meta:
         managed = False
         db_table = "supply"
@@ -395,6 +471,10 @@ class Supply(models.Model):
 class Type(models.Model):
     id_type = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
+
+
+    def __str__(self):
+        return self.description
 
     class Meta:
         managed = False
@@ -405,6 +485,9 @@ class User(models.Model):
     id_user = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         managed = False

@@ -171,7 +171,7 @@
             <column ascending="true" name="permission_id"/>
          </index>
       </table>
-      <table name="case" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+      <table name="case" numRows="1" remarks="" schema="bioacustica" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('bioacustica.case_id_case_seq'::regclass)" digits="0" id="0" name="id_case" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="id_case" foreignKey="catalogue_id_case_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
@@ -242,7 +242,7 @@
             <column ascending="true" name="id_catalogue_obs"/>
          </index>
       </table>
-      <table name="datum" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+      <table name="datum" numRows="1" remarks="" schema="bioacustica" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('bioacustica.datum_id_datum_seq'::regclass)" digits="0" id="0" name="id_datum" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="id_datum" foreignKey="catalogue_id_datum_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
@@ -252,7 +252,7 @@
             <column ascending="true" name="id_datum"/>
          </index>
       </table>
-      <table name="django_admin_log" numRows="8" remarks="" schema="bioacustica" type="TABLE">
+      <table name="django_admin_log" numRows="10" remarks="" schema="bioacustica" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('bioacustica.django_admin_log_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="action_time" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="object_id" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
@@ -303,7 +303,7 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="django_session" numRows="2" remarks="" schema="bioacustica" type="TABLE">
+      <table name="django_session" numRows="3" remarks="" schema="bioacustica" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="session_key" nullable="false" remarks="" size="40" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="session_data" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="expire_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
@@ -328,7 +328,7 @@
             <column ascending="true" name="id_evidence"/>
          </index>
       </table>
-      <table name="format" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+      <table name="format" numRows="1" remarks="" schema="bioacustica" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('bioacustica.format_id_format_seq'::regclass)" digits="0" id="0" name="id_format" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="id_format" foreignKey="record_id_format_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record"/>
          </column>

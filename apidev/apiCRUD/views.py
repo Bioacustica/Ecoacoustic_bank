@@ -6,185 +6,140 @@ from rest_framework import response
 from rest_framework import status
 from rest_framework import serializers
 from rest_framework.response import Response
+from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.schemas import AutoSchema
 from django.core.serializers import serialize
-from .serializers import FundingSerializer
+from .serializers import *
 from django.db.models import indexes
 
 from .models import Funding
 
 
-class ApiCrudSchema(AutoSchema):
-    """
-    se creó esta clase con el fin de añadir
-    campos adicionales en el swagger pues
-    no se permitia ingresa la descripción en
-    el post, ni en el put
+# Vistas hechas con el model view set para hacer el CRUD
+"""La Clase ModelViewSet incluye implementaciones para
+hacer varias acciones como .list() , .create() , .update() , etc
+de forma automatica sin necesidad de crear las funciones, esta
+clase es muy util para un paronama general que no requiere personalización
 
-    """
-    # TODO documentar
-    def get_manual_fields(self, path: str, method: str) -> str:
-        extra_fields = []
-        if method.lower() in ["post", "put"]:
-            extra_fields = [coreapi.Field("description")]
-        manual_fields = super().get_manual_fields(path, method)
-        return manual_fields + extra_fields
+"""
 
 
-# Create your views here.
-
-# Añadir datos al funding
-# TODO aplicar pep8,documentar con (docstring,sphinx)
-class FundingsPG(APIView):
-    """
-    clase de la entidad Fundings empleada unicamente para
-    crear y obtener registros
+class FundingsView(viewsets.ModelViewSet):
+    queryset = Funding.objects.all()
+    serializer_class = FundingSerializer
 
 
-    :param APIView: Clase basada en las views de Django que nos permite operar
-    con los Response, la caracteristica principal es que soporta solicitudes
-    de tipo .get() y .post() usados en las apis
-    :type APIView: Rest_framework views
-
-    """
-    schema = ApiCrudSchema()
-
-    def post(self, request) -> dict:
-        """
-        funcion que sirve para hacer un request.post a la base de datos,
-        apuntando a la tabla funding en este caso
+class CaseView(viewsets.ModelViewSet):
+    queryset = Case.objects.all()
+    serializer_class = CaseSerializer
 
 
-        :param request: requerimiento, peticion de la funcion
-        con el metodo POST
-        :type request: HttpRequest
-
-        :return: Retorna un response con los datos del queryset serlializados
-        convertidos a Json de forma adicional retorna un HTTP status 201
-        :rtype: Json
-        """
-
-        # payload = json.loads(request.body)
-        # funding = Funding.objects.create(description=payload["description"])
-        serializer = FundingSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # Obtener datos del funding
-
-    def get(self, request) -> dict:
-        """
-        funcion que sirve para hacer un request.Get a la base de datos,
-        apuntando a la tabla funding en este caso con un id especifico
+class CatalogueView(viewsets.ModelViewSet):
+    queryset = Catalogue.objects.all()
+    serializer_class = CatalogueSerializer
 
 
-        :param request: requerimiento, peticion de la funcion con el metodo GET
-        :type request: HttpRequest
-
-        :param id_funding: id unico y autoincremental de la tabla fundings en
-        la base de datos.
-        :type  id_funding: int
+class CatalogueObsView(viewsets.ModelViewSet):
+    queryset = CatalogueObs.objects.all()
+    serializer_class = CatalogueObsSerializer
 
 
-        :return: Retorna un response con los datos del queryset serlializados
-        convertidos a Json de forma adicional retorna un HTTP status 200
-        :rtype: Json
-        """
-        fundings = Funding.objects.all()
-        serializer = FundingSerializer(fundings, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    # Actualizar funding por id_funding
+class DatumView(viewsets.ModelViewSet):
+    queryset = Datum.objects.all()
+    serializer_class = DatumSerializer
 
 
-class FundingsPD(APIView):
-    """
-    clase de la entidad Fundings empleada unicamente para
-    actualizar y borrar registros
+class EvidenceView(viewsets.ModelViewSet):
+    queryset = Evidence.objects.all()
+    serializer_class = EvidenceSerializer
 
 
-    :param APIView: Clase basada en las views de Django que nos permite operar
-    con los Response, la caracteristica principal es que soporta solicitudes
-    de tipo .get() y .post() usados en las apis
-    :type APIView: Rest_framework views
-
-    """
-
-    schema = ApiCrudSchema()
-
-    def put(self, request, id_funding: int) -> dict:
-        """
-        funcion que sirve para hacer un request.put a la base de datos,
-        apuntando a la tabla funding en este caso.
-        Recibe como parametro un diccionario con el id_funding como clave
-        y el valor como parametro a reemplazar
+class FormatView(viewsets.ModelViewSet):
+    queryset = Format.objects.all()
+    serializer_class = FormatSerializer
 
 
-        :param request: requerimiento, peticion de la funcion con el metodo PUT
-        :type request: HttpRequest
-
-        :param id_funding: id unico y autoincremental de la tabla fundings en
-        la base de datos.
-        :type  id_funding: int
-
-        :return: Retorna un response con los datos del queryset serlializados
-        convertidos a Json de forma adicional retorna un HTTP status 200
-        :rtype: Json
-        """
-        update_funding = Funding.objects.get(id_funding=id_funding)
-        serializer = FundingSerializer(update_funding, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # Eliminar registro del funding
-
-    def delete(self, request, id_funding: int) -> dict:
-        """
-        funcion que sirve para hacer un request.put a la base de datos,
-        apuntando a la tabla funding en este caso.
-        Recibe como parametro un diccionario con el id_funding donde eliminará
-        la descripcion correspondiente a ese id
+class HSerialView(viewsets.ModelViewSet):
+    queryset = HSerial.objects.all()
+    serializer_class = HSerialSerializer
 
 
-        :param request: requerimiento, peticion de la función
-        con el metodo DELETE
-        :type request: HttpRequest
-
-        :param id_funding: id unico y autoincremental de la tabla fundings en
-        la base de datos.
-        :type  id_funding: int
-
-        :return:Retorna un response con los datos del queryset serlializados
-        convertidos a Json de forma adicional retorna un HTTP status 204
-        :rtype: Json
-        """
-        funding = Funding.objects.get(id_funding=id_funding)
-        funding.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    def get(self, request, id_funding: int) -> dict:
-        """
-        funcion que sirve para hacer un request.Get a la base de datos,
-        apuntando a la tabla funding en este caso
+class HabitatView(viewsets.ModelViewSet):
+    queryset = Habitat.objects.all()
+    serializer_class = HabitatSerializer
 
 
-        :param request: requerimiento, peticion de la funcion con el metodo GET
-        :type request: HttpRequest
-
-        :param id_funding: id unico y autoincremental de la tabla fundings en
-        la base de datos.
-        :type  id_funding: int
+class HardwareView(viewsets.ModelViewSet):
+    queryset = Hardware.objects.all()
+    serializer_class = HardwareSerializer
 
 
-        :return: Retorna un response con los datos del queryset serlializados
-        convertidos a Json de forma adicional retorna un HTTP status 200
-        :rtype: Json
-        """
-        fundings = Funding.objects.filter(id_funding=id_funding)
-        serializer = FundingSerializer(fundings, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+class LabelView(viewsets.ModelViewSet):
+    queryset = Label.objects.all()
+    serializer_class = LabelSerializer
+
+
+class LabeledView(viewsets.ModelViewSet):
+    queryset = Labeled.objects.all()
+    serializer_class = LabeledSerializer
+
+
+class MemoryView(viewsets.ModelViewSet):
+    queryset = Memory.objects.all()
+    serializer_class = MemorySerializer
+
+
+class PhotoPathView(viewsets.ModelViewSet):
+    queryset = PhotoPath.objects.all()
+    serializer_class = PhotoPathSerializer
+
+
+class PrecisionView(viewsets.ModelViewSet):
+    queryset = Precision.objects.all()
+    serializer_class = PrecisionSerializer
+
+
+class ProjectView(viewsets.ModelViewSet):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+
+class RecordView(viewsets.ModelViewSet):
+    queryset = Record.objects.all()
+    serializer_class = RecordSerializer
+
+
+class RecordObsView(viewsets.ModelViewSet):
+    queryset = RecordObs.objects.all()
+    serializer_class = RecordObsSerializer
+
+
+class RecordPathView(viewsets.ModelViewSet):
+    queryset = RecordPath.objects.all()
+    serializer_class = RecordPathSerializer
+
+
+class SamplingView(viewsets.ModelViewSet):
+    queryset = Sampling.objects.all()
+    serializer_class = SamplingSerializer
+
+
+class SeasonView(viewsets.ModelViewSet):
+    queryset = Season.objects.all()
+    serializer_class = SeasonSerializer
+
+
+class SupplyView(viewsets.ModelViewSet):
+    queryset = Supply.objects.all()
+    serializer_class = SupplySerializer
+
+
+class TypeView(viewsets.ModelViewSet):
+    queryset = Type.objects.all()
+    serializer_class = TypeSerializer
+
+
+class UserView(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

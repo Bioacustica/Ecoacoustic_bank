@@ -27,7 +27,6 @@ apiCRUD.serializers module
 
 apiCRUD.views module
 --------------------
-
 .. automodule:: apiCRUD.views
    :members:
    :undoc-members:

@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "apiCRUD",
     "rest_framework",
-    "rest_framework_swagger",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
@@ -142,6 +142,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
+
+STATIC_ROOT = os.path.join(os.path.split(BASE_DIR)[0], 'static_root')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
