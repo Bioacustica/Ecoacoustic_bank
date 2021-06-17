@@ -13,3 +13,6 @@ django-rest-swagger
 sphinx
 drf-yasg==1.20.0
 gunicorn
+drf-jwt
+drf-api-logger
+djangorestframework-simplejwt

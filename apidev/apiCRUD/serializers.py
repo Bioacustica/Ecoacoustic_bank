@@ -5,12 +5,32 @@ from django.db.models.base import Model
 from rest_framework import serializers
 from .models import *
 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-class FundingSerializer(serializers.HyperlinkedModelSerializer):
-    """Clase encargada de convertir querysets a forma nativa
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """Clase encargada del login del Usuario
+
+    :param TokenObtainPairSerializer: Clase encargada de obtener
+    el access token y el refresh token
+    :return: Retorna los Tokens
+    :rtype: JWT
+    """
+    @classmethod
+    def get_token(cls, User):
+        token = super(MyTokenObtainPairSerializer, cls).get_token(User)
+        # Add custom claims
+        token['username'] = User.username
+        return token
+
+
+"""Clases encargadas de convertir querysets a forma nativa
     para trabajarla en formato json
 
     """
+
+
+class FundingSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Funding
@@ -18,11 +38,6 @@ class FundingSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class CaseSerializer(serializers.HyperlinkedModelSerializer):
-    """[summary]
-
-    Args:
-        serializers ([type]): [description]
-    """
 
     class Meta:
         model = Case
@@ -30,11 +45,6 @@ class CaseSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class CatalogueSerializer(serializers.HyperlinkedModelSerializer):
-    """[summary]
-
-    Args:
-        serializers ([type]): [description]
-    """
 
     class Meta:
         model = Catalogue

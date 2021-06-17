@@ -2,6 +2,8 @@ from django import urls
 from django.contrib import admin
 from django.urls import path, include
 from apiCRUD import views
+from rest_framework_jwt.views import verify_jwt_token, refresh_jwt_token
+from apiCRUD.views import MyObtainTokenView
 from rest_framework.routers import DefaultRouter
 # Aqui creamos las urls con un sobrenombre memotecnico
 # apuntando a su vista correspondiente
@@ -33,4 +35,7 @@ router.register("Type", views.TypeView)
 router.register("User", views.UserView)
 urlpatterns = [
     path('', include(router.urls)),
+    path('login/', MyObtainTokenView.as_view()),
+    path('token/verify/', verify_jwt_token),
+    path('token/refresh/', refresh_jwt_token),
 ]
