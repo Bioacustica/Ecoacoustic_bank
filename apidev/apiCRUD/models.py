@@ -222,7 +222,7 @@ class Evidence(models.Model):
 
     def __str__(self):
         return self.description
-        
+
     class Meta:
         managed = False
         db_table = "evidence"
@@ -234,6 +234,7 @@ class Format(models.Model):
 
     def __str__(self):
         return self.description
+
     class Meta:
         managed = False
         db_table = "format"
@@ -249,7 +250,6 @@ class Funding(models.Model):
     class Meta:
         managed = False
         db_table = "funding"
-
 
 
 class HSerial(models.Model):
@@ -298,7 +298,6 @@ class Label(models.Model):
     def __str__(self):
         return self.id_label
 
-
     class Meta:
         managed = False
         db_table = "label"
@@ -314,10 +313,9 @@ class Labeled(models.Model):
     id_labeler = models.ForeignKey("User", models.DO_NOTHING, db_column="id_labeler")
     begin = models.IntegerField(blank=True, null=True)
     label_end = models.IntegerField(blank=True, null=True)
-    
+
     def __str__(self):
         return self.begin
-
 
     class Meta:
         managed = False
@@ -327,7 +325,7 @@ class Labeled(models.Model):
 class Memory(models.Model):
     id_memory = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
-    
+
     def __str__(self):
         return self.description
 
@@ -389,7 +387,6 @@ class Record(models.Model):
     chunk = models.IntegerField(blank=True, null=True)
     channels = models.IntegerField(blank=True, null=True)
 
-
     def __str__(self):
         return self.date
 
@@ -416,7 +413,7 @@ class RecordPath(models.Model):
     id_record = models.ForeignKey(Record, models.DO_NOTHING, db_column="id_record")
     record_path = models.CharField(max_length=100, blank=True, null=True)
     fingerprint = models.CharField(max_length=100, blank=True, null=True)
-    
+
     def __str__(self):
         return self.fingerprint
 
@@ -459,7 +456,6 @@ class Supply(models.Model):
     id_supply = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
-
     def __str__(self):
         return self.description
 
@@ -471,7 +467,6 @@ class Supply(models.Model):
 class Type(models.Model):
     id_type = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
-
 
     def __str__(self):
         return self.description
