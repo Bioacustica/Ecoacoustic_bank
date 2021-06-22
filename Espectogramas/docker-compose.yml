@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+    
+    develop:
+        build:
+            context: .
+            dockerfile: Espectrogramas.Dockerfile
+        container_name: develop
+        volumes:
+            - ./:/bioacustica
+        ports:
+            - 8888:8888
+        restart: on-failure

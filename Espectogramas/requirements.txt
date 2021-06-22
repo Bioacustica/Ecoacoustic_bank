@@ -1,0 +1,14 @@
+librosa
+praat-parselmouth 
+matplotlib
+numpy
+seaborn
+pylint
+pep8
+autopep8
+setuptools>=46.4.0
+jupyterlab
+pylint
+ipykernel
+xeus-python
+notebook

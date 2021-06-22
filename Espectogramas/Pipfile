@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+librosa = "*"
+praat-parselmouth = "*"
+matplotlib = "*"
+numpy = "*"
+seaborn = "*"
+pylint = "*"
+pep8 = "*"
+autopep8 = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
