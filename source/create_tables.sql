@@ -4,371 +4,638 @@ BEGIN;
 
 CREATE SCHEMA bioacustica;
 
-CREATE TABLE IF NOT EXISTS bioacustica.FUNDING
+CREATE TABLE bioacustica."case"
 (
-    ID_FUNDING SERIAL,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_FUNDING)
+    id_case smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_case)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.PROJECT
+CREATE TABLE bioacustica.catalogue
 (
-    ID_PROJECT SERIAL,
-    ID_FUNDING integer NOT NULL,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_PROJECT)
+    id_catalogue serial NOT NULL,
+    id_sampling smallint NOT NULL,
+    id_country smallint NOT NULL,
+    id_department smallint NOT NULL,
+    id_municipality smallint NOT NULL,
+    id_vereda smallint NOT NULL,
+    id_locality smallint NOT NULL,
+    id_gain integer NOT NULL,
+    id_filters integer NOT NULL,
+    id_collector smallint NOT NULL,
+    id_h_serial smallint NOT NULL,
+    id_supply smallint NOT NULL,
+    id_case smallint NOT NULL,
+    id_memory smallint NOT NULL,
+    id_habitat smallint NOT NULL,
+    id_precision smallint NOT NULL,
+    id_datum smallint NOT NULL,
+    elevation integer,
+    coordinates point,
+    height integer,
+    chunks smallint,
+    size real,
+    PRIMARY KEY (id_catalogue)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.SEASON
+CREATE TABLE bioacustica.catalogue_obs
 (
-    ID_SEASON SERIAL,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_SEASON)
+    id_catalogue_obs serial NOT NULL,
+    id_catalogue integer NOT NULL,
+    observation character varying(100),
+    PRIMARY KEY (id_catalogue_obs)
+)
+WITH (
+    OIDS = FALSE
 );
 
-
-CREATE TABLE IF NOT EXISTS bioacustica.SAMPLING
+CREATE TABLE bioacustica.datum
 (
-    ID_SAMPLING SERIAL,
-    ID_PROJECT integer NOT NULL,
-    ID_CATALOGER integer NOT NULL,
-    ID_SEASON integer NOT NULL,
-    DATE timestamp without time zone,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_SAMPLING)
+    id_datum smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_datum)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.USER
+CREATE TABLE bioacustica.evidence
 (
-    ID_USER SERIAL,
-    NAME character varying(100),
-    EMAIL character varying(100),
-    PRIMARY KEY (ID_USER)
+    id_evidence smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_evidence)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.TYPE
+CREATE TABLE bioacustica.format
 (
-    ID_TYPE SERIAL,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_TYPE)
+    id_format smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_format)
+)
+WITH (
+    OIDS = FALSE
 );
 
-    CREATE TABLE IF NOT EXISTS bioacustica.LABEL
+CREATE TABLE bioacustica.funding
 (
-    ID_LABEL SERIAL,
-    ID_TYPE integer NOT NULL,
-    PRIMARY KEY (ID_LABEL)
+    id_funding smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_funding)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.EVIDENCE
+COMMENT ON TABLE bioacustica.funding
+    IS 'ESTA TABLA SIRVE PARA X COSA modificado';
+
+COMMENT ON COLUMN bioacustica.funding.id_funding
+    IS 'ID Auto incremental';
+
+CREATE TABLE bioacustica.h_serial
 (
-    ID_EVIDENCE SERIAL,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_EVIDENCE)
+    id_h_serial smallserial NOT NULL,
+    id_hardware smallint NOT NULL,
+    h_serial character varying(64),
+    PRIMARY KEY (id_h_serial)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE bioacustica.PRECISION
+CREATE TABLE bioacustica.habitat
 (
-    ID_PRECISION SERIAL,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_PRECISION)
+    id_habitat smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_habitat)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.DATUM
+CREATE TABLE bioacustica.hardware
 (
-    ID_DATUM SERIAL,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_DATUM)
+    id_hardware smallserial NOT NULL,
+    description character varying,
+    PRIMARY KEY (id_hardware)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.FORMAT
+CREATE TABLE bioacustica.label
 (
-    ID_FORMAT SERIAL,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_FORMAT)
+    id_label smallserial NOT NULL,
+    id_type smallint NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_label)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.RECORD_OBS
+CREATE TABLE bioacustica.labeled
 (
-    ID_RECORD_OBS SERIAL,
-    ID_RECORD integer NOT NULL,
-    OBSERVATION character varying(100),
-    PRIMARY KEY (ID_RECORD_OBS)
+    id_labeled serial NOT NULL,
+    id_label smallint NOT NULL,
+    id_record integer NOT NULL,
+    id_evidence smallint NOT NULL,
+    id_labeler smallint NOT NULL,
+    id_software smallint NOT NULL,
+    id_measure smallint NOT NULL,
+    date timestamp with time zone NOT NULL,
+    membership numeric(4),
+    n_calls smallint,
+    id_pulse_type smallint,
+    id_time_detail integer,
+    id_frequency_detail integer,
+    PRIMARY KEY (id_labeled)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.CATALOGUE_OBS
+COMMENT ON COLUMN bioacustica.labeled.date
+    IS 'Fecha de etiquetado';
+
+CREATE TABLE bioacustica.memory
 (
-    ID_CATALOGUE_OBS SERIAL,
-    ID_CATALOGUE integer NOT NULL,
-    OBSERVATION character varying(100),
-    PRIMARY KEY (ID_CATALOGUE_OBS)
+    id_memory smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_memory)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.HABITAT
+CREATE TABLE bioacustica.photo_path
 (
-    ID_HABITAT SERIAL,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_HABITAT)
+    id_photo_path serial NOT NULL,
+    id_catalogue integer NOT NULL,
+    path character varying(100),
+    PRIMARY KEY (id_photo_path)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.MEMORY
+CREATE TABLE bioacustica."precision"
 (
-    ID_MEMORY SERIAL,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_MEMORY)
+    id_precision smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_precision)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.CASE
+CREATE TABLE bioacustica.project
 (
-    ID_CASE SERIAL,
-    DESCRIPTION character varying(100),
-    PRIMARY KEY (ID_CASE)
+    id_project smallserial NOT NULL,
+    id_funding smallint NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_project)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.SUPPLY
+CREATE TABLE bioacustica.record
 (
-    ID_SUPPLY SERIAL,
-    DESCRIPTION character varying,
-    PRIMARY KEY (ID_SUPPLY)
+    id_record serial NOT NULL,
+    id_catalogue integer NOT NULL,
+    id_format smallint NOT NULL,
+    date timestamp without time zone,
+    length smallint,
+    size real,
+    sample_rate integer,
+    chunk smallint,
+    channels smallint,
+    PRIMARY KEY (id_record)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.HARDWARE
+CREATE TABLE bioacustica.record_obs
 (
-    ID_HARDWARE SERIAL,
-    DESCRIPTION character varying,
-    PRIMARY KEY (ID_HARDWARE)
+    id_record_obs serial NOT NULL,
+    id_record integer NOT NULL,
+    observation character varying(100),
+    PRIMARY KEY (id_record_obs)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.LABELED
+CREATE TABLE bioacustica.record_path
 (
-    ID_LABELED SERIAL,
-    ID_LABEL integer NOT NULL,
-    ID_RECORD integer NOT NULL,
-    ID_EVIDENCE integer NOT NULL,
-    ID_LABELER integer NOT NULL,
-    BEGIN integer,
-    LABEL_END integer,
-    PRIMARY KEY (ID_LABELED)
+    id_record_path serial NOT NULL,
+    id_record integer NOT NULL,
+    record_path character varying(100),
+    fingerprint character varying(100),
+    PRIMARY KEY (id_record_path)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.RECORD
+CREATE TABLE bioacustica.sampling
 (
-    ID_RECORD SERIAL,
-    ID_CATALOGUE integer NOT NULL,
-    ID_FORMAT integer NOT NULL,
-    DATE timestamp without time zone,
-    LENGTH integer,
-    SIZE real,
-    SAMPLE_RATE integer,
-    CHUNK integer,
-    CHANNELS integer,
-    PRIMARY KEY (ID_RECORD)
+    id_sampling serial NOT NULL,
+    id_project smallint NOT NULL,
+    id_cataloger smallint NOT NULL,
+    id_season smallint NOT NULL,
+    date timestamp without time zone,
+    description character varying(100),
+    PRIMARY KEY (id_sampling)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.CATALOGUE
+CREATE TABLE bioacustica.season
 (
-    ID_CATALOGUE SERIAL,
-    ID_SAMPLING integer NOT NULL,
-    ID_COUNTRY integer NOT NULL,
-    ID_DEPARTMENT integer NOT NULL,
-    ID_MUNICIPALITY integer NOT NULL,
-    ID_VEREDA integer NOT NULL,
-    ID_LOCALITY integer NOT NULL,
-    ID_GAIN integer NOT NULL,
-    ID_FILTERS integer NOT NULL,
-    ID_COLLECTOR integer NOT NULL,
-    ID_H_SERIAL integer NOT NULL,
-    ID_SUPPLY integer NOT NULL,
-    ID_CASE integer NOT NULL,
-    ID_MEMORY integer NOT NULL,
-    ID_HABITAT integer NOT NULL,
-    ID_PRECISION integer NOT NULL,
-    ID_DATUM integer NOT NULL,
-    ELEVATION integer,
-    COORDINATES point,
-    HEIGHT integer,
-    CHUNKS integer,
-    SIZE real,
-    PRIMARY KEY (ID_CATALOGUE)
+    id_season smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_season)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.RECORD_PATH
+CREATE TABLE bioacustica.supply
 (
-    ID_RECORD_PATH SERIAL,
-    ID_RECORD INT NOT NULL,
-    RECORD_PATH character varying(100),
-    FINGERPRINT character varying(100),
-    PRIMARY KEY (ID_RECORD_PATH)
+    id_supply smallserial NOT NULL,
+    description character varying,
+    PRIMARY KEY (id_supply)
+)
+WITH (
+    OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.H_SERIAL
+CREATE TABLE bioacustica.type
 (
-    ID_H_SERIAL SERIAL,
-    ID_HARDWARE INT NOT NULL,
-    H_SERIAL character varying(64),
-    PRIMARY KEY (ID_H_SERIAL)
+    id_type smallint NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_type)
+)
+WITH (
+    OIDS = FALSE
 );
 
-
-CREATE TABLE IF NOT EXISTS bioacustica.PHOTO_PATH
+CREATE TABLE bioacustica."user"
 (
-    ID_PHOTO_PATH SERIAL,
-    ID_CATALOGUE  INT UNIQUE NOT NULL,
-    PATH character varying(100),
-    PRIMARY KEY (ID_PHOTO_PATH)
+    id_user smallserial NOT NULL,
+    name character varying(100),
+    email character varying(100),
+    PRIMARY KEY (id_user)
+)
+WITH (
+    OIDS = FALSE
 );
 
+CREATE TABLE bioacustica.country
+(
+    id_country smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_country)
+)
+WITH (
+    OIDS = FALSE
+);
 
-ALTER TABLE bioacustica.PROJECT
-    ADD FOREIGN KEY (ID_FUNDING)
-    REFERENCES bioacustica.FUNDING (ID_FUNDING)
+CREATE TABLE bioacustica.department
+(
+    id_department smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_department)
+)
+WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE bioacustica.vereda
+(
+    id_vereda smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_vereda)
+)
+WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE bioacustica.locality
+(
+    id_locality smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_locality)
+)
+WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE bioacustica.municipality
+(
+    id_municipality smallserial NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_municipality)
+)
+WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE bioacustica.voucher
+(
+    id_voucher serial NOT NULL,
+    id_catalogue integer NOT NULL,
+    voucher character varying(100),
+    PRIMARY KEY (id_voucher)
+)
+WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE bioacustica.frequency_detail
+(
+    id_frequency_detail serial NOT NULL,
+    id_labeled integer NOT NULL,
+    begining integer,
+    ending integer,
+    minimal integer,
+    maximun integer,
+    peak integer,
+    PRIMARY KEY (id_frequency_detail)
+)
+WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE bioacustica.time_detail
+(
+    id_time_detail serial NOT NULL,
+    id_labeled integer NOT NULL,
+    beging smallint,
+    ending smallint,
+    PRIMARY KEY (id_time_detail)
+)
+WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE bioacustica.software
+(
+    id_software smallserial NOT NULL,
+    descripton character varying(80) NOT NULL,
+    PRIMARY KEY (id_software)
+)
+WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE bioacustica.pulse_type
+(
+    id_pulse_type smallserial NOT NULL,
+    description character varying(100) NOT NULL,
+    PRIMARY KEY (id_pulse_type)
+)
+WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE bioacustica.measure
+(
+    id_measure smallserial NOT NULL,
+    description character varying NOT NULL,
+    PRIMARY KEY (id_measure)
+)
+WITH (
+    OIDS = FALSE
+);
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_case)
+    REFERENCES bioacustica."case" (id_case)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.SAMPLING
-    ADD FOREIGN KEY (ID_CATALOGER)
-    REFERENCES bioacustica.USER (ID_USER)
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_collector)
+    REFERENCES bioacustica."user" (id_user)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.SAMPLING
-    ADD FOREIGN KEY (ID_PROJECT)
-    REFERENCES bioacustica.PROJECT (ID_PROJECT)
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_datum)
+    REFERENCES bioacustica.datum (id_datum)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.SAMPLING
-    ADD FOREIGN KEY (ID_SEASON)
-    REFERENCES bioacustica.SEASON (ID_SEASON)
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_h_serial)
+    REFERENCES bioacustica.h_serial (id_h_serial)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.LABEL
-    ADD FOREIGN KEY (ID_TYPE)
-    REFERENCES bioacustica.TYPE (ID_TYPE)
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_habitat)
+    REFERENCES bioacustica.habitat (id_habitat)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.LABELED
-    ADD FOREIGN KEY (ID_LABEL)
-    REFERENCES bioacustica.LABEL (ID_LABEL)
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_memory)
+    REFERENCES bioacustica.memory (id_memory)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.LABELED
-    ADD FOREIGN KEY (ID_RECORD)
-    REFERENCES bioacustica.RECORD (ID_RECORD)
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_precision)
+    REFERENCES bioacustica."precision" (id_precision)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.LABELED
-    ADD FOREIGN KEY (ID_EVIDENCE)
-    REFERENCES bioacustica.EVIDENCE (ID_EVIDENCE)
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_sampling)
+    REFERENCES bioacustica.sampling (id_sampling)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.LABELED
-    ADD FOREIGN KEY (ID_LABELER)
-    REFERENCES bioacustica.USER (ID_USER)
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_supply)
+    REFERENCES bioacustica.supply (id_supply)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.CATALOGUE
-    ADD FOREIGN KEY (ID_SAMPLING)
-    REFERENCES bioacustica.SAMPLING (ID_SAMPLING)
+ALTER TABLE bioacustica.catalogue_obs
+    ADD FOREIGN KEY (id_catalogue)
+    REFERENCES bioacustica.catalogue (id_catalogue)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.CATALOGUE
-    ADD FOREIGN KEY (ID_COLLECTOR)
-    REFERENCES bioacustica.USER (ID_USER)
+ALTER TABLE bioacustica.h_serial
+    ADD FOREIGN KEY (id_hardware)
+    REFERENCES bioacustica.hardware (id_hardware)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.CATALOGUE
-    ADD FOREIGN KEY (ID_H_SERIAL)
-    REFERENCES bioacustica.H_SERIAL (ID_H_SERIAL)
+ALTER TABLE bioacustica.label
+    ADD FOREIGN KEY (id_type)
+    REFERENCES bioacustica.type (id_type)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.CATALOGUE
-    ADD FOREIGN KEY (ID_SUPPLY)
-    REFERENCES bioacustica.SUPPLY (ID_SUPPLY)
+ALTER TABLE bioacustica.labeled
+    ADD FOREIGN KEY (id_evidence)
+    REFERENCES bioacustica.evidence (id_evidence)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.CATALOGUE
-    ADD FOREIGN KEY (ID_CASE)
-    REFERENCES bioacustica.CASE (ID_CASE)
+ALTER TABLE bioacustica.labeled
+    ADD FOREIGN KEY (id_label)
+    REFERENCES bioacustica.label (id_label)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.CATALOGUE
-    ADD FOREIGN KEY (ID_MEMORY)
-    REFERENCES bioacustica.MEMORY (ID_MEMORY)
+ALTER TABLE bioacustica.labeled
+    ADD FOREIGN KEY (id_labeler)
+    REFERENCES bioacustica."user" (id_user)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.CATALOGUE
-    ADD FOREIGN KEY (ID_HABITAT)
-    REFERENCES bioacustica.HABITAT (ID_HABITAT)
+ALTER TABLE bioacustica.labeled
+    ADD FOREIGN KEY (id_record)
+    REFERENCES bioacustica.record (id_record)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.CATALOGUE
-    ADD FOREIGN KEY (ID_PRECISION)
-    REFERENCES bioacustica.PRECISION (ID_PRECISION)
+ALTER TABLE bioacustica.photo_path
+    ADD FOREIGN KEY (id_catalogue)
+    REFERENCES bioacustica.catalogue (id_catalogue)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.CATALOGUE
-    ADD FOREIGN KEY (ID_DATUM)
-    REFERENCES bioacustica.DATUM (ID_DATUM)
+ALTER TABLE bioacustica.project
+    ADD FOREIGN KEY (id_funding)
+    REFERENCES bioacustica.funding (id_funding)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.RECORD
-    ADD FOREIGN KEY (ID_FORMAT)
-    REFERENCES bioacustica.FORMAT (ID_FORMAT)
+ALTER TABLE bioacustica.record
+    ADD FOREIGN KEY (id_catalogue)
+    REFERENCES bioacustica.catalogue (id_catalogue)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.RECORD
-    ADD FOREIGN KEY (ID_CATALOGUE)
-    REFERENCES bioacustica.CATALOGUE (ID_CATALOGUE)
+ALTER TABLE bioacustica.record
+    ADD FOREIGN KEY (id_format)
+    REFERENCES bioacustica.format (id_format)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.RECORD_PATH
-    ADD FOREIGN KEY (ID_RECORD)
-    REFERENCES bioacustica.RECORD (ID_RECORD)
+ALTER TABLE bioacustica.record_obs
+    ADD FOREIGN KEY (id_record)
+    REFERENCES bioacustica.record (id_record)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.RECORD_OBS
-    ADD FOREIGN KEY (ID_RECORD)
-    REFERENCES bioacustica.RECORD (ID_RECORD)
+ALTER TABLE bioacustica.record_path
+    ADD FOREIGN KEY (id_record)
+    REFERENCES bioacustica.record (id_record)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.H_SERIAL
-    ADD FOREIGN KEY (ID_HARDWARE)
-    REFERENCES bioacustica.HARDWARE (ID_HARDWARE)
+ALTER TABLE bioacustica.sampling
+    ADD FOREIGN KEY (id_cataloger)
+    REFERENCES bioacustica."user" (id_user)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.CATALOGUE_OBS
-    ADD FOREIGN KEY (ID_CATALOGUE)
-    REFERENCES bioacustica.CATALOGUE (ID_CATALOGUE)
+ALTER TABLE bioacustica.sampling
+    ADD FOREIGN KEY (id_project)
+    REFERENCES bioacustica.project (id_project)
     NOT VALID;
 
 
-ALTER TABLE bioacustica.PHOTO_PATH
-    ADD FOREIGN KEY (ID_CATALOGUE)
-    REFERENCES bioacustica.CATALOGUE (ID_CATALOGUE)
+ALTER TABLE bioacustica.sampling
+    ADD FOREIGN KEY (id_season)
+    REFERENCES bioacustica.season (id_season)
     NOT VALID;
 
-COMMENT ON TABLE bioacustica.FUNDING is 'ESTA TABLA SIRVE PARA X COSA';
-COMMENT ON COLUMN bioacustica.FUNDING.ID_FUNDING is 'ID Auto incremental';
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_department)
+    REFERENCES bioacustica.department (id_department)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_country)
+    REFERENCES bioacustica.country (id_country)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_municipality)
+    REFERENCES bioacustica.municipality (id_municipality)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_vereda)
+    REFERENCES bioacustica.vereda (id_vereda)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_locality)
+    REFERENCES bioacustica.locality (id_locality)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.voucher
+    ADD FOREIGN KEY (id_voucher)
+    REFERENCES bioacustica.catalogue (id_catalogue)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.labeled
+    ADD FOREIGN KEY (id_pulse_type)
+    REFERENCES bioacustica.pulse_type (id_pulse_type)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.labeled
+    ADD FOREIGN KEY (id_software)
+    REFERENCES bioacustica.software (id_software)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.labeled
+    ADD FOREIGN KEY (id_measure)
+    REFERENCES bioacustica.measure (id_measure)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.labeled
+    ADD FOREIGN KEY (id_frequency_detail)
+    REFERENCES bioacustica.frequency_detail (id_frequency_detail)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.labeled
+    ADD FOREIGN KEY (id_time_detail)
+    REFERENCES bioacustica.time_detail (id_time_detail)
+    NOT VALID;
 
 END;
+
