@@ -16,10 +16,10 @@ RUN apt-get update && apt-get install python3-dev \
 
 RUN \
     apt-get update && \
-    apt-get install -y wget python3 python3-pip python3-dev iputils-ping
+    apt-get install -y wget python3 python3-pip python3-dev iputils-ping 
 
 COPY requirements.txt .
-RUN pip install --upgrade pip && \
+RUN pip3 install --upgrade pip && \
     pip install -r requirements.txt
 
 WORKDIR /data
