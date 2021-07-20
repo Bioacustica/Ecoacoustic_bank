@@ -16,3 +16,5 @@ gunicorn
 drf-jwt
 drf-api-logger
 djangorestframework-simplejwt
+psycopg2
+django-rest-passwordreset

@@ -8,7 +8,113 @@
 # , modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field
 # names.
+from django.contrib.auth.base_user import BaseUserManager
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.dispatch import receiver
+from django.urls import reverse
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import send_mail
+
+
+@receiver(reset_password_token_created)
+def password_reset_token_created(
+    sender, instance, reset_password_token, *args, **kwargs
+):
+
+    email_plaintext_message = "{}?token={}".format(
+        reverse("password_reset:reset-password-request"), reset_password_token.key
+    )
+
+    send_mail(
+        # title:
+        "Password Reset for {title}".format(title="Some website title"),
+        # message:
+        email_plaintext_message,
+        # from:
+        "noreply@somehost.local",
+        # to:
+        [reset_password_token.user.email],
+    )
+
+
+class UserManager(BaseUserManager):
+    """Esta clase se encarga de
+    manejar el modelo User de la base de datos
+
+    :param BaseUserManager:  heredamos de la clase BaseUserManager
+    la cual funciona con el default user de Django
+    en este caso estamos extiendiendo  la clase para hacer
+    la nuestra
+    """
+
+    def create_user(self, email, username, password=None):
+        if not email:
+            raise ValueError("Email is required")
+        if not username:
+            raise ValueError("Name is required")
+
+        user = self.model(email=self.normalize_email(email), username=username)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_staffuser(self, email, password):
+        """
+        Creates and saves a staff user with the given email and password.
+        """
+        user = self.create_user(
+            email,
+            password=password,
+        )
+        user.staff = True
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, username, password=None):
+        user = self.create_user(email=email, username=username, password=password)
+        user.is_admin = True
+        user.is_superuser = True
+        user.is_staff = True
+        user.save(using=self._db)
+        return user
+
+
+class User(AbstractBaseUser):
+    ROLES = (
+        ("admin", "admin"),
+        ("usuario", "usuario"),
+        ("etiquetado", "etiquetado"),
+        ("registro", "registro"),
+    )
+    id_user = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=100, blank=True, null=True)
+    email = models.CharField(max_length=100, blank=True, null=True, unique=True)
+    last_login = models.DateField(verbose_name="last login", auto_now=True)
+    is_admin = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    roles = models.CharField(max_length=50, choices=ROLES, null=True)
+
+    USERNAME_FIELD = "email"
+
+    REQUIRED_FIELDS = ["username"]
+
+    def __str__(self):
+        return self.username
+
+    def has_perm(self, perm, obj=None):
+        return self.is_admin
+
+    def has_module_perms(self, app_label):
+        return True
+
+    objects = UserManager()
+
+    class Meta:
+        managed = False
+        db_table = "user"
 
 
 class AuthGroup(models.Model):
@@ -474,16 +580,3 @@ class Type(models.Model):
     class Meta:
         managed = False
         db_table = "type"
-
-
-class User(models.Model):
-    id_user = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, blank=True, null=True)
-    email = models.CharField(max_length=100, blank=True, null=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        managed = False
-        db_table = "user"

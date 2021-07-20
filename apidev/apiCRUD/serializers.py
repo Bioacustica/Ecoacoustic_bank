@@ -2,9 +2,10 @@
 from django.db import models
 from django.db.models import fields
 from django.db.models.base import Model
-from rest_framework import serializers
+from rest_framework import permissions, serializers
+from rest_framework.views import APIView
 from .models import *
-
+from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
@@ -18,18 +19,17 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     """
     @classmethod
     def get_token(cls, User):
-        token = super(MyTokenObtainPairSerializer, cls).get_token(User)
+        token = super().get_token(User)
         # Add custom claims
+        user = User.username
+        pwd = User.password
         token['username'] = User.username
+    
         return token
 
 
 """Clases encargadas de convertir querysets a forma nativa
-    para trabajarla en formato json
-
-    """
-
-
+    para trabajarla en formato json"""
 class FundingSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
@@ -174,4 +174,45 @@ class TypeSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
+        fields = ["username", "email", "roles", "id_user"]
+        
+
+class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
+    """[summary]
+
+    :param serializers: [description]
+    :type serializers: [type]
+    :raises serializers.ValidationError: [description]
+    :return: [description]
+    :rtype: [type]
+    """
+    password = serializers.CharField(write_only=True, required=True, style={ "input_type":   "password"})
+
+
+    class Meta:
+        model = User
         fields = "__all__"
+        extra_kwargs = {"password": {"write_only": True}}
+
+    def create(self, validated_data):
+        
+        username = validated_data["username"]
+        email = validated_data["email"]
+        password = validated_data["password"]
+        roles = validated_data["roles"]
+        if (email and User.objects.filter(email=email).exclude(username=username).exists()):
+            raise serializers.ValidationError(
+                {"email": "Email addresses must be unique."})
+        user = User(username=username, email=email, roles=roles)
+        user.set_password(password)
+        user.save()
+        return user
+
+class ChangePasswordSerializer(serializers.Serializer):
+    model = User
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+

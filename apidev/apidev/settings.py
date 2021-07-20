@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+from datetime import timedelta
 import environ
 from pathlib import Path
 import os
+
 # environ settings
 env = environ.Env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +30,12 @@ SECRET_KEY = "django-insecure-%m+pbtv7fzd@(=6@tcb2s1@((kxq%ks6tj%g!o)gig_z6mw*x(
 DEBUG = True
 # ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS', default=[]))
 ALLOWED_HOSTS = ["*"]
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'victor.vt649@gmail.com'
+EMAIL_HOST_PASSWORD = '2bf5212dffavIC-V'
+EMAIL_USE_TLS = True
 
 # Application definition
 
@@ -40,10 +46,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_rest_passwordreset",
     "apiCRUD",
     "rest_framework",
     "drf_yasg",
-    'rest_framework_jwt',
+    "rest_framework_jwt",
+
     # Autenticación personalizada
 ]
 
@@ -71,9 +79,8 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
-            'libraries': {
-
-                'staticfiles': 'django.templatetags.static',
+            "libraries": {
+                "staticfiles": "django.templatetags.static",
             },
         },
     },
@@ -145,57 +152,91 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATIC_ROOT = os.path.join(os.path.split(BASE_DIR)[0], 'static_root')
+STATIC_ROOT = os.path.join(os.path.split(BASE_DIR)[0], "static_root")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AUTH_USER_MODEL = "apiCRUD.User"
+
 # Django REST Framework
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
-    
-
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+    # 'DEFAULT_DETAILS_SERIALIZER':('apiCRUD.serializer.UserSerializer'),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-    'DEFAULT_FILTER_BACKENDS': [
-        'django_filters.rest_framework.DjangoFilterBackend'
-    ],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
 }
-REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
-
+REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema"}
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "apiCRUD.backends.UserBackend",
+]
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
+    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+]
+REST_USE_JWT = True
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'loggers': {
-        'apiCRUD': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
+    "version": 1,
+    "disable_existing_loggers": False,
+    "loggers": {
+        "apiCRUD": {
+            "handlers": ["file"],
+            "level": "DEBUG",
+            "propagate": True,
         },
     },
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': './apiCRUD.log',
-            'formatter': 'simple',
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "./apiCRUD.log",
+            "formatter": "simple",
         }
     },
-    'formatters': {
-        'simple': {
-            'format': '{levelname}  {message}',
-            'style': '{',
+    "formatters": {
+        "simple": {
+            "format": "{asctime} {levelname}  {message}",
+            "style": "{",
         }
-    }
+    },
+}
+
+SIMPLE_JWT = {
+    "USER_ID_FIELD": "id_user",
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": False,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "VERIFYING_KEY": None,
+    "AUDIENCE": None,
+    "ISSUER": None,
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
+    "JTI_CLAIM": "jti",
+    "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
+    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
+    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
+}
+
+JWT_AUTH = {
+    "JWT_ALGORITHM": "HS256",
+    "JWT_ALLOW_REFRESH": True,
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }

@@ -2,12 +2,11 @@ django_session
 django_migrations
 labeled
 django_admin_log
-auth_user_user_permissions
-auth_user_groups
 auth_group_permissions
 record_path
 record_obs
 photo_path
+django_rest_passwordreset_resetpasswordtoken
 catalogue_obs
 label
 auth_permission
@@ -28,7 +27,6 @@ format
 evidence
 datum
 case
-django_content_type
 auth_group
+django_content_type
 user
-auth_user

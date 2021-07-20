@@ -10,9 +10,13 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# para generar la documentación con el sphinx es necesario agregar los settings 
-# del proyecto como una variable de entorno y luego hacer en un setup() 
-# para que importe los modulos necesarios
+# import os
+# import sys
+# sys.path.insert(0, os.path.abspath('.'))
+
+
+# -- Project information -----------------------------------------------------
+
 import django
 import os
 import sys
