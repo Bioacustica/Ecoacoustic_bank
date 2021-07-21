@@ -1,22 +1,6 @@
 apiCRUD package
 ===============
 
-apiCRUD.apps module
--------------------
-
-.. automodule:: apiCRUD.apps
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-apiCRUD.models module
----------------------
-
-.. automodule:: apiCRUD.models
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 apiCRUD.serializers module
 --------------------------
 
@@ -25,12 +9,22 @@ apiCRUD.serializers module
    :undoc-members:
    :show-inheritance:
 
+apiCRUD.urls module
+-------------------
+
+.. automodule:: apiCRUD.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 apiCRUD.views module
 --------------------
+
 .. automodule:: apiCRUD.views
    :members:
    :undoc-members:
    :show-inheritance:
+
 
 Module contents
 ---------------

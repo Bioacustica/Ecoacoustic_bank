@@ -1,7 +1,6 @@
-auth_user
 user
-auth_group
 django_content_type
+auth_group
 case
 datum
 evidence
@@ -26,8 +25,6 @@ photo_path
 record_obs
 record_path
 auth_group_permissions
-auth_user_groups
-auth_user_user_permissions
 django_admin_log
 labeled
 django_migrations

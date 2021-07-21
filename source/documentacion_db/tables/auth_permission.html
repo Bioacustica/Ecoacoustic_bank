@@ -73,7 +73,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>auth_permission</h1><p><span id="recordNumber">160</span> rows</p><br />
+                    <h1>auth_permission</h1><p><span id="recordNumber">157</span> rows</p><br />
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -114,10 +114,6 @@
                                             <tr>
                                                 <td title="auth_group_permissions.permission_id references auth_permission.id via auth_group_permissio_permission_id_84c5c92e_fk_auth_perm"><a href='auth_group_permissions.html'>auth_group_permissions</a><span class='relatedKey'>.permission_id</span></td>
                                                 <td class="constraint detail">auth_group_permissio_permission_id_84c5c92e_fk_auth_perm<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td title="auth_user_user_permissions.permission_id references auth_permission.id via auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm"><a href='auth_user_user_permissions.html'>auth_user_user_permissions</a><span class='relatedKey'>.permission_id</span></td>
-                                                <td class="constraint detail">auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -247,22 +243,19 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="auth_group_permissions.html" target="_top" title="auth_group_permissions" alt="" coords="675,5,961,157">
-<area shape="rect" id="node2" href="auth_permission.html" target="_top" title="auth_permission" alt="" coords="308,147,615,333">
-<area shape="rect" id="node3" href="django_content_type.html" target="_top" title="django_content_type" alt="" coords="5,208,264,360">
-<area shape="rect" id="node4" href="auth_user_user_permissions.html" target="_top" title="auth_user_user_permissions" alt="" coords="659,175,977,327">
+<area shape="rect" id="node1" href="auth_group_permissions.html" target="_top" title="auth_group_permissions" alt="" coords="659,5,945,157">
+<area shape="rect" id="node2" href="auth_permission.html" target="_top" title="auth_permission" alt="" coords="308,61,615,248">
+<area shape="rect" id="node3" href="django_content_type.html" target="_top" title="django_content_type" alt="" coords="5,123,264,275">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/auth_permission.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="auth_group_permissions.html" target="_top" title="auth_group_permissions" alt="" coords="675,5,961,157">
-<area shape="rect" id="node2" href="auth_group.html" target="_top" title="auth_group" alt="" coords="371,28,552,116">
-<area shape="rect" id="node3" href="auth_permission.html" target="_top" title="auth_permission" alt="" coords="308,133,615,320">
-<area shape="rect" id="node4" href="django_content_type.html" target="_top" title="django_content_type" alt="" coords="5,299,264,451">
-<area shape="rect" id="node5" href="auth_user_user_permissions.html" target="_top" title="auth_user_user_permissions" alt="" coords="659,184,977,336">
-<area shape="rect" id="node6" href="auth_user.html" target="_top" title="auth_user" alt="" coords="376,337,547,425">
-<area shape="rect" id="node7" href="django_admin_log.html" target="_top" title="django_admin_log" alt="" coords="701,388,935,476">
+<area shape="rect" id="node1" href="auth_group_permissions.html" target="_top" title="auth_group_permissions" alt="" coords="659,15,945,167">
+<area shape="rect" id="node2" href="auth_group.html" target="_top" title="auth_group" alt="" coords="371,5,552,93">
+<area shape="rect" id="node3" href="auth_permission.html" target="_top" title="auth_permission" alt="" coords="308,111,615,297">
+<area shape="rect" id="node4" href="django_content_type.html" target="_top" title="django_content_type" alt="" coords="5,243,264,395">
+<area shape="rect" id="node5" href="django_admin_log.html" target="_top" title="django_admin_log" alt="" coords="344,315,579,403">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/auth_permission.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>

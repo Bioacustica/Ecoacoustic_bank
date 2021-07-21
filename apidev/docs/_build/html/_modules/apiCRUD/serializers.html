@@ -86,11 +86,8 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">apidev</a></li>
-</ul>
-
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
             
           
         </div>
@@ -159,15 +156,35 @@
 <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 <span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">fields</span>
 <span class="kn">from</span> <span class="nn">django.db.models.base</span> <span class="kn">import</span> <span class="n">Model</span>
-<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">permissions</span><span class="p">,</span> <span class="n">serializers</span>
+<span class="kn">from</span> <span class="nn">rest_framework.views</span> <span class="kn">import</span> <span class="n">APIView</span>
 <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.hashers</span> <span class="kn">import</span> <span class="n">make_password</span>
+<span class="kn">from</span> <span class="nn">rest_framework_simplejwt.serializers</span> <span class="kn">import</span> <span class="n">TokenObtainPairSerializer</span>
 
 
-<div class="viewcode-block" id="FundingSerializer"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.FundingSerializer">[documentos]</a><span class="k">class</span> <span class="nc">FundingSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Clase encargada de convertir querysets a forma nativa</span>
-<span class="sd">    para trabajarla en formato json</span>
+<div class="viewcode-block" id="MyTokenObtainPairSerializer"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.MyTokenObtainPairSerializer">[documentos]</a><span class="k">class</span> <span class="nc">MyTokenObtainPairSerializer</span><span class="p">(</span><span class="n">TokenObtainPairSerializer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Clase encargada del login del Usuario</span>
 
+<span class="sd">    :param TokenObtainPairSerializer: Clase encargada de obtener</span>
+<span class="sd">    el access token y el refresh token</span>
+<span class="sd">    :return: Retorna los Tokens</span>
+<span class="sd">    :rtype: JWT</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MyTokenObtainPairSerializer.get_token"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.MyTokenObtainPairSerializer.get_token">[documentos]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_token</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">User</span><span class="p">):</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_token</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+        <span class="c1"># Add custom claims</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">username</span>
+        <span class="n">pwd</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">password</span>
+        <span class="n">token</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">username</span>
+    
+        <span class="k">return</span> <span class="n">token</span></div></div>
+
+
+<span class="sd">&quot;&quot;&quot;Clases encargadas de convertir querysets a forma nativa</span>
+<span class="sd">    para trabajarla en formato json&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="FundingSerializer"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.FundingSerializer">[documentos]</a><span class="k">class</span> <span class="nc">FundingSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
 
 <div class="viewcode-block" id="FundingSerializer.Meta"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.FundingSerializer.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">Funding</span>
@@ -175,11 +192,6 @@
 
 
 <div class="viewcode-block" id="CaseSerializer"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.CaseSerializer">[documentos]</a><span class="k">class</span> <span class="nc">CaseSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;[summary]</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        serializers ([type]): [description]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="CaseSerializer.Meta"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.CaseSerializer.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">Case</span>
@@ -187,11 +199,6 @@
 
 
 <div class="viewcode-block" id="CatalogueSerializer"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.CatalogueSerializer">[documentos]</a><span class="k">class</span> <span class="nc">CatalogueSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;[summary]</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        serializers ([type]): [description]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="CatalogueSerializer.Meta"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.CatalogueSerializer.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">Catalogue</span>
@@ -321,7 +328,48 @@
 <div class="viewcode-block" id="UserSerializer"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.UserSerializer">[documentos]</a><span class="k">class</span> <span class="nc">UserSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
 <div class="viewcode-block" id="UserSerializer.Meta"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.UserSerializer.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="s2">&quot;__all__&quot;</span></div></div>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;roles&quot;</span><span class="p">,</span> <span class="s2">&quot;id_user&quot;</span><span class="p">]</span></div></div>
+        
+
+<div class="viewcode-block" id="UserCreateSerializer"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.UserCreateSerializer">[documentos]</a><span class="k">class</span> <span class="nc">UserCreateSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;[summary]</span>
+
+<span class="sd">    :param serializers: [description]</span>
+<span class="sd">    :type serializers: [type]</span>
+<span class="sd">    :raises serializers.ValidationError: [description]</span>
+<span class="sd">    :return: [description]</span>
+<span class="sd">    :rtype: [type]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;input_type&quot;</span><span class="p">:</span>   <span class="s2">&quot;password&quot;</span><span class="p">})</span>
+
+
+<div class="viewcode-block" id="UserCreateSerializer.Meta"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.UserCreateSerializer.Meta">[documentos]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s2">&quot;__all__&quot;</span>
+        <span class="n">extra_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;write_only&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}}</span></div>
+
+<div class="viewcode-block" id="UserCreateSerializer.create"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.UserCreateSerializer.create">[documentos]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">):</span>
+        
+        <span class="n">username</span> <span class="o">=</span> <span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="n">roles</span> <span class="o">=</span> <span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;roles&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">email</span> <span class="ow">and</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;Email addresses must be unique.&quot;</span><span class="p">})</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">roles</span><span class="o">=</span><span class="n">roles</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">user</span></div></div>
+
+<div class="viewcode-block" id="ChangePasswordSerializer"><a class="viewcode-back" href="../../apiCRUD.html#apiCRUD.serializers.ChangePasswordSerializer">[documentos]</a><span class="k">class</span> <span class="nc">ChangePasswordSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">Serializer</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Serializer for password change endpoint.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">old_password</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">new_password</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
 </pre></div>
 
            </div>

@@ -1,0 +1,688 @@
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animales>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>, <User: admin@admin.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>, <User: admin@admin.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>, <User: admin@admin.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: animales>, <User: admin@admin.com>, <User: admin@admin.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet []> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-25 22:18:23,738 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-25 22:18:26,275 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-26 00:12:26,568 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-26 00:12:29,555 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-26 00:12:47,237 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-26 00:12:49,383 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-26 00:12:49,390 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-26 00:14:42,577 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-26 00:18:13,555 DEBUG  The user <QuerySet [<User: admin>, <User: user>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 00:19:29,349 DEBUG  The user <QuerySet [<User: admin>, <User: user>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 12:35:40,748 DEBUG  The user <QuerySet [<User: admin>, <User: user>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 12:35:42,592 DEBUG  The user <QuerySet [<User: admin>, <User: user>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 12:36:03,568 DEBUG  The user <QuerySet [<User: admin>, <User: user>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 12:36:04,512 DEBUG  The user <QuerySet [<User: admin>, <User: user>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 12:36:04,512 DEBUG  The user <QuerySet [<User: admin>, <User: user>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 12:37:39,254 DEBUG  The user <QuerySet [<User: admin>, <User: user>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 12:37:40,063 DEBUG  The user <QuerySet [<User: admin>, <User: user>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 12:39:31,837 DEBUG  The user <QuerySet [<User: admin>, <User: user>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 12:59:08,700 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-26 12:59:11,079 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-26 12:59:22,668 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-26 12:59:35,369 DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs 
+2021-06-26 13:01:16,123 DEBUG  The user <QuerySet [<User: admin>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 13:03:13,530 DEBUG  The user <QuerySet [<User: admin>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 13:03:16,478 DEBUG  The user <QuerySet [<User: admin>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 13:03:27,721 DEBUG  The user <QuerySet [<User: admin>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 13:03:31,517 DEBUG  The user <QuerySet [<User: admin>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 13:04:11,093 DEBUG  The user <QuerySet [<User: admin>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 13:04:34,882 DEBUG  The user <QuerySet [<User: admin>, <User: usera>, <User: victor>]> has made modifications in Fundigs 
+2021-06-26 13:49:30,678 DEBUG  The user <QuerySet [<User: admin>, <User: usera>, <User: victor>]> has made modifications in Fundigs 
+2021-06-26 13:52:51,539 DEBUG  The user <QuerySet [<User: admin>, <User: victor>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 13:59:09,149 DEBUG  The user <QuerySet [<User: admin>, <User: victor>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 13:59:10,146 DEBUG  The user <QuerySet [<User: admin>, <User: victor>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 14:02:19,624 DEBUG  The user <QuerySet [<User: admin>, <User: victor>, <User: usera>]> has made modifications in Fundigs 
+2021-06-26 14:11:27,303 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 14:11:29,787 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 14:11:38,138 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 14:11:40,238 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 14:13:23,484 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 14:13:25,743 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 14:13:36,449 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 14:13:38,541 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 14:13:51,954 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:06:22,428 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:06:24,732 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:06:42,667 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:09:28,758 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:09:30,920 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:09:43,255 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:09:44,526 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:09:44,526 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:10:47,150 DEBUG  The user <QuerySet [<User: animalesitm@animales.com>, <User: usuario@user2.com>, <User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:12:47,333 DEBUG  The user <QuerySet [<User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:15:10,635 DEBUG  The user <QuerySet [<User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:15:12,791 DEBUG  The user <QuerySet [<User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:15:45,694 DEBUG  The user <QuerySet [<User: admin@admin.com>]> has made modifications in Fundigs 
+2021-06-26 15:16:35,315 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>]> has made modifications in Fundigs 
+2021-06-26 15:16:36,221 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>]> has made modifications in Fundigs 
+2021-06-26 15:17:55,491 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>]> has made modifications in Fundigs 
+2021-06-26 15:18:02,696 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>]> has made modifications in Fundigs 
+2021-06-26 15:24:11,232 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>]> has made modifications in Fundigs 
+2021-06-26 15:24:14,065 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>]> has made modifications in Fundigs 
+2021-06-26 15:24:23,004 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>]> has made modifications in Fundigs 
+2021-06-26 15:24:51,371 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>]> has made modifications in Fundigs 
+2021-06-26 15:25:35,201 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 15:49:19,065 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>]> has made modifications in Fundigs 
+2021-06-26 15:49:20,820 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>]> has made modifications in Fundigs 
+2021-06-26 15:50:05,189 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>]> has made modifications in Fundigs 
+2021-06-26 15:53:37,232 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 15:53:39,336 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 15:53:56,194 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 15:54:31,211 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 15:54:33,557 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 15:56:19,860 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 15:56:21,650 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 15:56:29,426 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 15:59:29,426 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 15:59:31,145 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 15:59:39,338 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 16:03:10,481 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 16:03:14,246 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 16:06:33,749 DEBUG  The user <QuerySet [<User: admin@admin.com>, <User: animalesitm@a.com>, <User: a@w.com>]> has made modifications in Fundigs 
+2021-06-26 16:09:46,707 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-26 16:09:48,547 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-26 16:11:08,354 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-26 16:11:25,620 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-26 16:11:26,533 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 17:48:14,557 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 17:48:16,372 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 17:48:42,895 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 17:48:43,641 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 17:48:43,641 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 17:56:00,496 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 17:56:02,191 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:14:49,303 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:16:32,160 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:16:33,845 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:16:42,049 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:17:53,869 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:17:56,127 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:18:03,848 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:24:05,353 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:24:07,541 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:24:24,088 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:24:27,670 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:24:28,300 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:27:36,277 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:27:38,259 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:27:55,233 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:27:56,139 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 18:27:56,139 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: 56>]> has made modifications in Fundigs 
+2021-06-29 19:51:50,277 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 19:51:52,168 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 19:52:16,418 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 19:52:17,177 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 19:52:17,179 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 19:53:03,237 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 19:53:03,257 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:07:31,876 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:07:34,506 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:07:51,935 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:07:52,690 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:07:52,690 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:10:43,506 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:10:45,880 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:11:02,917 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:11:03,735 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:11:03,735 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:13:07,692 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:13:10,024 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:13:18,940 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:13:24,580 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:13:30,350 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:22:13,328 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:22:15,004 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:22:41,017 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:22:41,716 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:22:41,716 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:25:36,849 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:25:38,775 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:25:52,302 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:26:12,512 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:28:54,914 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 20:35:56,251 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:35:58,744 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:36:13,387 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:36:15,659 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:37:16,075 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:37:19,127 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:57:49,676 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:57:50,588 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 20:57:50,624 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 21:15:22,264 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 21:15:24,138 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 21:15:34,424 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 21:15:38,484 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 21:15:45,118 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 21:30:00,937 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 21:30:02,732 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 21:31:46,628 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 21:31:50,406 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 21:32:08,335 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-06-29 21:33:24,669 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 21:33:28,028 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 21:35:51,788 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 21:35:54,365 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 21:36:03,356 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 21:36:13,120 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 21:58:30,113 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 21:58:33,339 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 21:58:44,265 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 21:58:45,836 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 21:58:45,836 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 22:02:06,909 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 22:02:09,448 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 22:02:23,874 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 22:02:38,759 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-06-29 22:02:53,704 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 18:33:48,681 DEBUG  The user <QuerySet [<User: admin>, <User: victor>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-07-01 18:33:50,705 DEBUG  The user <QuerySet [<User: admin>, <User: victor>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-07-01 18:34:04,145 DEBUG  The user <QuerySet [<User: admin>, <User: victor>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-07-01 18:34:04,883 DEBUG  The user <QuerySet [<User: admin>, <User: victor>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-07-01 18:34:05,753 DEBUG  The user <QuerySet [<User: admin>, <User: victor>, <User: animalesitm>]> has made modifications in Fundigs 
+2021-07-01 18:45:36,042 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 18:45:37,958 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 18:48:21,248 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 18:48:23,102 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 18:48:44,840 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 18:48:45,684 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 18:48:45,684 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 19:11:06,141 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: admin>]> has made modifications in Fundigs 
+2021-07-01 19:38:49,314 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 19:39:53,410 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 19:39:55,164 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 19:40:15,265 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 19:40:16,158 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 19:40:16,164 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 19:45:32,943 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 19:50:31,126 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:01:33,857 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:01:36,156 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:04:32,817 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:04:35,213 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:04:47,452 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:05:10,010 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:05:10,795 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:11:08,030 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:11:10,408 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:11:24,158 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:11:31,195 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:16:36,082 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:16:37,790 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:16:45,021 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:16:47,856 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:17:11,948 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:21:41,138 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:21:42,154 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:24:00,683 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:27:55,949 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:27:57,623 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:29:07,972 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:29:08,931 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:29:08,951 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:32:57,757 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:32:59,843 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:33:13,913 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:34:27,292 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:37:36,428 DEBUG  The user <QuerySet [<User: admin>, <User: animalesitm>, <User: victor>, <User: victor>]> has made modifications in Fundigs 
+2021-07-01 20:47:10,579 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-01 20:47:12,389 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-01 20:47:29,174 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-01 20:47:30,478 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-01 20:47:30,489 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-01 20:51:14,825 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-01 20:51:52,734 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-01 20:52:50,602 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-01 20:52:54,270 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-02 00:53:45,112 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-02 00:53:47,305 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-02 00:53:47,315 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 16:04:03,912 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 16:04:08,566 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 16:04:25,383 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 16:04:26,805 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 16:04:26,805 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 16:06:01,677 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 16:07:47,992 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 16:18:19,049 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 16:20:42,622 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 16:21:21,929 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 17:52:20,585 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 17:52:22,790 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 17:53:43,605 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 17:53:48,153 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-05 17:54:47,128 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-06 23:30:44,101 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-06 23:30:51,877 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-06 23:51:08,161 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-06 23:51:09,256 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-06 23:51:09,256 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-06 23:54:46,837 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-06 23:56:04,780 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 00:13:48,190 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 20:30:19,215 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 20:30:21,314 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 20:30:58,806 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 20:30:59,816 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 20:30:59,825 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 20:32:00,700 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 20:34:48,949 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 20:44:50,702 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 20:44:52,563 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 20:59:52,045 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 20:59:54,215 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:00:10,532 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:00:11,468 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:00:22,079 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:05:00,758 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:05:04,437 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:05:21,087 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:05:34,509 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:05:35,392 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:09:14,802 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:09:16,829 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:10:05,869 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:10:10,457 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:10:11,667 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:14:37,842 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:14:40,929 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:15:01,235 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:15:16,517 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:15:29,764 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:21:11,761 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:21:17,254 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:23:33,317 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:25:23,232 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:25:26,078 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:25:36,632 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:25:44,383 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:25:45,600 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:28:05,736 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:28:07,590 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:28:16,493 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:28:17,441 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:28:22,570 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:31:28,426 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:31:31,212 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:31:43,120 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:32:46,511 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:32:48,468 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:33:05,134 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:36:17,773 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:36:19,606 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:36:36,461 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:38:49,882 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:38:51,813 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:39:06,783 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:43:37,852 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:43:39,595 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:43:56,800 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:45:16,796 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:45:18,584 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:46:44,781 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:48:54,228 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:48:56,736 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:50:11,465 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:52:54,899 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:52:57,152 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:53:19,402 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:54:44,677 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:54:47,652 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:55:03,080 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:57:40,951 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:57:43,990 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:58:10,146 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:58:20,613 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 21:58:20,666 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:04:13,097 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:04:16,344 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:06:43,464 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:06:45,658 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:06:56,225 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:11:22,006 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:11:24,597 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:11:46,716 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:14:01,930 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:14:05,379 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:14:21,923 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:15:32,958 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:15:35,993 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-07 23:15:52,629 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 22:47:27,905 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 22:47:29,582 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 22:48:13,294 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 22:53:12,354 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 22:53:15,024 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 22:53:28,542 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 22:56:02,179 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 22:56:05,962 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 22:56:24,557 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:06:51,036 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:06:55,011 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:07:07,336 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:10:53,134 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:10:54,985 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:11:17,516 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:14:33,127 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:14:35,357 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:14:53,757 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:15:30,632 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:15:32,572 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:15:50,862 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:15:52,682 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:16:09,945 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:19:53,463 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:19:55,540 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:20:18,987 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:21:43,963 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:21:46,761 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-08 23:22:09,340 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:02:31,469 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:02:34,141 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:03:33,426 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:10:39,796 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:10:41,766 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:11:57,022 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:12:00,497 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:12:17,227 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:12:40,581 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:34:05,838 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:34:08,602 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:34:25,212 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:40:23,565 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:40:25,936 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:40:43,391 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:43:04,858 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:43:06,909 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:49:55,706 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:54:07,665 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:54:09,909 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-09 16:55:48,481 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 15:00:05,814 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 15:00:07,380 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 15:03:33,588 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 15:03:34,479 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 15:03:34,483 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 21:22:10,459 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 21:22:12,079 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 21:27:11,733 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 21:27:12,525 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 21:27:32,170 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 21:43:59,405 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 21:51:49,787 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 21:51:51,343 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 21:52:21,980 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 21:52:30,367 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:09:06,643 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:09:08,042 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:10:44,458 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:12:14,774 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:12:16,407 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:13:15,968 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:24:34,917 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:24:36,624 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:27:02,941 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:48:05,471 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:48:07,491 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:48:43,167 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 22:48:50,817 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:02:37,425 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:02:39,965 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:02:58,296 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:06:04,150 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:06:06,089 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:06:21,203 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:07:52,741 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:07:54,516 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:08:10,265 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:10:14,752 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:15:41,829 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:45:28,858 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:45:30,723 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:45:56,998 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-13 23:46:06,822 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 00:47:20,502 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 00:47:21,897 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 00:48:41,419 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 00:48:48,930 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 00:49:50,455 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 00:54:29,925 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 01:01:48,550 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 01:01:50,093 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 01:02:32,706 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 01:02:33,117 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 01:02:33,698 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 01:20:14,734 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-14 01:20:23,064 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:01:58,602 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:02:00,185 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:04:29,555 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:04:30,335 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:04:30,353 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:13:59,512 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:14:00,991 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:14:13,362 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:14:38,068 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:14:38,871 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:39:44,284 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:39:46,277 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:40:03,040 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 17:46:36,318 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 18:52:53,694 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 19:07:26,159 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 19:09:17,453 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 19:11:08,068 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 19:28:50,245 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 19:28:52,407 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 19:29:11,163 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-15 19:29:38,544 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-16 22:20:01,988 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-16 22:20:03,794 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:45:46,405 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:45:48,054 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:46:03,207 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:46:03,959 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:46:03,978 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:48:06,840 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:48:08,713 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:48:20,478 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:49:28,897 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:51:28,252 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:51:30,418 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:51:49,853 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:52:04,868 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:52:25,821 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:54:26,158 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:54:27,999 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:54:37,005 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:54:42,871 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:55:00,332 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:55:47,387 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 17:56:19,020 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:00:13,462 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:00:17,949 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:00:24,742 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:00:38,295 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:00:53,982 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:01:46,447 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:06:05,882 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:06:07,920 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:06:15,937 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:06:49,730 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:07:40,009 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:12:11,066 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:12:12,564 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:20:04,475 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:20:06,996 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:20:15,515 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:20:16,046 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:20:17,023 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:22:21,637 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:22:23,648 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:22:30,871 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:22:33,722 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:23:13,623 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:23:15,307 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:23:30,090 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:24:03,298 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:24:10,483 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:25:44,853 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:26:39,328 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:56:59,520 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:57:01,330 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:58:59,008 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 18:59:01,655 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:01:38,955 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:01:40,330 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:03:11,774 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:04:47,675 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:04:49,678 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:10:20,482 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:11:03,517 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:11:05,173 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:22:45,566 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:22:55,289 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:23:04,910 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:24:12,540 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:24:14,419 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:42:35,151 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:42:46,723 DEBUG  The user admin has made modifications in Fundigs 
+2021-07-17 19:43:22,257 DEBUG  The user admin2 has made modifications in Fundigs 
+2021-07-17 20:38:34,879 DEBUG  The user admin2 has made modifications in Fundigs 
+2021-07-17 20:38:36,503 DEBUG  The user admin2 has made modifications in Fundigs 
