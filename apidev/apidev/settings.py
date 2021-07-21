@@ -159,46 +159,22 @@ STATIC_ROOT = os.path.join(os.path.split(BASE_DIR)[0], "static_root")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-<<<<<<< HEAD
-AUTH_USER_MODEL="apiCRUD.User"
-=======
 AUTH_USER_MODEL = "apiCRUD.User"
->>>>>>> 21fd0c2b2980dc9c8f0d6a28c3a899cea4c209bd
 
 # Django REST Framework
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
-<<<<<<< HEAD
-    
-    # 'DEFAULT_DETAILS_SERIALIZER':('apiCRUD.serializer.UserSerializer'),
-
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-=======
     # 'DEFAULT_DETAILS_SERIALIZER':('apiCRUD.serializer.UserSerializer'),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.BasicAuthentication",
->>>>>>> 21fd0c2b2980dc9c8f0d6a28c3a899cea4c209bd
     ),
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
 }
-<<<<<<< HEAD
-REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'apiCRUD.backends.UserBackend',
-]
-PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-    'django.contrib.auth.hashers.Argon2PasswordHasher',
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-=======
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema"}
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
@@ -209,7 +185,6 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
     "django.contrib.auth.hashers.Argon2PasswordHasher",
     "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
->>>>>>> 21fd0c2b2980dc9c8f0d6a28c3a899cea4c209bd
 ]
 REST_USE_JWT = True
 
@@ -231,44 +206,6 @@ LOGGING = {
             "formatter": "simple",
         }
     },
-<<<<<<< HEAD
-    'formatters': {
-        'simple': {
-            'format': '{asctime} {levelname}  {message}',
-            'style': '{',
-        }
-    }
-}
-
-SIMPLE_JWT = {
-'USER_ID_FIELD': 'id_user',
-'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'UPDATE_LAST_LOGIN': False,
-
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SECRET_KEY,
-    'VERIFYING_KEY': None,
-    'AUDIENCE': None,
-    'ISSUER': None,
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
-
-    'JTI_CLAIM': 'jti',
-
-    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-}
-
-JWT_AUTH = {
-'JWT_ALGORITHM': 'HS256',
-'JWT_ALLOW_REFRESH': True,
-'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
-'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-=======
     "formatters": {
         "simple": {
             "format": "{asctime} {levelname}  {message}",
@@ -302,5 +239,4 @@ JWT_AUTH = {
     "JWT_ALLOW_REFRESH": True,
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
->>>>>>> 21fd0c2b2980dc9c8f0d6a28c3a899cea4c209bd
 }

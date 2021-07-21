@@ -21,6 +21,14 @@ from django.core.mail import send_mail
 def password_reset_token_created(
     sender, instance, reset_password_token, *args, **kwargs
 ):
+    """CLase encargada de resetear la contraseña del usuario
+
+    :param sender: Sender provides a simple interface to set up SMTP and send email messages
+    :type sender: vista basada en clases que envia la señal 
+    :param instance: Vista que instancia la señal
+    :param reset_password_token: objecto token 
+    :type reset_password_token: token
+    """
 
     email_plaintext_message = "{}?token={}".format(
         reverse("password_reset:reset-password-request"), reset_password_token.key

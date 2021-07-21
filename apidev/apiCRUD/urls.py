@@ -43,4 +43,5 @@ urlpatterns = [
     path('register/', registration, name='register'),
     path('change-password/',ChangePasswordView.as_view(), name='change-pwd'),
     path('password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
+    path('password_reset/confirm/', include('django_rest_passwordreset.urls', namespace='password_reset_confirm'))
 ]
