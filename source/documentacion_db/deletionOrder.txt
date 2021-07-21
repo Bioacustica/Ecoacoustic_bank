@@ -6,6 +6,7 @@ auth_group_permissions
 record_path
 record_obs
 photo_path
+django_rest_passwordreset_resetpasswordtoken
 catalogue_obs
 label
 auth_permission

@@ -21,6 +21,7 @@ record
 auth_permission
 label
 catalogue_obs
+django_rest_passwordreset_resetpasswordtoken
 photo_path
 record_obs
 record_path

@@ -11,6 +11,7 @@
       <sequence increment="1" name="django_admin_log_id_seq" startValue="1"/>
       <sequence increment="1" name="django_content_type_id_seq" startValue="1"/>
       <sequence increment="1" name="django_migrations_id_seq" startValue="1"/>
+      <sequence increment="1" name="django_rest_passwordreset_resetpasswordtoken_id_seq" startValue="1"/>
       <sequence increment="1" name="evidence_id_evidence_seq" startValue="1"/>
       <sequence increment="1" name="format_id_format_seq" startValue="1"/>
       <sequence increment="1" name="funding_id_funding_seq" startValue="1"/>
@@ -72,7 +73,11 @@
             <column ascending="true" name="permission_id"/>
          </index>
       </table>
+<<<<<<< HEAD
       <table name="auth_permission" numRows="157" remarks="" schema="bioacustica" type="TABLE">
+=======
+      <table name="auth_permission" numRows="161" remarks="" schema="bioacustica" type="TABLE">
+>>>>>>> 21fd0c2b2980dc9c8f0d6a28c3a899cea4c209bd
          <column autoUpdated="true" defaultValue="nextval('bioacustica.auth_permission_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="permission_id" foreignKey="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" implied="false" onDeleteCascade="false" schema="bioacustica" table="auth_group_permissions"/>
          </column>
@@ -199,7 +204,7 @@
          </index>
          <checkConstraint constraint="((action_flag &gt;= 0))" name="django_admin_log_action_flag_check"/>
       </table>
-      <table name="django_content_type" numRows="40" remarks="" schema="bioacustica" type="TABLE">
+      <table name="django_content_type" numRows="41" remarks="" schema="bioacustica" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('bioacustica.django_content_type_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="content_type_id" foreignKey="auth_permission_content_type_id_2f476e4b_fk_django_co" implied="false" onDeleteCascade="false" schema="bioacustica" table="auth_permission"/>
             <child column="content_type_id" foreignKey="django_admin_log_content_type_id_c4bce8eb_fk_django_co" implied="false" onDeleteCascade="false" schema="bioacustica" table="django_admin_log"/>
@@ -215,7 +220,7 @@
             <column ascending="true" name="model"/>
          </index>
       </table>
-      <table name="django_migrations" numRows="19" remarks="" schema="bioacustica" type="TABLE">
+      <table name="django_migrations" numRows="22" remarks="" schema="bioacustica" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('bioacustica.django_migrations_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="app" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
@@ -225,7 +230,34 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
+<<<<<<< HEAD
       <table name="django_session" numRows="2" remarks="" schema="bioacustica" type="TABLE">
+=======
+      <table name="django_rest_passwordreset_resetpasswordtoken" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="6" id="0" name="created_at" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="key" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="ip_address" nullable="true" remarks="" size="2147483647" type="inet" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="user_agent" nullable="false" remarks="" size="256" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="user_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_user" foreignKey="django_rest_password_user_id_e8015b11_fk_user_id_u" implied="false" onDeleteCascade="false" schema="bioacustica" table="user"/>
+         </column>
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.django_rest_passwordreset_resetpasswordtoken_id_seq'::regclass)" digits="0" id="5" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="django_rest_passwordreset_resetpasswordtoken_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="django_rest_passwordreset_resetpasswordtoken_key_f1b65873_like" unique="false">
+            <column ascending="true" name="key"/>
+         </index>
+         <index name="django_rest_passwordreset_resetpasswordtoken_key_f1b65873_uniq" unique="true">
+            <column ascending="true" name="key"/>
+         </index>
+         <index name="django_rest_passwordreset_resetpasswordtoken_user_id_e8015b11" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="django_session" numRows="3" remarks="" schema="bioacustica" type="TABLE">
+>>>>>>> 21fd0c2b2980dc9c8f0d6a28c3a899cea4c209bd
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="session_key" nullable="false" remarks="" size="40" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="session_data" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="expire_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
@@ -483,6 +515,10 @@
          <column autoUpdated="true" defaultValue="nextval('bioacustica.user_id_user_seq'::regclass)" digits="0" id="0" name="id_user" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="id_collector" foreignKey="catalogue_id_collector_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
             <child column="user_id" foreignKey="django_admin_log_user_id_c564eba6_fk_user_id_user" implied="false" onDeleteCascade="false" schema="bioacustica" table="django_admin_log"/>
+<<<<<<< HEAD
+=======
+            <child column="user_id" foreignKey="django_rest_password_user_id_e8015b11_fk_user_id_u" implied="false" onDeleteCascade="false" schema="bioacustica" table="django_rest_passwordreset_resetpasswordtoken"/>
+>>>>>>> 21fd0c2b2980dc9c8f0d6a28c3a899cea4c209bd
             <child column="id_labeler" foreignKey="labeled_id_labeler_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
             <child column="id_cataloger" foreignKey="sampling_id_cataloger_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="sampling"/>
          </column>

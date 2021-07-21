@@ -11,7 +11,7 @@ class ListAdminMixin(object):
         self.list_display = [field.name for field in model._meta.fields]
         super(ListAdminMixin, self).__init__(model, admin_site)
 
-
+app_config = apps.get_app_config('django_rest_passwordreset')
 models = apps.get_models()
 for model in models:
     admin_class = type('AdminClass', (ListAdminMixin, admin.ModelAdmin), {})
