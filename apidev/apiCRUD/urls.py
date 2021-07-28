@@ -2,7 +2,7 @@ from django import urls
 from django.contrib import admin
 from django.urls import path, include
 from apiCRUD import views
-from .views import ChangePasswordView, registration
+from .views import ChangePasswordView, registration 
 from rest_framework_jwt.views import   obtain_jwt_token, verify_jwt_token, refresh_jwt_token
 from apiCRUD.views import MyObtainTokenView
 from rest_framework.routers import DefaultRouter

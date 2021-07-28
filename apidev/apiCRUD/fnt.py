@@ -31,3 +31,14 @@ def choose_role(username: str, password: str, roles: str) -> str:
 
     return(roles[rol])
     
+def change_password(username:str, password:str) -> str:
+
+    query = "SELECT bioacustica.change_password('{}', '{}')".format(username, password)
+
+    return query
+
+def delete_user(username:str) -> str:
+
+    query = "SELECT drop_user('username')".format(username)
+
+    return query

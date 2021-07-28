@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-date=2021-07-21 20:29:35+0000
-os=Linux 5.4.72-microsoft-standard-WSL2
-=======
-date=2021-07-20 22:23:45+0000
-os=Linux 5.8.0-59-generic
->>>>>>> 21fd0c2b2980dc9c8f0d6a28c3a899cea4c209bd
+date=2021-07-27 21:14:22+0000
+os=Linux 5.8.0-63-generic
 schemaspy-version=6.1.0
 schemaspy-build=6.1.0.41 2019-09-17 21:52:57
 diagramImplementation=Graphviz dot 2.43

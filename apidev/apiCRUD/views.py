@@ -6,20 +6,22 @@ from django.http import request
 
 import psycopg2
 from django.contrib.auth import get_user_model
+from psycopg2.extensions import ISOLATION_LEVEL_READ_UNCOMMITTED
 from rest_framework import generics, viewsets
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import action, permission_classes
 from rest_framework.decorators import authentication_classes
 from rest_framework import permissions
 from rest_framework import response, decorators, permissions, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.serializers import Serializer
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .models import Funding
 from .serializers import MyTokenObtainPairSerializer
-from .fnt import choose_role
+from .fnt import choose_role , change_password , delete_user
 from .serializers import *
 
 # Vistas hechas con el model view set para hacer el CRUD
@@ -39,11 +41,10 @@ class MyObtainTokenView(TokenObtainPairView):
     permission_classes = (AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
 
-
+#TODO proteger las vistas con los roles 
 #  Función  encargada de registrar usuarios
 @decorators.api_view(["POST"])
 @authentication_classes([JSONWebTokenAuthentication])
-@decorators.permission_classes([permissions.IsAdminUser])
 def registration(request):
     """
     Esta clase es la encargada de registrar usuarios nuevos
@@ -255,6 +256,35 @@ class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    credenciales_db = {
+        "user": "animalesitm",
+        "password": "animalesitm",
+        "host": "postgres",
+        "port": 5432,
+        "database": "animalesitm",
+    }
+    @action(methods=['delete'], detail=True)
+    def erase_user(self, request):
+        credenciales_db = {
+        "user": "animalesitm",
+        "password": "animalesitm",
+        "host": "postgres",
+        "port": 5432,
+        "database": "animalesitm",
+    }
+        user = self.get_object()
+        serializer = UserSerializer(data=request.data)
+        username = request.data["username"]
+        conexion = psycopg2.connect(**credenciales_db)
+        conexion.autocommit = True
+        if serializer.is_valid():
+            payload = delete_user(username)
+            with conexion.cursor() as cursor:
+                cursor.execute(payload)
+            return Response("Deleted")
+
+
+
 @permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class ChangePasswordView(generics.UpdateAPIView):
@@ -292,16 +322,33 @@ class ChangePasswordView(generics.UpdateAPIView):
             # Check old password
             if not self.object.check_password(serializer.data.get("old_password")):
                 return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
-            # set_password also hashes the password that the user will get
-            self.object.set_password(serializer.data.get("new_password"))
-            self.object.save()
-            response = {
-                'status': 'success',
-                'code': status.HTTP_200_OK,
-                'message': 'Password updated successfully',
-                'data': []
-            }
-
-            return Response(response)
+            if serializer.data.get("new_password") == serializer.data.get("confirm_password"):
+                # set_password also hashes the password that the user will get
+                password = request.data["new_password"]
+                username = request.data["username"]
+                credenciales_db = {
+                    "user": "animalesitm",
+                    "password": "animalesitm",
+                    "host": "postgres",
+                    "port": 5432,
+                    "database": "animalesitm",
+                }
+                
+                conexion = psycopg2.connect(**credenciales_db)
+                conexion.autocommit = True
+                payload = change_password(username, password)
+                with conexion.cursor() as cursor:
+                    cursor.execute(payload)
+                self.object.set_password(serializer.data.get("new_password"))
+                self.object.save()
+                response = {
+                    'status': 'success',
+                    'code': status.HTTP_200_OK,
+                    'message': 'Password updated successfully',
+                    'data': []
+                }
+                return Response(response)
+            else:
+                return Response({"confirm_password":["must be equal to new_password"]},status=status.HTTP_400_BAD_REQUEST)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

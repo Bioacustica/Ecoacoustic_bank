@@ -41,8 +41,14 @@ CREATE TABLE IF NOT EXISTS bioacustica.SAMPLING
 CREATE TABLE IF NOT EXISTS bioacustica.USER
 (
     ID_USER SERIAL,
-    NAME character varying(100),
+    USERNAME character varying(100),
     EMAIL character varying(100),
+    LAST_LOGIN DATE,
+    IS_ADMIN BOOLEAN,
+    IS_ACTIVE BOOLEAN,
+    IS_STAFF BOOLEAN,
+    IS_SUPERUSER BOOLEAN,
+    ROLES character varying(50)
     PRIMARY KEY (ID_USER)
 );
 

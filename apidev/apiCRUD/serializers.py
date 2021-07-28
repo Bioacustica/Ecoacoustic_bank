@@ -23,8 +23,9 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Add custom claims
         user = User.username
         pwd = User.password
+        role = User.roles
         token['username'] = User.username
-    
+        token['role'] = role
         return token
 
 
@@ -214,6 +215,8 @@ class ChangePasswordSerializer(serializers.Serializer):
     """
     Serializer for password change endpoint.
     """
+    username = serializers.CharField(required=True)
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
+    confirm_password = serializers.CharField(required=True)
 

@@ -56,14 +56,14 @@ class UserManager(BaseUserManager):
     la nuestra
     """
 
-    def create_user(self, email, username, password=None):
+    def create_user(self, email, username, password=None, roles=None):
         if not email:
             raise ValueError("Email is required")
         if not username:
             raise ValueError("Name is required")
 
         user=self.model(
-        email=self.normalize_email(email),username=username)
+        email=self.normalize_email(email),username=username,roles=roles)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -79,8 +79,8 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, password=None):
-        user = self.create_user(email=email, username=username, password=password)
+    def create_superuser(self, email, username, password=None, roles='admin'):
+        user = self.create_user(email=email, username=username, password=password, roles=roles)
         user.is_admin = True
         user.is_superuser = True
         user.is_staff = True
