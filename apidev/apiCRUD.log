@@ -680,9 +680,4 @@ DEBUG  The user <QuerySet [<User: admin>]> has made modifications in Fundigs
 2021-07-17 19:22:55,289 DEBUG  The user admin has made modifications in Fundigs 
 2021-07-17 19:23:04,910 DEBUG  The user admin has made modifications in Fundigs 
 2021-07-17 19:24:12,540 DEBUG  The user admin has made modifications in Fundigs 
-2021-07-17 19:24:14,419 DEBUG  The user admin has made modifications in Fundigs 
-2021-07-17 19:42:35,151 DEBUG  The user admin has made modifications in Fundigs 
-2021-07-17 19:42:46,723 DEBUG  The user admin has made modifications in Fundigs 
-2021-07-17 19:43:22,257 DEBUG  The user admin2 has made modifications in Fundigs 
-2021-07-17 20:38:34,879 DEBUG  The user admin2 has made modifications in Fundigs 
-2021-07-17 20:38:36,503 DEBUG  The user admin2 has made modifications in Fundigs 
+2021-07-17 19:24:14,419 DEBUG  The user admin has made modifications in Fundigs

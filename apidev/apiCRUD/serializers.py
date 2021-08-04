@@ -17,6 +17,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     :return: Retorna los Tokens
     :rtype: JWT
     """
+
     @classmethod
     def get_token(cls, User):
         token = super().get_token(User)
@@ -24,29 +25,28 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         user = User.username
         pwd = User.password
         role = User.roles
-        token['username'] = User.username
-        token['role'] = role
+        token["username"] = User.username
+        token["role"] = role
         return token
 
 
 """Clases encargadas de convertir querysets a forma nativa
     para trabajarla en formato json"""
-class FundingSerializer(serializers.HyperlinkedModelSerializer):
 
+
+class FundingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Funding
         fields = "__all__"
 
 
 class CaseSerializer(serializers.HyperlinkedModelSerializer):
-
     class Meta:
         model = Case
         fields = "__all__"
 
 
 class CatalogueSerializer(serializers.HyperlinkedModelSerializer):
-
     class Meta:
         model = Catalogue
         fields = "__all__"
@@ -176,7 +176,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ["username", "email", "roles", "id_user"]
-        
+
 
 class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
     """[summary]
@@ -187,8 +187,10 @@ class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
     :return: [description]
     :rtype: [type]
     """
-    password = serializers.CharField(write_only=True, required=True, style={ "input_type":   "password"})
 
+    password = serializers.CharField(
+        write_only=True, required=True, style={"input_type": "password"}
+    )
 
     class Meta:
         model = User
@@ -196,19 +198,24 @@ class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
-        
+
         username = validated_data["username"]
         email = validated_data["email"]
         password = validated_data["password"]
         roles = validated_data["roles"]
-        is_admin =validated_data["is_admin"]
-        if (email and User.objects.filter(email=email).exclude(username=username).exists()):
+        is_admin = validated_data["is_admin"]
+        if (
+            email
+            and User.objects.filter(email=email).exclude(username=username).exists()
+        ):
             raise serializers.ValidationError(
-                {"email": "Email addresses must be unique."})
+                {"email": "Email addresses must be unique."}
+            )
         user = User(username=username, email=email, roles=roles, is_admin=is_admin)
         user.set_password(password)
         user.save()
         return user
+
 
 class ChangePasswordSerializer(serializers.Serializer):
     model = User
@@ -219,4 +226,3 @@ class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
     confirm_password = serializers.CharField(required=True)
-

@@ -10,19 +10,21 @@ from psycopg2.extensions import ISOLATION_LEVEL_READ_UNCOMMITTED
 from rest_framework import generics, viewsets
 from rest_framework.decorators import action, permission_classes
 from rest_framework.decorators import authentication_classes
-from rest_framework import permissions
-from rest_framework import response, decorators, permissions, status
+from rest_framework import response, decorators, status
 from rest_framework.response import Response
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.serializers import Serializer
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
+from dry_rest_permissions.generics import DRYPermissions
+from rest_framework_tracking.mixins import LoggingMixin
 
 from .models import Funding
 from .serializers import MyTokenObtainPairSerializer
-from .fnt import choose_role , change_password , delete_user
+from .fnt import choose_role, change_password, delete_user
 from .serializers import *
+from .custom_permissions import IsAdmin
 
 # Vistas hechas con el model view set para hacer el CRUD
 """La Clase ModelViewSet incluye implementaciones para
@@ -41,10 +43,16 @@ class MyObtainTokenView(TokenObtainPairView):
     permission_classes = (AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
 
-#TODO proteger las vistas con los roles 
+
+
 #  Función  encargada de registrar usuarios
 @decorators.api_view(["POST"])
 @authentication_classes([JSONWebTokenAuthentication])
+@decorators.permission_classes(
+    [
+        IsAdmin,
+    ]
+)
 def registration(request):
     """
     Esta clase es la encargada de registrar usuarios nuevos
@@ -53,7 +61,6 @@ def registration(request):
     :return: si todo fue exitoso devuelve un creado de forma exitosa
     :rtype: Http status
     """
-    
     print(request.data)
     print(len(request.data))
     username = request.data["username"]
@@ -68,229 +75,244 @@ def registration(request):
         "port": 5432,
         "database": "animalesitm",
     }
-    
+
     conexion = psycopg2.connect(**credenciales_db)
     conexion.autocommit = True
     payload = choose_role(username, password, roles)
     with conexion.cursor() as cursor:
         cursor.execute(payload)
-        
+
         bioacustica = cursor.fetchall()
 
     serializer = UserCreateSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-        return response.Response("ok", status=status.HTTP_201_CREATED)
+        return response.Response(
+            "Creado de forma exitosa", status=status.HTTP_201_CREATED
+        )
     else:
         return response.Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
-class FundingsView(viewsets.ModelViewSet):
-    # def my_view(self,request):
-    #     username = None
-    #     if request.user.is_authenticated():
-    #         username = request.user.username
-    #     return username
-    # logger.debug("The user {} has made modifications in Fundigs ".format(my_view()))
+# la clase logginMixin  se encarga de hacer logs en la base de datos
+class FundingsView(LoggingMixin, viewsets.ModelViewSet):
     queryset = Funding.objects.all()
+    permission_classes = (IsAdmin,)
     serializer_class = FundingSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class CaseView(viewsets.ModelViewSet):
     queryset = Case.objects.all()
+    permission_classes = (IsAdmin,)
     serializer_class = CaseSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class CatalogueView(viewsets.ModelViewSet):
     queryset = Catalogue.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = CatalogueSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class CatalogueObsView(viewsets.ModelViewSet):
     queryset = CatalogueObs.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = CatalogueObsSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class DatumView(viewsets.ModelViewSet):
     queryset = Datum.objects.all()
+    permission_classes = (IsAdmin,)
     serializer_class = DatumSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class EvidenceView(viewsets.ModelViewSet):
     queryset = Evidence.objects.all()
+    permission_classes = (IsAdmin,)
     serializer_class = EvidenceSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class FormatView(viewsets.ModelViewSet):
     queryset = Format.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = FormatSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class HSerialView(viewsets.ModelViewSet):
+
     queryset = HSerial.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = HSerialSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class HabitatView(viewsets.ModelViewSet):
     queryset = Habitat.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = HabitatSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class HardwareView(viewsets.ModelViewSet):
     queryset = Hardware.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = HardwareSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class LabelView(viewsets.ModelViewSet):
     queryset = Label.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = LabelSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class LabeledView(viewsets.ModelViewSet):
     queryset = Labeled.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = LabeledSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class MemoryView(viewsets.ModelViewSet):
     queryset = Memory.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = MemorySerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class PhotoPathView(viewsets.ModelViewSet):
     queryset = PhotoPath.objects.all()
+    permission_classes = (IsAdmin,)
     serializer_class = PhotoPathSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class PrecisionView(viewsets.ModelViewSet):
     queryset = Precision.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = PrecisionSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class ProjectView(viewsets.ModelViewSet):
     queryset = Project.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = ProjectSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class RecordView(viewsets.ModelViewSet):
     queryset = Record.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = RecordSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class RecordObsView(viewsets.ModelViewSet):
     queryset = RecordObs.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = RecordObsSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class RecordPathView(viewsets.ModelViewSet):
     queryset = RecordPath.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = RecordPathSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class SamplingView(viewsets.ModelViewSet):
     queryset = Sampling.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = SamplingSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class SeasonView(viewsets.ModelViewSet):
     queryset = Season.objects.all()
+    permission_classes = (DRYPermissions,)
     serializer_class = SeasonSerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class SupplyView(viewsets.ModelViewSet):
+
+    permission_classes = (DRYPermissions,)
     queryset = Supply.objects.all()
     serializer_class = SupplySerializer
 
 
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class TypeView(viewsets.ModelViewSet):
     queryset = Type.objects.all()
+    permission_classes = (IsAdmin,)
     serializer_class = TypeSerializer
 
 
+@authentication_classes([JSONWebTokenAuthentication])
 class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
+    permission_classes = (IsAdmin,)
     serializer_class = UserSerializer
+    http_method_names = ["get", "put"]
 
-    credenciales_db = {
-        "user": "animalesitm",
-        "password": "animalesitm",
-        "host": "postgres",
-        "port": 5432,
-        "database": "animalesitm",
-    }
-    @action(methods=['delete'], detail=True)
-    def erase_user(self, request):
-        credenciales_db = {
-        "user": "animalesitm",
-        "password": "animalesitm",
-        "host": "postgres",
-        "port": 5432,
-        "database": "animalesitm",
-    }
-        user = self.get_object()
+
+@decorators.api_view(["DELETE"])
+def user_delete_view(request, id_user):
+    permission_classes = (IsAdmin,)
+    """
+    Función encargada de eliminar 
+    usuarios, recibe como parametro su
+    id_user, tambien borra el rol del
+    pgadmin
+
+    :param id_user: recibe el id_user 
+    :type id_user: string
+    """
+
+    try:
+        user = User.objects.get(id_user=id_user)
+        user_name = user.username
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == "DELETE":
+        credentials_db = {
+            "user": "animalesitm",
+            "password": "animalesitm",
+            "host": "postgres",
+            "port": 5432,
+            "database": "animalesitm",
+        }
+
         serializer = UserSerializer(data=request.data)
-        username = request.data["username"]
-        conexion = psycopg2.connect(**credenciales_db)
-        conexion.autocommit = True
+        connexion = psycopg2.connect(**credentials_db)
+        connexion.autocommit = True
+        print(type(user_name))
         if serializer.is_valid():
-            payload = delete_user(username)
-            with conexion.cursor() as cursor:
+            payload = delete_user(user_name)
+            with connexion.cursor() as cursor:
                 cursor.execute(payload)
-            return Response("Deleted")
+            user.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
-@permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class ChangePasswordView(generics.UpdateAPIView):
     """
     An endpoint for changing password.
     """
+
+    permission_classes = (IsAdmin,)
     serializer_class = ChangePasswordSerializer
     model = User
 
@@ -309,8 +331,8 @@ class ChangePasswordView(generics.UpdateAPIView):
         """con este metodo hacemos directamente la
         actualización de la contraseña
 
-        :param request: recibe los parametros del usuario para 
-        hacer la actualuzación
+        :param request: recibe los parametros del usuario para
+        hacer la actualización
         :type request: json
         :return:  retorna la actualización de la constraseña
         :rtype: response
@@ -321,8 +343,13 @@ class ChangePasswordView(generics.UpdateAPIView):
         if serializer.is_valid():
             # Check old password
             if not self.object.check_password(serializer.data.get("old_password")):
-                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
-            if serializer.data.get("new_password") == serializer.data.get("confirm_password"):
+                return Response(
+                    {"old_password": ["Wrong password."]},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            if serializer.data.get("new_password") == serializer.data.get(
+                "confirm_password"
+            ):
                 # set_password also hashes the password that the user will get
                 password = request.data["new_password"]
                 username = request.data["username"]
@@ -333,7 +360,7 @@ class ChangePasswordView(generics.UpdateAPIView):
                     "port": 5432,
                     "database": "animalesitm",
                 }
-                
+
                 conexion = psycopg2.connect(**credenciales_db)
                 conexion.autocommit = True
                 payload = change_password(username, password)
@@ -342,13 +369,16 @@ class ChangePasswordView(generics.UpdateAPIView):
                 self.object.set_password(serializer.data.get("new_password"))
                 self.object.save()
                 response = {
-                    'status': 'success',
-                    'code': status.HTTP_200_OK,
-                    'message': 'Password updated successfully',
-                    'data': []
+                    "status": "success",
+                    "code": status.HTTP_200_OK,
+                    "message": "Password updated successfully",
+                    "data": [],
                 }
                 return Response(response)
             else:
-                return Response({"confirm_password":["must be equal to new_password"]},status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"confirm_password": ["must be equal to new_password"]},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

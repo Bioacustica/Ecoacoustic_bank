@@ -15,6 +15,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail
+from simple_history.models import HistoricalRecords
 
 
 @receiver(reset_password_token_created)
@@ -24,9 +25,9 @@ def password_reset_token_created(
     """CLase encargada de resetear la contraseña del usuario
 
     :param sender: Sender provides a simple interface to set up SMTP and send email messages
-    :type sender: vista basada en clases que envia la señal 
+    :type sender: vista basada en clases que envia la señal
     :param instance: Vista que instancia la señal
-    :param reset_password_token: objecto token 
+    :param reset_password_token: objecto token
     :type reset_password_token: token
     """
 
@@ -62,11 +63,13 @@ class UserManager(BaseUserManager):
         if not username:
             raise ValueError("Name is required")
 
-        user=self.model(
-        email=self.normalize_email(email),username=username,roles=roles)
+        user = self.model(
+            email=self.normalize_email(email), username=username, roles=roles
+        )
         user.set_password(password)
         user.save(using=self._db)
         return user
+
     def create_staffuser(self, email, password):
         """
         Creates and saves a staff user with the given email and password.
@@ -75,12 +78,14 @@ class UserManager(BaseUserManager):
             email,
             password=password,
         )
-        user.staff = True
+
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, password=None, roles='admin'):
-        user = self.create_user(email=email, username=username, password=password, roles=roles)
+    def create_superuser(self, email, username, password=None, roles="admin"):
+        user = self.create_user(
+            email=email, username=username, password=password, roles=roles
+        )
         user.is_admin = True
         user.is_superuser = True
         user.is_staff = True
@@ -220,11 +225,17 @@ class Catalogue(models.Model):
     id_sampling = models.ForeignKey(
         "Sampling", models.DO_NOTHING, db_column="id_sampling"
     )
-    id_country = models.IntegerField()
-    id_department = models.IntegerField()
-    id_municipality = models.IntegerField()
-    id_vereda = models.IntegerField()
-    id_locality = models.IntegerField()
+    id_country = models.ForeignKey("Country", models.DO_NOTHING, db_column="id_country")
+    id_department = models.ForeignKey(
+        "Department", models.DO_NOTHING, db_column="id_department"
+    )
+    id_municipality = models.ForeignKey(
+        "Municipality", models.DO_NOTHING, db_column="id_municipality"
+    )
+    id_vereda = models.ForeignKey("Vereda", models.DO_NOTHING, db_column="id_vereda")
+    id_locality = models.ForeignKey(
+        "Locality", models.DO_NOTHING, db_column="id_locality"
+    )
     id_gain = models.IntegerField()
     id_filters = models.IntegerField()
     id_collector = models.ForeignKey(
@@ -242,10 +253,9 @@ class Catalogue(models.Model):
     )
     id_datum = models.ForeignKey("Datum", models.DO_NOTHING, db_column="id_datum")
     elevation = models.IntegerField(blank=True, null=True)
-    # This field type is a guess.
-    coordinates = models.TextField(blank=True, null=True)
+    coordinates = models.TextField(blank=True, null=True)  # This field type is a guess.
     height = models.IntegerField(blank=True, null=True)
-    chunks = models.IntegerField(blank=True, null=True)
+    chunks = models.SmallIntegerField(blank=True, null=True)
     size = models.FloatField(blank=True, null=True)
 
     class Meta:
@@ -254,6 +264,61 @@ class Catalogue(models.Model):
 
     def __str__(self):
         return self.elevation
+
+    @staticmethod
+    def has_read_permission(request):
+        """función encargada de permitir
+        o denegar si un usuario con su rol
+        puede hacer cambios en la bd
+        """
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        """función encargada de permitir
+        o denegar si un usuario con su rol
+        puede hacer cambios en la bd
+        """
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
 
 
 class CatalogueObs(models.Model):
@@ -271,6 +336,15 @@ class CatalogueObs(models.Model):
         db_table = "catalogue_obs"
 
 
+class Country(models.Model):
+    id_country = models.SmallAutoField(primary_key=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = "country"
+
+
 class Datum(models.Model):
     id_datum = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -281,6 +355,15 @@ class Datum(models.Model):
     class Meta:
         managed = False
         db_table = "datum"
+
+
+class Department(models.Model):
+    id_department = models.SmallAutoField(primary_key=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = "department"
 
 
 class DjangoAdminLog(models.Model):
@@ -353,10 +436,70 @@ class Format(models.Model):
         managed = False
         db_table = "format"
 
+    @staticmethod
+    def has_read_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+
+class FrequencyDetail(models.Model):
+    id_frequency_detail = models.AutoField(primary_key=True)
+    id_labeled = models.IntegerField()
+    begining = models.IntegerField(blank=True, null=True)
+    ending = models.IntegerField(blank=True, null=True)
+    minimal = models.IntegerField(blank=True, null=True)
+    maximun = models.IntegerField(blank=True, null=True)
+    peak = models.IntegerField(blank=True, null=True)
+
 
 class Funding(models.Model):
     id_funding = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.description
@@ -380,6 +523,45 @@ class HSerial(models.Model):
         managed = False
         db_table = "h_serial"
 
+    @staticmethod
+    def has_read_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
 
 class Habitat(models.Model):
     id_habitat = models.AutoField(primary_key=True)
@@ -391,6 +573,55 @@ class Habitat(models.Model):
     class Meta:
         managed = False
         db_table = "habitat"
+
+    @staticmethod
+    def has_read_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
 
 
 class Hardware(models.Model):
@@ -404,6 +635,45 @@ class Hardware(models.Model):
         managed = False
         db_table = "hardware"
 
+    @staticmethod
+    def has_read_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
 
 class Label(models.Model):
     id_label = models.AutoField(primary_key=True)
@@ -411,6 +681,67 @@ class Label(models.Model):
 
     def __str__(self):
         return self.id_label
+
+    @staticmethod
+    def has_read_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+        ):
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
 
     class Meta:
         managed = False
@@ -435,6 +766,81 @@ class Labeled(models.Model):
         managed = False
         db_table = "labeled"
 
+    @staticmethod
+    def has_read_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+        ):
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+
+class Locality(models.Model):
+    id_locality = models.SmallAutoField(primary_key=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+
+
+class Measure(models.Model):
+    id_measure = models.SmallAutoField(primary_key=True)
+    description = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = "measure"
+
 
 class Memory(models.Model):
     id_memory = models.AutoField(primary_key=True)
@@ -446,6 +852,54 @@ class Memory(models.Model):
     class Meta:
         managed = False
         db_table = "memory"
+
+    @staticmethod
+    def has_read_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+
+class Municipality(models.Model):
+    id_municipality = models.SmallAutoField(primary_key=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = "municipality"
 
 
 class PhotoPath(models.Model):
@@ -474,6 +928,45 @@ class Precision(models.Model):
         managed = False
         db_table = "precision"
 
+    @staticmethod
+    def has_read_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
 
 class Project(models.Model):
     id_project = models.AutoField(primary_key=True)
@@ -486,6 +979,64 @@ class Project(models.Model):
     class Meta:
         managed = False
         db_table = "project"
+
+    @staticmethod
+    def has_read_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+
+class PulseType(models.Model):
+    id_pulse_type = models.SmallAutoField(primary_key=True)
+    description = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = "pulse_type"
 
 
 class Record(models.Model):
@@ -508,6 +1059,55 @@ class Record(models.Model):
         managed = False
         db_table = "record"
 
+    @staticmethod
+    def has_read_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
 
 class RecordObs(models.Model):
     id_record_obs = models.AutoField(primary_key=True)
@@ -520,6 +1120,55 @@ class RecordObs(models.Model):
     class Meta:
         managed = False
         db_table = "record_obs"
+
+    @staticmethod
+    def has_read_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
 
 
 class RecordPath(models.Model):
@@ -534,6 +1183,55 @@ class RecordPath(models.Model):
     class Meta:
         managed = False
         db_table = "record_path"
+
+    @staticmethod
+    def has_read_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
 
 
 class Sampling(models.Model):
@@ -553,6 +1251,45 @@ class Sampling(models.Model):
         managed = False
         db_table = "sampling"
 
+    @staticmethod
+    def has_read_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
 
 class Season(models.Model):
     id_season = models.AutoField(primary_key=True)
@@ -565,6 +1302,64 @@ class Season(models.Model):
         managed = False
         db_table = "season"
 
+    @staticmethod
+    def has_read_permission(request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+            or request.user.roles == "usuario"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+
+class Software(models.Model):
+    id_software = models.SmallAutoField(primary_key=True)
+    descripton = models.CharField(max_length=80)
+
+    class Meta:
+        managed = False
+        db_table = "software"
+
 
 class Supply(models.Model):
     id_supply = models.AutoField(primary_key=True)
@@ -573,9 +1368,59 @@ class Supply(models.Model):
     def __str__(self):
         return self.description
 
+    @staticmethod
+    def has_read_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_delete_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
     class Meta:
         managed = False
         db_table = "supply"
+
+
+class TimeDetail(models.Model):
+    id_time_detail = models.AutoField(primary_key=True)
+    id_labeled = models.IntegerField()
+    beging = models.SmallIntegerField(blank=True, null=True)
+    ending = models.SmallIntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = "time_detail"
 
 
 class Type(models.Model):
@@ -588,3 +1433,24 @@ class Type(models.Model):
     class Meta:
         managed = False
         db_table = "type"
+
+
+class Vereda(models.Model):
+    id_vereda = models.SmallAutoField(primary_key=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = "vereda"
+
+
+class Voucher(models.Model):
+    id_voucher = models.OneToOneField(
+        Catalogue, models.DO_NOTHING, db_column="id_voucher", primary_key=True
+    )
+    id_catalogue = models.IntegerField()
+    voucher = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = "voucher"

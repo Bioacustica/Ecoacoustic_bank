@@ -30,11 +30,11 @@ SECRET_KEY = "django-insecure-%m+pbtv7fzd@(=6@tcb2s1@((kxq%ks6tj%g!o)gig_z6mw*x(
 DEBUG = True
 # ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS', default=[]))
 ALLOWED_HOSTS = ["*"]
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'animalesitm@gmail.com'
-EMAIL_HOST_PASSWORD = '3sz7JufS:eMzaxe'
+EMAIL_HOST_USER = "animalesitm@gmail.com"
+EMAIL_HOST_PASSWORD = "3sz7JufS:eMzaxe"
 EMAIL_USE_TLS = True
 
 # Application definition
@@ -46,12 +46,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework_tracking",
     "django_rest_passwordreset",
     "apiCRUD",
     "rest_framework",
+    "simple_history",
     "drf_yasg",
     "rest_framework_jwt",
-
+    "dry_rest_permissions",
     # Autenticación personalizada
 ]
 
@@ -60,6 +62,7 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     # 'django.middleware.csrf.CsrfViewMiddleware',
+    "simple_history.middleware.HistoryRequestMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -165,7 +168,12 @@ AUTH_USER_MODEL = "apiCRUD.User"
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
     # 'DEFAULT_DETAILS_SERIALIZER':('apiCRUD.serializer.UserSerializer'),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAdmin",
+        "rest_framework.permissions.IsUsuario",
+        "rest_framework.permissions.IsEtiquetado",
+        "rest_framework.permissions.IsRegistro",
+    ),
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",

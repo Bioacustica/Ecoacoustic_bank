@@ -7,13 +7,14 @@ from .models import User
 
 class UserBackend(ModelBackend):
     """Clase encargada de autenticar
-    los usuarios que  hagan login 
+    los usuarios que  hagan login
 
     :param ModelBackend: clase heredada del default backend de Django
     :type ModelBackend: module
     """
-    def authenticate(self, email:str=None, password:str=None) -> None:
-        """metodo que verifica si los usaurios existen 
+
+    def authenticate(self, email: str = None, password: str = None) -> None:
+        """metodo que verifica si los usaurios existen
         en la base de datos
 
         :param email: email del usuario, defaults to None

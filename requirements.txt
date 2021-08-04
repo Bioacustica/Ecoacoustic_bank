@@ -16,6 +16,8 @@ gunicorn
 drf-jwt
 drf-api-logger
 djangorestframework-simplejwt
-psycopg2
-psycopg2
 django-rest-passwordreset
+rest_condition
+django-dry-rest-permissions
+django-simple-history
+drf-api-tracking
