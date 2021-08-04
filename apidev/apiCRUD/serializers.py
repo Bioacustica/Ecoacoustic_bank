@@ -204,6 +204,7 @@ class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
         password = validated_data["password"]
         roles = validated_data["roles"]
         is_admin = validated_data["is_admin"]
+
         if (
             email
             and User.objects.filter(email=email).exclude(username=username).exists()

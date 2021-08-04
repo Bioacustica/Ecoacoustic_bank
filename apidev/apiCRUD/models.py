@@ -335,7 +335,7 @@ class CatalogueObs(models.Model):
         managed = False
         db_table = "catalogue_obs"
 
-
+#TODO Tabla nueva
 class Country(models.Model):
     id_country = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -356,7 +356,7 @@ class Datum(models.Model):
         managed = False
         db_table = "datum"
 
-
+#TODO Tabla nueva
 class Department(models.Model):
     id_department = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -485,7 +485,7 @@ class Format(models.Model):
             return True
         return False
 
-
+#TODO tabla nueva
 class FrequencyDetail(models.Model):
     id_frequency_detail = models.AutoField(primary_key=True)
     id_labeled = models.IntegerField()
@@ -827,12 +827,12 @@ class Labeled(models.Model):
             return True
         return False
 
-
+#TODO Tabla nueva
 class Locality(models.Model):
     id_locality = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
-
+#TODO Tabla nueva
 class Measure(models.Model):
     id_measure = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100)
@@ -892,7 +892,7 @@ class Memory(models.Model):
             return True
         return False
 
-
+# TODO Tabla nueva
 class Municipality(models.Model):
     id_municipality = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -1029,7 +1029,7 @@ class Project(models.Model):
             return True
         return False
 
-
+#TODO tabla nueva
 class PulseType(models.Model):
     id_pulse_type = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100)
@@ -1351,7 +1351,7 @@ class Season(models.Model):
             return True
         return False
 
-
+#TODO tabla nueva
 class Software(models.Model):
     id_software = models.SmallAutoField(primary_key=True)
     descripton = models.CharField(max_length=80)
@@ -1411,7 +1411,7 @@ class Supply(models.Model):
         managed = False
         db_table = "supply"
 
-
+#TODO tabla nueva
 class TimeDetail(models.Model):
     id_time_detail = models.AutoField(primary_key=True)
     id_labeled = models.IntegerField()
@@ -1434,7 +1434,7 @@ class Type(models.Model):
         managed = False
         db_table = "type"
 
-
+#TODO tabla nueva
 class Vereda(models.Model):
     id_vereda = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -1443,7 +1443,7 @@ class Vereda(models.Model):
         managed = False
         db_table = "vereda"
 
-
+#TODO tabla nueva
 class Voucher(models.Model):
     id_voucher = models.OneToOneField(
         Catalogue, models.DO_NOTHING, db_column="id_voucher", primary_key=True
