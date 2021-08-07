@@ -6,9 +6,9 @@ xeus-python
 notebook
 minio
 psycopg2-binary
-Django
+Django~=3.2.6
 django-environ==0.4.5
-djangorestframework
+djangorestframework~=3.12.4
 django-rest-swagger 
 sphinx
 drf-yasg==1.20.0
@@ -19,5 +19,6 @@ djangorestframework-simplejwt
 django-rest-passwordreset
 rest_condition
 django-dry-rest-permissions
-django-simple-history
+django-simple-history~=3.0.0
 drf-api-tracking
+coreapi~=2.3.3

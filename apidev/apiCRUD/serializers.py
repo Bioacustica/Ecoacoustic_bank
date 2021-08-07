@@ -4,6 +4,8 @@ from django.db.models import fields
 from django.db.models.base import Model
 from rest_framework import permissions, serializers
 from rest_framework.views import APIView
+from rest_framework_simplejwt.tokens import RefreshToken
+
 from .models import *
 from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -19,20 +21,45 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     """
 
     @classmethod
-    def get_token(cls, User):
-        token = super().get_token(User)
+    def get_token(cls, user: object) -> dict :
+        """
+        obtiene el token del user instance
+
+        :param user: user class instance
+        :return: JSON
+        """
+        token = super().get_token(user)
+
         # Add custom claims
-        user = User.username
-        pwd = User.password
-        role = User.roles
-        token["username"] = User.username
-        token["role"] = role
+        token['username'] = user.username
+        token['roles'] = user.roles
         return token
+
+    def validate(self, attrs: dict) -> dict:
+        """
+        Función encargada de retonar
+        el json response con los tokens
+        e información adicional
+
+
+        :param attrs: obtain a dict for user
+        :return: json
+        """
+        data = super().validate(attrs)
+
+        refresh = self.get_token(self.user)
+        data['refresh'] = str(refresh)
+        data['access'] = str(refresh.access_token)
+
+        # Add extra responses here
+        data['username'] = self.user.username
+        data['roles'] = self.user.roles
+        return data
+
 
 
 """Clases encargadas de convertir querysets a forma nativa
     para trabajarla en formato json"""
-
 
 class FundingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -179,13 +206,9 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
-    """[summary]
-
-    :param serializers: [description]
-    :type serializers: [type]
-    :raises serializers.ValidationError: [description]
-    :return: [description]
-    :rtype: [type]
+    """
+    serilizar encargado de manejar los registros de los
+    nuevos usuarios
     """
 
     password = serializers.CharField(
@@ -198,6 +221,13 @@ class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
+        """
+
+        :param validated_data: se asegura que
+        la información sea correcta(cumpla con los campos en la db)
+
+        :return: object
+        """
 
         username = validated_data["username"]
         email = validated_data["email"]

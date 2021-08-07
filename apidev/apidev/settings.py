@@ -14,6 +14,7 @@ import environ
 from pathlib import Path
 import os
 
+
 # environ settings
 env = environ.Env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -52,8 +53,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "simple_history",
     "drf_yasg",
-    "rest_framework_jwt",
     "dry_rest_permissions",
+    "rest_framework_simplejwt",
     # Autenticación personalizada
 ]
 
@@ -167,7 +168,7 @@ AUTH_USER_MODEL = "apiCRUD.User"
 # Django REST Framework
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
-    # 'DEFAULT_DETAILS_SERIALIZER':('apiCRUD.serializer.UserSerializer'),
+
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAdmin",
         "rest_framework.permissions.IsUsuario",
@@ -175,7 +176,7 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsRegistro",
     ),
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.BasicAuthentication",
     ),
@@ -184,6 +185,7 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
 }
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema"}
+
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "apiCRUD.backends.UserBackend",
@@ -223,28 +225,30 @@ LOGGING = {
 }
 
 SIMPLE_JWT = {
-    "USER_ID_FIELD": "id_user",
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    "ROTATE_REFRESH_TOKENS": False,
-    "BLACKLIST_AFTER_ROTATION": True,
-    "UPDATE_LAST_LOGIN": False,
-    "ALGORITHM": "HS256",
-    "SIGNING_KEY": SECRET_KEY,
-    "VERIFYING_KEY": None,
-    "AUDIENCE": None,
-    "ISSUER": None,
-    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
-    "TOKEN_TYPE_CLAIM": "token_type",
-    "JTI_CLAIM": "jti",
-    "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
-    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
-    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
-}
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': False,
 
-JWT_AUTH = {
-    "JWT_ALGORITHM": "HS256",
-    "JWT_ALLOW_REFRESH": True,
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
+    'JWK_URL': None,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id_user',
+    'USER_ID_CLAIM': 'id_user',
+    'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+
+    'JTI_CLAIM': 'jti',
+
+    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }

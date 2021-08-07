@@ -3,11 +3,11 @@ from django.contrib import admin
 from django.urls import path, include
 from apiCRUD import views
 from .views import ChangePasswordView, registration
-from rest_framework_jwt.views import (
-    obtain_jwt_token,
-    verify_jwt_token,
-    refresh_jwt_token,
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
 )
+
 from apiCRUD.views import MyObtainTokenView
 from rest_framework.routers import DefaultRouter
 
@@ -42,9 +42,8 @@ router.register("User", views.UserView)
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("login/", obtain_jwt_token),
-    path("token/verify/", verify_jwt_token),
-    path("token/refresh/", refresh_jwt_token),
+    path("login/", MyObtainTokenView.as_view()),
+    path("token/refresh/", TokenRefreshView.as_view()),
     path("register/", registration, name="register"),
     path("change-password/", ChangePasswordView.as_view(), name="change-pwd"),
     path(
