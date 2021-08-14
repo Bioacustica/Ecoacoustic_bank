@@ -20,10 +20,9 @@ from simple_history.models import HistoricalRecords
 
 @receiver(reset_password_token_created)
 def password_reset_token_created(
-sender, instance, reset_password_token, *args, **kwargs
+    sender, instance, reset_password_token, *args, **kwargs
 ):
     """CLase encargada de resetear la contraseña del usuario
-
     :param sender: Sender provides a simple interface to set up SMTP and send email messages
     :type sender: vista basada en clases que envia la señal
     :param instance: Vista que instancia la señal
@@ -50,7 +49,6 @@ sender, instance, reset_password_token, *args, **kwargs
 class UserManager(BaseUserManager):
     """Esta clase se encarga de
     manejar el modelo User de la base de datos
-
     :param BaseUserManager:  heredamos de la clase BaseUserManager
     la cual funciona con el default user de Django
     en este caso estamos extiendiendo  la clase para hacer
@@ -207,7 +205,7 @@ class AuthUserUserPermissions(models.Model):
         db_table = "auth_user_user_permissions"
         unique_together = (("user", "permission"),)
 
-#TODO agregar protección
+
 class Case(models.Model):
     id_case = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -315,7 +313,7 @@ class Catalogue(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
@@ -335,7 +333,7 @@ class CatalogueObs(models.Model):
         managed = False
         db_table = "catalogue_obs"
 
-#TODO Tabla nueva
+
 class Country(models.Model):
     id_country = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -356,7 +354,7 @@ class Datum(models.Model):
         managed = False
         db_table = "datum"
 
-#TODO Tabla nueva
+
 class Department(models.Model):
     id_department = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -412,7 +410,7 @@ class DjangoSession(models.Model):
         managed = False
         db_table = "django_session"
 
-#TODO agregar permisos
+
 class Evidence(models.Model):
     id_evidence = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -480,20 +478,24 @@ class Format(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
 
-#TODO tabla nueva
+
 class FrequencyDetail(models.Model):
     id_frequency_detail = models.AutoField(primary_key=True)
     id_labeled = models.IntegerField()
-    begining = models.IntegerField(blank=True, null=True)
+    beginning = models.IntegerField(blank=True, null=True)
     ending = models.IntegerField(blank=True, null=True)
     minimal = models.IntegerField(blank=True, null=True)
-    maximun = models.IntegerField(blank=True, null=True)
+    maximum = models.IntegerField(blank=True, null=True)
     peak = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = "frequency_detail"
 
 
 class Funding(models.Model):
@@ -557,7 +559,7 @@ class HSerial(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
@@ -618,7 +620,7 @@ class Habitat(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
@@ -669,7 +671,7 @@ class Hardware(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
@@ -738,7 +740,7 @@ class Label(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
@@ -822,17 +824,21 @@ class Labeled(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
 
-#TODO Tabla nueva
+
 class Locality(models.Model):
     id_locality = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
 
-#TODO Tabla nueva
+    class Meta:
+        managed = False
+        db_table = "locality"
+
+
 class Measure(models.Model):
     id_measure = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100)
@@ -887,12 +893,12 @@ class Memory(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
 
-# TODO Tabla nueva
+
 class Municipality(models.Model):
     id_municipality = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -901,7 +907,7 @@ class Municipality(models.Model):
         managed = False
         db_table = "municipality"
 
-#TODO agregar permisos
+
 class PhotoPath(models.Model):
     id_photo_path = models.AutoField(primary_key=True)
     id_catalogue = models.OneToOneField(
@@ -957,12 +963,12 @@ class Precision(models.Model):
         return False
 
     @staticmethod
-    def has_destroy_permission(request):
+    def has_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
 
-    def has_object_destroy_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1024,12 +1030,12 @@ class Project(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
 
-#TODO tabla nueva
+
 class PulseType(models.Model):
     id_pulse_type = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100)
@@ -1103,7 +1109,7 @@ class Record(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1165,7 +1171,7 @@ class RecordObs(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1228,7 +1234,7 @@ class RecordPath(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1285,7 +1291,7 @@ class Sampling(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1346,15 +1352,15 @@ class Season(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
 
-#TODO tabla nueva, permisos
+
 class Software(models.Model):
     id_software = models.SmallAutoField(primary_key=True)
-    descripton = models.CharField(max_length=80)
+    description = models.CharField(max_length=80)
 
     class Meta:
         managed = False
@@ -1402,7 +1408,7 @@ class Supply(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(self, request):
+    def has_object_delete_permission(request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1411,11 +1417,11 @@ class Supply(models.Model):
         managed = False
         db_table = "supply"
 
-#TODO tabla nueva
+
 class TimeDetail(models.Model):
     id_time_detail = models.AutoField(primary_key=True)
     id_labeled = models.IntegerField()
-    beging = models.SmallIntegerField(blank=True, null=True)
+    beginning = models.SmallIntegerField(blank=True, null=True)
     ending = models.SmallIntegerField(blank=True, null=True)
 
     class Meta:
@@ -1434,7 +1440,7 @@ class Type(models.Model):
         managed = False
         db_table = "type"
 
-#TODO tabla nueva
+
 class Vereda(models.Model):
     id_vereda = models.SmallAutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -1443,7 +1449,7 @@ class Vereda(models.Model):
         managed = False
         db_table = "vereda"
 
-#TODO tabla nueva
+
 class Voucher(models.Model):
     id_voucher = models.OneToOneField(
         Catalogue, models.DO_NOTHING, db_column="id_voucher", primary_key=True

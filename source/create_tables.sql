@@ -376,10 +376,10 @@ CREATE TABLE bioacustica.frequency_detail
 (
     id_frequency_detail serial NOT NULL,
     id_labeled integer NOT NULL,
-    begining integer,
+    beginning integer,
     ending integer,
     minimal integer,
-    maximun integer,
+    maximum integer,
     peak integer,
     PRIMARY KEY (id_frequency_detail)
 )
@@ -391,7 +391,7 @@ CREATE TABLE bioacustica.time_detail
 (
     id_time_detail serial NOT NULL,
     id_labeled integer NOT NULL,
-    beging smallint,
+    beginning smallint,
     ending smallint,
     PRIMARY KEY (id_time_detail)
 )
@@ -402,7 +402,7 @@ WITH (
 CREATE TABLE bioacustica.software
 (
     id_software smallserial NOT NULL,
-    descripton character varying(80) NOT NULL,
+    description character varying(80) NOT NULL,
     PRIMARY KEY (id_software)
 )
 WITH (

@@ -4,8 +4,6 @@ from django.db.models import fields
 from django.db.models.base import Model
 from rest_framework import permissions, serializers
 from rest_framework.views import APIView
-from rest_framework_simplejwt.tokens import RefreshToken
-
 from .models import *
 from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -13,7 +11,6 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     """Clase encargada del login del Usuario
-
     :param TokenObtainPairSerializer: Clase encargada de obtener
     el access token y el refresh token
     :return: Retorna los Tokens
@@ -21,45 +18,20 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     """
 
     @classmethod
-    def get_token(cls, user: object) -> dict :
-        """
-        obtiene el token del user instance
-
-        :param user: user class instance
-        :return: JSON
-        """
-        token = super().get_token(user)
-
+    def get_token(cls, User):
+        token = super().get_token(User)
         # Add custom claims
-        token['username'] = user.username
-        token['roles'] = user.roles
+        user = User.username
+        pwd = User.password
+        role = User.roles
+        token["username"] = User.username
+        token["role"] = role
         return token
-
-    def validate(self, attrs: dict) -> dict:
-        """
-        Función encargada de retonar
-        el json response con los tokens
-        e información adicional
-
-
-        :param attrs: obtain a dict for user
-        :return: json
-        """
-        data = super().validate(attrs)
-
-        refresh = self.get_token(self.user)
-        data['refresh'] = str(refresh)
-        data['access'] = str(refresh.access_token)
-
-        # Add extra responses here
-        data['username'] = self.user.username
-        data['roles'] = self.user.roles
-        return data
-
 
 
 """Clases encargadas de convertir querysets a forma nativa
     para trabajarla en formato json"""
+
 
 class FundingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -85,15 +57,33 @@ class CatalogueObsSerializer(serializers.HyperlinkedModelSerializer):
         fields = "__all__"
 
 
+class CountrySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Country
+        fields = "__all__"
+
+
 class DatumSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Datum
         fields = "__all__"
 
 
+class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Department
+        fields = "__all__"
+
+
 class EvidenceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Evidence
+        fields = "__all__"
+
+
+class FrequencyDetailSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = FrequencyDetail
         fields = "__all__"
 
 
@@ -133,9 +123,28 @@ class LabeledSerializer(serializers.HyperlinkedModelSerializer):
         fields = "__all__"
 
 
+
+class LocalitySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Locality
+        fields = "__all__"
+
+
+class MeasureSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Measure
+        fields = "__all__"
+
+
 class MemorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Memory
+        fields = "__all__"
+
+
+class MunicipalitySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Municipality
         fields = "__all__"
 
 
@@ -154,6 +163,12 @@ class PrecisionSerializer(serializers.HyperlinkedModelSerializer):
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Project
+        fields = "__all__"
+
+
+class PulseTypeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = PulseType
         fields = "__all__"
 
 
@@ -187,15 +202,39 @@ class SeasonSerializer(serializers.HyperlinkedModelSerializer):
         fields = "__all__"
 
 
+class SoftwareSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Software
+        fields = "__all__"
+
+
 class SupplySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Supply
         fields = "__all__"
 
 
+class TimeDetailSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = TimeDetail
+        fields = "__all__"
+
+
 class TypeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Type
+        fields = "__all__"
+
+
+class VeredaSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Vereda
+        fields = "__all__"
+
+
+class VoucherSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Voucher
         fields = "__all__"
 
 
@@ -206,9 +245,12 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
-    """
-    serilizar encargado de manejar los registros de los
-    nuevos usuarios
+    """[summary]
+    :param serializers: [description]
+    :type serializers: [type]
+    :raises serializers.ValidationError: [description]
+    :return: [description]
+    :rtype: [type]
     """
 
     password = serializers.CharField(
@@ -221,13 +263,6 @@ class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
-        """
-
-        :param validated_data: se asegura que
-        la información sea correcta(cumpla con los campos en la db)
-
-        :return: object
-        """
 
         username = validated_data["username"]
         email = validated_data["email"]
