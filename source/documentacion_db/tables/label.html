@@ -74,6 +74,19 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>label</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-file-text-o"></i>
+                            <h3 id="Description" class="box-title">Description</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body clearfix">
+                            <p>Esta tabla relaciona las posibles etiquetas que se pueden asignar a un audio.</p>
+                        </div><!-- /.box-body -->
+                    </div>
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -104,8 +117,8 @@
                                 <tbody>
                                 <tr>
                                     <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_label">id_label</span></td>
-                                    <td>serial</td>
-                                    <td>10</td>
+                                    <td>smallserial</td>
+                                    <td>5</td>
                                     <td title=''></td>
                                     <td title='Automatically updated by the database'>√</td>
                                     <td>nextval(&#39;bioacustica.label_id_label_seq&#39;::regclass)</td>
@@ -121,12 +134,12 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>Id autoincremental.</p></td>
                                 </tr>
                                 <tr>
                                     <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_type">id_type</span></td>
-                                    <td>int4</td>
-                                    <td>10</td>
+                                    <td>int2</td>
+                                    <td>5</td>
                                     <td title=''></td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -142,7 +155,27 @@
                                             </tr>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>Relaciona el tipo al que pertenece la etiqueta.</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="description">description</span></td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Etiquetas.</p>
+<p>Ejemplo:<br />
+Rana morada del amazonas.<br />
+Zorro de fuego del desierto.</p></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -193,26 +226,57 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
+                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="label.html" target="_top" title="label" alt="" coords="200,32,401,160">
+<area shape="rect" id="node1" href="label.html" target="_top" title="label" alt="" coords="200,32,465,189">
 <area shape="rect" id="node2" href="type.html" target="_top" title="type" alt="" coords="5,64,156,181">
-<area shape="rect" id="node3" href="labeled.html" target="_top" title="labeled" alt="" coords="445,5,600,240">
+<area shape="rect" id="node3" href="labeled.html" target="_top" title="labeled" alt="" coords="509,5,733,387">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/label.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="label.html" target="_top" title="label" alt="" coords="200,5,401,133">
+<area shape="rect" id="node1" href="label.html" target="_top" title="label" alt="" coords="200,5,465,163">
 <area shape="rect" id="node2" href="type.html" target="_top" title="type" alt="" coords="5,37,156,155">
-<area shape="rect" id="node3" href="labeled.html" target="_top" title="labeled" alt="" coords="445,128,600,363">
-<area shape="rect" id="node4" href="evidence.html" target="_top" title="evidence" alt="" coords="219,256,383,344">
-<area shape="rect" id="node5" href="user.html" target="_top" title="user" alt="" coords="235,361,367,449">
-<area shape="rect" id="node6" href="record.html" target="_top" title="record" alt="" coords="227,151,375,239">
+<area shape="rect" id="node3" href="labeled.html" target="_top" title="labeled" alt="" coords="509,347,733,728">
+<area shape="rect" id="node4" href="evidence.html" target="_top" title="evidence" alt="" coords="251,285,415,373">
+<area shape="rect" id="node5" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="219,917,446,1005">
+<area shape="rect" id="node6" href="user.html" target="_top" title="user" alt="" coords="267,391,399,479">
+<area shape="rect" id="node7" href="measure.html" target="_top" title="measure" alt="" coords="252,601,413,689">
+<area shape="rect" id="node8" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="243,707,422,795">
+<area shape="rect" id="node9" href="record.html" target="_top" title="record" alt="" coords="259,180,407,268">
+<area shape="rect" id="node10" href="software.html" target="_top" title="software" alt="" coords="251,496,414,584">
+<area shape="rect" id="node11" href="time_detail.html" target="_top" title="time_detail" alt="" coords="242,812,423,900">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/label.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="label.html" target="_top" title="label" alt="" coords="200,32,465,189">
+<area shape="rect" id="node2" href="type.html" target="_top" title="type" alt="" coords="5,64,156,181">
+<area shape="rect" id="node3" href="labeled.html" target="_top" title="labeled" alt="" coords="509,5,733,387">
+</map>
+                                        <a name='diagram'><img id="oneimpliedDegreeImg" src="../diagrams/tables/label.implied1degrees.png" usemap="#oneDegreeRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="twoDegreesRelationshipsDiagramImplied" name="twoDegreesRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="777,511,1004,599">
+<area shape="rect" id="node2" href="labeled.html" target="_top" title="labeled" alt="" coords="509,376,733,757">
+<area shape="rect" id="node3" href="label.html" target="_top" title="label" alt="" coords="200,5,465,163">
+<area shape="rect" id="node5" href="evidence.html" target="_top" title="evidence" alt="" coords="251,285,415,373">
+<area shape="rect" id="node6" href="user.html" target="_top" title="user" alt="" coords="267,496,399,584">
+<area shape="rect" id="node7" href="measure.html" target="_top" title="measure" alt="" coords="252,707,413,795">
+<area shape="rect" id="node8" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="243,812,422,900">
+<area shape="rect" id="node9" href="record.html" target="_top" title="record" alt="" coords="259,180,407,268">
+<area shape="rect" id="node10" href="software.html" target="_top" title="software" alt="" coords="251,601,414,689">
+<area shape="rect" id="node11" href="time_detail.html" target="_top" title="time_detail" alt="" coords="242,391,423,479">
+<area shape="rect" id="node4" href="type.html" target="_top" title="type" alt="" coords="5,37,156,155">
+</map>
+                                        <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/label.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
                                 </div>
                             </div>

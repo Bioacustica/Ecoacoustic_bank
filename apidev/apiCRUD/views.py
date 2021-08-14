@@ -8,7 +8,7 @@ import psycopg2
 from django.contrib.auth import get_user_model
 from psycopg2.extensions import ISOLATION_LEVEL_READ_UNCOMMITTED
 from rest_framework import generics, viewsets
-from rest_framework.decorators import authentication_classes
+from rest_framework.decorators import authentication_classes , permission_classes
 from rest_framework import response, decorators, status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -48,12 +48,13 @@ class MyObtainTokenView(TokenObtainPairView):
         IsAdmin,
     ]
 )
+#TODO se modificará
 def registration(request):
     """
     Esta clase es la encargada de registrar usuarios nuevos
     unicamente se puede registrar usuarios
 
-    :return: si todo fue exitoso devuelve un creado de forma exitosa
+    :return: si_todo fue exitoso devuelve un creado de forma exitosa
     :rtype: Http status
     """
     print(request.data)
@@ -189,10 +190,11 @@ class PhotoPathView(viewsets.ModelViewSet):
     serializer_class = PhotoPathSerializer
 
 
+@permission_classes([DRYPermissions])
 @authentication_classes([JWTAuthentication])
 class PrecisionView(viewsets.ModelViewSet):
     queryset = Precision.objects.all()
-    permission_classes = (DRYPermissions,)
+    # permission_classes = (DRYPermissions,)
     serializer_class = PrecisionSerializer
 
 
@@ -343,7 +345,7 @@ class ChangePasswordView(generics.UpdateAPIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             if serializer.data.get("new_password") == serializer.data.get(
-                "confirm_password"
+                    "confirm_password"
             ):
                 # set_password also hashes the password that the user will get
                 password = request.data["new_password"]

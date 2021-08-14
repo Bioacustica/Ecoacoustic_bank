@@ -20,7 +20,7 @@ from simple_history.models import HistoricalRecords
 
 @receiver(reset_password_token_created)
 def password_reset_token_created(
-    sender, instance, reset_password_token, *args, **kwargs
+sender, instance, reset_password_token, *args, **kwargs
 ):
     """CLase encargada de resetear la contraseña del usuario
 
@@ -207,7 +207,7 @@ class AuthUserUserPermissions(models.Model):
         db_table = "auth_user_user_permissions"
         unique_together = (("user", "permission"),)
 
-
+#TODO agregar protección
 class Case(models.Model):
     id_case = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -315,7 +315,7 @@ class Catalogue(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -412,7 +412,7 @@ class DjangoSession(models.Model):
         managed = False
         db_table = "django_session"
 
-
+#TODO agregar permisos
 class Evidence(models.Model):
     id_evidence = models.AutoField(primary_key=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -480,7 +480,7 @@ class Format(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -557,7 +557,7 @@ class HSerial(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -618,7 +618,7 @@ class Habitat(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -669,7 +669,7 @@ class Hardware(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -738,7 +738,7 @@ class Label(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -822,7 +822,7 @@ class Labeled(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -887,7 +887,7 @@ class Memory(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -901,7 +901,7 @@ class Municipality(models.Model):
         managed = False
         db_table = "municipality"
 
-
+#TODO agregar permisos
 class PhotoPath(models.Model):
     id_photo_path = models.AutoField(primary_key=True)
     id_catalogue = models.OneToOneField(
@@ -957,12 +957,12 @@ class Precision(models.Model):
         return False
 
     @staticmethod
-    def has_delete_permission(request):
+    def has_destroy_permission(request):
         if request.user.roles == "admin":
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_destroy_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1024,7 +1024,7 @@ class Project(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1103,7 +1103,7 @@ class Record(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1165,7 +1165,7 @@ class RecordObs(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1228,7 +1228,7 @@ class RecordPath(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1285,7 +1285,7 @@ class Sampling(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
@@ -1346,12 +1346,12 @@ class Season(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
 
-#TODO tabla nueva
+#TODO tabla nueva, permisos
 class Software(models.Model):
     id_software = models.SmallAutoField(primary_key=True)
     descripton = models.CharField(max_length=80)
@@ -1402,7 +1402,7 @@ class Supply(models.Model):
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_delete_permission(self, request):
         if request.user.roles == "admin":
             return True
         return False
