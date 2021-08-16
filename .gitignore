@@ -1,3 +1,4 @@
 .idea
 postgres-data/
 .devcontainer/
+.env
