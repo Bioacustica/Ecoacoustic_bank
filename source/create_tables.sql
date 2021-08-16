@@ -402,7 +402,7 @@ WITH (
 CREATE TABLE bioacustica.software
 (
     id_software smallserial NOT NULL,
-    descripton character varying(80) NOT NULL,
+    description character varying(80) NOT NULL,
     PRIMARY KEY (id_software)
 )
 WITH (
@@ -645,3 +645,152 @@ ALTER TABLE bioacustica.labeled
     NOT VALID;
 
 END;
+
+create or replace function bioacustica.create_user_admin (
+  unm varchar,
+  pwd varchar
+)
+returns varchar(10) as $$
+begin
+
+
+
+  execute format($f$create role %I login password '%s'$f$,unm,pwd);
+  execute format('alter role %I SUPERUSER CREATEDB CREATEROLE',unm);
+  execute format('alter role %I SET search_path TO bioacustica',unm);
+  execute format('GRANT USAGE ON SCHEMA bioacustica TO %I',unm);
+  execute format('SET search_path TO bioacustica');
+  execute format('GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA bioacustica TO %I ',unm);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
+
+
+
+
+create or replace function bioacustica.create_user_registros (
+  unm varchar,
+  pwd varchar
+)
+  returns varchar(10) as $$
+
+
+
+begin
+
+
+
+  execute format($f$create role %I login password '%s'$f$,unm,pwd);
+  execute format('alter role %I NOSUPERUSER NOCREATEDB NOCREATEROLE',unm);
+  execute format('alter role %I SET search_path TO bioacustica',unm);
+  execute format('REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA bioacustica FROM %I',unm);
+  execute format('REVOKE USAGE ON SCHEMA bioacustica FROM %I',unm);
+  execute format('GRANT USAGE ON SCHEMA bioacustica TO %I',unm);
+  execute format('SET search_path TO bioacustica');
+  execute format('GRANT SELECT, INSERT, UPDATE ON TABLE label, labeled TO %I ',unm);
+  execute format('GRANT SELECT, INSERT, UPDATE ON TABLE record, record_obs, record_path, format, season, project, habitat, hardware, h_serial, memory, precision, sampling, supply, catalogue TO %I ',unm);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
+
+
+
+create or replace function bioacustica.create_user_etiquetado (
+  unm varchar,
+  pwd varchar
+)
+  returns varchar(10) as $$
+
+
+
+begin
+
+
+
+  execute format($f$create role %I login password '%s'$f$,unm,pwd);
+  execute format('alter role %I NOSUPERUSER NOCREATEDB NOCREATEROLE',unm);
+  execute format('alter role %I SET search_path TO bioacustica',unm);
+  execute format('REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA bioacustica FROM %I',unm);
+  execute format('REVOKE USAGE ON SCHEMA bioacustica FROM %I',unm);
+  execute format('GRANT USAGE ON SCHEMA bioacustica TO %I',unm);
+  execute format('SET search_path TO bioacustica');
+  execute format('GRANT SELECT, INSERT, UPDATE ON TABLE label, labeled TO %I ',unm);
+  execute format('GRANT SELECT ON TABLE record, record_obs, record_path, format, season, project, habitat, catalogue TO %I ',unm);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
+
+
+
+create or replace function bioacustica.create_user_usuario (
+  unm varchar,
+  pwd varchar
+)
+  returns varchar(10) as $$
+
+
+
+begin
+
+
+
+  execute format($f$create role %I login password '%s'$f$,unm,pwd);
+  execute format('alter role %I NOSUPERUSER NOCREATEDB NOCREATEROLE',unm);
+  execute format('alter role %I SET search_path TO bioacustica',unm);
+  execute format('REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA bioacustica FROM %I',unm);
+  execute format('REVOKE USAGE ON SCHEMA bioacustica FROM %I',unm);
+  execute format('GRANT USAGE ON SCHEMA bioacustica TO %I',unm);
+  execute format('SET search_path TO bioacustica');
+  execute format('GRANT SELECT ON TABLE label, labeled TO %I ',unm);
+  execute format('GRANT SELECT ON TABLE record, record_obs, record_path, format, season, project, habitat TO %I ',unm);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
+
+create or replace function bioacustica.change_password (
+  unm varchar,
+  pwd varchar
+)
+  returns varchar(10) as $$
+
+
+
+begin
+  execute format($f$alter role %I with password '%s'$f$,unm,pwd);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
+
+
+create or replace function bioacustica.drop_user (
+  unm varchar
+)
+  returns varchar(10) as $$
+
+
+
+begin
+  execute format('REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA bioacustica FROM %I',unm);
+  execute format('REVOKE USAGE ON SCHEMA bioacustica FROM %I',unm);
+  execute format('DROP USER %I ',unm);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
