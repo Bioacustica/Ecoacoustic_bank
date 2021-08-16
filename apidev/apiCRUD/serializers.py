@@ -18,15 +18,37 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     """
 
     @classmethod
-    def get_token(cls, User):
-        token = super().get_token(User)
+    def get_token(cls, user: object) -> dict :
+        """
+        obtiene el token del user instance
+        :param user: user class instance
+        :return: JSON
+        """
+        token = super().get_token(user)
+
         # Add custom claims
-        user = User.username
-        pwd = User.password
-        role = User.roles
-        token["username"] = User.username
-        token["role"] = role
+        token['username'] = user.username
+        token['roles'] = user.roles
         return token
+
+    def validate(self, attrs: dict) -> dict:
+        """
+        Función encargada de retonar
+        el json response con los tokens
+        e información adicional
+        :param attrs: obtain a dict for user
+        :return: json
+        """
+        data = super().validate(attrs)
+
+        refresh = self.get_token(self.user)
+        data['refresh'] = str(refresh)
+        data['access'] = str(refresh.access_token)
+
+        # Add extra responses here
+        data['username'] = self.user.username
+        data['roles'] = self.user.roles
+        return data
 
 
 """Clases encargadas de convertir querysets a forma nativa
