@@ -1,6 +1,4 @@
 user
-django_content_type
-auth_group
 case
 country
 datum
@@ -30,18 +28,8 @@ record
 frequency_detail
 time_detail
 labeled
-auth_permission
-apiCRUD_frequencydetail
-apiCRUD_historicalfunding
 catalogue_obs
-django_rest_passwordreset_resetpasswordtoken
 photo_path
 record_obs
 record_path
-rest_framework_tracking_apirequestlog
-auth_group_permissions
-django_admin_log
 voucher
-apiCRUD_locality
-django_migrations
-django_session

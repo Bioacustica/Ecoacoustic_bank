@@ -1314,15 +1314,6 @@ class Municipality(models.Model):
         return False
 
 
-class Municipality(models.Model):
-    id_municipality = models.SmallAutoField(primary_key=True)
-    description = models.CharField(max_length=100, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = "municipality"
-
-
 class PhotoPath(models.Model):
     id_photo_path = models.AutoField(primary_key=True)
     id_catalogue = models.OneToOneField(
