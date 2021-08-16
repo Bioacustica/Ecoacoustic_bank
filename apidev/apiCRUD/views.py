@@ -107,10 +107,10 @@ class CaseView(viewsets.ModelViewSet):
     serializer_class = CaseSerializer
 
 
-@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([DRYPermissions])
+@authentication_classes([JWTAuthentication])
 class CatalogueView(viewsets.ModelViewSet):
     queryset = Catalogue.objects.all()
-    permission_classes = (DRYPermissions,)
     serializer_class = CatalogueSerializer
 
 
