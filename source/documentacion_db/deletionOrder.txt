@@ -1,8 +1,18 @@
+django_session
+django_migrations
+apiCRUD_locality
 voucher
+django_admin_log
+auth_group_permissions
+rest_framework_tracking_apirequestlog
 record_path
 record_obs
 photo_path
+django_rest_passwordreset_resetpasswordtoken
 catalogue_obs
+apiCRUD_historicalfunding
+apiCRUD_frequencydetail
+auth_permission
 labeled
 time_detail
 frequency_detail
@@ -32,4 +42,6 @@ department
 datum
 country
 case
+auth_group
+django_content_type
 user
