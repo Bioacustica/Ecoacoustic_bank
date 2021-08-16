@@ -8,16 +8,20 @@ import psycopg2
 from django.contrib.auth import get_user_model
 from psycopg2.extensions import ISOLATION_LEVEL_READ_UNCOMMITTED
 from rest_framework import generics, viewsets
-from rest_framework.decorators import authentication_classes , permission_classes
+from rest_framework.decorators import action, permission_classes
+from rest_framework.decorators import authentication_classes
 from rest_framework import response, decorators, status
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.serializers import Serializer
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.permissions import AllowAny
-from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.views import TokenObtainPairView
 from dry_rest_permissions.generics import DRYPermissions
 from rest_framework_tracking.mixins import LoggingMixin
 
-
+from .models import Funding
+from .serializers import MyTokenObtainPairSerializer
 from .fnt import choose_role, change_password, delete_user
 from .serializers import *
 from .custom_permissions import IsAdmin
@@ -27,7 +31,6 @@ from .custom_permissions import IsAdmin
 hacer varias acciones como .list() , .create() , .update() , etc
 de forma automatica sin necesidad de crear las funciones, esta
 clase es muy util para un paronama general que no requiere personalización
-
 """
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -40,21 +43,20 @@ class MyObtainTokenView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
+
 #  Función  encargada de registrar usuarios
 @decorators.api_view(["POST"])
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 @decorators.permission_classes(
     [
         IsAdmin,
     ]
 )
-#TODO se modificará
 def registration(request):
     """
     Esta clase es la encargada de registrar usuarios nuevos
     unicamente se puede registrar usuarios
-
-    :return: si_todo fue exitoso devuelve un creado de forma exitosa
+    :return: si todo fue exitoso devuelve un creado de forma exitosa
     :rtype: Http status
     """
     print(request.data)
@@ -90,7 +92,7 @@ def registration(request):
         return response.Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 # la clase logginMixin  se encarga de hacer logs en la base de datos
 class FundingsView(LoggingMixin, viewsets.ModelViewSet):
     queryset = Funding.objects.all()
@@ -98,7 +100,7 @@ class FundingsView(LoggingMixin, viewsets.ModelViewSet):
     serializer_class = FundingSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class CaseView(viewsets.ModelViewSet):
     queryset = Case.objects.all()
     permission_classes = (IsAdmin,)
@@ -112,35 +114,56 @@ class CatalogueView(viewsets.ModelViewSet):
     serializer_class = CatalogueSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class CatalogueObsView(viewsets.ModelViewSet):
     queryset = CatalogueObs.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = CatalogueObsSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
+class CountryView(viewsets.ModelViewSet):
+    queryset = Country.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = CountrySerializer
+
+
+@authentication_classes([JSONWebTokenAuthentication])
 class DatumView(viewsets.ModelViewSet):
     queryset = Datum.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = DatumSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
+class DepartmentView(viewsets.ModelViewSet):
+    queryset = Department.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = DepartmentSerializer
+
+
+@authentication_classes([JSONWebTokenAuthentication])
 class EvidenceView(viewsets.ModelViewSet):
     queryset = Evidence.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = EvidenceSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
+class FrequencyDetailView(viewsets.ModelViewSet):
+    queryset = FrequencyDetail.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = FrequencyDetailSerializer
+
+
+@authentication_classes([JSONWebTokenAuthentication])
 class FormatView(viewsets.ModelViewSet):
     queryset = Format.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = FormatSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class HSerialView(viewsets.ModelViewSet):
 
     queryset = HSerial.objects.all()
@@ -148,114 +171,168 @@ class HSerialView(viewsets.ModelViewSet):
     serializer_class = HSerialSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class HabitatView(viewsets.ModelViewSet):
     queryset = Habitat.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = HabitatSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class HardwareView(viewsets.ModelViewSet):
     queryset = Hardware.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = HardwareSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class LabelView(viewsets.ModelViewSet):
     queryset = Label.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = LabelSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class LabeledView(viewsets.ModelViewSet):
     queryset = Labeled.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = LabeledSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
+class LocalityView(viewsets.ModelViewSet):
+    queryset = Locality.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = LocalitySerializer
+
+
+@authentication_classes([JSONWebTokenAuthentication])
+class MeasureView(viewsets.ModelViewSet):
+    queryset = Measure.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = MeasureSerializer
+
+
+@authentication_classes([JSONWebTokenAuthentication])
 class MemoryView(viewsets.ModelViewSet):
     queryset = Memory.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = MemorySerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
+class MunicipalityView(viewsets.ModelViewSet):
+    queryset = Municipality.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = MunicipalitySerializer
+
+
+@authentication_classes([JSONWebTokenAuthentication])
 class PhotoPathView(viewsets.ModelViewSet):
     queryset = PhotoPath.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = PhotoPathSerializer
 
 
-@permission_classes([DRYPermissions])
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class PrecisionView(viewsets.ModelViewSet):
     queryset = Precision.objects.all()
-    # permission_classes = (DRYPermissions,)
+    permission_classes = (DRYPermissions,)
     serializer_class = PrecisionSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class ProjectView(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = ProjectSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
+class PulseTypeView(viewsets.ModelViewSet):
+    queryset = PulseType.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = PulseTypeSerializer
+
+
+@authentication_classes([JSONWebTokenAuthentication])
 class RecordView(viewsets.ModelViewSet):
     queryset = Record.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = RecordSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class RecordObsView(viewsets.ModelViewSet):
     queryset = RecordObs.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = RecordObsSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class RecordPathView(viewsets.ModelViewSet):
     queryset = RecordPath.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = RecordPathSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class SamplingView(viewsets.ModelViewSet):
     queryset = Sampling.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = SamplingSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class SeasonView(viewsets.ModelViewSet):
     queryset = Season.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = SeasonSerializer
 
 
-@authentication_classes([JWTAuthentication])
-class SupplyView(viewsets.ModelViewSet):
+@authentication_classes([JSONWebTokenAuthentication])
+class SoftwareView(viewsets.ModelViewSet):
+    queryset = Software.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = SoftwareSerializer
 
+
+@authentication_classes([JSONWebTokenAuthentication])
+class SupplyView(viewsets.ModelViewSet):
     permission_classes = (DRYPermissions,)
     queryset = Supply.objects.all()
     serializer_class = SupplySerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
+class TimeDetailView(viewsets.ModelViewSet):
+    queryset = TimeDetail.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = TimeDetailSerializer
+
+
+@authentication_classes([JSONWebTokenAuthentication])
 class TypeView(viewsets.ModelViewSet):
     queryset = Type.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = TypeSerializer
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
+class VeredaView(viewsets.ModelViewSet):
+    queryset = Vereda.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = VeredaSerializer
+
+
+@authentication_classes([JSONWebTokenAuthentication])
+class VoucherView(viewsets.ModelViewSet):
+    queryset = Voucher.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = VoucherSerializer
+
+
+@authentication_classes([JSONWebTokenAuthentication])
 class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     permission_classes = (IsAdmin,)
@@ -271,7 +348,6 @@ def user_delete_view(request, id_user):
     usuarios, recibe como parametro su
     id_user, tambien borra el rol del
     pgadmin
-
     :param id_user: recibe el id_user 
     :type id_user: string
     """
@@ -303,7 +379,7 @@ def user_delete_view(request, id_user):
             return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-@authentication_classes([JWTAuthentication])
+@authentication_classes([JSONWebTokenAuthentication])
 class ChangePasswordView(generics.UpdateAPIView):
     """
     An endpoint for changing password.
@@ -315,7 +391,6 @@ class ChangePasswordView(generics.UpdateAPIView):
 
     def get_object(self, queryset=None):
         """obtiene el objeto de usuario
-
         :param queryset: , defaults to None
         :type queryset: queryset, optional
         :return: retorna el objeto usuario
@@ -327,7 +402,6 @@ class ChangePasswordView(generics.UpdateAPIView):
     def update(self, request, *args, **kwargs):
         """con este metodo hacemos directamente la
         actualización de la contraseña
-
         :param request: recibe los parametros del usuario para
         hacer la actualización
         :type request: json
@@ -345,7 +419,7 @@ class ChangePasswordView(generics.UpdateAPIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             if serializer.data.get("new_password") == serializer.data.get(
-                    "confirm_password"
+                "confirm_password"
             ):
                 # set_password also hashes the password that the user will get
                 password = request.data["new_password"]

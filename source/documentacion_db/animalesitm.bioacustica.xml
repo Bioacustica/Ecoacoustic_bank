@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <database name="animalesitm" schema="bioacustica" type="PostgreSQL - 13.3 (Debian 13.3-1.pgdg100+1)">
    <sequences>
+      <sequence increment="1" name="apiCRUD_frequencydetail_id_frequency_detail_seq" startValue="1"/>
+      <sequence increment="1" name="apiCRUD_historicalfunding_history_id_seq" startValue="1"/>
+      <sequence increment="1" name="apiCRUD_locality_id_locality_seq" startValue="1"/>
+      <sequence increment="1" name="auth_group_id_seq" startValue="1"/>
+      <sequence increment="1" name="auth_group_permissions_id_seq" startValue="1"/>
+      <sequence increment="1" name="auth_permission_id_seq" startValue="1"/>
       <sequence increment="1" name="case_id_case_seq" startValue="1"/>
       <sequence increment="1" name="catalogue_id_catalogue_seq" startValue="1"/>
       <sequence increment="1" name="catalogue_obs_id_catalogue_obs_seq" startValue="1"/>
       <sequence increment="1" name="country_id_country_seq" startValue="1"/>
       <sequence increment="1" name="datum_id_datum_seq" startValue="1"/>
       <sequence increment="1" name="department_id_department_seq" startValue="1"/>
+      <sequence increment="1" name="django_admin_log_id_seq" startValue="1"/>
+      <sequence increment="1" name="django_content_type_id_seq" startValue="1"/>
+      <sequence increment="1" name="django_migrations_id_seq" startValue="1"/>
+      <sequence increment="1" name="django_rest_passwordreset_resetpasswordtoken_id_seq" startValue="1"/>
       <sequence increment="1" name="evidence_id_evidence_seq" startValue="1"/>
       <sequence increment="1" name="format_id_format_seq" startValue="1"/>
       <sequence increment="1" name="frequency_detail_id_frequency_detail_seq" startValue="1"/>
@@ -27,6 +37,7 @@
       <sequence increment="1" name="record_id_record_seq" startValue="1"/>
       <sequence increment="1" name="record_obs_id_record_obs_seq" startValue="1"/>
       <sequence increment="1" name="record_path_id_record_path_seq" startValue="1"/>
+      <sequence increment="1" name="rest_framework_tracking_apirequestlog_id_seq" startValue="1"/>
       <sequence increment="1" name="sampling_id_sampling_seq" startValue="1"/>
       <sequence increment="1" name="season_id_season_seq" startValue="1"/>
       <sequence increment="1" name="software_id_software_seq" startValue="1"/>
@@ -37,94 +48,198 @@
       <sequence increment="1" name="voucher_id_voucher_seq" startValue="1"/>
    </sequences>
    <tables>
-      <table name="case" numRows="0" remarks="Tabla que relaciona el tipo o forma del chasis del catalogo." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.case_id_case_seq'::regclass)" digits="0" id="0" name="id_case" nullable="false" remarks="Id unico y autoincremental que identifica a cada tipo de case." size="5" type="smallserial" typeCode="5">
+      <table name="apiCRUD_frequencydetail" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.&quot;apiCRUD_frequencydetail_id_frequency_detail_seq&quot;'::regclass)" digits="0" id="0" name="id_frequency_detail" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_labeled" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_labeled" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="begining" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ending" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="minimal" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="maximun" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="peak" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="id_frequency_detail" sequenceNumberInPK="1"/>
+         <index name="apiCRUD_frequencydetail_pkey" unique="true">
+            <column ascending="true" name="id_frequency_detail"/>
+         </index>
+      </table>
+      <table name="apiCRUD_historicalfunding" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_funding" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.&quot;apiCRUD_historicalfunding_history_id_seq&quot;'::regclass)" digits="0" id="2" name="history_id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="history_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="history_change_reason" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="history_type" nullable="false" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="history_user_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_user" foreignKey="apiCRUD_historicalfu_history_user_id_52526d39_fk_user_id_u" implied="false" onDeleteCascade="false" schema="bioacustica" table="user"/>
+         </column>
+         <primaryKey column="history_id" sequenceNumberInPK="1"/>
+         <index name="apiCRUD_historicalfunding_pkey" unique="true">
+            <column ascending="true" name="history_id"/>
+         </index>
+         <index name="apiCRUD_historicalfunding_history_user_id_52526d39" unique="false">
+            <column ascending="true" name="history_user_id"/>
+         </index>
+         <index name="apiCRUD_historicalfunding_id_funding_ee15fab5" unique="false">
+            <column ascending="true" name="id_funding"/>
+         </index>
+      </table>
+      <table name="apiCRUD_locality" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.&quot;apiCRUD_locality_id_locality_seq&quot;'::regclass)" digits="0" id="0" name="id_locality" nullable="false" remarks="" size="5" type="smallserial" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <primaryKey column="id_locality" sequenceNumberInPK="1"/>
+         <index name="apiCRUD_locality_pkey" unique="true">
+            <column ascending="true" name="id_locality"/>
+         </index>
+      </table>
+      <table name="auth_group" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.auth_group_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="group_id" foreignKey="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" implied="false" onDeleteCascade="false" schema="bioacustica" table="auth_group_permissions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="150" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="auth_group_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="auth_group_name_a6ea08ec_like" unique="false">
+            <column ascending="true" name="name"/>
+         </index>
+         <index name="auth_group_name_key" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+      <table name="auth_group_permissions" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.auth_group_permissions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="group_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" implied="false" onDeleteCascade="false" schema="bioacustica" table="auth_group"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="permission_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" implied="false" onDeleteCascade="false" schema="bioacustica" table="auth_permission"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="auth_group_permissions_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="auth_group_permissions_group_id_b120cbf9" unique="false">
+            <column ascending="true" name="group_id"/>
+         </index>
+         <index name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq" unique="true">
+            <column ascending="true" name="group_id"/>
+            <column ascending="true" name="permission_id"/>
+         </index>
+         <index name="auth_group_permissions_permission_id_84c5c92e" unique="false">
+            <column ascending="true" name="permission_id"/>
+         </index>
+      </table>
+      <table name="auth_permission" numRows="212" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.auth_permission_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="permission_id" foreignKey="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" implied="false" onDeleteCascade="false" schema="bioacustica" table="auth_group_permissions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="content_type_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="auth_permission_content_type_id_2f476e4b_fk_django_co" implied="false" onDeleteCascade="false" schema="bioacustica" table="django_content_type"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="codename" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="auth_permission_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="auth_permission_content_type_id_2f476e4b" unique="false">
+            <column ascending="true" name="content_type_id"/>
+         </index>
+         <index name="auth_permission_content_type_id_codename_01ab375a_uniq" unique="true">
+            <column ascending="true" name="content_type_id"/>
+            <column ascending="true" name="codename"/>
+         </index>
+      </table>
+      <table name="case" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.case_id_case_seq'::regclass)" digits="0" id="0" name="id_case" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_case" foreignKey="catalogue_id_case_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Descripción del case. &#10;Ejemplo: Caja de acrilico transparente con microfonos expuestos." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_case" sequenceNumberInPK="1"/>
          <index name="case_pkey" unique="true">
             <column ascending="true" name="id_case"/>
          </index>
       </table>
-      <table name="catalogue" numRows="0" remarks="El catálogo es el eje central de la DB. Se compone de todas las grabaciones realizadas con una grabadora en una misma salida de campo. Una grabadora puede usarse en varios catálogos." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.catalogue_id_catalogue_seq'::regclass)" digits="0" id="0" name="id_catalogue" nullable="false" remarks="Id autoincremental." size="10" type="serial" typeCode="4">
+      <table name="catalogue" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.catalogue_id_catalogue_seq'::regclass)" digits="0" id="0" name="id_catalogue" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="id_catalogue" foreignKey="catalogue_obs_id_catalogue_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue_obs"/>
             <child column="id_catalogue" foreignKey="photo_path_id_catalogue_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="photo_path"/>
             <child column="id_catalogue" foreignKey="record_id_catalogue_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record"/>
             <child column="id_catalogue" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="voucher"/>
             <child column="id_voucher" foreignKey="voucher_id_voucher_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="voucher"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_sampling" nullable="false" remarks="Id de la salida de campo." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_sampling" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_sampling" foreignKey="catalogue_id_sampling_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="sampling"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_country" nullable="false" remarks="Id que relaciona el país en donde fue ubicado el catálogo." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_country" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_country" foreignKey="catalogue_id_country_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="country"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="id_department" nullable="false" remarks="Id que relaciona el departamento en donde fue ubicado el catálogo." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="id_department" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_department" foreignKey="catalogue_id_department_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="department"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="id_municipality" nullable="false" remarks="Id que relaciona el municipio en donde fue ubicado el catálogo." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="id_municipality" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_municipality" foreignKey="catalogue_id_municipality_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="municipality"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="id_vereda" nullable="false" remarks="Id que relaciona la vereda en donde fue ubicado el catálogo." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="id_vereda" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_vereda" foreignKey="catalogue_id_vereda_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="vereda"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_locality" nullable="false" remarks="Id que relaciona la localidad del municipio." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_locality" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_locality" foreignKey="catalogue_id_locality_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="locality"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="id_gain" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="id_filters" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="id_collector" nullable="false" remarks="Relaciona al usuario que posicionó el catálogo." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="id_collector" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_user" foreignKey="catalogue_id_collector_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="user"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="id_h_serial" nullable="false" remarks="Relaciona el serial del hardware usado en el catálogo." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="id_h_serial" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_h_serial" foreignKey="catalogue_id_h_serial_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="h_serial"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="id_supply" nullable="false" remarks="Relaciona el tipo de fuente de alimentación" size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="id_supply" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_supply" foreignKey="catalogue_id_supply_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="supply"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="id_case" nullable="false" remarks="Relaciona el tipo de carcaza del catálogo." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="id_case" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_case" foreignKey="catalogue_id_case_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="case"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="id_memory" nullable="false" remarks="Relaciona el tipo de almacenamiento usado en el catálogo." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="id_memory" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_memory" foreignKey="catalogue_id_memory_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="memory"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="id_habitat" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_habitat" foreignKey="catalogue_id_habitat_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="habitat"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="id_precision" nullable="false" remarks="Relaciona la precisión de la ubicación del catalogo." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="id_precision" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_precision" foreignKey="catalogue_id_precision_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="precision"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="id_datum" nullable="false" remarks="Tipo de coordenadas." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="id_datum" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_datum" foreignKey="catalogue_id_datum_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="datum"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="elevation" nullable="true" remarks="Indica la posición medida en metros sobre el nivel del mar del catálogo." size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="coordinates" nullable="true" remarks="Coordenadas de la ubicación del catálogo." size="2147483647" type="point" typeCode="1111"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="height" nullable="true" remarks="Altura medida desde el suelo del catálogo." size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="chunks" nullable="true" remarks="Numero de grabaciones realizadas por el catalogo." size="5" type="int2" typeCode="5"/>
-         <column autoUpdated="false" defaultValue="null" digits="8" id="21" name="size" nullable="true" remarks="Tamaño de cada grabación realizada por el catalogo." size="8" type="float4" typeCode="7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="elevation" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="coordinates" nullable="true" remarks="" size="2147483647" type="point" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="height" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="chunks" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="8" id="21" name="size" nullable="true" remarks="" size="8" type="float4" typeCode="7"/>
          <primaryKey column="id_catalogue" sequenceNumberInPK="1"/>
          <index name="catalogue_pkey" unique="true">
             <column ascending="true" name="id_catalogue"/>
          </index>
       </table>
-      <table name="catalogue_obs" numRows="0" remarks="Esta tabla relaciona las observaciones realizadas sobre un catálogo." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.catalogue_obs_id_catalogue_obs_seq'::regclass)" digits="0" id="0" name="id_catalogue_obs" nullable="false" remarks="Id autoincremental." size="10" type="serial" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="Id del catálogo sobre el que se hizo la observación." size="10" type="int4" typeCode="4">
+      <table name="catalogue_obs" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.catalogue_obs_id_catalogue_obs_seq'::regclass)" digits="0" id="0" name="id_catalogue_obs" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_catalogue" foreignKey="catalogue_obs_id_catalogue_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="observation" nullable="true" remarks="Ejemplos:&#10;Observación1:  El catálogo fue posicionado sobre una roca de color cafe.&#10;Observación1: El catálogo fué encontrado en un lugar distinto al inicial." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="observation" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_catalogue_obs" sequenceNumberInPK="1"/>
          <index name="catalogue_obs_pkey" unique="true">
             <column ascending="true" name="id_catalogue_obs"/>
          </index>
       </table>
-      <table name="country" numRows="0" remarks="Tabla que contiene los paises." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.country_id_country_seq'::regclass)" digits="0" id="0" name="id_country" nullable="false" remarks="Id autoincremental." size="5" type="smallserial" typeCode="5">
+      <table name="country" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.country_id_country_seq'::regclass)" digits="0" id="0" name="id_country" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_country" foreignKey="catalogue_id_country_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Nombre del país." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_country" sequenceNumberInPK="1"/>
          <index name="country_pkey" unique="true">
             <column ascending="true" name="id_country"/>
@@ -140,142 +255,232 @@
             <column ascending="true" name="id_datum"/>
          </index>
       </table>
-      <table name="department" numRows="0" remarks="Tabla que contiene los departamentos del país." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.department_id_department_seq'::regclass)" digits="0" id="0" name="id_department" nullable="false" remarks="Id autoincremental." size="5" type="smallserial" typeCode="5">
+      <table name="department" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.department_id_department_seq'::regclass)" digits="0" id="0" name="id_department" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_department" foreignKey="catalogue_id_department_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Nombre del departamento." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_department" sequenceNumberInPK="1"/>
          <index name="department_pkey" unique="true">
             <column ascending="true" name="id_department"/>
          </index>
       </table>
-      <table name="evidence" numRows="0" remarks="Esta tabla relaciona el método en que se definió una etiqueta sobre un record." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.evidence_id_evidence_seq'::regclass)" digits="0" id="0" name="id_evidence" nullable="false" remarks="Id autoincremental." size="5" type="smallserial" typeCode="5">
+      <table name="django_admin_log" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.django_admin_log_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="action_time" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="object_id" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="object_repr" nullable="false" remarks="" size="200" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="action_flag" nullable="false" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="change_message" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="content_type_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="django_admin_log_content_type_id_c4bce8eb_fk_django_co" implied="false" onDeleteCascade="false" schema="bioacustica" table="django_content_type"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="user_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_user" foreignKey="django_admin_log_user_id_c564eba6_fk_user_id_user" implied="false" onDeleteCascade="false" schema="bioacustica" table="user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="django_admin_log_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="django_admin_log_content_type_id_c4bce8eb" unique="false">
+            <column ascending="true" name="content_type_id"/>
+         </index>
+         <index name="django_admin_log_user_id_c564eba6" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <checkConstraint constraint="((action_flag &gt;= 0))" name="django_admin_log_action_flag_check"/>
+      </table>
+      <table name="django_content_type" numRows="53" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.django_content_type_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="content_type_id" foreignKey="auth_permission_content_type_id_2f476e4b_fk_django_co" implied="false" onDeleteCascade="false" schema="bioacustica" table="auth_permission"/>
+            <child column="content_type_id" foreignKey="django_admin_log_content_type_id_c4bce8eb_fk_django_co" implied="false" onDeleteCascade="false" schema="bioacustica" table="django_admin_log"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="app_label" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="model" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="django_content_type_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="django_content_type_app_label_model_76bd3d3b_uniq" unique="true">
+            <column ascending="true" name="app_label"/>
+            <column ascending="true" name="model"/>
+         </index>
+      </table>
+      <table name="django_migrations" numRows="41" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.django_migrations_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="app" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="applied" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="django_migrations_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="django_rest_passwordreset_resetpasswordtoken" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="6" id="0" name="created_at" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="key" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="ip_address" nullable="true" remarks="" size="2147483647" type="inet" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="user_agent" nullable="false" remarks="" size="256" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="user_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_user" foreignKey="django_rest_password_user_id_e8015b11_fk_user_id_u" implied="false" onDeleteCascade="false" schema="bioacustica" table="user"/>
+         </column>
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.django_rest_passwordreset_resetpasswordtoken_id_seq'::regclass)" digits="0" id="5" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="django_rest_passwordreset_resetpasswordtoken_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="django_rest_passwordreset_resetpasswordtoken_key_f1b65873_like" unique="false">
+            <column ascending="true" name="key"/>
+         </index>
+         <index name="django_rest_passwordreset_resetpasswordtoken_key_f1b65873_uniq" unique="true">
+            <column ascending="true" name="key"/>
+         </index>
+         <index name="django_rest_passwordreset_resetpasswordtoken_user_id_e8015b11" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="django_session" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="session_key" nullable="false" remarks="" size="40" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="session_data" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="expire_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <primaryKey column="session_key" sequenceNumberInPK="1"/>
+         <index name="django_session_pkey" unique="true">
+            <column ascending="true" name="session_key"/>
+         </index>
+         <index name="django_session_expire_date_a5c62663" unique="false">
+            <column ascending="true" name="expire_date"/>
+         </index>
+         <index name="django_session_session_key_c0390e0f_like" unique="false">
+            <column ascending="true" name="session_key"/>
+         </index>
+      </table>
+      <table name="evidence" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.evidence_id_evidence_seq'::regclass)" digits="0" id="0" name="id_evidence" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_evidence" foreignKey="labeled_id_evidence_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Describe el metodo utilizado para asignar la etiqueta.&#10;&#10;Ejemplos:&#10;Etiquetado por un experto&#10;Etiquetado por X software" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_evidence" sequenceNumberInPK="1"/>
          <index name="evidence_pkey" unique="true">
             <column ascending="true" name="id_evidence"/>
          </index>
       </table>
-      <table name="format" numRows="0" remarks="Relaciona el formato de audio de un record." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.format_id_format_seq'::regclass)" digits="0" id="0" name="id_format" nullable="false" remarks="Id autoincremental." size="5" type="smallserial" typeCode="5">
+      <table name="format" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.format_id_format_seq'::regclass)" digits="0" id="0" name="id_format" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_format" foreignKey="record_id_format_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Tipo de formato.&#10;Ejemplo:&#10;mp3, wav." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_format" sequenceNumberInPK="1"/>
          <index name="format_pkey" unique="true">
             <column ascending="true" name="id_format"/>
          </index>
       </table>
-      <table name="frequency_detail" numRows="0" remarks="Relaciona el detalle de las frecuencias asociadas a un etiequetado." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.frequency_detail_id_frequency_detail_seq'::regclass)" digits="0" id="0" name="id_frequency_detail" nullable="false" remarks="Id autoincremental." size="10" type="serial" typeCode="4">
+      <table name="frequency_detail" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.frequency_detail_id_frequency_detail_seq'::regclass)" digits="0" id="0" name="id_frequency_detail" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="id_frequency_detail" foreignKey="labeled_id_frequency_detail_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_labeled" nullable="false" remarks="Id que relaciona el etiquetado." size="10" type="int4" typeCode="4">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_labeled" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_labeled" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="begining" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="beginning" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ending" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="minimal" nullable="true" remarks="Frecuencia mínima de la nota presente en el etiquetado." size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="maximun" nullable="true" remarks="Frecuencia máxima de la nota presente en el etiquetado." size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="peak" nullable="true" remarks="Frecuencia pico de la nota o llamado etiquetado." size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="minimal" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="maximum" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="peak" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
          <primaryKey column="id_frequency_detail" sequenceNumberInPK="1"/>
          <index name="frequency_detail_pkey" unique="true">
             <column ascending="true" name="id_frequency_detail"/>
          </index>
       </table>
-      <table name="funding" numRows="0" remarks="Tabla que relaciona la fuente de financiamiento de los proyectos." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.funding_id_funding_seq'::regclass)" digits="0" id="0" name="id_funding" nullable="false" remarks="Id autoincremental." size="5" type="smallserial" typeCode="5">
+      <table name="funding" numRows="0" remarks="ESTA TABLA SIRVE PARA X COSA modificado" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.funding_id_funding_seq'::regclass)" digits="0" id="0" name="id_funding" nullable="false" remarks="ID Auto incremental" size="5" type="smallserial" typeCode="5">
             <child column="id_funding" foreignKey="project_id_funding_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="project"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Ejemplo: Minciencias, Gobernación de Antioquía." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_funding" sequenceNumberInPK="1"/>
          <index name="funding_pkey" unique="true">
             <column ascending="true" name="id_funding"/>
          </index>
       </table>
-      <table name="h_serial" numRows="0" remarks="Tabla que relaciona el serial del hardware utilizado en un catálogo." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.h_serial_id_h_serial_seq'::regclass)" digits="0" id="0" name="id_h_serial" nullable="false" remarks="Id autoincremental." size="5" type="smallserial" typeCode="5">
+      <table name="h_serial" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.h_serial_id_h_serial_seq'::regclass)" digits="0" id="0" name="id_h_serial" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_h_serial" foreignKey="catalogue_id_h_serial_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_hardware" nullable="false" remarks="Id del hardware que tiene ese serial." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_hardware" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_hardware" foreignKey="h_serial_id_hardware_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="hardware"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="h_serial" nullable="true" remarks="Serial asociado al catálogo." size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="h_serial" nullable="true" remarks="" size="64" type="varchar" typeCode="12"/>
          <primaryKey column="id_h_serial" sequenceNumberInPK="1"/>
          <index name="h_serial_pkey" unique="true">
             <column ascending="true" name="id_h_serial"/>
          </index>
       </table>
-      <table name="habitat" numRows="0" remarks="Esta tabla relaciona el habitat en el que se ubico el catálogo." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.habitat_id_habitat_seq'::regclass)" digits="0" id="0" name="id_habitat" nullable="false" remarks="Id autoincremental." size="5" type="smallserial" typeCode="5">
+      <table name="habitat" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.habitat_id_habitat_seq'::regclass)" digits="0" id="0" name="id_habitat" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_habitat" foreignKey="catalogue_id_habitat_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Descripción del habitat." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_habitat" sequenceNumberInPK="1"/>
          <index name="habitat_pkey" unique="true">
             <column ascending="true" name="id_habitat"/>
          </index>
       </table>
-      <table name="hardware" numRows="0" remarks="Esta tabla relaciona la descripción del hardware asociado al serial." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.hardware_id_hardware_seq'::regclass)" digits="0" id="0" name="id_hardware" nullable="false" remarks="Id autoincremental." size="5" type="smallserial" typeCode="5">
+      <table name="hardware" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.hardware_id_hardware_seq'::regclass)" digits="0" id="0" name="id_hardware" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_hardware" foreignKey="h_serial_id_hardware_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="h_serial"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Tipo de hardware utilizado.&#10;&#10;Ejemplo:&#10;Grabadora sony 2e2s." size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <primaryKey column="id_hardware" sequenceNumberInPK="1"/>
          <index name="hardware_pkey" unique="true">
             <column ascending="true" name="id_hardware"/>
          </index>
       </table>
-      <table name="label" numRows="0" remarks="Esta tabla relaciona las posibles etiquetas que se pueden asignar a un audio." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.label_id_label_seq'::regclass)" digits="0" id="0" name="id_label" nullable="false" remarks="Id autoincremental." size="5" type="smallserial" typeCode="5">
+      <table name="label" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.label_id_label_seq'::regclass)" digits="0" id="0" name="id_label" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_label" foreignKey="labeled_id_label_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_type" nullable="false" remarks="Relaciona el tipo al que pertenece la etiqueta." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_type" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_type" foreignKey="label_id_type_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="type"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Etiquetas.&#10;&#10;Ejemplo:&#10;Rana morada del amazonas.&#10;Zorro de fuego del desierto." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_label" sequenceNumberInPK="1"/>
          <index name="label_pkey" unique="true">
             <column ascending="true" name="id_label"/>
          </index>
       </table>
-      <table name="labeled" numRows="0" remarks="Relaciona los datos de una etiqueta asignada." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.labeled_id_labeled_seq'::regclass)" digits="0" id="0" name="id_labeled" nullable="false" remarks="Id autoincremental." size="10" type="serial" typeCode="4">
+      <table name="labeled" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.labeled_id_labeled_seq'::regclass)" digits="0" id="0" name="id_labeled" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="id_labeled" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="apiCRUD_frequencydetail"/>
             <child column="id_labeled" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="frequency_detail"/>
             <child column="id_labeled" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="time_detail"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_label" nullable="false" remarks="Id de la etiqueta que se asignó." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_label" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_label" foreignKey="labeled_id_label_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="label"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_record" nullable="false" remarks="Id de la grabación a la que se le asignó la etiqueta." size="10" type="int4" typeCode="4">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_record" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_record" foreignKey="labeled_id_record_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="id_evidence" nullable="false" remarks="Id que relaciona el método de etiquetado." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="id_evidence" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_evidence" foreignKey="labeled_id_evidence_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="evidence"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="id_labeler" nullable="false" remarks="Id que relaciona al usuario que asignó la etiqueta." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="id_labeler" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_user" foreignKey="labeled_id_labeler_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="user"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="id_software" nullable="false" remarks="Id que relaciona el software que se usó para escuchar o etiquetar el audio." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="id_software" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_software" foreignKey="labeled_id_software_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="software"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_measure" nullable="false" remarks="Id que relaciona los datos de la precisión del mátodo con la que se asignó la etiqueta. Es obligatorio si se usa un software para el etiquetado." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_measure" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_measure" foreignKey="labeled_id_measure_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="measure"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="6" id="7" name="date" nullable="false" remarks="Fecha de etiquetado" size="35" type="timestamptz" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="membership" nullable="true" remarks="Grado de certeza o de pertenencia que arroja el algoritmo en caso de ser etiquetado automático." size="4" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="membership" nullable="true" remarks="" size="4" type="numeric" typeCode="2"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="n_calls" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="id_pulse_type" nullable="true" remarks="Id que relaciona el tipo o forma de la onda que tiene la nota etiquetada." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="id_pulse_type" nullable="true" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_pulse_type" foreignKey="labeled_id_pulse_type_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="pulse_type"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="id_time_detail" nullable="true" remarks="Id que relaciona la información acerca del tiempo en que ocurre la nota etiquetada." size="10" type="int4" typeCode="4">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="id_time_detail" nullable="true" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_time_detail" foreignKey="labeled_id_time_detail_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="time_detail"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="id_frequency_detail" nullable="true" remarks="Id que relaciona la información acerca de la frecuencia en que ocurre la nota etiquetada." size="10" type="int4" typeCode="4">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="id_frequency_detail" nullable="true" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_frequency_detail" foreignKey="labeled_id_frequency_detail_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="frequency_detail"/>
          </column>
          <primaryKey column="id_labeled" sequenceNumberInPK="1"/>
@@ -283,241 +488,305 @@
             <column ascending="true" name="id_labeled"/>
          </index>
       </table>
-      <table name="locality" numRows="0" remarks="Esta tabla relaciona la información de la localidad en la que fue ubicado el catálogo." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.locality_id_locality_seq'::regclass)" digits="0" id="0" name="id_locality" nullable="false" remarks="Id autoincremental" size="5" type="smallserial" typeCode="5">
+      <table name="locality" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.locality_id_locality_seq'::regclass)" digits="0" id="0" name="id_locality" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_locality" foreignKey="catalogue_id_locality_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Nombre de la localidad en caso de que tenga una localidad.&#10;&#10;Ejemplo: Bosa, Facatativá" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_locality" sequenceNumberInPK="1"/>
          <index name="locality_pkey" unique="true">
             <column ascending="true" name="id_locality"/>
          </index>
       </table>
-      <table name="measure" numRows="0" remarks="Esta tabla asocia la información del porcentaje de validación del metodo utilizado para etiquetar." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.measure_id_measure_seq'::regclass)" digits="0" id="0" name="id_measure" nullable="false" remarks="Id autoincremental" size="5" type="smallserial" typeCode="5">
+      <table name="measure" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.measure_id_measure_seq'::regclass)" digits="0" id="0" name="id_measure" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_measure" foreignKey="labeled_id_measure_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="false" remarks="Porcentaje de validación.&#10;&#10;Ejemplo:&#10;% error, valor F1, otro" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <primaryKey column="id_measure" sequenceNumberInPK="1"/>
          <index name="measure_pkey" unique="true">
             <column ascending="true" name="id_measure"/>
          </index>
       </table>
-      <table name="memory" numRows="0" remarks="Esta tabla relaciona el tipo de memoria que usó el catálogo." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.memory_id_memory_seq'::regclass)" digits="0" id="0" name="id_memory" nullable="false" remarks="Id autoincremental" size="5" type="smallserial" typeCode="5">
+      <table name="memory" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.memory_id_memory_seq'::regclass)" digits="0" id="0" name="id_memory" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_memory" foreignKey="catalogue_id_memory_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Tipo de memoria usada.&#10;&#10;Ejemplo: Kingston 64GB" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_memory" sequenceNumberInPK="1"/>
          <index name="memory_pkey" unique="true">
             <column ascending="true" name="id_memory"/>
          </index>
       </table>
-      <table name="municipality" numRows="0" remarks="Esta tabla relaciona la información del municipio en el que fué posicionado el catálogo." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.municipality_id_municipality_seq'::regclass)" digits="0" id="0" name="id_municipality" nullable="false" remarks="Id autoincremental" size="5" type="smallserial" typeCode="5">
+      <table name="municipality" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.municipality_id_municipality_seq'::regclass)" digits="0" id="0" name="id_municipality" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_municipality" foreignKey="catalogue_id_municipality_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Nombre del municipio." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_municipality" sequenceNumberInPK="1"/>
          <index name="municipality_pkey" unique="true">
             <column ascending="true" name="id_municipality"/>
          </index>
       </table>
-      <table name="photo_path" numRows="0" remarks="Esta tabla relaciona la ubicación de la fotografía del catálogo en caso de que se cuente con una." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.photo_path_id_photo_path_seq'::regclass)" digits="0" id="0" name="id_photo_path" nullable="false" remarks="Id autoincremental" size="10" type="serial" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="Id del catálogo." size="10" type="int4" typeCode="4">
+      <table name="photo_path" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.photo_path_id_photo_path_seq'::regclass)" digits="0" id="0" name="id_photo_path" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_catalogue" foreignKey="photo_path_id_catalogue_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="path" nullable="true" remarks="Ubicación de la imagen." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="path" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_photo_path" sequenceNumberInPK="1"/>
          <index name="photo_path_pkey" unique="true">
             <column ascending="true" name="id_photo_path"/>
          </index>
       </table>
-      <table name="precision" numRows="0" remarks="Esta tabla relaciona la precisión con la que se conoce la ubicación del catálogo." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.precision_id_precision_seq'::regclass)" digits="0" id="0" name="id_precision" nullable="false" remarks="Id autoincremental" size="5" type="smallserial" typeCode="5">
+      <table name="precision" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.precision_id_precision_seq'::regclass)" digits="0" id="0" name="id_precision" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_precision" foreignKey="catalogue_id_precision_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Precisión exacta dada por GPS en el sitio donde se posicionó el catálogo o aproximada usando otra herramienta como google maps." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_precision" sequenceNumberInPK="1"/>
          <index name="precision_pkey" unique="true">
             <column ascending="true" name="id_precision"/>
          </index>
       </table>
-      <table name="project" numRows="0" remarks="Esta tabla relaciona el nombre del proyecto." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.project_id_project_seq'::regclass)" digits="0" id="0" name="id_project" nullable="false" remarks="Id autoincremental" size="5" type="smallserial" typeCode="5">
+      <table name="project" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.project_id_project_seq'::regclass)" digits="0" id="0" name="id_project" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_project" foreignKey="sampling_id_project_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="sampling"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_funding" nullable="false" remarks="Id que relaciona a la tabla que contiene las entidades que otorgan el financiamiento del proyecto" size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_funding" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_funding" foreignKey="project_id_funding_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="funding"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Nombre del proyecto" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_project" sequenceNumberInPK="1"/>
          <index name="project_pkey" unique="true">
             <column ascending="true" name="id_project"/>
          </index>
       </table>
-      <table name="pulse_type" numRows="0" remarks="Esta tabla contiene las posibles formas de onda que se asignan a una nota etiquetada." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.pulse_type_id_pulse_type_seq'::regclass)" digits="0" id="0" name="id_pulse_type" nullable="false" remarks="Id autoincremental" size="5" type="smallserial" typeCode="5">
+      <table name="pulse_type" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.pulse_type_id_pulse_type_seq'::regclass)" digits="0" id="0" name="id_pulse_type" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_pulse_type" foreignKey="labeled_id_pulse_type_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="false" remarks="Tipo de forma de onda" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_pulse_type" sequenceNumberInPK="1"/>
          <index name="pulse_type_pkey" unique="true">
             <column ascending="true" name="id_pulse_type"/>
          </index>
       </table>
-      <table name="record" numRows="0" remarks="Esta tabla relaciona la información asociada a cada audio." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_id_record_seq'::regclass)" digits="0" id="0" name="id_record" nullable="false" remarks="Id autoincremental" size="10" type="serial" typeCode="4">
+      <table name="record" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_id_record_seq'::regclass)" digits="0" id="0" name="id_record" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="id_record" foreignKey="labeled_id_record_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
             <child column="id_record" foreignKey="record_obs_id_record_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record_obs"/>
             <child column="id_record" foreignKey="record_path_id_record_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record_path"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="Id del catálogo al que pertenece el audio." size="10" type="int4" typeCode="4">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_catalogue" foreignKey="record_id_catalogue_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_format" nullable="false" remarks="Id que relaciona el formato del audio." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_format" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_format" foreignKey="record_id_format_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="format"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="date" nullable="true" remarks="Fecha en la que se generó el audio." size="29" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="length" nullable="true" remarks="Duración del audio" size="5" type="int2" typeCode="5"/>
-         <column autoUpdated="false" defaultValue="null" digits="8" id="5" name="size" nullable="true" remarks="Tamaño del audio" size="8" type="float4" typeCode="7"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="sample_rate" nullable="true" remarks="Frecuencia de muestreo del audio" size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="chunk" nullable="true" remarks="Representa que posicion ocupa el audio en el catálogo.&#10;&#10;Ejemplo:&#10;Si el audio es la grabación numero 5 del catálogo:&#10;chunk = 5" size="5" type="int2" typeCode="5"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="channels" nullable="true" remarks="Cuantos canales de audio contiene la grabación." size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="length" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="8" id="5" name="size" nullable="true" remarks="" size="8" type="float4" typeCode="7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="sample_rate" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="chunk" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="channels" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
          <primaryKey column="id_record" sequenceNumberInPK="1"/>
          <index name="record_pkey" unique="true">
             <column ascending="true" name="id_record"/>
          </index>
       </table>
-      <table name="record_obs" numRows="0" remarks="Esta tabla relaciona las observaciones realizadas sobre un audio." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_obs_id_record_obs_seq'::regclass)" digits="0" id="0" name="id_record_obs" nullable="false" remarks="Id autoincremental" size="10" type="serial" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_record" nullable="false" remarks="Id del audio sobre el que se hicieron las observaciones." size="10" type="int4" typeCode="4">
+      <table name="record_obs" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_obs_id_record_obs_seq'::regclass)" digits="0" id="0" name="id_record_obs" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_record" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_record" foreignKey="record_obs_id_record_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="observation" nullable="true" remarks="Observaciones del audio.&#10;&#10;Ejemplo:&#10;Se escuchan personas en el fondo.&#10;Esta lloviendo." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="observation" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_record_obs" sequenceNumberInPK="1"/>
          <index name="record_obs_pkey" unique="true">
             <column ascending="true" name="id_record_obs"/>
          </index>
       </table>
-      <table name="record_path" numRows="0" remarks="Esta tabla relaciona la ubicación donde esta almacenado el audio." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_path_id_record_path_seq'::regclass)" digits="0" id="0" name="id_record_path" nullable="false" remarks="Id autoincremental" size="10" type="serial" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_record" nullable="false" remarks="Id que relaciona el audio." size="10" type="int4" typeCode="4">
+      <table name="record_path" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_path_id_record_path_seq'::regclass)" digits="0" id="0" name="id_record_path" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_record" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_record" foreignKey="record_path_id_record_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="record_path" nullable="true" remarks="Ubicación del audio." size="100" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="fingerprint" nullable="true" remarks="???" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="record_path" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="fingerprint" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_record_path" sequenceNumberInPK="1"/>
          <index name="record_path_pkey" unique="true">
             <column ascending="true" name="id_record_path"/>
          </index>
       </table>
-      <table name="sampling" numRows="0" remarks="Esta tabla relaciona las salidas de campo en donde se obtienen los catálogos." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.sampling_id_sampling_seq'::regclass)" digits="0" id="0" name="id_sampling" nullable="false" remarks="Id autoincremental" size="10" type="serial" typeCode="4">
+      <table name="rest_framework_tracking_apirequestlog" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.rest_framework_tracking_apirequestlog_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="requested_at" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="response_ms" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="path" nullable="false" remarks="" size="200" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="remote_addr" nullable="false" remarks="" size="2147483647" type="inet" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="host" nullable="false" remarks="" size="200" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="method" nullable="false" remarks="" size="10" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="query_params" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="data" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="response" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="status_code" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="user_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id_user" foreignKey="rest_framework_track_user_id_671b70b7_fk_user_id_u" implied="false" onDeleteCascade="false" schema="bioacustica" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="view" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="view_method" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="errors" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="username_persistent" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="rest_framework_tracking_apirequestlog_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="rest_framework_tracking_apirequestlog_path_fe81f91b" unique="false">
+            <column ascending="true" name="path"/>
+         </index>
+         <index name="rest_framework_tracking_apirequestlog_path_fe81f91b_like" unique="false">
+            <column ascending="true" name="path"/>
+         </index>
+         <index name="rest_framework_tracking_apirequestlog_requested_at_b6f1c2f2" unique="false">
+            <column ascending="true" name="requested_at"/>
+         </index>
+         <index name="rest_framework_tracking_apirequestlog_status_code_3c9e2003" unique="false">
+            <column ascending="true" name="status_code"/>
+         </index>
+         <index name="rest_framework_tracking_apirequestlog_user_id_671b70b7" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="rest_framework_tracking_apirequestlog_view_5bd1e407" unique="false">
+            <column ascending="true" name="view"/>
+         </index>
+         <index name="rest_framework_tracking_apirequestlog_view_5bd1e407_like" unique="false">
+            <column ascending="true" name="view"/>
+         </index>
+         <index name="rest_framework_tracking_apirequestlog_view_method_dd790881" unique="false">
+            <column ascending="true" name="view_method"/>
+         </index>
+         <index name="rest_framework_tracking_apirequestlog_view_method_dd790881_like" unique="false">
+            <column ascending="true" name="view_method"/>
+         </index>
+         <checkConstraint constraint="((response_ms &gt;= 0))" name="rest_framework_tracking_apirequestlog_response_ms_check"/>
+         <checkConstraint constraint="((status_code &gt;= 0))" name="rest_framework_tracking_apirequestlog_status_code_check"/>
+      </table>
+      <table name="sampling" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.sampling_id_sampling_seq'::regclass)" digits="0" id="0" name="id_sampling" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="id_sampling" foreignKey="catalogue_id_sampling_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_project" nullable="false" remarks="Id que relaciona el proyecto con la salida de campo" size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_project" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_project" foreignKey="sampling_id_project_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="project"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_cataloger" nullable="false" remarks="Id que relaciona al usuario que realizó la salida." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="id_cataloger" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_user" foreignKey="sampling_id_cataloger_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="user"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="id_season" nullable="false" remarks="Id que relaciona la temporada en la que se realizó la salida." size="5" type="int2" typeCode="5">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="id_season" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_season" foreignKey="sampling_id_season_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="season"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="date" nullable="true" remarks="Fecha  en la que se realizó la salida de campo" size="29" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="description" nullable="true" remarks="Nombre de la salida de campo" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_sampling" sequenceNumberInPK="1"/>
          <index name="sampling_pkey" unique="true">
             <column ascending="true" name="id_sampling"/>
          </index>
       </table>
-      <table name="season" numRows="0" remarks="Esta tabla relaciona las temporadas en las que se realizan las salidas de campo." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.season_id_season_seq'::regclass)" digits="0" id="0" name="id_season" nullable="false" remarks="Id autoincremental" size="5" type="smallserial" typeCode="5">
+      <table name="season" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.season_id_season_seq'::regclass)" digits="0" id="0" name="id_season" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_season" foreignKey="sampling_id_season_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="sampling"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Temporada.&#10;Ejemplo:&#10;Lluvias, invierno, verano." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_season" sequenceNumberInPK="1"/>
          <index name="season_pkey" unique="true">
             <column ascending="true" name="id_season"/>
          </index>
       </table>
-      <table name="software" numRows="0" remarks="Esta tabla relaciona los softwares que se utilizaron para escuchar o etiquetar los audios." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.software_id_software_seq'::regclass)" digits="0" id="0" name="id_software" nullable="false" remarks="Id autoincremental" size="5" type="smallserial" typeCode="5">
+      <table name="software" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.software_id_software_seq'::regclass)" digits="0" id="0" name="id_software" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_software" foreignKey="labeled_id_software_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="descripton" nullable="false" remarks="Nombre del software" size="80" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="false" remarks="" size="80" type="varchar" typeCode="12"/>
          <primaryKey column="id_software" sequenceNumberInPK="1"/>
          <index name="software_pkey" unique="true">
             <column ascending="true" name="id_software"/>
          </index>
       </table>
-      <table name="supply" numRows="0" remarks="Esta tabla relaciona los diferentes tipos de fuentes de alimentación que pueden usar los catálogos." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.supply_id_supply_seq'::regclass)" digits="0" id="0" name="id_supply" nullable="false" remarks="Id autoincremental" size="5" type="smallserial" typeCode="5">
+      <table name="supply" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.supply_id_supply_seq'::regclass)" digits="0" id="0" name="id_supply" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_supply" foreignKey="catalogue_id_supply_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Tipo de fuente.&#10;&#10;Ejemplo:&#10;Bateria recargable, panel solar." size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <primaryKey column="id_supply" sequenceNumberInPK="1"/>
          <index name="supply_pkey" unique="true">
             <column ascending="true" name="id_supply"/>
          </index>
       </table>
-      <table name="time_detail" numRows="0" remarks="Esta tabla relaciona la informacion del tiempo en que se escucha la nota que fue etiquetada." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.time_detail_id_time_detail_seq'::regclass)" digits="0" id="0" name="id_time_detail" nullable="false" remarks="Id autoincremental" size="10" type="serial" typeCode="4">
+      <table name="time_detail" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.time_detail_id_time_detail_seq'::regclass)" digits="0" id="0" name="id_time_detail" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="id_time_detail" foreignKey="labeled_id_time_detail_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_labeled" nullable="false" remarks="Id que relaciona la etiqueta que fue asignada." size="10" type="int4" typeCode="4">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_labeled" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_labeled" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="beging" nullable="true" remarks="Tiempo en el que comenzo la nota." size="5" type="int2" typeCode="5"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ending" nullable="true" remarks="Tiempo en el que finalizó la nota." size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="beginning" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ending" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
          <primaryKey column="id_time_detail" sequenceNumberInPK="1"/>
          <index name="time_detail_pkey" unique="true">
             <column ascending="true" name="id_time_detail"/>
          </index>
       </table>
-      <table name="type" numRows="0" remarks="Esta tabla relaciona los grupos de etiquetas posibles." schema="bioacustica" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_type" nullable="false" remarks="Id autoincremental" size="5" type="int2" typeCode="5">
+      <table name="type" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_type" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <child column="id_type" foreignKey="label_id_type_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="label"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Tipo de etiqueta.&#10;&#10;Ejemplo:&#10;Animales, anfibios, ruidos ambientales." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_type" sequenceNumberInPK="1"/>
          <index name="type_pkey" unique="true">
             <column ascending="true" name="id_type"/>
          </index>
       </table>
-      <table name="user" numRows="0" remarks="Esta tabla relaciona los usuarios registrados en la DB." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.user_id_user_seq'::regclass)" digits="0" id="0" name="id_user" nullable="false" remarks="Id unico y autoincremental que identifica a cada usuario." size="5" type="smallserial" typeCode="5">
+      <table name="user" numRows="2" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.user_id_user_seq'::regclass)" digits="0" id="0" name="id_user" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="history_user_id" foreignKey="apiCRUD_historicalfu_history_user_id_52526d39_fk_user_id_u" implied="false" onDeleteCascade="false" schema="bioacustica" table="apiCRUD_historicalfunding"/>
             <child column="id_collector" foreignKey="catalogue_id_collector_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
+            <child column="user_id" foreignKey="django_admin_log_user_id_c564eba6_fk_user_id_user" implied="false" onDeleteCascade="false" schema="bioacustica" table="django_admin_log"/>
+            <child column="user_id" foreignKey="django_rest_password_user_id_e8015b11_fk_user_id_u" implied="false" onDeleteCascade="false" schema="bioacustica" table="django_rest_passwordreset_resetpasswordtoken"/>
             <child column="id_labeler" foreignKey="labeled_id_labeler_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
+            <child column="user_id" foreignKey="rest_framework_track_user_id_671b70b7_fk_user_id_u" implied="false" onDeleteCascade="false" schema="bioacustica" table="rest_framework_tracking_apirequestlog"/>
             <child column="id_cataloger" foreignKey="sampling_id_cataloger_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="sampling"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="true" remarks="Nombre del usuario." size="100" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="email" nullable="true" remarks="Correo del usuario." size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="username" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="password" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="email" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="last_login" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="is_admin" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="is_active" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="is_staff" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="is_superuser" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="roles" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
          <primaryKey column="id_user" sequenceNumberInPK="1"/>
          <index name="user_pkey" unique="true">
             <column ascending="true" name="id_user"/>
          </index>
       </table>
-      <table name="vereda" numRows="0" remarks="Esta tabla contiene las veredas donde se posicionan los catátlogos." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.vereda_id_vereda_seq'::regclass)" digits="0" id="0" name="id_vereda" nullable="false" remarks="Id autoincremental." size="5" type="smallserial" typeCode="5">
+      <table name="vereda" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.vereda_id_vereda_seq'::regclass)" digits="0" id="0" name="id_vereda" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_vereda" foreignKey="catalogue_id_vereda_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="Nombre de la vereda" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_vereda" sequenceNumberInPK="1"/>
          <index name="vereda_pkey" unique="true">
             <column ascending="true" name="id_vereda"/>
          </index>
       </table>
-      <table name="voucher" numRows="0" remarks="Esta tabla relaciona el ticket con el que se identifica a una especie en caso de que durante la grabación del catálogo se capturara a dicha especie y se entregara para examinarla." schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.voucher_id_voucher_seq'::regclass)" digits="0" id="0" name="id_voucher" nullable="false" remarks="Id autoincremental" size="10" type="serial" typeCode="4">
+      <table name="voucher" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.voucher_id_voucher_seq'::regclass)" digits="0" id="0" name="id_voucher" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <parent column="id_catalogue" foreignKey="voucher_id_voucher_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="Id que relaciona el catálogo al que pertenece el voucher." size="10" type="int4" typeCode="4">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_catalogue" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="voucher" nullable="true" remarks="Codigo del voucher" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="voucher" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_voucher" sequenceNumberInPK="1"/>
          <index name="voucher_pkey" unique="true">
             <column ascending="true" name="id_voucher"/>

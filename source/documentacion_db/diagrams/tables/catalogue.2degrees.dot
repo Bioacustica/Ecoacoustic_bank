@@ -18,6 +18,7 @@ digraph "twoDegreesRelationshipsDiagram" {
   edge [
     arrowsize="0.8"
   ];
+  "apiCRUD_historicalfunding":"elipses":w -> "user":"id_user":e [arrowhead=none dir=back arrowtail=crowodot];
   "catalogue":"id_case":w -> "case":"id_case":e [arrowhead=none dir=back arrowtail=crowodot];
   "catalogue":"id_collector":w -> "user":"id_user":e [arrowhead=none dir=back arrowtail=crowodot];
   "catalogue":"id_country":w -> "country":"id_country":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -33,6 +34,8 @@ digraph "twoDegreesRelationshipsDiagram" {
   "catalogue":"id_supply":w -> "supply":"id_supply":e [arrowhead=none dir=back arrowtail=crowodot];
   "catalogue":"id_vereda":w -> "vereda":"id_vereda":e [arrowhead=none dir=back arrowtail=crowodot];
   "catalogue_obs":"id_catalogue":w -> "catalogue":"id_catalogue.type":e [arrowhead=none dir=back arrowtail=crowodot];
+  "django_admin_log":"elipses":w -> "user":"id_user":e [arrowhead=none dir=back arrowtail=crowodot];
+  "django_rest_passwordreset_resetpasswordtoken":"elipses":w -> "user":"id_user":e [arrowhead=none dir=back arrowtail=crowodot];
   "h_serial":"id_hardware":w -> "hardware":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "labeled":"elipses":w -> "user":"id_user":e [arrowhead=none dir=back arrowtail=crowodot];
   "labeled":"elipses":w -> "record":"id_record":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -41,10 +44,22 @@ digraph "twoDegreesRelationshipsDiagram" {
   "record":"id_format":w -> "format":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "record_obs":"elipses":w -> "record":"id_record":e [arrowhead=none dir=back arrowtail=crowodot];
   "record_path":"elipses":w -> "record":"id_record":e [arrowhead=none dir=back arrowtail=crowodot];
+  "rest_framework_tracking_apirequestlog":"elipses":w -> "user":"id_user":e [arrowhead=none dir=back arrowtail=crowodot];
   "sampling":"id_cataloger":w -> "user":"id_user":e [arrowhead=none dir=back arrowtail=crowodot];
   "sampling":"id_project":w -> "project":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "sampling":"id_season":w -> "season":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "voucher":"id_voucher":w -> "catalogue":"id_catalogue.type":e [arrowhead=none dir=back arrowtail=teeodot];
+  "apiCRUD_historicalfunding" [
+   label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>apiCRUD_historicalfunding</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+    </TABLE>>
+    URL="apiCRUD_historicalfunding.html"
+    target="_top"
+    tooltip="apiCRUD_historicalfunding"
+  ];
   "case" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -137,6 +152,28 @@ digraph "twoDegreesRelationshipsDiagram" {
     URL="department.html"
     target="_top"
     tooltip="department"
+  ];
+  "django_admin_log" [
+   label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>django_admin_log</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+    </TABLE>>
+    URL="django_admin_log.html"
+    target="_top"
+    tooltip="django_admin_log"
+  ];
+  "django_rest_passwordreset_resetpasswordtoken" [
+   label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>django_rest_passwordreset_resetpasswordtoken</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+    </TABLE>>
+    URL="django_rest_passwordreset_resetpasswordtoken.html"
+    target="_top"
+    tooltip="django_rest_passwordreset_resetpasswordtoken"
   ];
   "format" [
    label=<
@@ -304,6 +341,17 @@ digraph "twoDegreesRelationshipsDiagram" {
     target="_top"
     tooltip="record_path"
   ];
+  "rest_framework_tracking_apirequestlog" [
+   label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>rest_framework_tracking_apirequestlog</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
+    </TABLE>>
+    URL="rest_framework_tracking_apirequestlog.html"
+    target="_top"
+    tooltip="rest_framework_tracking_apirequestlog"
+  ];
   "sampling" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -346,9 +394,9 @@ digraph "twoDegreesRelationshipsDiagram" {
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>user</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="id_user" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="48" HEIGHT="16">id_user</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="id_user" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="85" HEIGHT="16">id_user</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">3 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">7 &gt;</TD></TR>
     </TABLE>>
     URL="user.html"
     target="_top"
