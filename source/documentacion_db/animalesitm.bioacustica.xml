@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <database name="animalesitm" schema="bioacustica" type="PostgreSQL - 13.3 (Debian 13.3-1.pgdg100+1)">
    <sequences>
+      <sequence increment="1" name="apiCRUD_frequencydetail_id_frequency_detail_seq" startValue="1"/>
+      <sequence increment="1" name="apiCRUD_historicalfunding_history_id_seq" startValue="1"/>
+      <sequence increment="1" name="apiCRUD_locality_id_locality_seq" startValue="1"/>
       <sequence increment="1" name="case_id_case_seq" startValue="1"/>
       <sequence increment="1" name="catalogue_id_catalogue_seq" startValue="1"/>
       <sequence increment="1" name="catalogue_obs_id_catalogue_obs_seq" startValue="1"/>
       <sequence increment="1" name="country_id_country_seq" startValue="1"/>
       <sequence increment="1" name="datum_id_datum_seq" startValue="1"/>
       <sequence increment="1" name="department_id_department_seq" startValue="1"/>
+      <sequence increment="1" name="django_admin_log_id_seq" startValue="1"/>
+      <sequence increment="1" name="django_content_type_id_seq" startValue="1"/>
+      <sequence increment="1" name="django_migrations_id_seq" startValue="1"/>
       <sequence increment="1" name="evidence_id_evidence_seq" startValue="1"/>
       <sequence increment="1" name="format_id_format_seq" startValue="1"/>
       <sequence increment="1" name="frequency_detail_id_frequency_detail_seq" startValue="1"/>

@@ -981,16 +981,35 @@ class Label(models.Model):
         db_table = "label"
 
 
+# class Labeled(models.Model):
+#     id_labeled = models.AutoField(primary_key=True)
+#     id_label = models.ForeignKey(Label, models.DO_NOTHING, db_column="id_label")
+#     id_record = models.ForeignKey("Record", models.DO_NOTHING, db_column="id_record")
+#     id_evidence = models.ForeignKey(
+#         Evidence, models.DO_NOTHING, db_column="id_evidence"
+#     )
+#     id_labeler = models.ForeignKey("User", models.DO_NOTHING, db_column="id_labeler")
+#     begin = models.IntegerField(blank=True, null=True)
+#     label_end = models.IntegerField(blank=True, null=True)
+#
+
 class Labeled(models.Model):
     id_labeled = models.AutoField(primary_key=True)
-    id_label = models.ForeignKey(Label, models.DO_NOTHING, db_column="id_label")
-    id_record = models.ForeignKey("Record", models.DO_NOTHING, db_column="id_record")
-    id_evidence = models.ForeignKey(
-        Evidence, models.DO_NOTHING, db_column="id_evidence"
-    )
-    id_labeler = models.ForeignKey("User", models.DO_NOTHING, db_column="id_labeler")
-    begin = models.IntegerField(blank=True, null=True)
-    label_end = models.IntegerField(blank=True, null=True)
+    id_label = models.ForeignKey(Label, models.DO_NOTHING, db_column='id_label')
+    id_record = models.ForeignKey('Record', models.DO_NOTHING, db_column='id_record')
+    id_evidence = models.ForeignKey(Evidence, models.DO_NOTHING, db_column='id_evidence')
+    id_labeler = models.ForeignKey('User', models.DO_NOTHING, db_column='id_labeler')
+    id_software = models.ForeignKey('Software', models.DO_NOTHING, db_column='id_software')
+    id_measure = models.ForeignKey('Measure', models.DO_NOTHING, db_column='id_measure')
+    date = models.DateTimeField()
+    membership = models.DecimalField(max_digits=4, decimal_places=0, blank=True, null=True)
+    n_calls = models.SmallIntegerField(blank=True, null=True)
+    id_pulse_type = models.ForeignKey('PulseType', models.DO_NOTHING, db_column='id_pulse_type', blank=True,
+                                      null=True)
+    id_time_detail = models.ForeignKey('TimeDetail', models.DO_NOTHING, db_column='id_time_detail', blank=True,
+                                       null=True)
+    id_frequency_detail = models.ForeignKey(FrequencyDetail, models.DO_NOTHING, db_column='id_frequency_detail',
+                                            blank=True, null=True)
 
     def __str__(self):
         return self.begin
