@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from .models import *
 from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from django.conf import settings
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -18,7 +19,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     """
 
     @classmethod
-    def get_token(cls, user: object) -> dict :
+    def get_token(cls, user: object) -> dict:
         """
         obtiene el token del user instance
         :param user: user class instance
@@ -48,6 +49,9 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Add extra responses here
         data['username'] = self.user.username
         data['roles'] = self.user.roles
+        username = self.user.username
+        password = self.user.password
+        print(settings.DATABASES["animalesitm"])
         return data
 
 
@@ -300,7 +304,7 @@ class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
                 {"email": "Email addresses must be unique."}
             )
         user = User(username=username, email=email, roles=roles, is_admin=is_admin)
-        user.set_password(password)
+        # user.set_password(password)
         user.save()
         return user
 

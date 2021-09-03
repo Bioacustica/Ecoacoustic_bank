@@ -2,3 +2,4 @@
 .env
 .devcontainer/
 postgres-data/
+apidev/newmodels.py

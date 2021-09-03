@@ -1,5 +1,6 @@
 from rest_framework.authentication import RemoteUserAuthentication
-
+from distutils.file_util import write_file
+import os
 
 def choose_role(username: str, password: str, roles: str) -> str:
     """Función encargada de crear roles con el usuario y contraseña

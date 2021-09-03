@@ -23,3 +23,4 @@ django-simple-history~=3.0.0
 drf-api-tracking
 coreapi~=2.3.3
 python-decouple
+flask

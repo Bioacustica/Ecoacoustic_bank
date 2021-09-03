@@ -16,12 +16,14 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.views import TokenObtainPairView
 from dry_rest_permissions.generics import DRYPermissions
 from rest_framework_tracking.mixins import LoggingMixin
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import Funding
 from .serializers import MyTokenObtainPairSerializer
 from .fnt import choose_role, change_password, delete_user
 from .serializers import *
 from .custom_permissions import IsAdmin
+from django.conf import settings
 
 # Vistas hechas con el model view set para hacer el CRUD
 """La Clase ModelViewSet incluye implementaciones para
@@ -35,10 +37,8 @@ logger = logging.getLogger(__name__)
 
 class MyObtainTokenView(TokenObtainPairView):
     """clase encargada de login con  Users de la DB"""
-
     permission_classes = (AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
-
 
 
 #  Función  encargada de registrar usuarios
@@ -56,8 +56,6 @@ def registration(request):
     :return: si todo fue exitoso devuelve un creado de forma exitosa
     :rtype: Http status
     """
-    print(request.data)
-    print(len(request.data))
     username = request.data["username"]
     email = request.data["email"]
     password = request.data["password"]
@@ -93,9 +91,36 @@ def registration(request):
 # la clase logginMixin  se encarga de hacer logs en la base de datos
 class FundingsView(LoggingMixin, viewsets.ModelViewSet):
     queryset = Funding.objects.all()
-    permission_classes = (IsAdmin,)
+    # permission_classes = (IsAdmin,)
     serializer_class = FundingSerializer
 
+@authentication_classes([JWTAuthentication])
+@decorators.api_view(["GET"])
+def filtered_record_view(request):
+    serializer_class =MyTokenObtainPairSerializer
+    username = request.data["username"]
+    password = request.data["password"]
+    name = settings.DATABASES["animalesitm"]["NAME"]
+    port = settings.DATABASES["animalesitm"]["PORT"]
+    host = settings.DATABASES["animalesitm"]["HOST"]
+    credenciales_db = {
+        "user": username,
+        "password": password,
+        "host": host,
+        "port": port,
+        "database": name
+    }
+    print(credenciales_db)
+    conexion = psycopg2.connect(**credenciales_db)
+    conexion.autocommit = True
+    query = "SELECT * FROM bioacustica.USER WHERE username = 'daniel';"
+    with conexion.cursor() as cursor:
+        cursor.execute(query)
+        fetch = dict(cursor.fetchall())
+        print(type(fetch))
+    return response.Response(
+        fetch, status=status.HTTP_201_CREATED
+        )
 
 @authentication_classes([JWTAuthentication])
 class CaseView(viewsets.ModelViewSet):
@@ -162,7 +187,6 @@ class FormatView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class HSerialView(viewsets.ModelViewSet):
-
     queryset = HSerial.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = HSerialSerializer
@@ -416,7 +440,7 @@ class ChangePasswordView(generics.UpdateAPIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             if serializer.data.get("new_password") == serializer.data.get(
-                "confirm_password"
+                    "confirm_password"
             ):
                 # set_password also hashes the password that the user will get
                 password = request.data["new_password"]

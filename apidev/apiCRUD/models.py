@@ -99,7 +99,8 @@ class User(AbstractBaseUser):
         ("registro", "registro"),
     )
     id_user = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=100, blank=True, null=True)
+    username = models.CharField(max_length=100, blank=False, null=False)
+    password = models.CharField(max_length=100, blank=False, null=False)
     email = models.CharField(max_length=100, blank=True, null=True, unique=True)
     last_login = models.DateField(verbose_name="last login", auto_now=True)
     is_admin = models.BooleanField(default=False)
@@ -334,6 +335,56 @@ class CatalogueObs(models.Model):
         managed = False
         db_table = "catalogue_obs"
 
+    @staticmethod
+    def has_read_permission(request):
+        """función encargada de permitir
+        o denegar si un usuario con su rol
+        puede hacer cambios en la bd
+        """
+        if (
+            request.user.roles == "admin"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        """función encargada de permitir
+        o denegar si un usuario con su rol
+        puede hacer cambios en la bd
+        """
+        if ( request.user.roles == "admin"
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_destroy_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_destroy_permission(self, request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
 
 class Country(models.Model):
     id_country = models.SmallAutoField(primary_key=True)
@@ -350,9 +401,9 @@ class Country(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+            request.user.roles == "admin"
+
         ):
             return True
         return False
@@ -363,27 +414,27 @@ class Country(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
 
     @staticmethod
     def has_write_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
     def has_object_write_permission(self, request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
     @staticmethod
     def has_create_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if request.user.roles == "admin":
             return True
         return False
 
@@ -426,9 +477,9 @@ class Department(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
@@ -439,27 +490,27 @@ class Department(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
 
     @staticmethod
     def has_write_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
     def has_object_write_permission(self, request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
     @staticmethod
     def has_create_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if request.user.roles == "admin":
             return True
         return False
 
@@ -540,9 +591,9 @@ class Evidence(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
@@ -553,27 +604,27 @@ class Evidence(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
 
     @staticmethod
     def has_write_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
     def has_object_write_permission(self, request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if request.user.roles == "admin":
             return True
         return False
 
     @staticmethod
     def has_create_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
@@ -675,9 +726,9 @@ class FrequencyDetail(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
@@ -688,27 +739,27 @@ class FrequencyDetail(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
 
     @staticmethod
     def has_write_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
     def has_object_write_permission(self, request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
     @staticmethod
     def has_create_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if request.user.roles == "admin":
             return True
         return False
 
@@ -983,14 +1034,21 @@ class Label(models.Model):
 
 class Labeled(models.Model):
     id_labeled = models.AutoField(primary_key=True)
-    id_label = models.ForeignKey(Label, models.DO_NOTHING, db_column="id_label")
-    id_record = models.ForeignKey("Record", models.DO_NOTHING, db_column="id_record")
-    id_evidence = models.ForeignKey(
-        Evidence, models.DO_NOTHING, db_column="id_evidence"
-    )
-    id_labeler = models.ForeignKey("User", models.DO_NOTHING, db_column="id_labeler")
-    begin = models.IntegerField(blank=True, null=True)
-    label_end = models.IntegerField(blank=True, null=True)
+    id_label = models.ForeignKey(Label, models.DO_NOTHING, db_column='id_label')
+    id_record = models.ForeignKey('Record', models.DO_NOTHING, db_column='id_record')
+    id_evidence = models.ForeignKey(Evidence, models.DO_NOTHING, db_column='id_evidence')
+    id_labeler = models.ForeignKey('User', models.DO_NOTHING, db_column='id_labeler')
+    id_software = models.ForeignKey('Software', models.DO_NOTHING, db_column='id_software')
+    id_measure = models.ForeignKey('Measure', models.DO_NOTHING, db_column='id_measure')
+    date = models.DateTimeField()
+    membership = models.DecimalField(max_digits=4, decimal_places=0, blank=True, null=True)
+    n_calls = models.SmallIntegerField(blank=True, null=True)
+    id_pulse_type = models.ForeignKey('PulseType', models.DO_NOTHING, db_column='id_pulse_type', blank=True, null=True)
+    id_time_detail = models.ForeignKey('TimeDetail', models.DO_NOTHING, db_column='id_time_detail', blank=True,
+                                       null=True)
+    id_frequency_detail = models.ForeignKey(FrequencyDetail, models.DO_NOTHING, db_column='id_frequency_detail',
+                                            blank=True, null=True)
+
 
     def __str__(self):
         return self.begin
@@ -1082,9 +1140,9 @@ class Locality(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
@@ -1095,27 +1153,27 @@ class Locality(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
 
     @staticmethod
     def has_write_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if request.user.roles == "admin":
             return True
         return False
 
     def has_object_write_permission(self, request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
     @staticmethod
     def has_create_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
@@ -1149,9 +1207,9 @@ class Measure(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
@@ -1162,27 +1220,27 @@ class Measure(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
 
     @staticmethod
     def has_write_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
     def has_object_write_permission(self, request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if request.user.roles == "admin":
             return True
         return False
 
     @staticmethod
     def has_create_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
@@ -1264,9 +1322,9 @@ class Municipality(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
@@ -1277,27 +1335,27 @@ class Municipality(models.Model):
         puede hacer cambios en la bd
         """
         if (
-                request.user.roles == "registro"
-                or request.user.roles == "admin"
-                or request.user.roles == "etiquetado"
+
+                request.user.roles == "admin"
+
         ):
             return True
         return False
 
     @staticmethod
     def has_write_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if  request.user.roles == "admin":
             return True
         return False
 
     def has_object_write_permission(self, request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if request.user.roles == "admin":
             return True
         return False
 
     @staticmethod
     def has_create_permission(request):
-        if request.user.roles == "registro" or request.user.roles == "admin":
+        if request.user.roles == "admin":
             return True
         return False
 
@@ -1369,12 +1427,12 @@ class Precision(models.Model):
         return False
 
     @staticmethod
-    def has_delete_permission(request):
+    def has_destroy_permission(request):
         if request.user.roles == "admin":
             return True
         return False
 
-    def has_object_delete_permission(request):
+    def has_object_destroy_permission(request):
         if request.user.roles == "admin":
             return True
         return False
