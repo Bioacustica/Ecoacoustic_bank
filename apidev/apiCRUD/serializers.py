@@ -51,7 +51,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['roles'] = self.user.roles
         username = self.user.username
         password = self.user.password
-        print(settings.DATABASES["animalesitm"])
         return data
 
 
@@ -304,7 +303,7 @@ class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
                 {"email": "Email addresses must be unique."}
             )
         user = User(username=username, email=email, roles=roles, is_admin=is_admin)
-        # user.set_password(password)
+        user.set_password(password)
         user.save()
         return user
 

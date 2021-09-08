@@ -2,7 +2,7 @@ from django import urls
 from django.contrib import admin
 from django.urls import path, include
 from apiCRUD import views
-from .views import ChangePasswordView, registration, filtered_record_view
+from .views import ChangePasswordView, registration, filtered_record_view, user_delete_view
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -65,5 +65,5 @@ urlpatterns = [
         "password_reset/confirm/",
         include("django_rest_passwordreset.urls", namespace="password_reset_confirm"),
     ),
-    path("<int:id_user>/delete/", views.user_delete_view, name="delete_user"),
+    path("delete/<int:id_user>/", views.user_delete_view, name="delete_user"),
 ]

@@ -1,4 +1,3 @@
-django_session
 django_migrations
 apiCRUD_locality
 voucher

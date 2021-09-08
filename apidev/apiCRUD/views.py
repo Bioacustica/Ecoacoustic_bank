@@ -1,4 +1,3 @@
-# librerias necesarias
 import json
 import coreapi
 import logging
@@ -113,7 +112,7 @@ def filtered_record_view(request):
     print(credenciales_db)
     conexion = psycopg2.connect(**credenciales_db)
     conexion.autocommit = True
-    query = "SELECT * FROM bioacustica.USER WHERE username = 'daniel';"
+    query = "SELECT * FROM bioacustica.USER WHERE username = '{}';".format(username)
     with conexion.cursor() as cursor:
         cursor.execute(query)
         fetch = dict(cursor.fetchall())
@@ -361,9 +360,15 @@ class UserView(viewsets.ModelViewSet):
     http_method_names = ["get", "put"]
 
 
+
 @decorators.api_view(["DELETE"])
+@authentication_classes([JWTAuthentication])
+@decorators.permission_classes(
+    [
+        IsAdmin,
+    ]
+)
 def user_delete_view(request, id_user):
-    permission_classes = (IsAdmin,)
     """
     Función encargada de eliminar 
     usuarios, recibe como parametro su
@@ -398,7 +403,6 @@ def user_delete_view(request, id_user):
                 cursor.execute(payload)
             user.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 @authentication_classes([JWTAuthentication])
 class ChangePasswordView(generics.UpdateAPIView):

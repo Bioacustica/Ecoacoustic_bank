@@ -44,4 +44,3 @@ django_admin_log
 voucher
 apiCRUD_locality
 django_migrations
-django_session
