@@ -74,6 +74,19 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>hardware</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-file-text-o"></i>
+                            <h3 id="Description" class="box-title">Description</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body clearfix">
+                            <p>Esta tabla relaciona la descripción del hardware asociado al serial.</p>
+                        </div><!-- /.box-body -->
+                    </div>
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -121,7 +134,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>Id autoincremental.</p></td>
                                 </tr>
                                 <tr>
                                     <td><span id="description">description</span></td>
@@ -138,7 +151,9 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>Tipo de hardware utilizado.</p>
+<p>Ejemplo:<br />
+Grabadora sony 2e2s.</p></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -193,16 +208,16 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="h_serial.html" target="_top" title="h_serial" alt="" coords="392,5,552,152">
-<area shape="rect" id="node2" href="hardware.html" target="_top" title="hardware" alt="" coords="5,32,348,160">
+<area shape="rect" id="node1" href="h_serial.html" target="_top" title="h_serial" alt="" coords="381,5,541,152">
+<area shape="rect" id="node2" href="hardware.html" target="_top" title="hardware" alt="" coords="5,32,337,160">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/hardware.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="596,8,771,96">
-<area shape="rect" id="node2" href="h_serial.html" target="_top" title="h_serial" alt="" coords="392,5,552,152">
-<area shape="rect" id="node3" href="hardware.html" target="_top" title="hardware" alt="" coords="5,32,348,160">
+<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="585,8,756,96">
+<area shape="rect" id="node2" href="h_serial.html" target="_top" title="h_serial" alt="" coords="381,5,541,152">
+<area shape="rect" id="node3" href="hardware.html" target="_top" title="hardware" alt="" coords="5,32,337,160">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/hardware.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>

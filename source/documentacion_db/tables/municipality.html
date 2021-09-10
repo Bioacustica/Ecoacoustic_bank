@@ -74,6 +74,19 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>municipality</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-file-text-o"></i>
+                            <h3 id="Description" class="box-title">Description</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body clearfix">
+                            <p>Esta tabla relaciona la información del municipio en el que fué posicionado el catálogo.</p>
+                        </div><!-- /.box-body -->
+                    </div>
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -121,7 +134,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>Id autoincremental</p></td>
                                 </tr>
                                 <tr>
                                     <td><span id="description">description</span></td>
@@ -138,7 +151,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>Nombre del municipio.</p></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -195,63 +208,63 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="351,5,536,533">
-<area shape="rect" id="node2" href="municipality.html" target="_top" title="municipality" alt="" coords="5,120,307,248">
+<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="349,5,535,533">
+<area shape="rect" id="node2" href="municipality.html" target="_top" title="municipality" alt="" coords="5,120,305,248">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/municipality.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="531,455,716,983">
-<area shape="rect" id="node2" href="case.html" target="_top" title="case" alt="" coords="268,924,404,1012">
-<area shape="rect" id="node3" href="user.html" target="_top" title="user" alt="" coords="5,323,141,411">
-<area shape="rect" id="node4" href="country.html" target="_top" title="country" alt="" coords="258,111,414,199">
-<area shape="rect" id="node5" href="datum.html" target="_top" title="datum" alt="" coords="263,1345,409,1433">
-<area shape="rect" id="node6" href="department.html" target="_top" title="department" alt="" coords="240,216,432,304">
-<area shape="rect" id="node7" href="h_serial.html" target="_top" title="h_serial" alt="" coords="258,713,414,801">
-<area shape="rect" id="node8" href="habitat.html" target="_top" title="habitat" alt="" coords="260,1135,412,1223">
-<area shape="rect" id="node9" href="locality.html" target="_top" title="locality" alt="" coords="260,572,412,660">
-<area shape="rect" id="node10" href="memory.html" target="_top" title="memory" alt="" coords="256,1029,416,1117">
-<area shape="rect" id="node11" href="municipality.html" target="_top" title="municipality" alt="" coords="185,321,487,449">
-<area shape="rect" id="node12" href="precision.html" target="_top" title="precision" alt="" coords="252,1240,420,1328">
-<area shape="rect" id="node13" href="sampling.html" target="_top" title="sampling" alt="" coords="251,5,421,93">
-<area shape="rect" id="node14" href="supply.html" target="_top" title="supply" alt="" coords="262,819,410,907">
-<area shape="rect" id="node15" href="vereda.html" target="_top" title="vereda" alt="" coords="261,467,411,555">
-<area shape="rect" id="node16" href="catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="760,300,972,388">
-<area shape="rect" id="node17" href="photo_path.html" target="_top" title="photo_path" alt="" coords="772,405,960,493">
-<area shape="rect" id="node18" href="record.html" target="_top" title="record" alt="" coords="789,511,943,599">
-<area shape="rect" id="node19" href="voucher.html" target="_top" title="voucher" alt="" coords="786,616,946,704">
+<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="525,455,711,983">
+<area shape="rect" id="node2" href="case.html" target="_top" title="case" alt="" coords="265,924,397,1012">
+<area shape="rect" id="node3" href="user.html" target="_top" title="user" alt="" coords="5,323,137,411">
+<area shape="rect" id="node4" href="country.html" target="_top" title="country" alt="" coords="255,111,408,199">
+<area shape="rect" id="node5" href="datum.html" target="_top" title="datum" alt="" coords="260,1345,403,1433">
+<area shape="rect" id="node6" href="department.html" target="_top" title="department" alt="" coords="238,216,425,304">
+<area shape="rect" id="node7" href="h_serial.html" target="_top" title="h_serial" alt="" coords="255,713,408,801">
+<area shape="rect" id="node8" href="habitat.html" target="_top" title="habitat" alt="" coords="257,1135,406,1223">
+<area shape="rect" id="node9" href="locality.html" target="_top" title="locality" alt="" coords="256,572,407,660">
+<area shape="rect" id="node10" href="memory.html" target="_top" title="memory" alt="" coords="253,1029,410,1117">
+<area shape="rect" id="node11" href="municipality.html" target="_top" title="municipality" alt="" coords="181,321,481,449">
+<area shape="rect" id="node12" href="precision.html" target="_top" title="precision" alt="" coords="249,1240,414,1328">
+<area shape="rect" id="node13" href="sampling.html" target="_top" title="sampling" alt="" coords="249,5,413,93">
+<area shape="rect" id="node14" href="supply.html" target="_top" title="supply" alt="" coords="259,819,403,907">
+<area shape="rect" id="node15" href="vereda.html" target="_top" title="vereda" alt="" coords="258,467,405,555">
+<area shape="rect" id="node16" href="catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="755,300,961,388">
+<area shape="rect" id="node17" href="photo_path.html" target="_top" title="photo_path" alt="" coords="767,405,949,493">
+<area shape="rect" id="node18" href="record.html" target="_top" title="record" alt="" coords="784,511,932,599">
+<area shape="rect" id="node19" href="voucher.html" target="_top" title="voucher" alt="" coords="780,616,936,704">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/municipality.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
-<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="351,5,536,533">
-<area shape="rect" id="node2" href="municipality.html" target="_top" title="municipality" alt="" coords="5,120,307,248">
+<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="349,5,535,533">
+<area shape="rect" id="node2" href="municipality.html" target="_top" title="municipality" alt="" coords="5,120,305,248">
 </map>
                                         <a name='diagram'><img id="oneimpliedDegreeImg" src="../diagrams/tables/municipality.implied1degrees.png" usemap="#oneDegreeRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagramImplied" name="twoDegreesRelationshipsDiagramImplied">
-<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="531,455,716,983">
-<area shape="rect" id="node2" href="case.html" target="_top" title="case" alt="" coords="268,924,404,1012">
-<area shape="rect" id="node3" href="user.html" target="_top" title="user" alt="" coords="5,323,141,411">
-<area shape="rect" id="node4" href="country.html" target="_top" title="country" alt="" coords="258,111,414,199">
-<area shape="rect" id="node5" href="datum.html" target="_top" title="datum" alt="" coords="263,1345,409,1433">
-<area shape="rect" id="node6" href="department.html" target="_top" title="department" alt="" coords="240,216,432,304">
-<area shape="rect" id="node7" href="h_serial.html" target="_top" title="h_serial" alt="" coords="258,713,414,801">
-<area shape="rect" id="node8" href="habitat.html" target="_top" title="habitat" alt="" coords="260,1135,412,1223">
-<area shape="rect" id="node9" href="locality.html" target="_top" title="locality" alt="" coords="260,572,412,660">
-<area shape="rect" id="node10" href="memory.html" target="_top" title="memory" alt="" coords="256,1029,416,1117">
-<area shape="rect" id="node11" href="municipality.html" target="_top" title="municipality" alt="" coords="185,321,487,449">
-<area shape="rect" id="node12" href="precision.html" target="_top" title="precision" alt="" coords="252,1240,420,1328">
-<area shape="rect" id="node13" href="sampling.html" target="_top" title="sampling" alt="" coords="251,5,421,93">
-<area shape="rect" id="node14" href="supply.html" target="_top" title="supply" alt="" coords="262,819,410,907">
-<area shape="rect" id="node15" href="vereda.html" target="_top" title="vereda" alt="" coords="261,467,411,555">
-<area shape="rect" id="node16" href="catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="760,247,972,335">
-<area shape="rect" id="node17" href="photo_path.html" target="_top" title="photo_path" alt="" coords="772,352,960,440">
-<area shape="rect" id="node18" href="record.html" target="_top" title="record" alt="" coords="789,457,943,545">
-<area shape="rect" id="node19" href="voucher.html" target="_top" title="voucher" alt="" coords="786,563,946,651">
+<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="525,455,711,983">
+<area shape="rect" id="node2" href="case.html" target="_top" title="case" alt="" coords="265,924,397,1012">
+<area shape="rect" id="node3" href="user.html" target="_top" title="user" alt="" coords="5,323,137,411">
+<area shape="rect" id="node4" href="country.html" target="_top" title="country" alt="" coords="255,111,408,199">
+<area shape="rect" id="node5" href="datum.html" target="_top" title="datum" alt="" coords="260,1345,403,1433">
+<area shape="rect" id="node6" href="department.html" target="_top" title="department" alt="" coords="238,216,425,304">
+<area shape="rect" id="node7" href="h_serial.html" target="_top" title="h_serial" alt="" coords="255,713,408,801">
+<area shape="rect" id="node8" href="habitat.html" target="_top" title="habitat" alt="" coords="257,1135,406,1223">
+<area shape="rect" id="node9" href="locality.html" target="_top" title="locality" alt="" coords="256,572,407,660">
+<area shape="rect" id="node10" href="memory.html" target="_top" title="memory" alt="" coords="253,1029,410,1117">
+<area shape="rect" id="node11" href="municipality.html" target="_top" title="municipality" alt="" coords="181,321,481,449">
+<area shape="rect" id="node12" href="precision.html" target="_top" title="precision" alt="" coords="249,1240,414,1328">
+<area shape="rect" id="node13" href="sampling.html" target="_top" title="sampling" alt="" coords="249,5,413,93">
+<area shape="rect" id="node14" href="supply.html" target="_top" title="supply" alt="" coords="259,819,403,907">
+<area shape="rect" id="node15" href="vereda.html" target="_top" title="vereda" alt="" coords="258,467,405,555">
+<area shape="rect" id="node16" href="catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="755,247,961,335">
+<area shape="rect" id="node17" href="photo_path.html" target="_top" title="photo_path" alt="" coords="767,352,949,440">
+<area shape="rect" id="node18" href="record.html" target="_top" title="record" alt="" coords="784,457,932,545">
+<area shape="rect" id="node19" href="voucher.html" target="_top" title="voucher" alt="" coords="780,563,936,651">
 </map>
                                         <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/municipality.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>

@@ -73,7 +73,20 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>evidence</h1><p><span id="recordNumber">2</span> rows</p><br />
+                    <h1>evidence</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-file-text-o"></i>
+                            <h3 id="Description" class="box-title">Description</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body clearfix">
+                            <p>Esta tabla relaciona el método en que se definió una etiqueta sobre un record.</p>
+                        </div><!-- /.box-body -->
+                    </div>
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -121,7 +134,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>Id autoincremental.</p></td>
                                 </tr>
                                 <tr>
                                     <td><span id="description">description</span></td>
@@ -138,7 +151,10 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>Describe el metodo utilizado para asignar la etiqueta.</p>
+<p>Ejemplos:<br />
+Etiquetado por un experto<br />
+Etiquetado por X software</p></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -195,45 +211,45 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="320,5,544,387">
-<area shape="rect" id="node2" href="evidence.html" target="_top" title="evidence" alt="" coords="5,91,276,219">
+<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="319,5,543,387">
+<area shape="rect" id="node2" href="evidence.html" target="_top" title="evidence" alt="" coords="5,91,275,219">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/evidence.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="320,317,544,699">
-<area shape="rect" id="node2" href="evidence.html" target="_top" title="evidence" alt="" coords="5,216,276,344">
-<area shape="rect" id="node3" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="24,888,257,976">
-<area shape="rect" id="node4" href="label.html" target="_top" title="label" alt="" coords="63,5,218,93">
-<area shape="rect" id="node5" href="user.html" target="_top" title="user" alt="" coords="73,361,209,449">
-<area shape="rect" id="node6" href="measure.html" target="_top" title="measure" alt="" coords="59,572,223,660">
-<area shape="rect" id="node7" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="49,677,233,765">
-<area shape="rect" id="node8" href="record.html" target="_top" title="record" alt="" coords="63,111,218,199">
-<area shape="rect" id="node9" href="software.html" target="_top" title="software" alt="" coords="58,467,223,555">
-<area shape="rect" id="node10" href="time_detail.html" target="_top" title="time_detail" alt="" coords="48,783,233,871">
+<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="319,317,543,699">
+<area shape="rect" id="node2" href="evidence.html" target="_top" title="evidence" alt="" coords="5,216,275,344">
+<area shape="rect" id="node3" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="27,888,253,976">
+<area shape="rect" id="node4" href="label.html" target="_top" title="label" alt="" coords="66,5,214,93">
+<area shape="rect" id="node5" href="user.html" target="_top" title="user" alt="" coords="74,361,206,449">
+<area shape="rect" id="node6" href="measure.html" target="_top" title="measure" alt="" coords="59,572,221,660">
+<area shape="rect" id="node7" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="51,677,229,765">
+<area shape="rect" id="node8" href="record.html" target="_top" title="record" alt="" coords="66,111,214,199">
+<area shape="rect" id="node9" href="software.html" target="_top" title="software" alt="" coords="59,467,221,555">
+<area shape="rect" id="node10" href="time_detail.html" target="_top" title="time_detail" alt="" coords="49,783,231,871">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/evidence.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
-<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="320,5,544,387">
-<area shape="rect" id="node2" href="evidence.html" target="_top" title="evidence" alt="" coords="5,91,276,219">
+<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="319,5,543,387">
+<area shape="rect" id="node2" href="evidence.html" target="_top" title="evidence" alt="" coords="5,91,275,219">
 </map>
                                         <a name='diagram'><img id="oneimpliedDegreeImg" src="../diagrams/tables/evidence.implied1degrees.png" usemap="#oneDegreeRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagramImplied" name="twoDegreesRelationshipsDiagramImplied">
-<area shape="rect" id="node1" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="588,481,821,569">
-<area shape="rect" id="node2" href="labeled.html" target="_top" title="labeled" alt="" coords="320,347,544,728">
-<area shape="rect" id="node3" href="evidence.html" target="_top" title="evidence" alt="" coords="5,216,276,344">
-<area shape="rect" id="node4" href="label.html" target="_top" title="label" alt="" coords="63,5,218,93">
-<area shape="rect" id="node5" href="user.html" target="_top" title="user" alt="" coords="73,467,209,555">
-<area shape="rect" id="node6" href="measure.html" target="_top" title="measure" alt="" coords="59,677,223,765">
-<area shape="rect" id="node7" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="49,783,233,871">
-<area shape="rect" id="node8" href="record.html" target="_top" title="record" alt="" coords="63,111,218,199">
-<area shape="rect" id="node9" href="software.html" target="_top" title="software" alt="" coords="58,572,223,660">
-<area shape="rect" id="node10" href="time_detail.html" target="_top" title="time_detail" alt="" coords="48,361,233,449">
+<area shape="rect" id="node1" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="587,481,813,569">
+<area shape="rect" id="node2" href="labeled.html" target="_top" title="labeled" alt="" coords="319,347,543,728">
+<area shape="rect" id="node3" href="evidence.html" target="_top" title="evidence" alt="" coords="5,216,275,344">
+<area shape="rect" id="node4" href="label.html" target="_top" title="label" alt="" coords="66,5,214,93">
+<area shape="rect" id="node5" href="user.html" target="_top" title="user" alt="" coords="74,467,206,555">
+<area shape="rect" id="node6" href="measure.html" target="_top" title="measure" alt="" coords="59,677,221,765">
+<area shape="rect" id="node7" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="51,783,229,871">
+<area shape="rect" id="node8" href="record.html" target="_top" title="record" alt="" coords="66,111,214,199">
+<area shape="rect" id="node9" href="software.html" target="_top" title="software" alt="" coords="59,572,221,660">
+<area shape="rect" id="node10" href="time_detail.html" target="_top" title="time_detail" alt="" coords="49,361,231,449">
 </map>
                                         <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/evidence.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>

@@ -74,6 +74,19 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>record_path</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-file-text-o"></i>
+                            <h3 id="Description" class="box-title">Description</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body clearfix">
+                            <p>Esta tabla relaciona la ubicación donde esta almacenado el audio.</p>
+                        </div><!-- /.box-body -->
+                    </div>
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -117,7 +130,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>Id autoincremental</p></td>
                                 </tr>
                                 <tr>
                                     <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_record">id_record</span></td>
@@ -138,7 +151,7 @@
                                             </tr>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>Id que relaciona el audio.</p></td>
                                 </tr>
                                 <tr>
                                     <td><span id="record_path">record_path</span></td>
@@ -155,7 +168,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>Ubicación del audio.</p></td>
                                 </tr>
                                 <tr>
                                     <td><span id="fingerprint">fingerprint</span></td>
@@ -172,7 +185,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td></td>
+                                    <td><p>???</p></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -227,19 +240,19 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="record_path.html" target="_top" title="record_path" alt="" coords="212,5,507,192">
+<area shape="rect" id="node1" href="record_path.html" target="_top" title="record_path" alt="" coords="212,5,503,192">
 <area shape="rect" id="node2" href="record.html" target="_top" title="record" alt="" coords="5,37,168,213">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/record_path.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="501,5,655,93">
-<area shape="rect" id="node2" href="record.html" target="_top" title="record" alt="" coords="224,108,387,284">
-<area shape="rect" id="node3" href="catalogue.html" target="_top" title="catalogue" alt="" coords="5,101,180,189">
-<area shape="rect" id="node4" href="format.html" target="_top" title="format" alt="" coords="19,207,167,295">
-<area shape="rect" id="node5" href="record_obs.html" target="_top" title="record_obs" alt="" coords="486,111,670,199">
-<area shape="rect" id="node6" href="record_path.html" target="_top" title="record_path" alt="" coords="431,216,725,403">
+<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="497,5,647,93">
+<area shape="rect" id="node2" href="record.html" target="_top" title="record" alt="" coords="220,108,383,284">
+<area shape="rect" id="node3" href="catalogue.html" target="_top" title="catalogue" alt="" coords="5,101,176,189">
+<area shape="rect" id="node4" href="format.html" target="_top" title="format" alt="" coords="18,207,163,295">
+<area shape="rect" id="node5" href="record_obs.html" target="_top" title="record_obs" alt="" coords="483,111,661,199">
+<area shape="rect" id="node6" href="record_path.html" target="_top" title="record_path" alt="" coords="427,216,717,403">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/record_path.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
