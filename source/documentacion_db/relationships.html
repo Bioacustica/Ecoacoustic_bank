@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>animalesitm Database</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="bower/html5shiv/html5shiv.min.js"></script>
+        <script src="bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand"><b>animalesitm</b> Database</a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>All Relationships</h1>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-code-fork"></i>
+                            <h3 class="box-title">Diagrams</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="nav-tabs-custom">
+                                <!-- Tabs within a box -->
+                                <h5>By default only columns that are primary keys, foreign keys or indexes are shown.</h5>
+                                <ul class="nav nav-tabs pull-left ui-sortable-handle">
+                                    <li class="active"><a href="#compactDegreeImg-chart" data-toggle="tab" aria-expanded="true">Compact</a></li>
+                                    <li class=""><a href="#largeDegreeImg-chart" data-toggle="tab" aria-expanded="true">Large</a></li>
+                                    <li class=""><a href="#compactimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Compact Implied</a></li>
+                                    <li class=""><a href="#largeimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Large Implied</a></li>
+                                </ul>
+                                <div class="tab-content no-padding">
+                                    <div class="chart tab-pane active" id="compactDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="compactRelationshipsDiagram" name="compactRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/case.html" target="_top" title="case" alt="" coords="447,1259,597,1376">
+<area shape="rect" id="node2" href="tables/catalogue.html" target="_top" title="catalogue" alt="" coords="664,725,849,1253">
+<area shape="rect" id="node4" href="tables/country.html" target="_top" title="country" alt="" coords="444,251,600,368">
+<area shape="rect" id="node5" href="tables/datum.html" target="_top" title="datum" alt="" coords="447,1797,597,1915">
+<area shape="rect" id="node6" href="tables/department.html" target="_top" title="department" alt="" coords="426,385,618,503">
+<area shape="rect" id="node11" href="tables/h_serial.html" target="_top" title="h_serial" alt="" coords="442,960,602,1107">
+<area shape="rect" id="node12" href="tables/habitat.html" target="_top" title="habitat" alt="" coords="446,1528,598,1645">
+<area shape="rect" id="node16" href="tables/locality.html" target="_top" title="locality" alt="" coords="446,789,598,907">
+<area shape="rect" id="node18" href="tables/memory.html" target="_top" title="memory" alt="" coords="442,1393,602,1511">
+<area shape="rect" id="node19" href="tables/municipality.html" target="_top" title="municipality" alt="" coords="424,520,620,637">
+<area shape="rect" id="node21" href="tables/precision.html" target="_top" title="precision" alt="" coords="438,1663,606,1780">
+<area shape="rect" id="node27" href="tables/sampling.html" target="_top" title="sampling" alt="" coords="437,28,607,233">
+<area shape="rect" id="node30" href="tables/supply.html" target="_top" title="supply" alt="" coords="447,1124,597,1241">
+<area shape="rect" id="node33" href="tables/user.html" target="_top" title="user" alt="" coords="226,869,362,987">
+<area shape="rect" id="node34" href="tables/vereda.html" target="_top" title="vereda" alt="" coords="447,655,597,772">
+<area shape="rect" id="node3" href="tables/catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="904,532,1116,679">
+<area shape="rect" id="node7" href="tables/evidence.html" target="_top" title="evidence" alt="" coords="926,1797,1094,1915">
+<area shape="rect" id="node8" href="tables/format.html" target="_top" title="format" alt="" coords="681,1385,832,1503">
+<area shape="rect" id="node9" href="tables/frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="893,2507,1127,2624">
+<area shape="rect" id="node10" href="tables/funding.html" target="_top" title="funding" alt="" coords="5,35,164,152">
+<area shape="rect" id="node13" href="tables/hardware.html" target="_top" title="hardware" alt="" coords="208,1004,380,1121">
+<area shape="rect" id="node14" href="tables/label.html" target="_top" title="label" alt="" coords="933,1633,1087,1780">
+<area shape="rect" id="node32" href="tables/type.html" target="_top" title="type" alt="" coords="681,1663,832,1780">
+<area shape="rect" id="node15" href="tables/labeled.html" target="_top" title="labeled" alt="" coords="1171,1821,1395,2203">
+<area shape="rect" id="node17" href="tables/measure.html" target="_top" title="measure" alt="" coords="928,2103,1092,2220">
+<area shape="rect" id="node23" href="tables/pulse_type.html" target="_top" title="pulse_type" alt="" coords="918,2237,1102,2355">
+<area shape="rect" id="node24" href="tables/record.html" target="_top" title="record" alt="" coords="929,1327,1091,1503">
+<area shape="rect" id="node29" href="tables/software.html" target="_top" title="software" alt="" coords="927,1968,1093,2085">
+<area shape="rect" id="node31" href="tables/time_detail.html" target="_top" title="time_detail" alt="" coords="917,2372,1103,2489">
+<area shape="rect" id="node20" href="tables/photo_path.html" target="_top" title="photo_path" alt="" coords="916,696,1104,843">
+<area shape="rect" id="node22" href="tables/project.html" target="_top" title="project" alt="" coords="217,5,371,152">
+<area shape="rect" id="node25" href="tables/record_obs.html" target="_top" title="record_obs" alt="" coords="1191,1216,1375,1363">
+<area shape="rect" id="node26" href="tables/record_path.html" target="_top" title="record_path" alt="" coords="1187,1380,1379,1527">
+<area shape="rect" id="node28" href="tables/season.html" target="_top" title="season" alt="" coords="219,169,369,287">
+<area shape="rect" id="node35" href="tables/voucher.html" target="_top" title="voucher" alt="" coords="929,860,1091,977">
+</map>
+                                        <a name='diagram'><img id="compactDegreeImg" src="diagrams/summary/relationships.real.compact.png" usemap="#compactRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="largeDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="largeRelationshipsDiagram" name="largeRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/case.html" target="_top" title="case" alt="" coords="447,1333,597,1456">
+<area shape="rect" id="node2" href="tables/catalogue.html" target="_top" title="catalogue" alt="" coords="664,721,849,1431">
+<area shape="rect" id="node4" href="tables/country.html" target="_top" title="country" alt="" coords="444,288,600,411">
+<area shape="rect" id="node5" href="tables/datum.html" target="_top" title="datum" alt="" coords="447,1893,597,2016">
+<area shape="rect" id="node6" href="tables/department.html" target="_top" title="department" alt="" coords="426,428,618,551">
+<area shape="rect" id="node11" href="tables/h_serial.html" target="_top" title="h_serial" alt="" coords="442,1024,602,1176">
+<area shape="rect" id="node12" href="tables/habitat.html" target="_top" title="habitat" alt="" coords="446,1613,598,1736">
+<area shape="rect" id="node16" href="tables/locality.html" target="_top" title="locality" alt="" coords="446,848,598,971">
+<area shape="rect" id="node18" href="tables/memory.html" target="_top" title="memory" alt="" coords="442,1473,602,1596">
+<area shape="rect" id="node19" href="tables/municipality.html" target="_top" title="municipality" alt="" coords="424,568,620,691">
+<area shape="rect" id="node21" href="tables/precision.html" target="_top" title="precision" alt="" coords="438,1753,606,1876">
+<area shape="rect" id="node27" href="tables/sampling.html" target="_top" title="sampling" alt="" coords="437,31,607,271">
+<area shape="rect" id="node30" href="tables/supply.html" target="_top" title="supply" alt="" coords="447,1193,597,1316">
+<area shape="rect" id="node33" href="tables/user.html" target="_top" title="user" alt="" coords="226,916,362,1068">
+<area shape="rect" id="node34" href="tables/vereda.html" target="_top" title="vereda" alt="" coords="447,708,597,831">
+<area shape="rect" id="node3" href="tables/catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="904,523,1116,675">
+<area shape="rect" id="node7" href="tables/evidence.html" target="_top" title="evidence" alt="" coords="926,1893,1094,2016">
+<area shape="rect" id="node8" href="tables/format.html" target="_top" title="format" alt="" coords="681,1448,832,1571">
+<area shape="rect" id="node9" href="tables/frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="893,2688,1127,2957">
+<area shape="rect" id="node10" href="tables/funding.html" target="_top" title="funding" alt="" coords="5,35,164,157">
+<area shape="rect" id="node13" href="tables/hardware.html" target="_top" title="hardware" alt="" coords="208,1085,380,1208">
+<area shape="rect" id="node14" href="tables/label.html" target="_top" title="label" alt="" coords="933,1724,1087,1876">
+<area shape="rect" id="node32" href="tables/type.html" target="_top" title="type" alt="" coords="681,1753,832,1876">
+<area shape="rect" id="node15" href="tables/labeled.html" target="_top" title="labeled" alt="" coords="1171,1923,1395,2368">
+<area shape="rect" id="node17" href="tables/measure.html" target="_top" title="measure" alt="" coords="928,2209,1092,2332">
+<area shape="rect" id="node23" href="tables/pulse_type.html" target="_top" title="pulse_type" alt="" coords="918,2349,1102,2472">
+<area shape="rect" id="node24" href="tables/record.html" target="_top" title="record" alt="" coords="929,1379,1091,1707">
+<area shape="rect" id="node29" href="tables/software.html" target="_top" title="software" alt="" coords="927,2069,1093,2192">
+<area shape="rect" id="node31" href="tables/time_detail.html" target="_top" title="time_detail" alt="" coords="917,2489,1103,2671">
+<area shape="rect" id="node20" href="tables/photo_path.html" target="_top" title="photo_path" alt="" coords="916,692,1104,844">
+<area shape="rect" id="node22" href="tables/project.html" target="_top" title="project" alt="" coords="217,5,371,157">
+<area shape="rect" id="node25" href="tables/record_obs.html" target="_top" title="record_obs" alt="" coords="1191,1265,1375,1417">
+<area shape="rect" id="node26" href="tables/record_path.html" target="_top" title="record_path" alt="" coords="1187,1435,1379,1616">
+<area shape="rect" id="node28" href="tables/season.html" target="_top" title="season" alt="" coords="219,175,369,297">
+<area shape="rect" id="node35" href="tables/voucher.html" target="_top" title="voucher" alt="" coords="929,861,1091,1013">
+</map>
+                                        <a name='diagram'><img id="largeDegreeImg" src="diagrams/summary/relationships.real.large.png" usemap="#largeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="compactimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="compactImpliedRelationshipsDiagram" name="compactImpliedRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/case.html" target="_top" title="case" alt="" coords="447,1259,597,1376">
+<area shape="rect" id="node2" href="tables/catalogue.html" target="_top" title="catalogue" alt="" coords="664,679,849,1207">
+<area shape="rect" id="node4" href="tables/country.html" target="_top" title="country" alt="" coords="444,251,600,368">
+<area shape="rect" id="node5" href="tables/datum.html" target="_top" title="datum" alt="" coords="447,1797,597,1915">
+<area shape="rect" id="node6" href="tables/department.html" target="_top" title="department" alt="" coords="426,385,618,503">
+<area shape="rect" id="node11" href="tables/h_serial.html" target="_top" title="h_serial" alt="" coords="442,960,602,1107">
+<area shape="rect" id="node12" href="tables/habitat.html" target="_top" title="habitat" alt="" coords="446,1528,598,1645">
+<area shape="rect" id="node16" href="tables/locality.html" target="_top" title="locality" alt="" coords="446,789,598,907">
+<area shape="rect" id="node18" href="tables/memory.html" target="_top" title="memory" alt="" coords="442,1393,602,1511">
+<area shape="rect" id="node19" href="tables/municipality.html" target="_top" title="municipality" alt="" coords="424,520,620,637">
+<area shape="rect" id="node21" href="tables/precision.html" target="_top" title="precision" alt="" coords="438,1663,606,1780">
+<area shape="rect" id="node27" href="tables/sampling.html" target="_top" title="sampling" alt="" coords="437,28,607,233">
+<area shape="rect" id="node30" href="tables/supply.html" target="_top" title="supply" alt="" coords="447,1124,597,1241">
+<area shape="rect" id="node33" href="tables/user.html" target="_top" title="user" alt="" coords="226,869,362,987">
+<area shape="rect" id="node34" href="tables/vereda.html" target="_top" title="vereda" alt="" coords="447,655,597,772">
+<area shape="rect" id="node3" href="tables/catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="904,417,1116,564">
+<area shape="rect" id="node7" href="tables/evidence.html" target="_top" title="evidence" alt="" coords="926,1809,1094,1927">
+<area shape="rect" id="node8" href="tables/format.html" target="_top" title="format" alt="" coords="681,1224,832,1341">
+<area shape="rect" id="node9" href="tables/frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="893,1645,1127,1792">
+<area shape="rect" id="node15" href="tables/labeled.html" target="_top" title="labeled" alt="" coords="1171,1675,1395,2056">
+<area shape="rect" id="node10" href="tables/funding.html" target="_top" title="funding" alt="" coords="5,35,164,152">
+<area shape="rect" id="node13" href="tables/hardware.html" target="_top" title="hardware" alt="" coords="208,1004,380,1121">
+<area shape="rect" id="node14" href="tables/label.html" target="_top" title="label" alt="" coords="933,1317,1087,1464">
+<area shape="rect" id="node32" href="tables/type.html" target="_top" title="type" alt="" coords="681,1359,832,1476">
+<area shape="rect" id="node17" href="tables/measure.html" target="_top" title="measure" alt="" coords="928,2115,1092,2232">
+<area shape="rect" id="node23" href="tables/pulse_type.html" target="_top" title="pulse_type" alt="" coords="918,2249,1102,2367">
+<area shape="rect" id="node24" href="tables/record.html" target="_top" title="record" alt="" coords="929,1124,1091,1300">
+<area shape="rect" id="node29" href="tables/software.html" target="_top" title="software" alt="" coords="927,1980,1093,2097">
+<area shape="rect" id="node31" href="tables/time_detail.html" target="_top" title="time_detail" alt="" coords="917,1481,1103,1628">
+<area shape="rect" id="node20" href="tables/photo_path.html" target="_top" title="photo_path" alt="" coords="916,581,1104,728">
+<area shape="rect" id="node22" href="tables/project.html" target="_top" title="project" alt="" coords="217,5,371,152">
+<area shape="rect" id="node25" href="tables/record_obs.html" target="_top" title="record_obs" alt="" coords="1191,1013,1375,1160">
+<area shape="rect" id="node26" href="tables/record_path.html" target="_top" title="record_path" alt="" coords="1187,1177,1379,1324">
+<area shape="rect" id="node28" href="tables/season.html" target="_top" title="season" alt="" coords="219,169,369,287">
+<area shape="rect" id="node35" href="tables/voucher.html" target="_top" title="voucher" alt="" coords="929,745,1091,892">
+</map>
+                                        <a name='diagram'><img id="compactimpliedDegreeImg" src="diagrams/summary/relationships.implied.compact.png" usemap="#compactImpliedRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="largeimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="largeImpliedRelationshipsDiagram" name="largeImpliedRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/case.html" target="_top" title="case" alt="" coords="447,1333,597,1456">
+<area shape="rect" id="node2" href="tables/catalogue.html" target="_top" title="catalogue" alt="" coords="664,684,849,1393">
+<area shape="rect" id="node4" href="tables/country.html" target="_top" title="country" alt="" coords="444,288,600,411">
+<area shape="rect" id="node5" href="tables/datum.html" target="_top" title="datum" alt="" coords="447,1893,597,2016">
+<area shape="rect" id="node6" href="tables/department.html" target="_top" title="department" alt="" coords="426,428,618,551">
+<area shape="rect" id="node11" href="tables/h_serial.html" target="_top" title="h_serial" alt="" coords="442,1024,602,1176">
+<area shape="rect" id="node12" href="tables/habitat.html" target="_top" title="habitat" alt="" coords="446,1613,598,1736">
+<area shape="rect" id="node16" href="tables/locality.html" target="_top" title="locality" alt="" coords="446,848,598,971">
+<area shape="rect" id="node18" href="tables/memory.html" target="_top" title="memory" alt="" coords="442,1473,602,1596">
+<area shape="rect" id="node19" href="tables/municipality.html" target="_top" title="municipality" alt="" coords="424,568,620,691">
+<area shape="rect" id="node21" href="tables/precision.html" target="_top" title="precision" alt="" coords="438,1753,606,1876">
+<area shape="rect" id="node27" href="tables/sampling.html" target="_top" title="sampling" alt="" coords="437,31,607,271">
+<area shape="rect" id="node30" href="tables/supply.html" target="_top" title="supply" alt="" coords="447,1193,597,1316">
+<area shape="rect" id="node33" href="tables/user.html" target="_top" title="user" alt="" coords="226,916,362,1068">
+<area shape="rect" id="node34" href="tables/vereda.html" target="_top" title="vereda" alt="" coords="447,708,597,831">
+<area shape="rect" id="node3" href="tables/catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="904,415,1116,567">
+<area shape="rect" id="node7" href="tables/evidence.html" target="_top" title="evidence" alt="" coords="926,1549,1094,1672">
+<area shape="rect" id="node8" href="tables/format.html" target="_top" title="format" alt="" coords="681,1411,832,1533">
+<area shape="rect" id="node9" href="tables/frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="893,1888,1127,2157">
+<area shape="rect" id="node15" href="tables/labeled.html" target="_top" title="labeled" alt="" coords="1171,1719,1395,2164">
+<area shape="rect" id="node10" href="tables/funding.html" target="_top" title="funding" alt="" coords="5,35,164,157">
+<area shape="rect" id="node13" href="tables/hardware.html" target="_top" title="hardware" alt="" coords="208,1085,380,1208">
+<area shape="rect" id="node14" href="tables/label.html" target="_top" title="label" alt="" coords="933,1380,1087,1532">
+<area shape="rect" id="node32" href="tables/type.html" target="_top" title="type" alt="" coords="681,1551,832,1673">
+<area shape="rect" id="node17" href="tables/measure.html" target="_top" title="measure" alt="" coords="928,2351,1092,2473">
+<area shape="rect" id="node23" href="tables/pulse_type.html" target="_top" title="pulse_type" alt="" coords="918,2491,1102,2613">
+<area shape="rect" id="node24" href="tables/record.html" target="_top" title="record" alt="" coords="929,1035,1091,1363">
+<area shape="rect" id="node29" href="tables/software.html" target="_top" title="software" alt="" coords="927,2211,1093,2333">
+<area shape="rect" id="node31" href="tables/time_detail.html" target="_top" title="time_detail" alt="" coords="917,1689,1103,1871">
+<area shape="rect" id="node20" href="tables/photo_path.html" target="_top" title="photo_path" alt="" coords="916,584,1104,736">
+<area shape="rect" id="node22" href="tables/project.html" target="_top" title="project" alt="" coords="217,5,371,157">
+<area shape="rect" id="node25" href="tables/record_obs.html" target="_top" title="record_obs" alt="" coords="1191,921,1375,1073">
+<area shape="rect" id="node26" href="tables/record_path.html" target="_top" title="record_path" alt="" coords="1187,1091,1379,1272">
+<area shape="rect" id="node28" href="tables/season.html" target="_top" title="season" alt="" coords="219,175,369,297">
+<area shape="rect" id="node35" href="tables/voucher.html" target="_top" title="voucher" alt="" coords="929,753,1091,905">
+</map>
+                                        <a name='diagram'><img id="largeimpliedDegreeImg" src="diagrams/summary/relationships.implied.large.png" usemap="#largeImpliedRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div>
+                </section>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.0</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="bower/pdfmake/pdfmake.min.js"></script>
+        <script src="bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="bower/codemirror/codemirror.js"></script>
+        <script src="bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="bower/admin-lte/dist/js/app.min.js"></script>
+        <script src="relationships.js"></script>
+        <script src="schemaSpy.js"></script>
+    </body>
+</html>
