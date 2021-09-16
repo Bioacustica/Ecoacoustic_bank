@@ -7,7 +7,7 @@ CREATE SCHEMA bioacustica;
 CREATE TABLE bioacustica."case"
 (
     id_case smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_case)
 )
 WITH (
@@ -23,8 +23,8 @@ CREATE TABLE bioacustica.catalogue
     id_municipality smallint NOT NULL,
     id_vereda smallint NOT NULL,
     id_locality smallint NOT NULL,
-    id_gain integer NOT NULL,
-    id_filters integer NOT NULL,
+    id_gain smallint NOT NULL,
+    id_filter smallint NOT NULL,
     id_collector smallint NOT NULL,
     id_h_serial smallint NOT NULL,
     id_supply smallint NOT NULL,
@@ -33,11 +33,14 @@ CREATE TABLE bioacustica.catalogue
     id_habitat smallint NOT NULL,
     id_precision smallint NOT NULL,
     id_datum smallint NOT NULL,
+    id_microphone smallint NOT NULL,
     elevation integer,
-    coordinates point,
     height integer,
     chunks smallint,
     size real,
+    latitude real,
+    longitude real,
+    description character varying(100),
     PRIMARY KEY (id_catalogue)
 )
 WITH (
@@ -58,7 +61,7 @@ WITH (
 CREATE TABLE bioacustica.datum
 (
     id_datum smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_datum)
 )
 WITH (
@@ -68,7 +71,7 @@ WITH (
 CREATE TABLE bioacustica.evidence
 (
     id_evidence smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_evidence)
 )
 WITH (
@@ -78,7 +81,7 @@ WITH (
 CREATE TABLE bioacustica.format
 (
     id_format smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_format)
 )
 WITH (
@@ -88,12 +91,13 @@ WITH (
 CREATE TABLE bioacustica.funding
 (
     id_funding smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_funding)
 )
 WITH (
     OIDS = FALSE
 );
+
 
 COMMENT ON TABLE bioacustica.funding
     IS 'ESTA TABLA SIRVE PARA X COSA modificado';
@@ -115,7 +119,7 @@ WITH (
 CREATE TABLE bioacustica.habitat
 (
     id_habitat smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_habitat)
 )
 WITH (
@@ -125,7 +129,7 @@ WITH (
 CREATE TABLE bioacustica.hardware
 (
     id_hardware smallserial NOT NULL,
-    description character varying,
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_hardware)
 )
 WITH (
@@ -170,7 +174,7 @@ COMMENT ON COLUMN bioacustica.labeled.date
 CREATE TABLE bioacustica.memory
 (
     id_memory smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_memory)
 )
 WITH (
@@ -202,7 +206,7 @@ CREATE TABLE bioacustica.project
 (
     id_project smallserial NOT NULL,
     id_funding smallint NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_project)
 )
 WITH (
@@ -266,7 +270,7 @@ WITH (
 CREATE TABLE bioacustica.season
 (
     id_season smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_season)
 )
 WITH (
@@ -276,7 +280,7 @@ WITH (
 CREATE TABLE bioacustica.supply
 (
     id_supply smallserial NOT NULL,
-    description character varying,
+    description character varying NOT NULL,
     PRIMARY KEY (id_supply)
 )
 WITH (
@@ -286,7 +290,7 @@ WITH (
 CREATE TABLE bioacustica.type
 (
     id_type smallint NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_type)
 )
 WITH (
@@ -307,7 +311,7 @@ WITH (
 CREATE TABLE bioacustica.country
 (
     id_country smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_country)
 )
 WITH (
@@ -317,7 +321,7 @@ WITH (
 CREATE TABLE bioacustica.department
 (
     id_department smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_department)
 )
 WITH (
@@ -327,7 +331,7 @@ WITH (
 CREATE TABLE bioacustica.vereda
 (
     id_vereda smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_vereda)
 )
 WITH (
@@ -337,7 +341,7 @@ WITH (
 CREATE TABLE bioacustica.locality
 (
     id_locality smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_locality)
 )
 WITH (
@@ -347,7 +351,7 @@ WITH (
 CREATE TABLE bioacustica.municipality
 (
     id_municipality smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_municipality)
 )
 WITH (
@@ -417,6 +421,37 @@ CREATE TABLE bioacustica.measure
     id_measure smallserial NOT NULL,
     description character varying NOT NULL,
     PRIMARY KEY (id_measure)
+)
+WITH (
+    OIDS = FALSE
+);
+
+
+CREATE TABLE bioacustica.microphone
+(
+    id_microphone smallint NOT NULL,
+    description character varying(100),
+    PRIMARY KEY (id_microphone)
+)
+WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE bioacustica.gain
+(
+    id_gain smallint NOT NULL,
+    description character varying(100) NOT NULL,
+    PRIMARY KEY (id_gain)
+)
+WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE bioacustica.filter
+(
+    id_filter smallint NOT NULL,
+    decription character varying(100) NOT NULL,
+    PRIMARY KEY (id_filter)
 )
 WITH (
     OIDS = FALSE
@@ -637,5 +672,23 @@ ALTER TABLE bioacustica.labeled
     REFERENCES bioacustica.time_detail (id_time_detail)
     NOT VALID;
 
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_gain)
+    REFERENCES bioacustica.gain (id_gain)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_filter)
+    REFERENCES bioacustica.filter (id_filter)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_microphone)
+    REFERENCES bioacustica.microphone (id_microphone)
+    NOT VALID;
+
 END;
+
 
