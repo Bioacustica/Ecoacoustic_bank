@@ -43,6 +43,7 @@
       <sequence increment="1" name="software_id_software_seq" startValue="1"/>
       <sequence increment="1" name="supply_id_supply_seq" startValue="1"/>
       <sequence increment="1" name="time_detail_id_time_detail_seq" startValue="1"/>
+      <sequence increment="1" name="type_id_type_seq" startValue="1"/>
       <sequence increment="1" name="user_id_user_seq" startValue="1"/>
       <sequence increment="1" name="vereda_id_vereda_seq" startValue="1"/>
       <sequence increment="1" name="voucher_id_voucher_seq" startValue="1"/>
@@ -163,11 +164,10 @@
          </index>
       </table>
       <table name="catalogue" numRows="0" remarks="" schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.catalogue_id_catalogue_seq'::regclass)" digits="0" id="0" name="id_catalogue" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.catalogue_id_catalogue_seq'::regclass)" digits="0" id="0" name="id_catalogue" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_catalogue" foreignKey="catalogue_obs_id_catalogue_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue_obs"/>
             <child column="id_catalogue" foreignKey="photo_path_id_catalogue_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="photo_path"/>
             <child column="id_catalogue" foreignKey="record_id_catalogue_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record"/>
-            <child column="id_catalogue" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="voucher"/>
             <child column="id_voucher" foreignKey="voucher_id_voucher_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="voucher"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_sampling" nullable="false" remarks="" size="5" type="int2" typeCode="5">
@@ -225,7 +225,7 @@
          </index>
       </table>
       <table name="catalogue_obs" numRows="0" remarks="" schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.catalogue_obs_id_catalogue_obs_seq'::regclass)" digits="0" id="0" name="id_catalogue_obs" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.catalogue_obs_id_catalogue_obs_seq'::regclass)" digits="0" id="0" name="id_catalogue_obs" nullable="false" remarks="" size="5" type="smallserial" typeCode="5"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_catalogue" foreignKey="catalogue_obs_id_catalogue_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
@@ -360,12 +360,10 @@
          </index>
       </table>
       <table name="frequency_detail" numRows="0" remarks="" schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.frequency_detail_id_frequency_detail_seq'::regclass)" digits="0" id="0" name="id_frequency_detail" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.frequency_detail_id_frequency_detail_seq'::regclass)" digits="0" id="0" name="id_frequency_detail" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_frequency_detail" foreignKey="labeled_id_frequency_detail_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_labeled" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id_labeled" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
-         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_labeled" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="beginning" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ending" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="minimal" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
@@ -433,11 +431,15 @@
          </index>
       </table>
       <table name="labeled" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+<<<<<<< HEAD
          <column autoUpdated="true" defaultValue="nextval('bioacustica.labeled_id_labeled_seq'::regclass)" digits="0" id="0" name="id_labeled" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="id_labeled" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="apiCRUD_frequencydetail"/>
             <child column="id_labeled" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="frequency_detail"/>
             <child column="id_labeled" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="time_detail"/>
          </column>
+=======
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.labeled_id_labeled_seq'::regclass)" digits="0" id="0" name="id_labeled" nullable="false" remarks="" size="5" type="smallserial" typeCode="5"/>
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_label" nullable="false" remarks="" size="5" type="int2" typeCode="5">
             <parent column="id_label" foreignKey="labeled_id_label_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="label"/>
          </column>
@@ -514,7 +516,7 @@
          </index>
       </table>
       <table name="photo_path" numRows="0" remarks="" schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.photo_path_id_photo_path_seq'::regclass)" digits="0" id="0" name="id_photo_path" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.photo_path_id_photo_path_seq'::regclass)" digits="0" id="0" name="id_photo_path" nullable="false" remarks="" size="5" type="smallserial" typeCode="5"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_catalogue" foreignKey="photo_path_id_catalogue_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
@@ -558,7 +560,7 @@
          </index>
       </table>
       <table name="record" numRows="0" remarks="" schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_id_record_seq'::regclass)" digits="0" id="0" name="id_record" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_id_record_seq'::regclass)" digits="0" id="0" name="id_record" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_record" foreignKey="labeled_id_record_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
             <child column="id_record" foreignKey="record_obs_id_record_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record_obs"/>
             <child column="id_record" foreignKey="record_path_id_record_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record_path"/>
@@ -581,7 +583,7 @@
          </index>
       </table>
       <table name="record_obs" numRows="0" remarks="" schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_obs_id_record_obs_seq'::regclass)" digits="0" id="0" name="id_record_obs" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_obs_id_record_obs_seq'::regclass)" digits="0" id="0" name="id_record_obs" nullable="false" remarks="" size="5" type="smallserial" typeCode="5"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_record" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_record" foreignKey="record_obs_id_record_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record"/>
          </column>
@@ -592,7 +594,7 @@
          </index>
       </table>
       <table name="record_path" numRows="0" remarks="" schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_path_id_record_path_seq'::regclass)" digits="0" id="0" name="id_record_path" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.record_path_id_record_path_seq'::regclass)" digits="0" id="0" name="id_record_path" nullable="false" remarks="" size="5" type="smallserial" typeCode="5"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_record" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id_record" foreignKey="record_path_id_record_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="record"/>
          </column>
@@ -657,7 +659,7 @@
          <checkConstraint constraint="((status_code &gt;= 0))" name="rest_framework_tracking_apirequestlog_status_code_check"/>
       </table>
       <table name="sampling" numRows="0" remarks="" schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.sampling_id_sampling_seq'::regclass)" digits="0" id="0" name="id_sampling" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.sampling_id_sampling_seq'::regclass)" digits="0" id="0" name="id_sampling" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_sampling" foreignKey="catalogue_id_sampling_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_project" nullable="false" remarks="" size="5" type="int2" typeCode="5">
@@ -707,12 +709,10 @@
          </index>
       </table>
       <table name="time_detail" numRows="0" remarks="" schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.time_detail_id_time_detail_seq'::regclass)" digits="0" id="0" name="id_time_detail" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.time_detail_id_time_detail_seq'::regclass)" digits="0" id="0" name="id_time_detail" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_time_detail" foreignKey="labeled_id_time_detail_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_labeled" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id_labeled" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
-         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_labeled" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="beginning" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ending" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
          <primaryKey column="id_time_detail" sequenceNumberInPK="1"/>
@@ -721,7 +721,7 @@
          </index>
       </table>
       <table name="type" numRows="0" remarks="" schema="bioacustica" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id_type" nullable="false" remarks="" size="5" type="int2" typeCode="5">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.type_id_type_seq'::regclass)" digits="0" id="0" name="id_type" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_type" foreignKey="label_id_type_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="label"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
@@ -765,12 +765,10 @@
          </index>
       </table>
       <table name="voucher" numRows="0" remarks="" schema="bioacustica" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('bioacustica.voucher_id_voucher_seq'::regclass)" digits="0" id="0" name="id_voucher" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+         <column autoUpdated="true" defaultValue="nextval('bioacustica.voucher_id_voucher_seq'::regclass)" digits="0" id="0" name="id_voucher" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <parent column="id_catalogue" foreignKey="voucher_id_voucher_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id_catalogue" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
-         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="id_catalogue" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="voucher" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
          <primaryKey column="id_voucher" sequenceNumberInPK="1"/>
          <index name="voucher_pkey" unique="true">

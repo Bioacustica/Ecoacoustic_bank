@@ -2157,3 +2157,12 @@ class Voucher(models.Model):
         if request.user.roles == "admin":
             return True
         return False
+
+
+class Keys(models.Model):
+    username = models.CharField(max_length=200, blank=False, null=False)
+    key = models.CharField(max_length=200, blank=False, null=False)
+
+    class Meta:
+        managed = False
+        db_table = "apiCRUD_keys"

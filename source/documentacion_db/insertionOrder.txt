@@ -7,6 +7,7 @@ datum
 department
 evidence
 format
+frequency_detail
 funding
 habitat
 hardware
@@ -19,20 +20,24 @@ pulse_type
 season
 software
 supply
+time_detail
 type
 vereda
 h_serial
-label
 project
 sampling
 catalogue
 record
+<<<<<<< HEAD
 frequency_detail
 time_detail
 labeled
 auth_permission
 apiCRUD_frequencydetail
 apiCRUD_historicalfunding
+=======
+label
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
 catalogue_obs
 django_rest_passwordreset_resetpasswordtoken
 photo_path
@@ -42,5 +47,9 @@ rest_framework_tracking_apirequestlog
 auth_group_permissions
 django_admin_log
 voucher
+<<<<<<< HEAD
 apiCRUD_locality
 django_migrations
+=======
+labeled
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698

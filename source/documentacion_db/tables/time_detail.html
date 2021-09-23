@@ -104,8 +104,8 @@
                                 <tbody>
                                 <tr>
                                     <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_time_detail">id_time_detail</span></td>
-                                    <td>serial</td>
-                                    <td>10</td>
+                                    <td>smallserial</td>
+                                    <td>5</td>
                                     <td title=''></td>
                                     <td title='Automatically updated by the database'>√</td>
                                     <td>nextval(&#39;bioacustica.time_detail_id_time_detail_seq&#39;::regclass)</td>
@@ -124,7 +124,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_labeled">id_labeled</span></td>
+                                    <td><span id="id_labeled">id_labeled</span></td>
                                     <td>int4</td>
                                     <td>10</td>
                                     <td title=''></td>
@@ -136,10 +136,6 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="time_detail.id_labeled&#39;s name implies that it&#39;s a child of labeled.id_labeled, but it doesn&#39;t reference that column."><a href='labeled.html'>labeled</a><span class='relatedKey'>.id_labeled</span></td>
-                                                <td class="constraint detail">Implied Constraint<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
-                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
@@ -227,32 +223,31 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
-                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
-                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="307,5,531,387">
-<area shape="rect" id="node2" href="time_detail.html" target="_top" title="time_detail" alt="" coords="5,237,263,424">
+<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="337,5,561,387">
+<area shape="rect" id="node2" href="time_detail.html" target="_top" title="time_detail" alt="" coords="5,237,293,424">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/time_detail.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="307,277,531,659">
-<area shape="rect" id="node2" href="evidence.html" target="_top" title="evidence" alt="" coords="52,216,216,304">
-<area shape="rect" id="node3" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="21,947,247,1035">
-<area shape="rect" id="node4" href="label.html" target="_top" title="label" alt="" coords="60,5,208,93">
-<area shape="rect" id="node5" href="user.html" target="_top" title="user" alt="" coords="68,321,200,409">
-<area shape="rect" id="node6" href="measure.html" target="_top" title="measure" alt="" coords="53,532,215,620">
-<area shape="rect" id="node7" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="45,637,223,725">
-<area shape="rect" id="node8" href="record.html" target="_top" title="record" alt="" coords="60,111,208,199">
-<area shape="rect" id="node9" href="software.html" target="_top" title="software" alt="" coords="53,427,215,515">
-<area shape="rect" id="node10" href="time_detail.html" target="_top" title="time_detail" alt="" coords="5,743,263,929">
+<area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="337,277,561,659">
+<area shape="rect" id="node2" href="evidence.html" target="_top" title="evidence" alt="" coords="67,216,231,304">
+<area shape="rect" id="node3" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="36,947,263,1035">
+<area shape="rect" id="node4" href="label.html" target="_top" title="label" alt="" coords="75,5,223,93">
+<area shape="rect" id="node5" href="user.html" target="_top" title="user" alt="" coords="83,321,215,409">
+<area shape="rect" id="node6" href="measure.html" target="_top" title="measure" alt="" coords="69,532,230,620">
+<area shape="rect" id="node7" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="60,637,239,725">
+<area shape="rect" id="node8" href="record.html" target="_top" title="record" alt="" coords="75,111,223,199">
+<area shape="rect" id="node9" href="software.html" target="_top" title="software" alt="" coords="68,427,231,515">
+<area shape="rect" id="node10" href="time_detail.html" target="_top" title="time_detail" alt="" coords="5,743,293,929">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/time_detail.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
+<<<<<<< HEAD
                                     <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
 <area shape="rect" id="node1" href="labeled.html" target="_top" title="labeled" alt="" coords="315,39,539,420">
@@ -276,6 +271,8 @@
 </map>
                                         <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/time_detail.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
+=======
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
                                 </div>
                             </div>
                         </div><!-- /.box-body -->

@@ -105,8 +105,9 @@
                 <script>
                     var tableData = [
     {
-        "tableName": "record_path",
+        "tableName": "catalogue",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record_path",
@@ -126,11 +127,59 @@
         "type": "int2",
         "length": 5,
         "nullable": "",
+=======
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_municipality",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_label",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_country",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "record_path",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "record_path",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "django_migrations",
         "tableType": "Table",
         "keyClass": "",
@@ -141,6 +190,44 @@
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
+=======
+        "tableName": "time_detail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "beginning",
+        "type": "int2",
+        "length": 5,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_collector",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "municipality",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_municipality",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.municipality_id_municipality_seq'::regclass)",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "comments": ""
     },
     {
@@ -158,6 +245,7 @@
     },
     {
         "tableName": "catalogue",
+<<<<<<< HEAD
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
@@ -165,20 +253,51 @@
         "type": "int2",
         "length": 5,
         "nullable": "",
+=======
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "elevation",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_frequency_detail",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "evidence",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_evidence",
+=======
+        "tableName": "locality",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_locality",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "smallserial",
         "length": 5,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.evidence_id_evidence_seq'::regclass)",
         "comments": ""
     },
@@ -190,12 +309,26 @@
         "name": "height",
         "type": "int4",
         "length": 10,
+=======
+        "defaultValue": "nextval('bioacustica.locality_id_locality_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "funding",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -210,18 +343,35 @@
     },
     {
         "tableName": "datum",
+=======
+        "tableName": "software",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
         "name": "description",
         "type": "varchar",
-        "length": 100,
+        "length": 80,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "is_staff",
+        "type": "bool",
+        "length": 1,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "type",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -230,37 +380,63 @@
         "type": "int2",
         "length": 5,
         "nullable": "",
+=======
+        "tableName": "memory",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "catalogue",
+        "tableName": "labeled",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_h_serial",
         "type": "int2",
         "length": 5,
         "nullable": "",
+=======
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "membership",
+        "type": "numeric",
+        "length": 4,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "sampling",
+        "tableName": "precision",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "date",
         "type": "timestamp",
         "length": 29,
+=======
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_historicalfunding",
         "tableType": "Table",
         "keyClass": "",
@@ -269,6 +445,16 @@
         "type": "varchar",
         "length": 1,
         "nullable": "",
+=======
+        "tableName": "locality",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -278,24 +464,53 @@
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "description",
         "type": "varchar",
         "length": 2147483647,
+        "nullable": "",
+=======
+        "name": "maximum",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "vereda",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_vereda",
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record",
+        "type": "int4",
+        "length": 10,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "vereda",
+        "tableName": "voucher",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_vereda",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_voucher",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "smallserial",
         "length": 5,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.vereda_id_vereda_seq'::regclass)",
         "comments": ""
     },
@@ -321,13 +536,54 @@
         "type": "int4",
         "length": 10,
         "nullable": "√",
+=======
+        "defaultValue": "nextval('bioacustica.voucher_id_voucher_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "pulse_type",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_pulse_type",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.pulse_type_id_pulse_type_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "id_gain",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "record_obs",
+        "tableName": "catalogue",
         "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_h_serial",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "habitat",
+        "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record_obs",
@@ -336,22 +592,39 @@
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.record_obs_id_record_obs_seq'::regclass)",
+=======
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "comments": ""
     },
     {
-        "tableName": "record",
+        "tableName": "user",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "length",
         "type": "int2",
         "length": 5,
+=======
+        "name": "is_active",
+        "type": "bool",
+        "length": 1,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "user",
         "tableType": "Table",
         "keyClass": "",
@@ -360,11 +633,22 @@
         "type": "bool",
         "length": 1,
         "nullable": "√",
+=======
+        "tableName": "photo_path",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "sampling",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -373,6 +657,29 @@
         "type": "int2",
         "length": 5,
         "nullable": "",
+=======
+        "tableName": "municipality",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "date",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -391,6 +698,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "hardware",
         "tableType": "Table",
         "keyClass": "",
@@ -399,6 +707,16 @@
         "type": "varchar",
         "length": 2147483647,
         "nullable": "√",
+=======
+        "tableName": "time_detail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "id_labeled",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -408,15 +726,22 @@
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "description",
         "type": "varchar",
         "length": 100,
+=======
+        "name": "last_login",
+        "type": "date",
+        "length": 13,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "datum",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -463,12 +788,61 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_cataloger",
         "type": "int2",
         "length": 5,
+=======
+        "tableName": "sampling",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "precision",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_precision",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.precision_id_precision_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "department",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_department",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.department_id_department_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
+        "type": "int4",
+        "length": 10,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_historicalfunding",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -515,25 +889,44 @@
         "name": "ending",
         "type": "int4",
         "length": 10,
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_pulse_type",
+        "type": "int2",
+        "length": 5,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "frequency_detail",
+        "tableName": "sampling",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "",
         "keyTitle": "",
         "name": "beginning",
         "type": "int4",
         "length": 10,
         "nullable": "√",
+=======
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_season",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "record",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -560,11 +953,17 @@
         "comments": ""
     },
     {
+=======
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
+<<<<<<< HEAD
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_department",
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_memory",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "int2",
         "length": 5,
         "nullable": "",
@@ -573,6 +972,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "voucher",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -583,6 +983,18 @@
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.voucher_id_voucher_seq'::regclass)",
+=======
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "id_filters",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "comments": ""
     },
     {
@@ -590,6 +1002,7 @@
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
+<<<<<<< HEAD
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_collector",
         "type": "int2",
         "length": 5,
@@ -607,11 +1020,18 @@
         "type": "varchar",
         "length": 100,
         "nullable": "√",
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_datum",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_admin_log",
         "tableType": "Table",
         "keyClass": "",
@@ -619,12 +1039,22 @@
         "name": "object_repr",
         "type": "varchar",
         "length": 200,
+=======
+        "tableName": "sampling",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_cataloger",
+        "type": "int2",
+        "length": 5,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "time_detail",
         "tableType": "Table",
         "keyClass": "",
@@ -632,25 +1062,39 @@
         "name": "ending",
         "type": "int2",
         "length": 5,
-        "nullable": "√",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "precision",
+=======
+        "tableName": "h_serial",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
-        "name": "description",
+        "name": "h_serial",
         "type": "varchar",
-        "length": 100,
+        "length": 64,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
+        "tableName": "precision",
+=======
+        "tableName": "user",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "roles",
+        "type": "varchar",
+        "length": 50,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -665,6 +1109,22 @@
     },
     {
         "tableName": "memory",
+=======
+        "tableName": "type",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_type",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.type_id_type_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "department",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
@@ -677,15 +1137,24 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "habitat",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_habitat",
+=======
+        "tableName": "catalogue_obs",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue_obs",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "smallserial",
         "length": 5,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.habitat_id_habitat_seq'::regclass)",
         "comments": ""
     },
@@ -695,6 +1164,30 @@
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>permission_id",
+=======
+        "defaultValue": "nextval('bioacustica.catalogue_obs_id_catalogue_obs_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "hardware",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_hardware",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.hardware_id_hardware_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "record_path",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "int4",
         "length": 10,
         "nullable": "",
@@ -703,11 +1196,70 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
+=======
+        "tableName": "funding",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_funding",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.funding_id_funding_seq'::regclass)",
+        "comments": "<p>ID Auto incremental<\/p>"
+    },
+    {
+        "tableName": "supply",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 2147483647,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "record_obs",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record_obs",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.record_obs_id_record_obs_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "measure",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 2147483647,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "tableName": "frequency_detail",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "maximum",
+=======
+        "name": "minimal",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "int4",
         "length": 10,
         "nullable": "√",
@@ -716,6 +1268,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_rest_passwordreset_resetpasswordtoken",
         "tableType": "Table",
         "keyClass": "",
@@ -724,11 +1277,22 @@
         "type": "timestamptz",
         "length": 35,
         "nullable": "",
+=======
+        "tableName": "type",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "supply",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -747,10 +1311,18 @@
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_country",
+=======
+        "tableName": "record_path",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record_path",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "smallserial",
         "length": 5,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.country_id_country_seq'::regclass)",
         "comments": ""
     },
@@ -782,6 +1354,13 @@
     },
     {
         "tableName": "apiCRUD_locality",
+=======
+        "defaultValue": "nextval('bioacustica.record_path_id_record_path_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "case",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
@@ -794,6 +1373,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "auth_permission",
         "tableType": "Table",
         "keyClass": "",
@@ -801,12 +1381,22 @@
         "name": "name",
         "type": "varchar",
         "length": 255,
+=======
+        "tableName": "country",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_country",
+        "type": "smallserial",
+        "length": 5,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.country_id_country_seq'::regclass)",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
         "keyClass": "",
@@ -815,21 +1405,43 @@
         "type": "varchar",
         "length": 200,
         "nullable": "",
+=======
+        "tableName": "vereda",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "season",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_season",
+=======
+        "tableName": "frequency_detail",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_frequency_detail",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "smallserial",
         "length": 5,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.season_id_season_seq'::regclass)",
+=======
+        "defaultValue": "nextval('bioacustica.frequency_detail_id_frequency_detail_seq'::regclass)",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "comments": ""
     },
     {
@@ -837,6 +1449,7 @@
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "description",
         "type": "varchar",
         "length": 100,
@@ -1607,25 +2220,39 @@
         "name": "description",
         "type": "varchar",
         "length": 2147483647,
+=======
+        "name": "is_admin",
+        "type": "bool",
+        "length": 1,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "catalogue",
+        "tableName": "pulse_type",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_country",
         "type": "int2",
         "length": 5,
+=======
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "auth_permission",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -1649,16 +2276,36 @@
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.photo_path_id_photo_path_seq'::regclass)",
+=======
+        "tableName": "label",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_label",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.label_id_label_seq'::regclass)",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "comments": ""
     },
     {
         "tableName": "django_migrations",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "",
         "keyTitle": "",
         "name": "app",
         "type": "varchar",
         "length": 255,
+=======
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_supply",
+        "type": "int2",
+        "length": 5,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
@@ -1667,9 +2314,15 @@
     {
         "tableName": "labeled",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "",
         "keyTitle": "",
         "name": "n_calls",
+=======
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_evidence",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "int2",
         "length": 5,
         "nullable": "√",
@@ -1678,6 +2331,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "format",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1696,6 +2350,26 @@
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_vereda",
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_time_detail",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "sampling",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_project",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "int2",
         "length": 5,
         "nullable": "",
@@ -1704,6 +2378,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "software",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1725,8 +2400,31 @@
         "type": "int4",
         "length": 10,
         "nullable": "",
+=======
+        "tableName": "record_obs",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "observation",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "habitat",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_habitat",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.habitat_id_habitat_seq'::regclass)",
         "comments": ""
     },
     {
@@ -1734,7 +2432,11 @@
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
+<<<<<<< HEAD
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_supply",
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_precision",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "int2",
         "length": 5,
         "nullable": "",
@@ -1743,19 +2445,28 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
         "name": "chunks",
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_measure",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "int2",
         "length": 5,
-        "nullable": "√",
+        "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_admin_log",
         "tableType": "Table",
         "keyClass": "",
@@ -1764,11 +2475,35 @@
         "type": "text",
         "length": 2147483647,
         "nullable": "",
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_labeled",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.labeled_id_labeled_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "voucher",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "voucher",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "user",
         "tableType": "Table",
         "keyClass": "",
@@ -1776,12 +2511,22 @@
         "name": "is_admin",
         "type": "bool",
         "length": 1,
+=======
+        "tableName": "season",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "pulse_type",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1802,12 +2547,22 @@
         "name": "membership",
         "type": "numeric",
         "length": 4,
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "chunk",
+        "type": "int2",
+        "length": 5,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "funding",
         "tableType": "Table",
         "keyClass": "",
@@ -1816,11 +2571,22 @@
         "type": "varchar",
         "length": 100,
         "nullable": "√",
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_format",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "frequency_detail",
         "tableType": "Table",
         "keyClass": "",
@@ -1829,11 +2595,22 @@
         "type": "int4",
         "length": 10,
         "nullable": "√",
+=======
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_vereda",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
         "keyClass": "",
@@ -1842,11 +2619,22 @@
         "type": "text",
         "length": 2147483647,
         "nullable": "√",
+=======
+        "tableName": "catalogue_obs",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "habitat",
         "tableType": "Table",
         "keyClass": "",
@@ -1854,12 +2642,22 @@
         "name": "description",
         "type": "varchar",
         "length": 100,
+=======
+        "tableName": "frequency_detail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "ending",
+        "type": "int4",
+        "length": 10,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue_obs",
         "tableType": "Table",
         "keyClass": "",
@@ -1893,12 +2691,35 @@
         "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>app_label",
         "type": "varchar",
         "length": 100,
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "sample_rate",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "voucher",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "id_catalogue",
+        "type": "int4",
+        "length": 10,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "user",
         "tableType": "Table",
         "keyClass": "",
@@ -1918,13 +2739,22 @@
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_memory",
         "type": "int2",
+=======
+        "tableName": "photo_path",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_photo_path",
+        "type": "smallserial",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "length": 5,
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.photo_path_id_photo_path_seq'::regclass)",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "frequency_detail",
         "tableType": "Table",
         "keyClass": "",
@@ -1933,11 +2763,22 @@
         "type": "int4",
         "length": 10,
         "nullable": "√",
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "date",
+        "type": "timestamptz",
+        "length": 35,
+        "nullable": "",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": ""
+        "comments": "<p>Fecha de etiquetado<\/p>"
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue_obs",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -1946,11 +2787,22 @@
         "type": "int4",
         "length": 10,
         "nullable": "",
+=======
+        "tableName": "datum",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "memory",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1971,12 +2823,22 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_time_detail",
         "type": "serial",
         "length": 10,
+=======
+        "tableName": "h_serial",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_hardware",
+        "type": "int2",
+        "length": 5,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.time_detail_id_time_detail_seq'::regclass)",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -1985,16 +2847,30 @@
         "type": "int2",
         "length": 5,
         "nullable": "",
+=======
+        "tableName": "label",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "user",
+        "tableName": "catalogue_obs",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "password",
+=======
+        "name": "observation",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "varchar",
         "length": 100,
         "nullable": "√",
@@ -2003,6 +2879,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
         "keyClass": "indexedColumn",
@@ -2026,6 +2903,31 @@
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
+=======
+        "tableName": "format",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_format",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.format_id_format_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "sampling",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_sampling",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.sampling_id_sampling_seq'::regclass)",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "comments": ""
     },
     {
@@ -2042,6 +2944,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_locality",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2062,12 +2965,35 @@
         "name": "applied",
         "type": "timestamptz",
         "length": 35,
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_labeler",
+        "type": "int2",
+        "length": 5,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "label",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_type",
+        "type": "int2",
+        "length": 5,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "software",
         "tableType": "Table",
         "keyClass": "",
@@ -2089,11 +3015,48 @@
         "type": "varchar",
         "length": 100,
         "nullable": "√",
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.record_id_record_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "datum",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_datum",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.datum_id_datum_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_sampling",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "user",
         "tableType": "Table",
         "keyClass": "",
@@ -2102,24 +3065,39 @@
         "type": "bool",
         "length": 1,
         "nullable": "√",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "apiCRUD_historicalfunding",
+=======
+        "tableName": "frequency_detail",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
-        "name": "description",
-        "type": "varchar",
-        "length": 100,
-        "nullable": "√",
+        "name": "id_labeled",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
+        "tableName": "apiCRUD_historicalfunding",
+=======
+        "tableName": "catalogue",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.catalogue_id_catalogue_seq'::regclass)",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "department",
         "tableType": "Table",
         "keyClass": "",
@@ -2127,12 +3105,48 @@
         "name": "description",
         "type": "varchar",
         "length": 100,
+=======
+        "tableName": "h_serial",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_h_serial",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.h_serial_id_h_serial_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "supply",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_supply",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.supply_id_supply_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "chunks",
+        "type": "int2",
+        "length": 5,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "record_obs",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -2140,12 +3154,22 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record",
         "type": "int4",
         "length": 10,
+=======
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_department",
+        "type": "int2",
+        "length": 5,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "pulse_type",
         "tableType": "Table",
         "keyClass": "",
@@ -2153,12 +3177,22 @@
         "name": "description",
         "type": "varchar",
         "length": 100,
+=======
+        "tableName": "memory",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_memory",
+        "type": "smallserial",
+        "length": 5,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.memory_id_memory_seq'::regclass)",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
         "keyClass": "",
@@ -2167,11 +3201,22 @@
         "type": "inet",
         "length": 2147483647,
         "nullable": "",
+=======
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "coordinates",
+        "type": "point",
+        "length": 2147483647,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue_obs",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2192,6 +3237,15 @@
         "name": "roles",
         "type": "varchar",
         "length": 50,
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "channels",
+        "type": "int2",
+        "length": 5,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
@@ -2200,6 +3254,7 @@
     {
         "tableName": "evidence",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "",
         "keyTitle": "",
         "name": "description",
@@ -2219,16 +3274,45 @@
         "type": "int4",
         "length": 10,
         "nullable": "",
+=======
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_evidence",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.evidence_id_evidence_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "height",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "user",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
         "name": "username",
+=======
+        "tableName": "record_path",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "fingerprint",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "varchar",
         "length": 100,
         "nullable": "√",
@@ -2237,6 +3321,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "department",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2271,11 +3356,48 @@
         "type": "varchar",
         "length": 256,
         "nullable": "",
+=======
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_user",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.user_id_user_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "season",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_season",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.season_id_season_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "time_detail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "ending",
+        "type": "int2",
+        "length": 5,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_admin_log",
         "tableType": "Table",
         "keyClass": "",
@@ -2283,12 +3405,22 @@
         "name": "object_id",
         "type": "text",
         "length": 2147483647,
+=======
+        "tableName": "frequency_detail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "beginning",
+        "type": "int4",
+        "length": 10,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "record_path",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -2299,6 +3431,18 @@
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
+=======
+        "tableName": "project",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_project",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.project_id_project_seq'::regclass)",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "comments": ""
     },
     {
@@ -2319,15 +3463,16 @@
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
-        "name": "description",
-        "type": "varchar",
-        "length": 100,
+        "name": "date",
+        "type": "timestamp",
+        "length": 29,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "",
@@ -2335,21 +3480,52 @@
         "name": "elevation",
         "type": "int4",
         "length": 10,
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "length",
+        "type": "int2",
+        "length": 5,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "project",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "measure",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_measure",
+=======
+        "tableName": "software",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_software",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "smallserial",
         "length": 5,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.measure_id_measure_seq'::regclass)",
         "comments": ""
     },
@@ -2359,6 +3535,30 @@
         "keyClass": "",
         "keyTitle": "",
         "name": "fingerprint",
+=======
+        "defaultValue": "nextval('bioacustica.software_id_software_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "case",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_case",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.case_id_case_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "email",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "varchar",
         "length": 100,
         "nullable": "√",
@@ -2380,6 +3580,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "user",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2440,20 +3641,52 @@
         "type": "varchar",
         "length": 10,
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+=======
+        "tableName": "time_detail",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_time_detail",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.time_detail_id_time_detail_seq'::regclass)",
         "comments": ""
     },
     {
         "tableName": "hardware",
         "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 2147483647,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "hardware",
+        "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_hardware",
+=======
+        "tableName": "measure",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_measure",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "smallserial",
         "length": 5,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.hardware_id_hardware_seq'::regclass)",
         "comments": ""
     },
@@ -2472,6 +3705,13 @@
     },
     {
         "tableName": "frequency_detail",
+=======
+        "defaultValue": "nextval('bioacustica.measure_id_measure_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "record_obs",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
@@ -2484,6 +3724,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_frequencydetail",
         "tableType": "Table",
         "keyClass": "",
@@ -2491,30 +3732,56 @@
         "name": "begining",
         "type": "int4",
         "length": 10,
+=======
+        "tableName": "country",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "catalogue",
+        "tableName": "user",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_sampling",
         "type": "int2",
         "length": 5,
         "nullable": "",
+=======
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "is_superuser",
+        "type": "bool",
+        "length": 1,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "voucher",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
         "name": "voucher",
+=======
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "username",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "type": "varchar",
         "length": 100,
         "nullable": "√",
@@ -2523,6 +3790,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_migrations",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2554,19 +3822,12 @@
         "keyClass": "indexedColumn",
         "keyTitle": "Indexed",
         "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>view_method",
-        "type": "varchar",
-        "length": 200,
-        "nullable": "√",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "labeled",
+=======
+        "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_labeler",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_case",
         "type": "int2",
         "length": 5,
         "nullable": "",
@@ -2575,6 +3836,58 @@
         "comments": ""
     },
     {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_habitat",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "password",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+        "type": "varchar",
+        "length": 200,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_labeler",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "size",
+        "type": "float4",
+        "length": 8,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "auth_group",
         "tableType": "Table",
         "keyClass": "indexedColumn",
@@ -2583,11 +3896,22 @@
         "type": "varchar",
         "length": 150,
         "nullable": "",
+=======
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "size",
+        "type": "float4",
+        "length": 8,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "sampling",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2609,11 +3933,22 @@
         "type": "int4",
         "length": 10,
         "nullable": "",
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "n_calls",
+        "type": "int2",
+        "length": 5,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "",
@@ -2633,13 +3968,22 @@
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_type",
         "type": "int2",
+=======
+        "tableName": "vereda",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_vereda",
+        "type": "smallserial",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "length": 5,
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.vereda_id_vereda_seq'::regclass)",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "auth_permission",
         "tableType": "Table",
         "keyClass": "indexedColumn",
@@ -2648,11 +3992,22 @@
         "type": "varchar",
         "length": 100,
         "nullable": "",
+=======
+        "tableName": "photo_path",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "path",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
         "keyClass": "",
@@ -2660,10 +4015,20 @@
         "name": "data",
         "type": "text",
         "length": 2147483647,
+=======
+        "tableName": "frequency_detail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "peak",
+        "type": "int4",
+        "length": 10,
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
+<<<<<<< HEAD
     },
     {
         "tableName": "locality",
@@ -2677,6 +4042,8 @@
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.locality_id_locality_seq'::regclass)",
         "comments": ""
+=======
+>>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
     }
 ];
                     var config = {
