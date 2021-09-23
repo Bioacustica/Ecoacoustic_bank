@@ -4,14 +4,17 @@ country
 datum
 department
 evidence
+filter
 format
 frequency_detail
 funding
+gain
 habitat
 hardware
 locality
 measure
 memory
+microphone
 municipality
 precision
 pulse_type
@@ -33,3 +36,4 @@ record_obs
 record_path
 voucher
 labeled
+apicrud_keys

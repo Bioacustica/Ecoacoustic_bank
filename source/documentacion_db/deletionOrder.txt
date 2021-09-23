@@ -1,3 +1,4 @@
+apicrud_keys
 labeled
 voucher
 record_path
@@ -19,14 +20,17 @@ season
 pulse_type
 precision
 municipality
+microphone
 memory
 measure
 locality
 hardware
 habitat
+gain
 funding
 frequency_detail
 format
+filter
 evidence
 department
 datum

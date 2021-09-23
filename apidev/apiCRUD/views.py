@@ -68,21 +68,21 @@ def my_obtain_token_view(request):
         }
         conexion1 = psycopg2.connect(**credenciales_db)
         conexion1.autocommit = True
-        verificacion = """SELECT  username FROM bioacustica."apiCRUD_keys"  WHERE username='{}';""".format(user.username)
+        verificacion = """SELECT  username FROM bioacustica."apicrud_keys"  WHERE username='{}';""".format(user.username)
         with conexion1.cursor() as cursor1:
             cursor1.execute(verificacion)
             name = cursor1.fetchone()
             if name is None:
                 with conexion1.cursor() as cursor2:
-                    payload2 = """INSERT INTO bioacustica."apiCRUD_keys" (username, key) VALUES ('{}', '{}') ;""".format(user.username, llave)
+                    payload2 = """INSERT INTO bioacustica."apicrud_keys" (username, key) VALUES ('{}', '{}') ;""".format(user.username, llave)
                     cursor2.execute(payload2)
             cursor1.execute(verificacion)
             nombre = cursor1.fetchone()
             if user.username == nombre[0]:
-                payload = """UPDATE bioacustica."apiCRUD_keys" SET key = '{}' WHERE username ='{}' ;""".format(llave, user.username)
+                payload = """UPDATE bioacustica."apicrud_keys" SET key = '{}' WHERE username ='{}' ;""".format(llave, user.username)
                 cursor1.execute(payload)
             else:
-                payload2 = """INSERT INTO bioacustica."apiCRUD_keys" (username, key) VALUES ('{}', '{}') ;""".format(user.username, llave)
+                payload2 = """INSERT INTO bioacustica."apicrud_keys" (username, key) VALUES ('{}', '{}') ;""".format(user.username, llave)
                 cursor1.execute(payload2)
 
         diccio = {"username": user.username, "key": llave}
@@ -187,7 +187,7 @@ def filtered_record_view(request):
     }
     conexion1 = psycopg2.connect(**credenciales_db_admin)
     conexion1.autocommit = True
-    key_query = '''SELECT key FROM bioacustica."apiCRUD_keys" where username='{}';'''.format(nombre_usuario)
+    key_query = '''SELECT key FROM bioacustica."apicrud_keys" where username='{}';'''.format(nombre_usuario)
     with conexion1.cursor() as cursor1:
         cursor1.execute(key_query)
         raw = cursor1.fetchone()
@@ -260,6 +260,13 @@ class DatumView(viewsets.ModelViewSet):
 
 
 @authentication_classes([JWTAuthentication])
+class MicrophoneView(viewsets.ModelViewSet):
+    queryset = Microphone.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = MicrophoneSerializer
+
+
+@authentication_classes([JWTAuthentication])
 class DepartmentView(viewsets.ModelViewSet):
     queryset = Department.objects.all()
     permission_classes = (IsAdmin,)
@@ -327,6 +334,20 @@ class LocalityView(viewsets.ModelViewSet):
     queryset = Locality.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = LocalitySerializer
+
+
+@authentication_classes([JWTAuthentication])
+class GainView(viewsets.ModelViewSet):
+    queryset = Gain.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = GainSerializer
+
+
+@authentication_classes([JWTAuthentication])
+class FilterView(viewsets.ModelViewSet):
+    queryset = Filter.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = FilterSerializer
 
 
 @authentication_classes([JWTAuthentication])

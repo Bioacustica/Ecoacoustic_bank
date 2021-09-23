@@ -224,38 +224,49 @@ class Catalogue(models.Model):
     id_sampling = models.ForeignKey(
         "Sampling", models.DO_NOTHING, db_column="id_sampling"
     )
-    id_country = models.ForeignKey("Country", models.DO_NOTHING, db_column="id_country")
+    id_country = models.ForeignKey(
+        "Country", models.DO_NOTHING, db_column="id_country")
     id_department = models.ForeignKey(
         "Department", models.DO_NOTHING, db_column="id_department"
     )
     id_municipality = models.ForeignKey(
         "Municipality", models.DO_NOTHING, db_column="id_municipality"
     )
-    id_vereda = models.ForeignKey("Vereda", models.DO_NOTHING, db_column="id_vereda")
+    id_vereda = models.ForeignKey(
+        "Vereda", models.DO_NOTHING, db_column="id_vereda")
     id_locality = models.ForeignKey(
         "Locality", models.DO_NOTHING, db_column="id_locality"
     )
     id_gain = models.IntegerField()
-    id_filters = models.IntegerField()
+    id_filter = models.IntegerField()
     id_collector = models.ForeignKey(
         "User", models.DO_NOTHING, db_column="id_collector"
     )
     id_h_serial = models.ForeignKey(
         "HSerial", models.DO_NOTHING, db_column="id_h_serial"
     )
-    id_supply = models.ForeignKey("Supply", models.DO_NOTHING, db_column="id_supply")
-    id_case = models.ForeignKey(Case, models.DO_NOTHING, db_column="id_case")
-    id_memory = models.ForeignKey("Memory", models.DO_NOTHING, db_column="id_memory")
-    id_habitat = models.ForeignKey("Habitat", models.DO_NOTHING, db_column="id_habitat")
+    id_supply = models.ForeignKey(
+        "Supply", models.DO_NOTHING, db_column="id_supply")
+    id_case = models.ForeignKey(
+        Case, models.DO_NOTHING, db_column="id_case")
+    id_memory = models.ForeignKey(
+        "Memory", models.DO_NOTHING, db_column="id_memory")
+    id_habitat = models.ForeignKey(
+        "Habitat", models.DO_NOTHING, db_column="id_habitat")
     id_precision = models.ForeignKey(
-        "Precision", models.DO_NOTHING, db_column="id_precision"
-    )
-    id_datum = models.ForeignKey("Datum", models.DO_NOTHING, db_column="id_datum")
+        "Precision", models.DO_NOTHING, db_column="id_precision")
+    id_datum = models.ForeignKey(
+        "Datum", models.DO_NOTHING, db_column="id_datum")
+    id_microphone = models.ForeignKey(
+        "Microphone", models.DO_NOTHING, db_column="id_microphone")
     elevation = models.IntegerField(blank=True, null=True)
-    coordinates = models.TextField(blank=True, null=True)  # This field type is a guess.
     height = models.IntegerField(blank=True, null=True)
     chunks = models.SmallIntegerField(blank=True, null=True)
     size = models.FloatField(blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
 
     class Meta:
         managed = False
@@ -460,6 +471,18 @@ class Datum(models.Model):
     class Meta:
         managed = False
         db_table = "datum"
+
+
+class Microphone(models.Model):
+    id_microphone = models.AutoField(primary_key=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        managed = False
+        db_table = "microphone"
 
 
 class Department(models.Model):
@@ -1187,6 +1210,29 @@ class Locality(models.Model):
         if request.user.roles == "admin":
             return True
         return False
+
+class Gain(models.Model):
+    id_gain = models.AutoField(primary_key=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        managed = False
+        db_table = "gain"
+
+
+class Filter(models.Model):
+    id_filter = models.AutoField(primary_key=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        managed = False
+        db_table = "filter"
 
 
 class Measure(models.Model):
