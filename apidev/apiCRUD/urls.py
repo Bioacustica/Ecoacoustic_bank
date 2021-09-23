@@ -2,12 +2,11 @@ from django import urls
 from django.contrib import admin
 from django.urls import path, include
 from apiCRUD import views
-from .views import ChangePasswordView, registration
+from .views import ChangePasswordView, registration, filtered_record_view, user_delete_view, my_obtain_token_view
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from apiCRUD.views import MyObtainTokenView
 from rest_framework.routers import DefaultRouter
 
 # Aqui creamos las urls con un sobrenombre memotecnico
@@ -52,9 +51,10 @@ router.register("User", views.UserView)
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("login/", MyObtainTokenView.as_view()),
+    path("login/", my_obtain_token_view, name="login"),
     path("token/refresh/", TokenRefreshView.as_view()),
     path("register/", registration, name="register"),
+    path("filter/", filtered_record_view, name="filter"),
     path("change-password/", ChangePasswordView.as_view(), name="change-pwd"),
     path(
         "password_reset/",
@@ -64,5 +64,5 @@ urlpatterns = [
         "password_reset/confirm/",
         include("django_rest_passwordreset.urls", namespace="password_reset_confirm"),
     ),
-    path("<int:id_user>/delete/", views.user_delete_view, name="delete_user"),
+    path("delete/<int:id_user>/", views.user_delete_view, name="delete_user"),
 ]

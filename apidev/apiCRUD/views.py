@@ -1,14 +1,17 @@
-# librerias necesarias
 import json
-import coreapi
 import logging
-from django.http import request
+import jwt
+from django.http import request, JsonResponse
 
 import psycopg2
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from psycopg2.extensions import ISOLATION_LEVEL_READ_UNCOMMITTED
 from rest_framework import generics, viewsets
-from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.decorators import (
+    authentication_classes,
+    permission_classes,
+    api_view,
+)
 from rest_framework import response, decorators, status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -16,12 +19,15 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.views import TokenObtainPairView
 from dry_rest_permissions.generics import DRYPermissions
 from rest_framework_tracking.mixins import LoggingMixin
+from rest_framework_simplejwt.tokens import RefreshToken
+from cryptography.fernet import Fernet
 
 from .models import Funding
 from .serializers import MyTokenObtainPairSerializer
 from .fnt import choose_role, change_password, delete_user
 from .serializers import *
 from .custom_permissions import IsAdmin
+from django.conf import settings
 
 # Vistas hechas con el model view set para hacer el CRUD
 """La Clase ModelViewSet incluye implementaciones para
@@ -33,21 +39,89 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
-class MyObtainTokenView(TokenObtainPairView):
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def my_obtain_token_view(request):
     """clase encargada de login con  Users de la DB"""
 
-    permission_classes = (AllowAny,)
-    serializer_class = MyTokenObtainPairSerializer
+    """
+    obtenemos el username(email) y contraseña con el que
+    se hará la uatenticación
+    """
+    username = request.POST.get("email")
+    password = request.POST.get("password")
+    # Verificamos las credenciales y creamos el objeto usuario
+    user = authenticate(username=username, password=password)
 
+    if user is not None:
+        key = Fernet.generate_key()
+        fernet = Fernet(key)
+        encMessage = fernet.encrypt(request.data["password"].encode())
+        llave = key.decode()
+
+        credenciales_db = {
+            "user": "animalesitm",
+            "password": "animalesitm",
+            "host": "postgres",
+            "port": 5432,
+            "database": "animalesitm",
+        }
+        conexion1 = psycopg2.connect(**credenciales_db)
+        conexion1.autocommit = True
+        verificacion = """SELECT  username FROM bioacustica."apiCRUD_keys"  WHERE username='{}';""".format(user.username)
+        with conexion1.cursor() as cursor1:
+            cursor1.execute(verificacion)
+            name = cursor1.fetchone()
+            if name is None:
+                with conexion1.cursor() as cursor2:
+                    payload2 = """INSERT INTO bioacustica."apiCRUD_keys" (username, key) VALUES ('{}', '{}') ;""".format(user.username, llave)
+                    cursor2.execute(payload2)
+            cursor1.execute(verificacion)
+            nombre = cursor1.fetchone()
+            if user.username == nombre[0]:
+                payload = """UPDATE bioacustica."apiCRUD_keys" SET key = '{}' WHERE username ='{}' ;""".format(llave, user.username)
+                cursor1.execute(payload)
+            else:
+                payload2 = """INSERT INTO bioacustica."apiCRUD_keys" (username, key) VALUES ('{}', '{}') ;""".format(user.username, llave)
+                cursor1.execute(payload2)
+
+        diccio = {"username": user.username, "key": llave}
+        with open("keys.json", "w") as f:
+            json.dump(diccio, f)
+
+        refreshToken = RefreshToken.for_user(user)
+        accessToken = refreshToken.access_token
+
+        decodeJTW = jwt.decode(
+            str(accessToken), settings.SECRET_KEY, algorithms=["HS256"]
+        )
+
+        # add payload here!!
+        decodeJTW["user"] = user.username
+        decodeJTW["password"] = encMessage.decode()
+
+        # encode
+        encoded = jwt.encode(decodeJTW, settings.SECRET_KEY, algorithm="HS256")
+
+        return Response(
+            {
+                "status": " Logeado con exito",
+                "refresh": str(refreshToken),
+                "access": str(encoded),
+                "username": str(user.username),
+                "roles": str(user.roles),
+            }
+        )
+
+    else:
+        return Response({"status": "Sus credenciales no son correctas"})
 
 
 #  Función  encargada de registrar usuarios
 @decorators.api_view(["POST"])
 @authentication_classes([JWTAuthentication])
 @decorators.permission_classes(
-    [
-        IsAdmin,
-    ]
+    [IsAdmin,]
 )
 def registration(request):
     """
@@ -56,8 +130,6 @@ def registration(request):
     :return: si todo fue exitoso devuelve un creado de forma exitosa
     :rtype: Http status
     """
-    print(request.data)
-    print(len(request.data))
     username = request.data["username"]
     email = request.data["email"]
     password = request.data["password"]
@@ -93,8 +165,63 @@ def registration(request):
 # la clase logginMixin  se encarga de hacer logs en la base de datos
 class FundingsView(LoggingMixin, viewsets.ModelViewSet):
     queryset = Funding.objects.all()
-    permission_classes = (IsAdmin,)
+    # permission_classes = (IsAdmin,)
     serializer_class = FundingSerializer
+
+
+
+@decorators.api_view(["GET"])
+@authentication_classes([JWTAuthentication])
+def filtered_record_view(request):
+    token = request.META.get('HTTP_AUTHORIZATION', 'access')
+    decoded = jwt.decode(token[7:], options={"verify_signature": False})
+    pwd = decoded["password"].encode()
+    nombre_usuario = decoded["user"]
+
+    credenciales_db_admin = {
+        "user": "animalesitm",
+        "password": "animalesitm",
+        "host": "postgres",
+        "port": 5432,
+        "database": "animalesitm",
+    }
+    conexion1 = psycopg2.connect(**credenciales_db_admin)
+    conexion1.autocommit = True
+    key_query = '''SELECT key FROM bioacustica."apiCRUD_keys" where username='{}';'''.format(nombre_usuario)
+    with conexion1.cursor() as cursor1:
+        cursor1.execute(key_query)
+        raw = cursor1.fetchone()
+        print(raw)
+        raw_str = str(raw[0]).encode()
+        print(raw_str)
+
+    with open("keys.json") as f:
+        data = json.load(f)
+
+    username = data["username"]
+    key = data["key"].encode()
+
+    fernet = Fernet(raw_str)
+    raw_password = fernet.decrypt(pwd).decode()
+    print(raw_password)
+    label = request.data["label"]
+    db_name = settings.DATABASES["animalesitm"]["NAME"]
+    db_port = settings.DATABASES["animalesitm"]["PORT"]
+    db_host = settings.DATABASES["animalesitm"]["HOST"]
+    credenciales_db = {
+        "user": "daniel3",
+        "password": "123456789",
+        "host": db_host,
+        "port": db_port,
+        "database": db_name,
+    }
+    conexion2 = psycopg2.connect(**credenciales_db)
+    query = "SELECT get_freq_table_general('{}');".format(label)
+    with conexion2.cursor() as cursor2:
+        cursor2.execute(query)
+        fetch = cursor2.fetchall()
+        print(type(fetch))
+    return response.Response(fetch, status=status.HTTP_200_OK)
 
 
 @authentication_classes([JWTAuthentication])
@@ -162,7 +289,6 @@ class FormatView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class HSerialView(viewsets.ModelViewSet):
-
     queryset = HSerial.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = HSerialSerializer
@@ -338,8 +464,11 @@ class UserView(viewsets.ModelViewSet):
 
 
 @decorators.api_view(["DELETE"])
+@authentication_classes([JWTAuthentication])
+@decorators.permission_classes(
+    [IsAdmin,]
+)
 def user_delete_view(request, id_user):
-    permission_classes = (IsAdmin,)
     """
     Función encargada de eliminar 
     usuarios, recibe como parametro su
