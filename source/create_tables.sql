@@ -300,8 +300,14 @@ WITH (
 CREATE TABLE bioacustica."user"
 (
     id_user smallserial NOT NULL,
-    name character varying(100),
-    email character varying(100),
+    name character varying(100) NOT NULL,
+    email character varying(100) NOT NULL,
+    username character varying(100),
+    last_login date,
+    is_active boolean,
+    is_staff boolean,
+    is_superuser boolean,
+    roles character varying(50) NOT NULL,
     PRIMARY KEY (id_user)
 )
 WITH (
