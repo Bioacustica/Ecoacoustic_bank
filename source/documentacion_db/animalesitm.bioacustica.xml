@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<database name="animalesitm" schema="bioacustica" type="PostgreSQL - 13.3 (Debian 13.3-1.pgdg100+1)">
+<database name="animalesitm" schema="bioacustica" type="PostgreSQL - 13.4 (Debian 13.4-1.pgdg100+1)">
    <sequences>
       <sequence increment="1" name="apiCRUD_frequencydetail_id_frequency_detail_seq" startValue="1"/>
       <sequence increment="1" name="apiCRUD_historicalfunding_history_id_seq" startValue="1"/>
@@ -84,7 +84,11 @@
             <column ascending="true" name="id_funding"/>
          </index>
       </table>
+<<<<<<< HEAD
       <table name="apicrud_keys" numRows="1" remarks="" schema="bioacustica" type="TABLE">
+=======
+      <table name="apicrud_keys" numRows="0" remarks="" schema="bioacustica" type="TABLE">
+>>>>>>> 5364bf5eb3d7a8596936082627049b296c7bf15f
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="username" nullable="false" remarks="" size="200" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="key" nullable="false" remarks="" size="200" type="varchar" typeCode="12"/>
       </table>
@@ -135,7 +139,11 @@
             <column ascending="true" name="permission_id"/>
          </index>
       </table>
+<<<<<<< HEAD
       <table name="auth_permission" numRows="228" remarks="" schema="bioacustica" type="TABLE">
+=======
+      <table name="auth_permission" numRows="216" remarks="" schema="bioacustica" type="TABLE">
+>>>>>>> 5364bf5eb3d7a8596936082627049b296c7bf15f
          <column autoUpdated="true" defaultValue="nextval('bioacustica.auth_permission_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="permission_id" foreignKey="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" implied="false" onDeleteCascade="false" schema="bioacustica" table="auth_group_permissions"/>
          </column>
@@ -302,7 +310,11 @@
          </index>
          <checkConstraint constraint="((action_flag &gt;= 0))" name="django_admin_log_action_flag_check"/>
       </table>
+<<<<<<< HEAD
       <table name="django_content_type" numRows="57" remarks="" schema="bioacustica" type="TABLE">
+=======
+      <table name="django_content_type" numRows="54" remarks="" schema="bioacustica" type="TABLE">
+>>>>>>> 5364bf5eb3d7a8596936082627049b296c7bf15f
          <column autoUpdated="true" defaultValue="nextval('bioacustica.django_content_type_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="content_type_id" foreignKey="auth_permission_content_type_id_2f476e4b_fk_django_co" implied="false" onDeleteCascade="false" schema="bioacustica" table="auth_permission"/>
             <child column="content_type_id" foreignKey="django_admin_log_content_type_id_c4bce8eb_fk_django_co" implied="false" onDeleteCascade="false" schema="bioacustica" table="django_admin_log"/>
@@ -318,7 +330,11 @@
             <column ascending="true" name="model"/>
          </index>
       </table>
+<<<<<<< HEAD
       <table name="django_migrations" numRows="46" remarks="" schema="bioacustica" type="TABLE">
+=======
+      <table name="django_migrations" numRows="45" remarks="" schema="bioacustica" type="TABLE">
+>>>>>>> 5364bf5eb3d7a8596936082627049b296c7bf15f
          <column autoUpdated="true" defaultValue="nextval('bioacustica.django_migrations_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="app" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
@@ -779,7 +795,11 @@
             <column ascending="true" name="id_type"/>
          </index>
       </table>
+<<<<<<< HEAD
       <table name="user" numRows="1" remarks="" schema="bioacustica" type="TABLE">
+=======
+      <table name="user" numRows="5" remarks="" schema="bioacustica" type="TABLE">
+>>>>>>> 5364bf5eb3d7a8596936082627049b296c7bf15f
          <column autoUpdated="true" defaultValue="nextval('bioacustica.user_id_user_seq'::regclass)" digits="0" id="0" name="id_user" nullable="false" remarks="" size="10" type="serial" typeCode="4">
             <child column="history_user_id" foreignKey="apiCRUD_historicalfu_history_user_id_52526d39_fk_user_id_u" implied="false" onDeleteCascade="false" schema="bioacustica" table="apiCRUD_historicalfunding"/>
             <child column="id_collector" foreignKey="catalogue_id_collector_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="catalogue"/>
@@ -789,15 +809,15 @@
             <child column="user_id" foreignKey="rest_framework_track_user_id_671b70b7_fk_user_id_u" implied="false" onDeleteCascade="false" schema="bioacustica" table="rest_framework_tracking_apirequestlog"/>
             <child column="id_cataloger" foreignKey="sampling_id_cataloger_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="sampling"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="username" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="username" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="password" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="email" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="email" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="last_login" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="is_admin" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="is_active" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="is_staff" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="is_superuser" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="roles" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="roles" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
          <primaryKey column="id_user" sequenceNumberInPK="1"/>
          <index name="user_pkey" unique="true">
             <column ascending="true" name="id_user"/>

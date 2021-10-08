@@ -18,9 +18,45 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     email = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=128, write_only=True)
 
+    @classmethod
+    def get_token(cls, user: object) -> dict:
+        """
+        obtiene el token del user instance
+        :param user: user class instance
+        :return: JSON
+        """
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['username'] = user.username
+        token['roles'] = user.roles
+        return token
+
+    def validate(self, attrs: dict) -> dict:
+        """
+        Función encargada de retonar
+        el json response con los tokens
+        e información adicional
+        :param attrs: obtain a dict for user
+        :return: json
+        """
+        data = super().validate(attrs)
+
+        refresh = self.get_token(self.user)
+        data['refresh'] = str(refresh)
+        data['access'] = str(refresh.access_token)
+
+        # Add extra responses here
+        data['username'] = self.user.username
+        data['roles'] = self.user.roles
+        username = self.user.username
+        password = self.user.password
+        return data
+
     class Meta:
         model = User
         fields = ["email", "password"]
+
 
 """Clases encargadas de convertir querysets a forma nativa
     para trabajarla en formato json"""

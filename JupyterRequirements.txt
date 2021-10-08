@@ -1,4 +1,9 @@
 jupyterlab
 pylint
 ipykernel
+<<<<<<< HEAD
 notebook
+=======
+notebook
+minio
+>>>>>>> 5364bf5eb3d7a8596936082627049b296c7bf15f

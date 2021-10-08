@@ -100,14 +100,14 @@ class User(AbstractBaseUser):
     )
     id_user = models.AutoField(primary_key=True)
     username = models.CharField(max_length=100, blank=False, null=False)
-    password = models.CharField(max_length=100, blank=False, null=False)
-    email = models.CharField(max_length=100, blank=True, null=True, unique=True)
+    password = models.CharField(max_length=100, blank=True, null=False)
+    email = models.CharField(max_length=100, blank=False, null=False, unique=True)
     last_login = models.DateField(verbose_name="last login", auto_now=True)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    roles = models.CharField(max_length=50, choices=ROLES, null=True)
+    roles = models.CharField(max_length=50, choices=ROLES, null=False)
 
     USERNAME_FIELD = "email"
 
@@ -220,57 +220,36 @@ class Case(models.Model):
 
 
 class Catalogue(models.Model):
-    id_catalogue = models.AutoField(primary_key=True)
-    id_sampling = models.ForeignKey(
-        "Sampling", models.DO_NOTHING, db_column="id_sampling"
-    )
-    id_country = models.ForeignKey(
-        "Country", models.DO_NOTHING, db_column="id_country")
-    id_department = models.ForeignKey(
-        "Department", models.DO_NOTHING, db_column="id_department"
-    )
-    id_municipality = models.ForeignKey(
-        "Municipality", models.DO_NOTHING, db_column="id_municipality"
-    )
-    id_vereda = models.ForeignKey(
-        "Vereda", models.DO_NOTHING, db_column="id_vereda")
-    id_locality = models.ForeignKey(
-        "Locality", models.DO_NOTHING, db_column="id_locality"
-    )
-    id_gain = models.IntegerField()
-    id_filter = models.IntegerField()
-    id_collector = models.ForeignKey(
-        "User", models.DO_NOTHING, db_column="id_collector"
-    )
-    id_h_serial = models.ForeignKey(
-        "HSerial", models.DO_NOTHING, db_column="id_h_serial"
-    )
-    id_supply = models.ForeignKey(
-        "Supply", models.DO_NOTHING, db_column="id_supply")
-    id_case = models.ForeignKey(
-        Case, models.DO_NOTHING, db_column="id_case")
-    id_memory = models.ForeignKey(
-        "Memory", models.DO_NOTHING, db_column="id_memory")
-    id_habitat = models.ForeignKey(
-        "Habitat", models.DO_NOTHING, db_column="id_habitat")
-    id_precision = models.ForeignKey(
-        "Precision", models.DO_NOTHING, db_column="id_precision")
-    id_datum = models.ForeignKey(
-        "Datum", models.DO_NOTHING, db_column="id_datum")
-    id_microphone = models.ForeignKey(
-        "Microphone", models.DO_NOTHING, db_column="id_microphone")
+
+    id_catalogue = models.SmallAutoField(primary_key=True)
+    id_sampling = models.ForeignKey('Sampling', models.DO_NOTHING, db_column='id_sampling')
+    id_country = models.ForeignKey('Country', models.DO_NOTHING, db_column='id_country')
+    id_department = models.ForeignKey('Department', models.DO_NOTHING, db_column='id_department')
+    id_municipality = models.ForeignKey('Municipality', models.DO_NOTHING, db_column='id_municipality')
+    id_vereda = models.ForeignKey('Vereda', models.DO_NOTHING, db_column='id_vereda')
+    id_locality = models.ForeignKey('Locality', models.DO_NOTHING, db_column='id_locality')
+    id_gain = models.ForeignKey('Gain', models.DO_NOTHING, db_column='id_gain')
+    id_filter = models.ForeignKey('Filter', models.DO_NOTHING, db_column='id_filter')
+    id_collector = models.ForeignKey('User', models.DO_NOTHING, db_column='id_collector')
+    id_h_serial = models.ForeignKey('HSerial', models.DO_NOTHING, db_column='id_h_serial')
+    id_supply = models.ForeignKey('Supply', models.DO_NOTHING, db_column='id_supply')
+    id_case = models.ForeignKey(Case, models.DO_NOTHING, db_column='id_case')
+    id_memory = models.ForeignKey('Memory', models.DO_NOTHING, db_column='id_memory')
+    id_habitat = models.ForeignKey('Habitat', models.DO_NOTHING, db_column='id_habitat')
+    id_precision = models.ForeignKey('Precision', models.DO_NOTHING, db_column='id_precision')
+    id_datum = models.ForeignKey('Datum', models.DO_NOTHING, db_column='id_datum')
+    id_microphone = models.ForeignKey('Microphone', models.DO_NOTHING, db_column='id_microphone')
     elevation = models.IntegerField(blank=True, null=True)
     height = models.IntegerField(blank=True, null=True)
     chunks = models.SmallIntegerField(blank=True, null=True)
     size = models.FloatField(blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-
+    description = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = "catalogue"
+        db_table = 'catalogue'
 
     def __str__(self):
         return self.elevation
@@ -2212,3 +2191,28 @@ class Keys(models.Model):
     class Meta:
         managed = False
         db_table = "apiCRUD_keys"
+
+class Filter(models.Model):
+    id_filter = models.SmallIntegerField(primary_key=True)
+    decription = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'filter'
+
+class Gain(models.Model):
+    id_gain = models.SmallIntegerField(primary_key=True)
+    description = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'gain'
+
+
+class Microphone(models.Model):
+    id_microphone = models.SmallIntegerField(primary_key=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'microphone'

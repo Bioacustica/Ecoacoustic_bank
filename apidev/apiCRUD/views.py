@@ -1,11 +1,13 @@
+import collections
+import csv
 import json
 import logging
 import jwt
-from django.http import request, JsonResponse
 
+from django.http import HttpResponse
 import psycopg2
 from django.contrib.auth import get_user_model, authenticate
-from psycopg2.extensions import ISOLATION_LEVEL_READ_UNCOMMITTED
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 from rest_framework import generics, viewsets
 from rest_framework.decorators import (
     authentication_classes,
@@ -16,15 +18,13 @@ from rest_framework import response, decorators, status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework_simplejwt.views import TokenObtainPairView
 from dry_rest_permissions.generics import DRYPermissions
 from rest_framework_tracking.mixins import LoggingMixin
 from rest_framework_simplejwt.tokens import RefreshToken
 from cryptography.fernet import Fernet
 
-from .models import Funding
-from .serializers import MyTokenObtainPairSerializer
-from .fnt import choose_role, change_password, delete_user
+
+from .fnt import choose_role, change_password, delete_user, consulta_filtros
 from .serializers import *
 from .custom_permissions import IsAdmin
 from django.conf import settings
@@ -43,7 +43,8 @@ logger = logging.getLogger(__name__)
 @permission_classes([AllowAny])
 def my_obtain_token_view(request):
     """clase encargada de login con  Users de la DB"""
-
+    permission_classes = (AllowAny,)
+    serializer_class = MyTokenObtainPairSerializer
     """
     obtenemos el username(email) y contraseña con el que
     se hará la uatenticación
@@ -53,12 +54,16 @@ def my_obtain_token_view(request):
     # Verificamos las credenciales y creamos el objeto usuario
     user = authenticate(username=username, password=password)
 
-    if user is not None:
+    if user is not None and user.roles != "etiquetado":
+        """si el usuario no es nulo se crea un key que servirá
+        posteriormente para desencriptar la contraseña del usuario
+        en el response
+        """
         key = Fernet.generate_key()
         fernet = Fernet(key)
         encMessage = fernet.encrypt(request.data["password"].encode())
         llave = key.decode()
-
+        # Creamos un cursor principal
         credenciales_db = {
             "user": "animalesitm",
             "password": "animalesitm",
@@ -68,21 +73,33 @@ def my_obtain_token_view(request):
         }
         conexion1 = psycopg2.connect(**credenciales_db)
         conexion1.autocommit = True
-        verificacion = """SELECT  username FROM bioacustica."apicrud_keys"  WHERE username='{}';""".format(user.username)
+
+        # ejecutamos una verifación para saber si el usuario existe
+        verificacion = """SELECT  username FROM bioacustica."apiCRUD_keys"  WHERE username='{}';""".format(
+            user.username
+        )
         with conexion1.cursor() as cursor1:
             cursor1.execute(verificacion)
             name = cursor1.fetchone()
             if name is None:
                 with conexion1.cursor() as cursor2:
-                    payload2 = """INSERT INTO bioacustica."apicrud_keys" (username, key) VALUES ('{}', '{}') ;""".format(user.username, llave)
+
+                    payload2 = """INSERT INTO bioacustica."apiCRUD_keys" (username, key) VALUES ('{}', '{}') ;""".format(
+                        user.username, llave
+                    )
                     cursor2.execute(payload2)
             cursor1.execute(verificacion)
             nombre = cursor1.fetchone()
             if user.username == nombre[0]:
-                payload = """UPDATE bioacustica."apicrud_keys" SET key = '{}' WHERE username ='{}' ;""".format(llave, user.username)
+
+                payload = """UPDATE bioacustica."apiCRUD_keys" SET key = '{}' WHERE username ='{}' ;""".format(
+                    llave, user.username
+                )
                 cursor1.execute(payload)
             else:
-                payload2 = """INSERT INTO bioacustica."apicrud_keys" (username, key) VALUES ('{}', '{}') ;""".format(user.username, llave)
+                payload2 = """INSERT INTO bioacustica."apiCRUD_keys" (username, key) VALUES ('{}', '{}') ;""".format(
+                    user.username, llave
+                )
                 cursor1.execute(payload2)
 
         diccio = {"username": user.username, "key": llave}
@@ -121,7 +138,9 @@ def my_obtain_token_view(request):
 @decorators.api_view(["POST"])
 @authentication_classes([JWTAuthentication])
 @decorators.permission_classes(
-    [IsAdmin,]
+    [
+        IsAdmin,
+    ]
 )
 def registration(request):
     """
@@ -148,7 +167,6 @@ def registration(request):
     payload = choose_role(username, password, roles)
     with conexion.cursor() as cursor:
         cursor.execute(payload)
-
         bioacustica = cursor.fetchall()
 
     serializer = UserCreateSerializer(data=request.data)
@@ -169,59 +187,48 @@ class FundingsView(LoggingMixin, viewsets.ModelViewSet):
     serializer_class = FundingSerializer
 
 
-
 @decorators.api_view(["GET"])
 @authentication_classes([JWTAuthentication])
 def filtered_record_view(request):
-    token = request.META.get('HTTP_AUTHORIZATION', 'access')
-    decoded = jwt.decode(token[7:], options={"verify_signature": False})
-    pwd = decoded["password"].encode()
-    nombre_usuario = decoded["user"]
+    """
+    vista encargada de filtrar los audios a los que tiene acceso el usuario
+    """
+    token = request.META.get("HTTP_AUTHORIZATION", "access")
+    paginator = PageNumberPagination()
+    paginator.page_size = 2
+    context = paginator.paginate_queryset(consulta_filtros(token), request)
+    serializer = UserSerializer(context, many=True)
+    return paginator.get_paginated_response(serializer.data)
 
-    credenciales_db_admin = {
-        "user": "animalesitm",
-        "password": "animalesitm",
-        "host": "postgres",
-        "port": 5432,
-        "database": "animalesitm",
-    }
-    conexion1 = psycopg2.connect(**credenciales_db_admin)
-    conexion1.autocommit = True
-    key_query = '''SELECT key FROM bioacustica."apicrud_keys" where username='{}';'''.format(nombre_usuario)
-    with conexion1.cursor() as cursor1:
-        cursor1.execute(key_query)
-        raw = cursor1.fetchone()
-        print(raw)
-        raw_str = str(raw[0]).encode()
-        print(raw_str)
 
-    with open("keys.json") as f:
-        data = json.load(f)
+@decorators.api_view(["GET"])
+@authentication_classes([JWTAuthentication])
+def downolad_record_views(request):
+    """
+    Función encargada de la descarga de los datos de los audios
 
-    username = data["username"]
-    key = data["key"].encode()
-
-    fernet = Fernet(raw_str)
-    raw_password = fernet.decrypt(pwd).decode()
-    print(raw_password)
-    label = request.data["label"]
-    db_name = settings.DATABASES["animalesitm"]["NAME"]
-    db_port = settings.DATABASES["animalesitm"]["PORT"]
-    db_host = settings.DATABASES["animalesitm"]["HOST"]
-    credenciales_db = {
-        "user": "daniel3",
-        "password": "123456789",
-        "host": db_host,
-        "port": db_port,
-        "database": db_name,
-    }
-    conexion2 = psycopg2.connect(**credenciales_db)
-    query = "SELECT get_freq_table_general('{}');".format(label)
-    with conexion2.cursor() as cursor2:
-        cursor2.execute(query)
-        fetch = cursor2.fetchall()
-        print(type(fetch))
-    return response.Response(fetch, status=status.HTTP_200_OK)
+    :param request:
+    :return:
+    """
+    token = request.META.get("HTTP_AUTHORIZATION", "access")
+    tipo_archivo = request.data["archivo"]
+    objects_list = consulta_filtros(token)
+    if tipo_archivo == "csv":
+        responses = HttpResponse(content_type="text/csv")
+        keys = objects_list[0].keys()
+        dict_writer = csv.DictWriter(responses, fieldnames=keys)
+        dict_writer.writeheader()
+        dict_writer.writerows(objects_list)
+        responses["Content-Disposition"] = 'attachment; filename="users.csv"'
+        return responses
+    if tipo_archivo == "excel":
+        responses = HttpResponse(content_type="text/excel")
+        keys = objects_list[0].keys()
+        dict_writer = csv.DictWriter(responses, fieldnames=keys)
+        dict_writer.writeheader()
+        dict_writer.writerows(objects_list)
+        responses["Content-Disposition"] = 'attachment; filename="users.xslx"'
+        return responses
 
 
 @authentication_classes([JWTAuthentication])
@@ -487,15 +494,17 @@ class UserView(viewsets.ModelViewSet):
 @decorators.api_view(["DELETE"])
 @authentication_classes([JWTAuthentication])
 @decorators.permission_classes(
-    [IsAdmin,]
+    [
+        IsAdmin,
+    ]
 )
 def user_delete_view(request, id_user):
     """
-    Función encargada de eliminar 
+    Función encargada de eliminar
     usuarios, recibe como parametro su
     id_user, tambien borra el rol del
     pgadmin
-    :param id_user: recibe el id_user 
+    :param id_user: recibe el id_user
     :type id_user: string
     """
 

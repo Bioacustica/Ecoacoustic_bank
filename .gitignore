@@ -3,6 +3,7 @@
 .devcontainer/
 postgres-data/
 apidev/guadarndokeys.ipynb
-apidev/newmodels.py
+apidev/modelos.py
 apidev/untitled.txt
 apidev/Untitled.ipynb
+apidev/keys.json

@@ -2,7 +2,8 @@ from django import urls
 from django.contrib import admin
 from django.urls import path, include
 from apiCRUD import views
-from .views import ChangePasswordView, registration, filtered_record_view, user_delete_view, my_obtain_token_view
+
+from .views import ChangePasswordView, registration, filtered_record_view, user_delete_view, my_obtain_token_view ,downolad_record_views
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -58,6 +59,7 @@ urlpatterns = [
     path("token/refresh/", TokenRefreshView.as_view()),
     path("register/", registration, name="register"),
     path("filter/", filtered_record_view, name="filter"),
+    path("down/", downolad_record_views, name= "download"),
     path("change-password/", ChangePasswordView.as_view(), name="change-pwd"),
     path(
         "password_reset/",
