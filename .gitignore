@@ -2,11 +2,8 @@
 .env
 .devcontainer/
 postgres-data/
-<<<<<<< HEAD
-apidev/newmodels.py
-=======
 apidev/guadarndokeys.ipynb
-apidev/newmodels.py
+apidev/modelos.py
 apidev/untitled.txt
 apidev/Untitled.ipynb
->>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+apidev/keys.json

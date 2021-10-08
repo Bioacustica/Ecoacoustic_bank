@@ -3,7 +3,7 @@ services:
   develop:
     build:
       context: .
-      dockerfile: Jupyter.Dockerfile
+      dockerfile: JupyterAlpine.Dockerfile
     container_name: develop
     volumes:
       - './source:/data'
@@ -45,7 +45,7 @@ services:
       dockerfile: Django.Dockerfile
     container_name: djangoweb
     volumes:
-      - './:/code'
+      - './apidev/:/code'
     ports:
       - '8000:8000'
     env_file: Django.env

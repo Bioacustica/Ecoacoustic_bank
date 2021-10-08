@@ -18,7 +18,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     email = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=128, write_only=True)
 
-<<<<<<< HEAD
     @classmethod
     def get_token(cls, user: object) -> dict:
         """
@@ -54,11 +53,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         password = self.user.password
         return data
 
-=======
     class Meta:
         model = User
         fields = ["email", "password"]
->>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+
 
 """Clases encargadas de convertir querysets a forma nativa
     para trabajarla en formato json"""

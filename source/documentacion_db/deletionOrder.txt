@@ -1,28 +1,21 @@
-<<<<<<< HEAD
+django_session
 django_migrations
 apiCRUD_locality
-=======
+apicrud_keys
+apiCRUD_frequencydetail
 labeled
->>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
-voucher
 django_admin_log
 auth_group_permissions
+voucher
 rest_framework_tracking_apirequestlog
 record_path
 record_obs
 photo_path
 django_rest_passwordreset_resetpasswordtoken
 catalogue_obs
-<<<<<<< HEAD
 apiCRUD_historicalfunding
-apiCRUD_frequencydetail
-auth_permission
-labeled
-time_detail
-frequency_detail
-=======
 label
->>>>>>> 8d194fa715d4acbbf5fa4cf9d9a75267b2a9e698
+auth_permission
 record
 catalogue
 sampling
@@ -37,14 +30,17 @@ season
 pulse_type
 precision
 municipality
+microphone
 memory
 measure
 locality
 hardware
 habitat
+gain
 funding
 frequency_detail
 format
+filter
 evidence
 department
 datum

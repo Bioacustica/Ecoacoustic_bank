@@ -1,15 +1,14 @@
 #django
 
 #syntax=docker/dockerfile:1
-FROM python:3
+FROM python:3.8-slim-buster
 ENV PYTHONUNBUFFERED=1
 RUN mkdir /code
 WORKDIR /code
-COPY ./requirements.txt /code
-RUN pip install -r requirements.txt
+COPY ./djangorequirements.txt /code
+RUN pip install -r djangorequirements.txt
 
-ENTRYPOINT  cd ./apidev && \
-            python manage.py makemigrations && \
+ENTRYPOINT  python manage.py makemigrations && \
             python manage.py migrate  && \
             python manage.py collectstatic --noinput && \
             python manage.py shell < initAdmin.py && \

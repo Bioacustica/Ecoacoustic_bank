@@ -299,16 +299,16 @@ WITH (
 
 CREATE TABLE IF NOT EXISTS bioacustica.USER
 (
-    ID_USER SERIAL,
-    USERNAME character varying(100),
+    ID_USER SERIAL ,
+    USERNAME character varying(100) NOT NULL,
     PASSWORD character varying(100),
-    EMAIL character varying(100),
+    EMAIL character varying(100) NOT NULL,
     LAST_LOGIN DATE,
     IS_ADMIN BOOLEAN,
     IS_ACTIVE BOOLEAN,
     IS_STAFF BOOLEAN,
     IS_SUPERUSER BOOLEAN,
-    ROLES character varying(50),
+    ROLES character varying(50) NOT NULL,
     PRIMARY KEY (ID_USER)
 )
 WITH (
