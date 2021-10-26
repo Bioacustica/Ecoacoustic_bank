@@ -609,3 +609,14 @@ class ChangePasswordView(generics.UpdateAPIView):
                 )
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# TODO: No usar decorador.
+# @authentication_classes([JWTAuthentication])
+class PublicRecordView(viewsets.ModelViewSet):
+    "En el filter se debe acceder al parámetro que define publico"
+    "filer(role=='admin')"
+    queryset = User.objects.filter()
+    # permission_classes = (IsAdmin,)
+    serializer_class = UserSerializer
+    http_method_names = ["get"]
