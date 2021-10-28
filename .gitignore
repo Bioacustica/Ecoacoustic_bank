@@ -1,0 +1,10 @@
+.idea
+.env
+.devcontainer/
+postgres-data/
+apidev/guadarndokeys.ipynb
+apidev/modelos.py
+apidev/untitled.txt
+apidev/Untitled.ipynb
+apidev/keys.json
+bioacustica-web

@@ -1,0 +1,5 @@
+jupyterlab
+pylint
+ipykernel
+notebook
+minio
