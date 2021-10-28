@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+    volumes:
+      - .:/bioacustica-front
+    ports:
+      - 3000:3000
+    image: app:react
+    container_name: front_container
+    command: npm start
