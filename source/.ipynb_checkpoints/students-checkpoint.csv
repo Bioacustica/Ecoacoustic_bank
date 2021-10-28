@@ -1,0 +1,6 @@
+id_user,username,password,email,last_login,is_admin,is_active,is_staff,is_superuser,roles
+1,admin,pbkdf2_sha256$260000$Xfb356BqGDLJNvdg7QQznm$95T+8XbjgqdgKf2uG39QAXv1/Nyc3O2nGWM2+3uh5g0=,admin@admin.com,2021-09-23,True,True,True,True,admin
+2,santiago3,pbkdf2_sha256$260000$CJaiLryeFgOiYoR4KXonYE$K7TXoN14ubPH/GKdZKJvf+JVEXrITg/MCUuYwmUVOnk=,h@gmail.com,2021-09-23,True,True,False,False,admin
+3,drosera,pbkdf2_sha256$260000$YEqXcf4nSV1FJeEj2uy97h$4xJ5d1PvEorhDI85QHkteJC7FkQtDp5cf2h89pAFusY=,g@gmail.com,2021-09-23,False,True,False,False,registro
+4,jd,pbkdf2_sha256$260000$PbgpjcREcz3kHqlHpkK5Tn$WpR6TU+DTlZKeGeVmkgfi1de0FIcXHDcJ3XwL+goRiQ=,jd@gmail.com,2021-09-23,False,True,False,False,etiquetado
+5,tilin,pbkdf2_sha256$260000$RR4ToJGflUVdMcs9r6sizm$2bKZtSiFvOh7WDX4GL0eA57+la2icRc3RIzeyOsp94o=,t@gmail.com,2021-09-23,False,True,False,False,usuario
