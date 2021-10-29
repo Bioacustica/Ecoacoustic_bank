@@ -4,13 +4,16 @@ country
 datum
 department
 evidence
+filter
 format
 funding
+gain
 habitat
 hardware
 locality
 measure
 memory
+microphone
 municipality
 precision
 pulse_type

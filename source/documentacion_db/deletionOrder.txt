@@ -20,13 +20,16 @@ season
 pulse_type
 precision
 municipality
+microphone
 memory
 measure
 locality
 hardware
 habitat
+gain
 funding
 format
+filter
 evidence
 department
 datum
