@@ -1,8 +1,6 @@
 django_session
 django_migrations
-apiCRUD_locality
-apicrud_keys
-apiCRUD_frequencydetail
+apiCRUD_keys
 labeled
 django_admin_log
 auth_group_permissions

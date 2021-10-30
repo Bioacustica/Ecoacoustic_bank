@@ -1,11 +1,12 @@
-from django import urls
-from django.contrib import admin
+
 from django.urls import path, include
 from apiCRUD import views
 
-from .views import ChangePasswordView, registration, filtered_record_view, user_delete_view, my_obtain_token_view ,downolad_record_views
+from .views import (ChangePasswordView, registration, filtered_record_view, user_delete_view, my_obtain_token_view ,
+                    downolad_record_views_csv,
+                    download_records_files
+                    )
 from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
     TokenRefreshView,
 )
 from rest_framework.routers import DefaultRouter
@@ -20,7 +21,6 @@ router.register("Catalogue", views.CatalogueView)
 router.register("CatalogueObs", views.CatalogueObsView)
 router.register("Country", views.CountryView)
 router.register("Datum", views.DatumView)
-router.register("Microphone", views.MicrophoneView)
 router.register("Department", views.DepartmentView)
 router.register("Evidence", views.EvidenceView)
 router.register("FrequencyDetail", views.FrequencyDetailView)
@@ -31,8 +31,6 @@ router.register("Hardware", views.HardwareView)
 router.register("Label", views.LabelView)
 router.register("Labeled", views.LabeledView)
 router.register("Locality", views.LocalityView)
-router.register("Gain", views.GainView)
-router.register("Filter", views.FilterView)
 router.register("Measure", views.MeasureView)
 router.register("Memory", views.MemoryView)
 router.register("Municipality", views.MunicipalityView)
@@ -51,7 +49,11 @@ router.register("TimeDetail", views.TimeDetailView)
 router.register("Type", views.TypeView)
 router.register("Vereda", views.VeredaView)
 router.register("Voucher", views.VoucherView)
+router.register("Filter", views.FilterView)
+router.register("Gain", views.GainView)
+router.register("Microphone", views.MicrophoneView)
 router.register("User", views.UserView)
+router.register("PublicRecord", views.PublicRecordView)
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -59,7 +61,8 @@ urlpatterns = [
     path("token/refresh/", TokenRefreshView.as_view()),
     path("register/", registration, name="register"),
     path("filter/", filtered_record_view, name="filter"),
-    path("down/", downolad_record_views, name= "download"),
+    path("down/", downolad_record_views_csv, name="download"),
+    path("donwloadzip/", download_records_files, name="zip_file"),
     path("change-password/", ChangePasswordView.as_view(), name="change-pwd"),
     path(
         "password_reset/",

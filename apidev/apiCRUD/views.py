@@ -1,8 +1,12 @@
 import collections
 import csv
+import io
 import json
 import logging
 import jwt
+import os
+from io import StringIO
+import pandas as pd
 
 from django.http import HttpResponse
 import psycopg2
@@ -22,9 +26,10 @@ from dry_rest_permissions.generics import DRYPermissions
 from rest_framework_tracking.mixins import LoggingMixin
 from rest_framework_simplejwt.tokens import RefreshToken
 from cryptography.fernet import Fernet
+from django.http import StreamingHttpResponse
+from django.http import FileResponse
 
-
-from .fnt import choose_role, change_password, delete_user, consulta_filtros
+from .fnt import choose_role, change_password, delete_user, consulta_filtros, base_64_encoding
 from .serializers import *
 from .custom_permissions import IsAdmin
 from django.conf import settings
@@ -73,7 +78,6 @@ def my_obtain_token_view(request):
         }
         conexion1 = psycopg2.connect(**credenciales_db)
         conexion1.autocommit = True
-
         # ejecutamos una verifación para saber si el usuario existe
         verificacion = """SELECT  username FROM bioacustica."apiCRUD_keys"  WHERE username='{}';""".format(
             user.username
@@ -83,7 +87,6 @@ def my_obtain_token_view(request):
             name = cursor1.fetchone()
             if name is None:
                 with conexion1.cursor() as cursor2:
-
                     payload2 = """INSERT INTO bioacustica."apiCRUD_keys" (username, key) VALUES ('{}', '{}') ;""".format(
                         user.username, llave
                     )
@@ -91,7 +94,6 @@ def my_obtain_token_view(request):
             cursor1.execute(verificacion)
             nombre = cursor1.fetchone()
             if user.username == nombre[0]:
-
                 payload = """UPDATE bioacustica."apiCRUD_keys" SET key = '{}' WHERE username ='{}' ;""".format(
                     llave, user.username
                 )
@@ -192,6 +194,7 @@ class FundingsView(LoggingMixin, viewsets.ModelViewSet):
 def filtered_record_view(request):
     """
     vista encargada de filtrar los audios a los que tiene acceso el usuario
+
     """
     token = request.META.get("HTTP_AUTHORIZATION", "access")
     paginator = PageNumberPagination()
@@ -203,12 +206,12 @@ def filtered_record_view(request):
 
 @decorators.api_view(["GET"])
 @authentication_classes([JWTAuthentication])
-def downolad_record_views(request):
+def downolad_record_views_csv(request):
     """
     Función encargada de la descarga de los datos de los audios
 
     :param request:
-    :return:
+    :return: lista con los base64 de los audios
     """
     token = request.META.get("HTTP_AUTHORIZATION", "access")
     tipo_archivo = request.data["archivo"]
@@ -222,13 +225,36 @@ def downolad_record_views(request):
         responses["Content-Disposition"] = 'attachment; filename="users.csv"'
         return responses
     if tipo_archivo == "excel":
-        responses = HttpResponse(content_type="text/excel")
+        responses = HttpResponse(content_type="application/vnd.ms-excel")
         keys = objects_list[0].keys()
         dict_writer = csv.DictWriter(responses, fieldnames=keys)
         dict_writer.writeheader()
         dict_writer.writerows(objects_list)
-        responses["Content-Disposition"] = 'attachment; filename="users.xslx"'
+        responses["Content-Disposition"] = 'attachment; filename="users.xlsx"'
         return responses
+
+
+@authentication_classes([JWTAuthentication])
+@decorators.api_view(["GET"])
+def download_records_files(request):
+    """
+
+    :param request:
+    :return:
+    """
+    # filenames = ['/code/apiCRUD/sample_audios/164114_20191001_174056.wav',
+    #              '/code/apiCRUD/sample_audios/MAG01_20191002_172500.WAV',
+    #              '/code/apiCRUD/sample_audios/MAG02_20191002_171000.WAV']
+    #
+    # lista = []
+    # for fname in filenames:
+    #     lista.append(base_64_encoding(fname))
+    # df = pd.DataFrame(lista, columns=['base64'])
+    # df.to_csv('/code/apiCRUD/sample_audios/datos.csv')
+    file = open('/code/apiCRUD/sample_audios/archivo_p.parquet', 'rb')
+    return FileResponse(file)
+
+
 
 
 @authentication_classes([JWTAuthentication])
@@ -264,13 +290,6 @@ class DatumView(viewsets.ModelViewSet):
     queryset = Datum.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = DatumSerializer
-
-
-@authentication_classes([JWTAuthentication])
-class MicrophoneView(viewsets.ModelViewSet):
-    queryset = Microphone.objects.all()
-    permission_classes = (IsAdmin,)
-    serializer_class = MicrophoneSerializer
 
 
 @authentication_classes([JWTAuthentication])
@@ -341,20 +360,6 @@ class LocalityView(viewsets.ModelViewSet):
     queryset = Locality.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = LocalitySerializer
-
-
-@authentication_classes([JWTAuthentication])
-class GainView(viewsets.ModelViewSet):
-    queryset = Gain.objects.all()
-    permission_classes = (IsAdmin,)
-    serializer_class = GainSerializer
-
-
-@authentication_classes([JWTAuthentication])
-class FilterView(viewsets.ModelViewSet):
-    queryset = Filter.objects.all()
-    permission_classes = (IsAdmin,)
-    serializer_class = FilterSerializer
 
 
 @authentication_classes([JWTAuthentication])
@@ -484,6 +489,27 @@ class VoucherView(viewsets.ModelViewSet):
 
 
 @authentication_classes([JWTAuthentication])
+class FilterView(viewsets.ModelViewSet):
+    queryset = Filter.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = FilterSerializer
+
+
+@authentication_classes([JWTAuthentication])
+class GainView(viewsets.ModelViewSet):
+    queryset = Gain.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = GainSerializer
+
+
+@authentication_classes([JWTAuthentication])
+class MicrophoneView(viewsets.ModelViewSet):
+    queryset = Microphone.objects.all()
+    permission_classes = (IsAdmin,)
+    serializer_class = MicrophoneSerializer
+
+
+@authentication_classes([JWTAuthentication])
 class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     permission_classes = (IsAdmin,)
@@ -575,7 +601,7 @@ class ChangePasswordView(generics.UpdateAPIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             if serializer.data.get("new_password") == serializer.data.get(
-                "confirm_password"
+                    "confirm_password"
             ):
                 # set_password also hashes the password that the user will get
                 password = request.data["new_password"]
@@ -611,12 +637,7 @@ class ChangePasswordView(generics.UpdateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# TODO: No usar decorador.
-# @authentication_classes([JWTAuthentication])
 class PublicRecordView(viewsets.ModelViewSet):
-    "En el filter se debe acceder al parámetro que define publico"
-    "filer(role=='admin')"
-    queryset = User.objects.filter()
-    # permission_classes = (IsAdmin,)
+    queryset = User.objects.filter(roles = 'etiquetado')
     serializer_class = UserSerializer
     http_method_names = ["get"]

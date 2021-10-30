@@ -220,7 +220,6 @@ class Case(models.Model):
 
 
 class Catalogue(models.Model):
-
     id_catalogue = models.SmallAutoField(primary_key=True)
     id_sampling = models.ForeignKey('Sampling', models.DO_NOTHING, db_column='id_sampling')
     id_country = models.ForeignKey('Country', models.DO_NOTHING, db_column='id_country')
@@ -450,18 +449,6 @@ class Datum(models.Model):
     class Meta:
         managed = False
         db_table = "datum"
-
-
-class Microphone(models.Model):
-    id_microphone = models.AutoField(primary_key=True)
-    description = models.CharField(max_length=100, blank=True, null=True)
-
-    def __str__(self):
-        return self.description
-
-    class Meta:
-        managed = False
-        db_table = "microphone"
 
 
 class Department(models.Model):
@@ -1189,29 +1176,6 @@ class Locality(models.Model):
         if request.user.roles == "admin":
             return True
         return False
-
-class Gain(models.Model):
-    id_gain = models.AutoField(primary_key=True)
-    description = models.CharField(max_length=100, blank=True, null=True)
-
-    def __str__(self):
-        return self.description
-
-    class Meta:
-        managed = False
-        db_table = "gain"
-
-
-class Filter(models.Model):
-    id_filter = models.AutoField(primary_key=True)
-    description = models.CharField(max_length=100, blank=True, null=True)
-
-    def __str__(self):
-        return self.description
-
-    class Meta:
-        managed = False
-        db_table = "filter"
 
 
 class Measure(models.Model):
@@ -2194,7 +2158,7 @@ class Keys(models.Model):
 
 class Filter(models.Model):
     id_filter = models.SmallIntegerField(primary_key=True)
-    decription = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
 
     class Meta:
         managed = False

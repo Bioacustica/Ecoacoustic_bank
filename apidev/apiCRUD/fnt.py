@@ -2,6 +2,7 @@ from django.conf import settings
 import psycopg2
 import json
 import jwt
+import base64
 
 from cryptography.fernet import Fernet
 
@@ -125,3 +126,18 @@ def consulta_filtros(token: str) -> list:
         for record in fetch:
             objects_list.append(dict(zip(column_names, record)))
     return objects_list
+
+
+def base_64_encoding(file_path: str) -> bytes:
+    """
+    Función encargada de convertir a base64
+    archivos de audio con extensión .wav
+    :param file_path:  recibe los diccionarios donde se ecuentran los paths
+    :return: retorna el contenido del base 64
+    """
+    # converted = AudioSegment.from_mp3(file_path)
+    # converted.export("converted.wav", format="wav")
+    file = open(file_path, "rb")
+    audio_content = file.read()
+    b64_content = base64.urlsafe_b64encode(audio_content)
+    return b64_content

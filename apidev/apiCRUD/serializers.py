@@ -98,12 +98,6 @@ class DatumSerializer(serializers.HyperlinkedModelSerializer):
         fields = "__all__"
 
 
-class MicrophoneSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Microphone
-        fields = "__all__"
-
-
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Department
@@ -162,18 +156,6 @@ class LabeledSerializer(serializers.HyperlinkedModelSerializer):
 class LocalitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Locality
-        fields = "__all__"
-
-
-class GainSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Gain
-        fields = "__all__"
-
-
-class FilterSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Filter
         fields = "__all__"
 
 
@@ -289,6 +271,24 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ["username", "email", "roles", "id_user"]
+
+
+class FilterSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Filter
+        fields = "__all__"
+
+
+class GainSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Gain
+        fields = "__all__"
+
+
+class MicrophoneSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Microphone
+        fields = "__all__"
 
 
 class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
