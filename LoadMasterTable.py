@@ -43,49 +43,15 @@ def load_master_tables(plantillas):
             print(e)
 
 
-def object_id(sheet_name: str, description: str) -> object:
+def object_id(sheet_name: str, description: str) -> int:
     """
-    Esta función devuelve el objeto 'sqlalchemy.ext.automap.table_name'
+    Esta función devuelve el id del objeto 'sqlalchemy.ext.automap.table_name'
     para cada tabla
     """
-    if sheet_name == "country":
-        return extract_id("country", description).id_country
-    elif sheet_name == "department":
-        return extract_id("department", description).id_department
-    elif sheet_name == "municipality":
-        return extract_id("municipality", description).id_municipality
-    elif sheet_name == "vereda":
-        return extract_id("vereda", description).id_vereda
-    elif sheet_name == "locality":
-        return extract_id("locality", description).id_locality
-    elif sheet_name == "hardware":
-        return extract_id("hardware", description).id_hardware
-    elif sheet_name == "case":
-        return extract_id("case", description).id_case
-    elif sheet_name == "microphone":
-        return extract_id("microphone", description).id_microphone
-    elif sheet_name == "memory":
-        return extract_id("memory", description).id_memory
-    elif sheet_name == "supply":
-        return extract_id("supply", description).id_supply
-    elif sheet_name == "format":
-        return extract_id("format", description).id_format
-    elif sheet_name == "datum":
-        return extract_id("datum", description).id_datum
-    elif sheet_name == "precision":
-        return extract_id("precision", description).id_precision
-    elif sheet_name == "habitat":
-        return extract_id("habitat", description).id_habitat
-    elif sheet_name == "season":
-        return extract_id("season", description).id_season
-    elif sheet_name == "filter":
-        return extract_id("filter", description).id_filter
-    elif sheet_name == "gain":
-        return extract_id("gain", description).id_gain
-    elif sheet_name == "funding":
-        return extract_id("funding", description).id_funding
-    elif sheet_name == "type":
-        return extract_id("type", description).id_type
+    dictionary = {f"{sheet_name}": getattr(extract_id(sheet_name, description),
+                                           f'id_{sheet_name}', 'No existe el atributo')
+                  }
+    return dictionary[f"{sheet_name}"]
 
 
 def new_plantilla(info_path: str) -> str:
@@ -113,12 +79,16 @@ def new_plantilla(info_path: str) -> str:
     return out_file
 
 
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+# CARGAR LA DB:
 # load_master_tables("MasterTablesBuenas.xlsx")
-plantilla = new_plantilla("MasterTablesBuenas.xlsx")
 
+# CONSTRUCCIÓN DE PLANTILLA MAESTRAS
+# plantilla = new_plantilla("MasterTablesBuenas.xlsx")
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
 
-# id = extract_id("funding", "GHA").id_funding
-# print(id)
 
 
 # #----------------------------------
