@@ -173,6 +173,9 @@ def CatalogueAdd(file, session, id):
     longitude = udas.iloc[id]["longitude"]
     description = udas.iloc[id]["catalogue"]
     
+    print(type(elevation))
+    print(type(latitude))
+    
     session.add(Base.classes["catalogue"](id_sampling = id_sampling,
                                           id_country = id_country,
                                           id_department = id_department,
@@ -190,12 +193,12 @@ def CatalogueAdd(file, session, id):
                                           id_precision = id_precision,
                                           id_datum = id_datum,
                                           id_microphone = id_microphone,
-                                          #elevation = pd.to_numeric(elevation), 
-                                          #height = pd.to_numeric(height),
-                                          #chunks = pd.to_numeric(chunks),
-                                          #size = pd.to_numeric(size, downcast='float'),
-                                          #latitude = pd.to_numeric(latitude, downcast='float'),
-                                          #longitude = pd.to_numeric(longitude, downcast='float'),
+                                          elevation = elevation.tolist(), 
+                                          height = height.tolist(),
+                                          chunks = chunks,
+                                          size = pd.to_numeric(size, downcast='float'),
+                                          latitude = pd.to_numeric(latitude, downcast='float'),
+                                          longitude = pd.to_numeric(longitude, downcast='float'),
                                           description = description))
     session.commit()
 
