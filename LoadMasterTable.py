@@ -173,9 +173,6 @@ def CatalogueAdd(file, session, id):
     longitude = udas.iloc[id]["longitude"]
     description = udas.iloc[id]["catalogue"]
     
-    print(type(elevation))
-    print(type(latitude))
-    
     session.add(Base.classes["catalogue"](id_sampling = id_sampling,
                                           id_country = id_country,
                                           id_department = id_department,
@@ -196,9 +193,9 @@ def CatalogueAdd(file, session, id):
                                           elevation = elevation.tolist(), 
                                           height = height.tolist(),
                                           chunks = chunks,
-                                          size = pd.to_numeric(size, downcast='float'),
-                                          latitude = pd.to_numeric(latitude, downcast='float'),
-                                          longitude = pd.to_numeric(longitude, downcast='float'),
+                                          size = pd.to_numeric(size, downcast = 'float'),
+                                          latitude = pd.to_numeric(latitude, downcast = 'float'),
+                                          longitude = pd.to_numeric(longitude, downcast = 'float'),
                                           description = description))
     session.commit()
 
@@ -206,7 +203,63 @@ def CatalogueAdd(file, session, id):
 
 CatalogueAdd(file = "../UDAS_20210406.xls", session = session, id = 1)
 
+#----------------------------------
 
+import os
+import datetime
+import pandas as pd
+import audio_metadata
+from mapping import Base
+from mapping import engine
+from sqlalchemy.orm import Session
+
+
+session = Session(engine)
+
+
+def RecordAdd(file, id_catalogue, date, chunk, session):
+    
+    metadata = audio_metadata.load(file)
+    
+    id_format = session.query(Base.classes["format"]). \
+                filter(Base.classes["format"].description == os.path.splitext(file)[1].split('.')[1]).  \
+                first().id_format
+    
+    session.add(Base.classes["record"](id_catalogue = id_catalogue,
+                                       id_format = id_format,
+                                       date = date,
+                                       length = metadata['streaminfo'].duration,
+                                       size = metadata.filesize,
+                                       sample_rate = metadata['streaminfo'].sample_rate,
+                                       chunk = chunk,
+                                       channels = metadata['streaminfo'].channels))
+    session.commit()
+
+
+
+
+def RecordsAdd(file, id_catalogue, session):
+    
+    files = os.listdir(file)
+    files.sort()
+    
+    for i in range(len(files)):
+        
+        date = datetime.datetime(year = int(files[i][0:4]),
+                                month = int(files[i][4:6]),
+                                day = int(files[i][6:8]),
+                                hour = int(files[i][9:11]),
+                                minute = int(files[i][11:13]),
+                                second = int(files[i][13:15]))
+        
+        RecordAdd(file = os.path.join(file,files[i]),
+                  id_catalogue = id_catalogue,
+                  date = date,
+                  chunk = i,
+                  session = session)
+
+
+RecordsAdd(file = "/home/andres/Proyectos/Software/Bioacustico/G1", id_catalogue = 4, session = session)
 
 #----------------------------------
 
