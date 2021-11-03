@@ -26,5 +26,11 @@ WORKDIR /data
 
 ADD start_develop.sh /
 RUN chmod +x /start_develop.sh
+ADD LoadMasterTable.py /
+RUN chmod +x /LoadMasterTable.py
+COPY mapping.py /
+COPY MasterTablesBuenas.xlsx /
+COPY second_tables.xlsx /
+COPY relaciones_data.xlsx /
 
 ENTRYPOINT ["/start_develop.sh"]

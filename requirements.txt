@@ -6,3 +6,6 @@ xeus-python
 notebook
 minio
 psycopg2-binary
+pandas
+sqlalchemy
+openpyxl
