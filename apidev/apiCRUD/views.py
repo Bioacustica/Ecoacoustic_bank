@@ -1,10 +1,13 @@
-import collections
 import csv
 import json
 import logging
+from datetime import datetime
 import jwt
+import pandas as pd
+# import pyarrow as pa
+# import pyarrow.parquet as pq
 
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 import psycopg2
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
@@ -22,9 +25,19 @@ from dry_rest_permissions.generics import DRYPermissions
 from rest_framework_tracking.mixins import LoggingMixin
 from rest_framework_simplejwt.tokens import RefreshToken
 from cryptography.fernet import Fernet
+# from django.http import StreamingHttpResponse
+# from wsgiref.util import FileWrapper
+from django.http import HttpResponse
+import os
 
-
-from .fnt import choose_role, change_password, delete_user, consulta_filtros
+from .fnt import (
+    choose_role,
+    change_password,
+    delete_user,
+    consulta_filtros,
+    base_64_encoding,
+    read_file,
+)
 from .serializers import *
 from .custom_permissions import IsAdmin
 from django.conf import settings
@@ -191,6 +204,18 @@ def filtered_record_view(request):
     vista encargada de filtrar los audios a los que tiene acceso el usuario
 
     """
+    ciudad = request.data["ciudad"].upper()
+    habitat = request.data["habitat"].upper()
+    municipio = request.data["municipio"].upper()
+    evento = request.data["evento"].upper()
+    tipo_de_case = request.data["tipo de case"].upper()
+    tipo_de_micro = request.data["tipo de micro"].upper()
+    software = request.data["software"].upper()
+    tipo_de_grabadora = request.data["tipo de grabadora"].upper()
+    fecha = request.data["fecha"]
+    fecha_dt = datetime.strptime(fecha, '%d/%m/%Y')
+    elevation = request.data["elevation"]
+
     token = request.META.get("HTTP_AUTHORIZATION", "access")
     paginator = PageNumberPagination()
     paginator.page_size = 2
@@ -201,13 +226,14 @@ def filtered_record_view(request):
 
 @decorators.api_view(["GET"])
 @authentication_classes([JWTAuthentication])
-def downolad_record_views(request):
+def downolad_record_views_csv(request):
     """
     Función encargada de la descarga de los datos de los audios
 
     :param request:
-    :return:
+    :return: lista con los base64 de los audios
     """
+
     token = request.META.get("HTTP_AUTHORIZATION", "access")
     tipo_archivo = request.data["archivo"]
     objects_list = consulta_filtros(token)
@@ -220,14 +246,55 @@ def downolad_record_views(request):
         responses["Content-Disposition"] = 'attachment; filename="users.csv"'
         return responses
     if tipo_archivo == "excel":
-        responses = HttpResponse(content_type="text/excel")
+        responses = HttpResponse(content_type="application/vnd.ms-excel")
         keys = objects_list[0].keys()
         dict_writer = csv.DictWriter(responses, fieldnames=keys)
         dict_writer.writeheader()
         dict_writer.writerows(objects_list)
-        responses["Content-Disposition"] = 'attachment; filename="users.xslx"'
+        responses["Content-Disposition"] = 'attachment; filename="users.xlsx"'
         return responses
 
+
+
+
+@authentication_classes([JWTAuthentication])
+@decorators.api_view(["GET"])
+def download_records_files(request):
+    """Vista encargada de extraer los paths de records
+    y generar los base 64 que posteriormente se transforman
+    a un archivo parquet.
+
+    :param request: Petición de tipo GET
+    :return: retorna un archivo parquet para ser consumido por el front.
+    """
+    filenames = [
+        "/code/apiCRUD/sample_audios/164114_20191001_174056.wav",
+        "/code/apiCRUD/sample_audios/MAG01_20191002_172500.WAV",
+        "/code/apiCRUD/sample_audios/MAG02_20191002_171000.WAV",
+    ]
+
+    lista = []
+    for fname in filenames:
+        lista.append(base_64_encoding(fname))
+    # Creamos un dataframe con los base64 de los audios escogidos.
+    df = pd.DataFrame(lista, columns=["base64"])
+    df.to_csv("/code/apiCRUD/sample_audios/datos2.csv")
+    # Leemos el dataframe.
+    # dataframe = pd.read_csv("/code/apiCRUD/sample_audios/datos2.csv")
+    # # Comenzamos el objeto table de pyarrow.
+    # table = pa.Table.from_pandas(dataframe)
+    # # Creamos el parquet.
+    # pq.write_table(table, "/code/apiCRUD/sample_audios/archivo_p2.parquet")
+    # # abrimos el parquet y leemos su binario que será retornado en la vista.
+    # file = open("/code/apiCRUD/sample_audios/archivo_p2.parquet", "rb")
+    path = "/code/apiCRUD/sample_audios/datosR.csv"
+    # wrapper = FileWrapper(open(path, 'rb'))
+    # response = HttpResponse(wrapper, content_type='application/octet-stream')
+    # response['Content-Length'] = os.path.getsize(path)
+    # response['Content-Disposition'] = 'attachment; filename=%s' % 'audios'
+    # return response
+    response = FileResponse(read_file(path))
+    return response
 
 @authentication_classes([JWTAuthentication])
 class CaseView(viewsets.ModelViewSet):

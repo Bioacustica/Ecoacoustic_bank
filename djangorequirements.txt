@@ -17,3 +17,6 @@ drf-api-tracking==1.8.0
 coreapi~=2.3.3
 python-decouple==3.4
 PyJWT==2.1.0
+pandas==1.3.2
+pyarrow
+django-utils-six

@@ -2156,13 +2156,15 @@ class Keys(models.Model):
         managed = False
         db_table = "apiCRUD_keys"
 
+
 class Filter(models.Model):
     id_filter = models.SmallIntegerField(primary_key=True)
-    decription = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
 
     class Meta:
         managed = False
         db_table = 'filter'
+
 
 class Gain(models.Model):
     id_gain = models.SmallIntegerField(primary_key=True)
