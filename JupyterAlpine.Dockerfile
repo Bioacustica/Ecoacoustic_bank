@@ -28,7 +28,7 @@ RUN \
     pip3 install --upgrade pip &&\
     rm -rf /var/lib/apt/lists/* \
 
-RUN ln -s /bin/python3 /bin/python
+RUN ln  /bin/python3 /bin/python
 
 WORKDIR /data
 
