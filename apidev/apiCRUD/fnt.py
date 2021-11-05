@@ -141,3 +141,30 @@ def base_64_encoding(file_path: str) -> bytes:
     audio_content = file.read()
     b64_content = base64.urlsafe_b64encode(audio_content)
     return b64_content
+
+
+def consulta_filtros_publicos():
+    db_name = settings.DATABASES["animalesitm"]["NAME"]
+    db_port = settings.DATABASES["animalesitm"]["PORT"]
+    db_host = settings.DATABASES["animalesitm"]["HOST"]
+
+
+    # FIXME: Cambiar credenciales de admin por usuario normi
+    credenciales_db_publico = {
+        "user": "animalesitm",
+        "password": "animalesitm",
+        "host": db_host,
+        "port": db_port,
+        "database": db_name,
+    }
+    # se hace la consulta y se crea el objecto con los datos consultados
+    conexion2 = psycopg2.connect(**credenciales_db_publico)
+    query = "SELECT * FROM bioacustica.label"
+    with conexion2.cursor() as cursor2:
+        cursor2.execute(query)
+        fetch = cursor2.fetchall()
+        objects_list = []
+        column_names = [column[0] for column in cursor2.description]
+        for record in fetch:
+            objects_list.append(dict(zip(column_names, record)))
+    return objects_list

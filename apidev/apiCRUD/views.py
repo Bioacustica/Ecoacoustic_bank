@@ -29,9 +29,11 @@ from cryptography.fernet import Fernet
 from django.http import StreamingHttpResponse
 from django.http import FileResponse
 
-from .fnt import choose_role, change_password, delete_user, consulta_filtros, base_64_encoding
+from .fnt import choose_role, change_password, delete_user, consulta_filtros, base_64_encoding, \
+    consulta_filtros_publicos
 from .serializers import *
 from .custom_permissions import IsAdmin
+from .custom_permissions import IsUsuario
 from django.conf import settings
 
 # Vistas hechas con el model view set para hacer el CRUD
@@ -637,7 +639,14 @@ class ChangePasswordView(generics.UpdateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class PublicRecordView(viewsets.ModelViewSet):
-    queryset = User.objects.filter(roles = 'etiquetado')
-    serializer_class = UserSerializer
-    http_method_names = ["get"]
+@decorators.api_view(["GET"])
+def public_record_view(request):
+    """
+    vista encargada de retornar los audios a los que tiene acceso
+    el público general
+    """
+    paginator = PageNumberPagination()
+    paginator.page_size = 2
+    context = paginator.paginate_queryset(consulta_filtros_publicos(), request)
+    serializer = LabelSerializer(context, many=True)
+    return paginator.get_paginated_response(serializer.data)

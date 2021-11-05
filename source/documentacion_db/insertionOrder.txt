@@ -1,6 +1,4 @@
 user
-django_content_type
-auth_group
 case
 country
 datum
@@ -31,19 +29,11 @@ project
 sampling
 catalogue
 record
-auth_permission
 label
-apiCRUD_historicalfunding
 catalogue_obs
-django_rest_passwordreset_resetpasswordtoken
 photo_path
 record_obs
 record_path
-rest_framework_tracking_apirequestlog
 voucher
-auth_group_permissions
-django_admin_log
 labeled
 apiCRUD_keys
-django_migrations
-django_session

@@ -1,19 +1,11 @@
-django_session
-django_migrations
 apiCRUD_keys
 labeled
-django_admin_log
-auth_group_permissions
 voucher
-rest_framework_tracking_apirequestlog
 record_path
 record_obs
 photo_path
-django_rest_passwordreset_resetpasswordtoken
 catalogue_obs
-apiCRUD_historicalfunding
 label
-auth_permission
 record
 catalogue
 sampling
@@ -44,6 +36,4 @@ department
 datum
 country
 case
-auth_group
-django_content_type
 user

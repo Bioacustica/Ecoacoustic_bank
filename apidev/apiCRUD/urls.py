@@ -53,7 +53,6 @@ router.register("Filter", views.FilterView)
 router.register("Gain", views.GainView)
 router.register("Microphone", views.MicrophoneView)
 router.register("User", views.UserView)
-router.register("PublicRecord", views.PublicRecordView)
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -73,4 +72,5 @@ urlpatterns = [
         include("django_rest_passwordreset.urls", namespace="password_reset_confirm"),
     ),
     path("delete/<int:id_user>/", views.user_delete_view, name="delete_user"),
+    path("public-records/", views.public_record_view, name="public_records"),
 ]
