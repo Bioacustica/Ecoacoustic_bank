@@ -532,14 +532,16 @@
             <child column="id_labeler" foreignKey="labeled_id_labeler_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
             <child column="id_cataloger" foreignKey="sampling_id_cataloger_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="sampling"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="email" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="username" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="last_login" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="is_active" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="is_staff" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="is_superuser" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="roles" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="password" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="email" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="username" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="last_login" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="is_admin" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="is_active" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="is_staff" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="is_superuser" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="roles" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
          <primaryKey column="id_user" sequenceNumberInPK="1"/>
          <index name="user_pkey" unique="true">
             <column ascending="true" name="id_user"/>
