@@ -2154,7 +2154,7 @@ class Keys(models.Model):
 
     class Meta:
         managed = False
-        db_table = "apiCRUD_keys"
+        db_table = "keys"
 
 
 class Filter(models.Model):

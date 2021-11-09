@@ -4,6 +4,9 @@ import logging
 from datetime import datetime
 import jwt
 import pandas as pd
+import hashlib
+import zipfile
+from io import StringIO, BytesIO
 # import pyarrow as pa
 # import pyarrow.parquet as pq
 
@@ -87,7 +90,7 @@ def my_obtain_token_view(request):
         conexion1 = psycopg2.connect(**credenciales_db)
         conexion1.autocommit = True
         # ejecutamos una verifación para saber si el usuario existe
-        verificacion = """SELECT  username FROM bioacustica."apiCRUD_keys"  WHERE username='{}';""".format(
+        verificacion = "SELECT  username FROM bioacustica.keys WHERE username='{}';".format(
             user.username
         )
         with conexion1.cursor() as cursor1:
@@ -95,19 +98,19 @@ def my_obtain_token_view(request):
             name = cursor1.fetchone()
             if name is None:
                 with conexion1.cursor() as cursor2:
-                    payload2 = """INSERT INTO bioacustica."apiCRUD_keys" (username, key) VALUES ('{}', '{}') ;""".format(
+                    payload2 = "INSERT INTO bioacustica.keys (username, key) VALUES ('{}', '{}') ;".format(
                         user.username, llave
                     )
                     cursor2.execute(payload2)
             cursor1.execute(verificacion)
             nombre = cursor1.fetchone()
             if user.username == nombre[0]:
-                payload = """UPDATE bioacustica."apiCRUD_keys" SET key = '{}' WHERE username ='{}' ;""".format(
+                payload = "UPDATE bioacustica.keys SET key = '{}' WHERE username ='{}' ;".format(
                     llave, user.username
                 )
                 cursor1.execute(payload)
             else:
-                payload2 = """INSERT INTO bioacustica."apiCRUD_keys" (username, key) VALUES ('{}', '{}') ;""".format(
+                payload2 = "INSERT INTO bioacustica.keys (username, key) VALUES ('{}', '{}') ;".format(
                     user.username, llave
                 )
                 cursor1.execute(payload2)
@@ -204,17 +207,17 @@ def filtered_record_view(request):
     vista encargada de filtrar los audios a los que tiene acceso el usuario
 
     """
-    ciudad = request.data["ciudad"].upper()
-    habitat = request.data["habitat"].upper()
-    municipio = request.data["municipio"].upper()
-    evento = request.data["evento"].upper()
-    tipo_de_case = request.data["tipo de case"].upper()
-    tipo_de_micro = request.data["tipo de micro"].upper()
-    software = request.data["software"].upper()
-    tipo_de_grabadora = request.data["tipo de grabadora"].upper()
-    fecha = request.data["fecha"]
-    fecha_dt = datetime.strptime(fecha, '%d/%m/%Y')
-    elevation = request.data["elevation"]
+    # ciudad = request.data["ciudad"].upper()
+    # habitat = request.data["habitat"].upper()
+    # municipio = request.data["municipio"].upper()
+    # evento = request.data["evento"].upper()
+    # tipo_de_case = request.data["tipo de case"].upper()
+    # tipo_de_micro = request.data["tipo de micro"].upper()
+    # software = request.data["software"].upper()
+    # tipo_de_grabadora = request.data["tipo de grabadora"].upper()
+    # fecha = request.data["fecha"]
+    # fecha_dt = datetime.strptime(fecha, '%d/%m/%Y')
+    # elevation = request.data["elevation"]
 
     token = request.META.get("HTTP_AUTHORIZATION", "access")
     paginator = PageNumberPagination()
@@ -267,18 +270,18 @@ def download_records_files(request):
     :param request: Petición de tipo GET
     :return: retorna un archivo parquet para ser consumido por el front.
     """
-    filenames = [
-        "/code/apiCRUD/sample_audios/164114_20191001_174056.wav",
-        "/code/apiCRUD/sample_audios/MAG01_20191002_172500.WAV",
-        "/code/apiCRUD/sample_audios/MAG02_20191002_171000.WAV",
-    ]
-
-    lista = []
-    for fname in filenames:
-        lista.append(base_64_encoding(fname))
-    # Creamos un dataframe con los base64 de los audios escogidos.
-    df = pd.DataFrame(lista, columns=["base64"])
-    df.to_csv("/code/apiCRUD/sample_audios/datos2.csv")
+    # filenames = [
+    #     "/code/apiCRUD/sample_audios/164114_20191001_174056.wav",
+    #     "/code/apiCRUD/sample_audios/MAG01_20191002_172500.WAV",
+    #     "/code/apiCRUD/sample_audios/MAG02_20191002_171000.WAV",
+    # ]
+    #
+    # lista = []
+    # for fname in filenames:
+    #     lista.append(base_64_encoding(fname))
+    # # Creamos un dataframe con los base64 de los audios escogidos.
+    # df = pd.DataFrame(lista, columns=["base64"])
+    # df.to_csv("/code/apiCRUD/sample_audios/datos2.csv")
     # Leemos el dataframe.
     # dataframe = pd.read_csv("/code/apiCRUD/sample_audios/datos2.csv")
     # # Comenzamos el objeto table de pyarrow.
@@ -287,14 +290,29 @@ def download_records_files(request):
     # pq.write_table(table, "/code/apiCRUD/sample_audios/archivo_p2.parquet")
     # # abrimos el parquet y leemos su binario que será retornado en la vista.
     # file = open("/code/apiCRUD/sample_audios/archivo_p2.parquet", "rb")
-    path = "/code/apiCRUD/sample_audios/datosR.csv"
+    path = ["/code/apiCRUD/sample_audios/ensayo.zip"]
     # wrapper = FileWrapper(open(path, 'rb'))
     # response = HttpResponse(wrapper, content_type='application/octet-stream')
     # response['Content-Length'] = os.path.getsize(path)
     # response['Content-Disposition'] = 'attachment; filename=%s' % 'audios'
     # return response
-    response = FileResponse(read_file(path))
+    # code = hashlib.md5(open(path, "rb").read()).hexdigest()
+    zip_subdir = "somefiles"
+    zip_filename = "{}.zip".format(zip_subdir)
+    s = BytesIO()
+    zf = zipfile.ZipFile(s, "w")
+    for f in path:
+        fdir, fname = os.path.split(f)
+        zip_path = os.path.join(zip_subdir, fname)
+        print(zip_path)
+        print(f)
+        print(zip_path)
+        zf.write(f, zip_path)
+    zf.close()
+    response = HttpResponse(s.getvalue(), content_type="application/zip")
+    response['Conten-Dispostion'] = 'attachment; filename = {}'.format(zip_filename)
     return response
+
 
 @authentication_classes([JWTAuthentication])
 class CaseView(viewsets.ModelViewSet):

@@ -90,7 +90,7 @@ def consulta_filtros(token: str) -> list:
     conexion1 = psycopg2.connect(**credenciales_db_admin)
     conexion1.autocommit = True
     key_query = (
-        """SELECT key FROM bioacustica."apiCRUD_keys" where username='{}';""".format(
+        "SELECT key FROM bioacustica.keys where username='{}';".format(
             nombre_usuario
         )
     )

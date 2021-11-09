@@ -463,7 +463,7 @@ WITH (
     OIDS = FALSE
 );
 
-CREATE TABLE bioacustica."apiCRUD_keys"
+CREATE TABLE bioacustica.keys
 (
     username character varying(200) NOT NULL,
     key character varying(200)  NOT NULL

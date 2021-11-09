@@ -1,7 +1,8 @@
+keys
 django_session
 django_migrations
 apiCRUD_locality
-apicrud_keys
+apiCRUD_keys
 apiCRUD_frequencydetail
 labeled
 django_admin_log
