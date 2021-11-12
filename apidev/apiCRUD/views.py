@@ -7,6 +7,7 @@ import pandas as pd
 import hashlib
 import zipfile
 from io import StringIO, BytesIO
+
 # import pyarrow as pa
 # import pyarrow.parquet as pq
 
@@ -28,6 +29,7 @@ from dry_rest_permissions.generics import DRYPermissions
 from rest_framework_tracking.mixins import LoggingMixin
 from rest_framework_simplejwt.tokens import RefreshToken
 from cryptography.fernet import Fernet
+
 # from django.http import StreamingHttpResponse
 # from wsgiref.util import FileWrapper
 from django.http import HttpResponse
@@ -44,6 +46,7 @@ from .fnt import (
 from .serializers import *
 from .custom_permissions import IsAdmin
 from django.conf import settings
+from .forms import ContactForm
 
 # Vistas hechas con el model view set para hacer el CRUD
 """La Clase ModelViewSet incluye implementaciones para
@@ -151,9 +154,7 @@ def my_obtain_token_view(request):
 @decorators.api_view(["POST"])
 @authentication_classes([JWTAuthentication])
 @decorators.permission_classes(
-    [
-        IsAdmin,
-    ]
+    [IsAdmin,]
 )
 def registration(request):
     """
@@ -207,14 +208,15 @@ def filtered_record_view(request):
     vista encargada de filtrar los audios a los que tiene acceso el usuario
 
     """
-    # ciudad = request.data["ciudad"].upper()
-    # habitat = request.data["habitat"].upper()
-    # municipio = request.data["municipio"].upper()
-    # evento = request.data["evento"].upper()
-    # tipo_de_case = request.data["tipo de case"].upper()
-    # tipo_de_micro = request.data["tipo de micro"].upper()
-    # software = request.data["software"].upper()
-    # tipo_de_grabadora = request.data["tipo de grabadora"].upper()
+    catalogo = request.data["catalogo"].upper()
+    habitat = request.data["habitat"].upper()
+    municipio = request.data["municipio"].upper()
+    evento = request.data["evento"].upper()
+    tipo_case = request.data["tipo de case"].upper()
+    tipo_micro = request.data["tipo de micro"].upper()
+    metodo_etiquetado = request.data["metodo etiquetado"].upper()
+    software = request.data["software"].upper()
+    tipo_grabadora = request.data["tipo de grabadora"].upper()
     # fecha = request.data["fecha"]
     # fecha_dt = datetime.strptime(fecha, '%d/%m/%Y')
     # elevation = request.data["elevation"]
@@ -222,9 +224,55 @@ def filtered_record_view(request):
     token = request.META.get("HTTP_AUTHORIZATION", "access")
     paginator = PageNumberPagination()
     paginator.page_size = 2
-    context = paginator.paginate_queryset(consulta_filtros(token), request)
-    serializer = UserSerializer(context, many=True)
-    return paginator.get_paginated_response(serializer.data)
+    context = paginator.paginate_queryset(
+        consulta_filtros(
+            token,
+            catalogo,
+            habitat,
+            municipio,
+            evento,
+            tipo_case,
+            tipo_micro,
+            metodo_etiquetado,
+            software,
+            tipo_grabadora,
+        ),
+        request,
+    )
+    # serializer = FilterSerializer(context, many=True)
+    return paginator.get_paginated_response(context)
+
+
+#TODO CREAR VISTA PARA LOS CAMPOS DEL FILTRO
+@decorators.api_view(["GET"])
+def lista_filtros(request):
+
+    ciudad = Country.objects.values_list('description')
+    habitat = Habitat.objects.values_list('description')
+    municipio = Municipality.objects.values_list('description')
+    print(type(ciudad[104]))
+    evento = Type.objects.values_list('description')
+    case = Case.objects.values_list('description')
+    micro = Microphone.objects.values_list('description')
+    evidence = Evidence.objects.values_list('description')
+    software = Software.objects.values_list('description')
+    hardware = Hardware.objects.values_list('description')
+
+
+
+    diccionario_filtros = {
+        'ciudad': ciudad,
+        'habitat': habitat,
+        'municipio': municipio,
+        'evento' : evento,
+        'tipo de case': case,
+        'tipo de micro': micro,
+        'Metodo etiquetado': evidence,
+        'software etiquetado': software,
+        'Tipo de grabadora': hardware
+
+    }
+    return Response(diccionario_filtros)
 
 
 @decorators.api_view(["GET"])
@@ -256,8 +304,6 @@ def downolad_record_views_csv(request):
         dict_writer.writerows(objects_list)
         responses["Content-Disposition"] = 'attachment; filename="users.xlsx"'
         return responses
-
-
 
 
 @authentication_classes([JWTAuthentication])
@@ -310,7 +356,7 @@ def download_records_files(request):
         zf.write(f, zip_path)
     zf.close()
     response = HttpResponse(s.getvalue(), content_type="application/zip")
-    response['Conten-Dispostion'] = 'attachment; filename = {}'.format(zip_filename)
+    response["Conten-Dispostion"] = "attachment; filename = {}".format(zip_filename)
     return response
 
 
@@ -556,9 +602,7 @@ class UserView(viewsets.ModelViewSet):
 @decorators.api_view(["DELETE"])
 @authentication_classes([JWTAuthentication])
 @decorators.permission_classes(
-    [
-        IsAdmin,
-    ]
+    [IsAdmin,]
 )
 def user_delete_view(request, id_user):
     """
@@ -671,3 +715,16 @@ class ChangePasswordView(generics.UpdateAPIView):
                 )
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@decorators.api_view(["POST"])
+def contactanos_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            asunto = form.cleaned_data['subject']
+            email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            send_mail(asunto, email+','+ message , email, ["animalesitm@gmail.com"])
+            return Response("Enviado con exito")
+        return Response("ALGO salio mal ", status=status.HTTP_400_BAD_REQUEST)

@@ -40,7 +40,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "animalesitm@gmail.com"
 EMAIL_HOST_PASSWORD = "3sz7JufS:eMzaxe"
 EMAIL_USE_TLS = True
-
 # Application definition
 
 INSTALLED_APPS = [

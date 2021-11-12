@@ -4,7 +4,8 @@ from apiCRUD import views
 
 from .views import (ChangePasswordView, registration, filtered_record_view, user_delete_view, my_obtain_token_view ,
                     downolad_record_views_csv,
-                    download_records_files
+                    download_records_files,
+                    lista_filtros
                     )
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
@@ -69,4 +70,6 @@ urlpatterns = [
         include("django_rest_passwordreset.urls", namespace="password_reset_confirm"),
     ),
     path("delete/<int:id_user>/", views.user_delete_view, name="delete_user"),
+    path("lista_filtros/", views.lista_filtros, name="lista_filtros"),
+    path("contactanos/", views.contactanos_view, name="contacto")
 ]
