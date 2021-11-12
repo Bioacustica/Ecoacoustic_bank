@@ -13,7 +13,7 @@ while not db_status:
         engine.connect()
         db_status = True
     except OperationalError:
-        print("NO EXISTE DB")
+        print("NO EXISTE DB ")
 
 m = MetaData(schema = 'bioacustica')
 Base = automap_base(bind=engine, metadata=m)

@@ -486,7 +486,7 @@
          <column autoUpdated="true" defaultValue="nextval('bioacustica.software_id_software_seq'::regclass)" digits="0" id="0" name="id_software" nullable="false" remarks="" size="5" type="smallserial" typeCode="5">
             <child column="id_software" foreignKey="labeled_id_software_fkey" implied="false" onDeleteCascade="false" schema="bioacustica" table="labeled"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="descripton" nullable="false" remarks="" size="80" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="false" remarks="" size="80" type="varchar" typeCode="12"/>
          <primaryKey column="id_software" sequenceNumberInPK="1"/>
          <index name="software_pkey" unique="true">
             <column ascending="true" name="id_software"/>

@@ -16,6 +16,8 @@ from mapping import engine
 
 session = Session(engine)
 
+# TODO: Documentar en el readme la carga de datos!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 def load_master_table(mapping, info_path, table_name, engine, schema):
     # mapping: sqlalchemy.ext.automap (Base.classes)
@@ -165,7 +167,6 @@ def new_plantilla(info_path):
 
 def load_user(user_file):
     """Esta funcion carga los usuarios
-
     :param user_file: [description]
     :type user_file: [type]
     """
