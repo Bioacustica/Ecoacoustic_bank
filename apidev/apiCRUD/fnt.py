@@ -1,15 +1,22 @@
-import zlib
+"""
+Modulo donde se crean funciones utiles que son usadas en las vistas de Django
+"""
+from __future__ import barry_as_FLUFL
 
-from django.conf import settings
+__author__ = "Victor Torres"
+__version__ = "0.1"
+__license__ = "GPL"
+__status__ = "Development"
+__maintainer__ = "Victor Torres"
+
+
 import psycopg2
 import json
 import jwt
 import base64
-import time
-from django.http import StreamingHttpResponse
 
 from cryptography.fernet import Fernet
-
+from django.conf import settings
 
 def choose_role(username: str, password: str, roles: str) -> str:
     """Función encargada de crear roles con el usuario y contraseña
@@ -138,9 +145,10 @@ def consulta_filtros(
         "port": db_port,
         "database": db_name,
     }
-    # se hace la consulta y se crea el objecto con los datos consultados
+    # se hace la consulta y se crea el objecto con los datos consultados}
+    #TODO Implementar logica en caso de que se pase un None desde el request
     print(type(catalogo))
-    print(habitat)
+    print(type(habitat))
     print(municipio)
     print(evento)
     print(tipo_case)

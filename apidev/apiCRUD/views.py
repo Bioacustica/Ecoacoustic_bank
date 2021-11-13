@@ -1,20 +1,26 @@
+"""
+Este modulo se encarga manejar todas las peticiones mediantes las vistas (views)
+Creadas y gestionadas desde django rest framework
+"""
+from __future__ import barry_as_FLUFL
+
+__author__ = "Victor Torres"
+__version__ = "0.1"
+__license__ = "GPL"
+__status__ = "Development"
+__maintainer__ = "Victor Torres"
+
+import os
 import csv
 import json
 import logging
-from datetime import datetime
 import jwt
-import pandas as pd
-import hashlib
 import zipfile
-from io import StringIO, BytesIO
+from io import BytesIO
 
-# import pyarrow as pa
-# import pyarrow.parquet as pq
-
-from django.http import HttpResponse, FileResponse
 import psycopg2
 from django.contrib.auth import get_user_model, authenticate
-from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
+from rest_framework.pagination import PageNumberPagination
 from rest_framework import generics, viewsets
 from rest_framework.decorators import (
     authentication_classes,
@@ -29,19 +35,13 @@ from dry_rest_permissions.generics import DRYPermissions
 from rest_framework_tracking.mixins import LoggingMixin
 from rest_framework_simplejwt.tokens import RefreshToken
 from cryptography.fernet import Fernet
-
-# from django.http import StreamingHttpResponse
-# from wsgiref.util import FileWrapper
 from django.http import HttpResponse
-import os
 
 from .fnt import (
     choose_role,
     change_password,
     delete_user,
     consulta_filtros,
-    base_64_encoding,
-    read_file,
 )
 from .serializers import *
 from .custom_permissions import IsAdmin
@@ -160,7 +160,7 @@ def registration(request):
     """
     Esta clase es la encargada de registrar usuarios nuevos
     unicamente se puede registrar usuarios
-    :return: si todo fue exitoso devuelve un creado de forma exitosa
+    :return: si  fue exitoso devuelve un creado de forma exitosa
     :rtype: Http status
     """
     username = request.data["username"]
@@ -196,6 +196,11 @@ def registration(request):
 @authentication_classes([JWTAuthentication])
 # la clase logginMixin  se encarga de hacer logs en la base de datos
 class FundingsView(LoggingMixin, viewsets.ModelViewSet):
+    """
+    Esta vista se encarga del CRUD de la tabla fundings,hereda de models viewsets
+    y la clase logginMixin se ecarga de registrar los logs en la db
+    """
+
     queryset = Funding.objects.all()
     # permission_classes = (IsAdmin,)
     serializer_class = FundingSerializer
@@ -206,6 +211,8 @@ class FundingsView(LoggingMixin, viewsets.ModelViewSet):
 def filtered_record_view(request):
     """
     vista encargada de filtrar los audios a los que tiene acceso el usuario
+    Pide token de autenticación
+    solo se permite peticiones de tipo get
 
     """
     catalogo = request.data["catalogo"].upper()
@@ -239,38 +246,40 @@ def filtered_record_view(request):
         ),
         request,
     )
-    # serializer = FilterSerializer(context, many=True)
     return paginator.get_paginated_response(context)
 
 
-#TODO CREAR VISTA PARA LOS CAMPOS DEL FILTRO
 @decorators.api_view(["GET"])
 def lista_filtros(request):
+    """
+    Vista encargada de entregar la listas de los datos existentes
+    para posteriormente hacer un filtrado mas efectivo con datos existentes
+    :param request:
+    :return: retornar un diccionario con la lista de opciones por las cual
+    se puede filtrar
+    """
 
-    ciudad = Country.objects.values_list('description')
-    habitat = Habitat.objects.values_list('description')
-    municipio = Municipality.objects.values_list('description')
-    print(type(ciudad[104]))
-    evento = Type.objects.values_list('description')
-    case = Case.objects.values_list('description')
-    micro = Microphone.objects.values_list('description')
-    evidence = Evidence.objects.values_list('description')
-    software = Software.objects.values_list('description')
-    hardware = Hardware.objects.values_list('description')
+    ciudad = Country.objects.values_list("description")
+    habitat = Habitat.objects.values_list("description")
+    municipio = Municipality.objects.values_list("description")
+    evento = Type.objects.values_list("description")
+    case = Case.objects.values_list("description")
+    micro = Microphone.objects.values_list("description")
+    evidence = Evidence.objects.values_list("description")
+    software = Software.objects.values_list("description")
+    hardware = Hardware.objects.values_list("description")
 
-
-
+    # TODO  cambiar estructura del diccionario,  agregar departamentos.
     diccionario_filtros = {
-        'ciudad': ciudad,
-        'habitat': habitat,
-        'municipio': municipio,
-        'evento' : evento,
-        'tipo de case': case,
-        'tipo de micro': micro,
-        'Metodo etiquetado': evidence,
-        'software etiquetado': software,
-        'Tipo de grabadora': hardware
-
+        "ciudad": ciudad,
+        "habitat": habitat,
+        "municipio": municipio,
+        "evento": evento,
+        "tipo de case": case,
+        "tipo de micro": micro,
+        "Metodo etiquetado": evidence,
+        "software etiquetado": software,
+        "Tipo de grabadora": hardware,
     }
     return Response(diccionario_filtros)
 
@@ -279,7 +288,8 @@ def lista_filtros(request):
 @authentication_classes([JWTAuthentication])
 def downolad_record_views_csv(request):
     """
-    Función encargada de la descarga de los datos de los audios
+    Función encargada de la descarga de los datos de los audios, es decir
+    descarga los datos como: donde fue grabado, duración, fecha
 
     :param request:
     :return: lista con los base64 de los audios
@@ -362,6 +372,11 @@ def download_records_files(request):
 
 @authentication_classes([JWTAuthentication])
 class CaseView(viewsets.ModelViewSet):
+    """
+    Vista encargada del CRUD de la tabla Case
+    Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+    """
+
     queryset = Case.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = CaseSerializer
@@ -370,12 +385,24 @@ class CaseView(viewsets.ModelViewSet):
 @permission_classes([DRYPermissions])
 @authentication_classes([JWTAuthentication])
 class CatalogueView(viewsets.ModelViewSet):
+    """
+    Vista encargada del CRUD de la tabla Catalogue
+    Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+    Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+    """
+
     queryset = Catalogue.objects.all()
     serializer_class = CatalogueSerializer
 
 
 @authentication_classes([JWTAuthentication])
 class CatalogueObsView(viewsets.ModelViewSet):
+    """
+       Vista encargada del CRUD de la tabla Catalogue Obs
+       Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+       Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+       """
+
     queryset = CatalogueObs.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = CatalogueObsSerializer
@@ -383,6 +410,11 @@ class CatalogueObsView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class CountryView(viewsets.ModelViewSet):
+    """
+       Vista encargada del CRUD de la tabla Country
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+       """
+
     queryset = Country.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = CountrySerializer
@@ -390,6 +422,11 @@ class CountryView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class DatumView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Datum
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = Datum.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = DatumSerializer
@@ -397,6 +434,11 @@ class DatumView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class DepartmentView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Departmen
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = Department.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = DepartmentSerializer
@@ -404,6 +446,11 @@ class DepartmentView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class EvidenceView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Evidence
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = Evidence.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = EvidenceSerializer
@@ -411,6 +458,11 @@ class EvidenceView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class FrequencyDetailView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Frecuency Detail
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = FrequencyDetail.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = FrequencyDetailSerializer
@@ -418,6 +470,12 @@ class FrequencyDetailView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class FormatView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Format view
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = Format.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = FormatSerializer
@@ -425,6 +483,12 @@ class FormatView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class HSerialView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Hserial
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = HSerial.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = HSerialSerializer
@@ -432,6 +496,12 @@ class HSerialView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class HabitatView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla habitat
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = Habitat.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = HabitatSerializer
@@ -439,6 +509,12 @@ class HabitatView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class HardwareView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Hardware
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = Hardware.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = HardwareSerializer
@@ -446,6 +522,12 @@ class HardwareView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class LabelView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Label
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = Label.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = LabelSerializer
@@ -453,6 +535,12 @@ class LabelView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class LabeledView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Labeled
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = Labeled.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = LabeledSerializer
@@ -460,6 +548,11 @@ class LabeledView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class LocalityView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Locality
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = Locality.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = LocalitySerializer
@@ -467,6 +560,11 @@ class LocalityView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class MeasureView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Measure
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = Measure.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = MeasureSerializer
@@ -474,6 +572,13 @@ class MeasureView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class MemoryView(viewsets.ModelViewSet):
+    """
+       Vista encargada del CRUD de la tabla Memory
+       Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+       Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+
+    """
+
     queryset = Memory.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = MemorySerializer
@@ -481,6 +586,11 @@ class MemoryView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class MunicipalityView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Municipality
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = Municipality.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = MunicipalitySerializer
@@ -488,6 +598,11 @@ class MunicipalityView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class PhotoPathView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla PhotoPath
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = PhotoPath.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = PhotoPathSerializer
@@ -495,6 +610,12 @@ class PhotoPathView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class PrecisionView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Precision
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = Precision.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = PrecisionSerializer
@@ -502,6 +623,12 @@ class PrecisionView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class ProjectView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Project
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = Project.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = ProjectSerializer
@@ -509,6 +636,11 @@ class ProjectView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class PulseTypeView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Pulse Type
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = PulseType.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = PulseTypeSerializer
@@ -516,6 +648,12 @@ class PulseTypeView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class RecordView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Record
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = Record.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = RecordSerializer
@@ -523,6 +661,12 @@ class RecordView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class RecordObsView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Record Obs
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = RecordObs.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = RecordObsSerializer
@@ -530,6 +674,12 @@ class RecordObsView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class RecordPathView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Record Path
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = RecordPath.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = RecordPathSerializer
@@ -537,6 +687,12 @@ class RecordPathView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class SamplingView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Sampling
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = Sampling.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = SamplingSerializer
@@ -544,6 +700,12 @@ class SamplingView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class SeasonView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Season
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     queryset = Season.objects.all()
     permission_classes = (DRYPermissions,)
     serializer_class = SeasonSerializer
@@ -551,6 +713,11 @@ class SeasonView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class SoftwareView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Software
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = Software.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = SoftwareSerializer
@@ -558,6 +725,12 @@ class SoftwareView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class SupplyView(viewsets.ModelViewSet):
+    """
+           Vista encargada del CRUD de la tabla Supply
+           Se usa la clase DRYPermissions para tener mas control de los roles que tienen acceso
+           Estos permisos se gestionan con funciones declaradas en los modelos( revisar models.py)
+           """
+
     permission_classes = (DRYPermissions,)
     queryset = Supply.objects.all()
     serializer_class = SupplySerializer
@@ -565,6 +738,11 @@ class SupplyView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class TimeDetailView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla  Time Detail
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = TimeDetail.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = TimeDetailSerializer
@@ -572,6 +750,11 @@ class TimeDetailView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class TypeView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Type
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = Type.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = TypeSerializer
@@ -579,6 +762,11 @@ class TypeView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class VeredaView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Vereda
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = Vereda.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = VeredaSerializer
@@ -586,6 +774,11 @@ class VeredaView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class VoucherView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla Voucher
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        """
+
     queryset = Voucher.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = VoucherSerializer
@@ -593,6 +786,12 @@ class VoucherView(viewsets.ModelViewSet):
 
 @authentication_classes([JWTAuthentication])
 class UserView(viewsets.ModelViewSet):
+    """
+        Vista encargada del CRUD de la tabla User
+        Solo se puede acceder si tienes el rol de admin( consultar modulo custom_permissions.py)
+        Solo está permitido hacer peticiones get y put
+        """
+
     queryset = User.objects.all()
     permission_classes = (IsAdmin,)
     serializer_class = UserSerializer
@@ -719,12 +918,26 @@ class ChangePasswordView(generics.UpdateAPIView):
 
 @decorators.api_view(["POST"])
 def contactanos_view(request):
-    if request.method == 'POST':
+    """
+    Vista encargada de enviar un email,
+    a los admins de bioacustica,
+    usa un formulario, todos los
+    campos son obligatarios.
+    :param request:
+    :return:
+    """
+    if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
-            asunto = form.cleaned_data['subject']
-            email = form.cleaned_data['from_email']
-            message = form.cleaned_data['message']
-            send_mail(asunto, email+','+ message , email, ["animalesitm@gmail.com"])
+            asunto = form.cleaned_data["subject"]
+            email = form.cleaned_data["from_email"]
+            message = form.cleaned_data["message"]
+            # FIXME Lograr que aparezca el email de quien hizo el formulario.
+            send_mail(
+                asunto,
+                "Este es mi correo electronico:" + "\n" + email + "\n" + message,
+                email,
+                ["animalesitm@gmail.com"],
+            )  # se pueden agregar mas emails.
             return Response("Enviado con exito")
         return Response("ALGO salio mal ", status=status.HTTP_400_BAD_REQUEST)

@@ -1,3 +1,14 @@
+"""
+Modulo de las URLS , aca se agregan todos los endopoints que seran consumidos por la api del Frontend
+"""
+from __future__ import barry_as_FLUFL
+
+__author__ = "Victor Torres"
+__version__ = "0.1"
+__license__ = "GPL"
+__status__ = "Development"
+__maintainer__ = "Victor Torres"
+
 
 from django.urls import path, include
 from apiCRUD import views

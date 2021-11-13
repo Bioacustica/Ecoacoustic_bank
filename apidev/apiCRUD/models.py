@@ -1,13 +1,78 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the
-# desired behavior
-#   * Remove `managed = False` lines if you wish to allow Django to create
-# , modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field
-# names.
+"""
+En este modulo se encuentran todos los modelos trabajados en el backend
+todos ellos apuntan a la base de datos.
+
+Esta seccion de codigo aparace en todos y cada uno de los modelos
+esta sección de codigo está encargada de pernmitir o denegar el acceso a diferentes
+opciones dentro del modelo.
+
+Por ejemplo si un usuario quiere hacer select, update o delete y solo lo pueden hacer los roles registros,admin
+o etiquetado y el rol con presenta la persona es diferente  no se le permitirá hacer esa acción.
+
+  @staticmethod
+    def has_read_permission(request):
+        función encargada de permitir
+        o denegar si un usuario con su rol
+        puede hacer cambios en la bd
+
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        función encargada de permitir
+        o denegar si un usuario con su rol
+        puede hacer cambios en la bd
+
+        if (
+            request.user.roles == "registro"
+            or request.user.roles == "admin"
+            or request.user.roles == "etiquetado"
+        ):
+            return True
+        return False
+
+   #@staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "registro" or request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_destroy_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+
+    def has_object_destroy_permission(self, request):
+        if request.user.roles == "admin":
+            return True
+        return False
+"""
+from __future__ import barry_as_FLUFL
+
+__author__ = "Victor Torres"
+__version__ = "0.1"
+__license__ = "GPL"
+__status__ = "Development"
+__maintainer__ = "Victor Torres"
+
 from django.contrib.auth.base_user import BaseUserManager
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
@@ -92,6 +157,14 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    """
+    esta es la clase Custom del usuario con la que se gestionarańa tambien  los permisos
+    de los usuarios
+    NOTA: hay algunos parametros olbigatorios, que nose pueden dejar vacios
+
+    de forma adicional con esta misma clase se van a gestionar los Autores(name)
+    de quien fue el que hizo los records durante la salida de campo
+    """
     ROLES = (
         ("admin", "admin"),
         ("usuario", "usuario"),
@@ -99,6 +172,7 @@ class User(AbstractBaseUser):
         ("registro", "registro"),
     )
     id_user = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, blank=True, null=False)
     username = models.CharField(max_length=100, blank=False, null=False)
     password = models.CharField(max_length=100, blank=True, null=False)
     email = models.CharField(max_length=100, blank=False, null=False, unique=True)
