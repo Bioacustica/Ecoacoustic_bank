@@ -51,7 +51,7 @@ services:
     env_file: Django.env
     depends_on:
       - postgres
-    frontend:
+  frontend:
     build:
       context: .
     volumes:
