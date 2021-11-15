@@ -1,3 +1,14 @@
+"""Modulo encargado de mantener el sitio de administrador de django"""
+
+from __future__ import barry_as_FLUFL
+
+__author__ = "Victor Torres"
+__version__ = "0.1"
+__license__ = "GPL"
+__status__ = "Development"
+__maintainer__ = "Victor Torres"
+
+
 from django.contrib import admin
 from django.apps import apps
 

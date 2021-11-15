@@ -54,6 +54,7 @@ services:
   frontend:
     build:
       context: .
+      dockerfile: Node.Dockerfile
     volumes:
       - .:/bioacustica-front
     ports:

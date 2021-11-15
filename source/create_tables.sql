@@ -7,7 +7,7 @@ CREATE SCHEMA bioacustica;
 CREATE TABLE bioacustica."case"
 (
     id_case smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_case)
 )
 WITH (
@@ -16,15 +16,15 @@ WITH (
 
 CREATE TABLE bioacustica.catalogue
 (
-    id_catalogue smallserial NOT NULL,
+    id_catalogue serial NOT NULL,
     id_sampling smallint NOT NULL,
     id_country smallint NOT NULL,
     id_department smallint NOT NULL,
     id_municipality smallint NOT NULL,
     id_vereda smallint NOT NULL,
     id_locality smallint NOT NULL,
-    id_gain integer NOT NULL,
-    id_filter integer NOT NULL,
+    id_gain smallint NOT NULL,
+    id_filter smallint NOT NULL,
     id_collector smallint NOT NULL,
     id_h_serial smallint NOT NULL,
     id_supply smallint NOT NULL,
@@ -49,7 +49,7 @@ WITH (
 
 CREATE TABLE bioacustica.catalogue_obs
 (
-    id_catalogue_obs smallserial NOT NULL,
+    id_catalogue_obs serial NOT NULL,
     id_catalogue integer NOT NULL,
     observation character varying(100),
     PRIMARY KEY (id_catalogue_obs)
@@ -61,7 +61,7 @@ WITH (
 CREATE TABLE bioacustica.datum
 (
     id_datum smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_datum)
 )
 WITH (
@@ -97,6 +97,7 @@ CREATE TABLE bioacustica.funding
 WITH (
     OIDS = FALSE
 );
+
 
 COMMENT ON TABLE bioacustica.funding
     IS 'ESTA TABLA SIRVE PARA X COSA modificado';
@@ -148,7 +149,7 @@ WITH (
 
 CREATE TABLE bioacustica.labeled
 (
-    id_labeled smallserial NOT NULL,
+    id_labeled serial NOT NULL,
     id_label smallint NOT NULL,
     id_record integer NOT NULL,
     id_evidence smallint NOT NULL,
@@ -173,7 +174,7 @@ COMMENT ON COLUMN bioacustica.labeled.date
 CREATE TABLE bioacustica.memory
 (
     id_memory smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_memory)
 )
 WITH (
@@ -182,7 +183,7 @@ WITH (
 
 CREATE TABLE bioacustica.photo_path
 (
-    id_photo_path smallserial NOT NULL,
+    id_photo_path serial NOT NULL,
     id_catalogue integer NOT NULL,
     path character varying(100),
     PRIMARY KEY (id_photo_path)
@@ -214,7 +215,7 @@ WITH (
 
 CREATE TABLE bioacustica.record
 (
-    id_record smallserial NOT NULL,
+    id_record serial NOT NULL,
     id_catalogue integer NOT NULL,
     id_format smallint NOT NULL,
     date timestamp without time zone,
@@ -231,7 +232,7 @@ WITH (
 
 CREATE TABLE bioacustica.record_obs
 (
-    id_record_obs smallserial NOT NULL,
+    id_record_obs serial NOT NULL,
     id_record integer NOT NULL,
     observation character varying(100),
     PRIMARY KEY (id_record_obs)
@@ -242,7 +243,7 @@ WITH (
 
 CREATE TABLE bioacustica.record_path
 (
-    id_record_path smallserial NOT NULL,
+    id_record_path serial NOT NULL,
     id_record integer NOT NULL,
     record_path character varying(100),
     fingerprint character varying(100),
@@ -254,7 +255,7 @@ WITH (
 
 CREATE TABLE bioacustica.sampling
 (
-    id_sampling smallserial NOT NULL,
+    id_sampling serial NOT NULL,
     id_project smallint NOT NULL,
     id_cataloger smallint NOT NULL,
     id_season smallint NOT NULL,
@@ -269,7 +270,7 @@ WITH (
 CREATE TABLE bioacustica.season
 (
     id_season smallserial NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_season)
 )
 WITH (
@@ -288,8 +289,7 @@ WITH (
 
 CREATE TABLE bioacustica.type
 (
---     id_type smallint NOT NULL,
-    id_type smallserial NOT NULL,
+    id_type smallint NOT NULL,
     description character varying(100) NOT NULL,
     PRIMARY KEY (id_type)
 )
@@ -297,19 +297,20 @@ WITH (
     OIDS = FALSE
 );
 
-CREATE TABLE IF NOT EXISTS bioacustica.USER
+CREATE TABLE bioacustica."user"
 (
-    ID_USER SERIAL ,
-    USERNAME character varying(100) NOT NULL,
-    PASSWORD character varying(100),
-    EMAIL character varying(100) NOT NULL,
-    LAST_LOGIN DATE,
-    IS_ADMIN BOOLEAN,
-    IS_ACTIVE BOOLEAN,
-    IS_STAFF BOOLEAN,
-    IS_SUPERUSER BOOLEAN,
-    ROLES character varying(50) NOT NULL,
-    PRIMARY KEY (ID_USER)
+    id_user smallserial NOT NULL,
+    name character varying(100),
+    password character varying(100),
+    email character varying(100) NOT NULL,
+    username character varying(100),
+    last_login date,
+    is_admin boolean,
+    is_active boolean,
+    is_staff boolean,
+    is_superuser boolean,
+    roles character varying(50) NOT NULL,
+    PRIMARY KEY (id_user)
 )
 WITH (
     OIDS = FALSE
@@ -367,7 +368,7 @@ WITH (
 
 CREATE TABLE bioacustica.voucher
 (
-    id_voucher smallserial NOT NULL,
+    id_voucher serial NOT NULL,
     id_catalogue integer NOT NULL,
     voucher character varying(100),
     PRIMARY KEY (id_voucher)
@@ -378,12 +379,12 @@ WITH (
 
 CREATE TABLE bioacustica.frequency_detail
 (
-    id_frequency_detail smallserial NOT NULL,
+    id_frequency_detail serial NOT NULL,
     id_labeled integer NOT NULL,
-    beginning integer,
+    begining integer,
     ending integer,
     minimal integer,
-    maximum integer,
+    maximun integer,
     peak integer,
     PRIMARY KEY (id_frequency_detail)
 )
@@ -393,9 +394,9 @@ WITH (
 
 CREATE TABLE bioacustica.time_detail
 (
-    id_time_detail smallserial NOT NULL,
+    id_time_detail serial NOT NULL,
     id_labeled integer NOT NULL,
-    beginning smallint,
+    beging smallint,
     ending smallint,
     PRIMARY KEY (id_time_detail)
 )
@@ -433,6 +434,7 @@ WITH (
     OIDS = FALSE
 );
 
+
 CREATE TABLE bioacustica.microphone
 (
     id_microphone smallint NOT NULL,
@@ -456,22 +458,12 @@ WITH (
 CREATE TABLE bioacustica.filter
 (
     id_filter smallint NOT NULL,
-    decription character varying(100) NOT NULL,
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_filter)
 )
 WITH (
     OIDS = FALSE
 );
-
-CREATE TABLE bioacustica.apiCRUD_keys
-(
-    username character varying(200) NOT NULL,
-    key character varying(200)  NOT NULL
-)
-WITH (
-    OIDS = FALSE
-);
-
 
 ALTER TABLE bioacustica.catalogue
     ADD FOREIGN KEY (id_case)
@@ -495,6 +487,15 @@ ALTER TABLE bioacustica.catalogue
     ADD FOREIGN KEY (id_h_serial)
     REFERENCES bioacustica.h_serial (id_h_serial)
     NOT VALID;
+
+CREATE TABLE bioacustica.keys
+(
+    username character varying(200) NOT NULL,
+    key character varying(200)  NOT NULL
+)
+WITH (
+    OIDS = FALSE
+);
 
 
 ALTER TABLE bioacustica.catalogue
@@ -693,10 +694,12 @@ ALTER TABLE bioacustica.catalogue
     REFERENCES bioacustica.gain (id_gain)
     NOT VALID;
 
+
 ALTER TABLE bioacustica.catalogue
     ADD FOREIGN KEY (id_filter)
     REFERENCES bioacustica.filter (id_filter)
     NOT VALID;
+
 
 ALTER TABLE bioacustica.catalogue
     ADD FOREIGN KEY (id_microphone)
@@ -705,6 +708,9 @@ ALTER TABLE bioacustica.catalogue
 
 END;
 
+/* Desde este punto comienzan las funciones que se crearon y se integraron con django */
+
+--Esta es la función que crea el admin en la base de datos
 create or replace function bioacustica.create_user_admin (
   unm varchar,
   pwd varchar
@@ -728,7 +734,7 @@ end;
 $$ language plpgsql;
 
 
-
+-- Esta es la función que crea el colaborador de registros
 
 create or replace function bioacustica.create_user_registros (
   unm varchar,
@@ -759,7 +765,7 @@ end;
 $$ language plpgsql;
 
 
-
+-- Esta es la función de el colaborador  de etiquetado
 create or replace function bioacustica.create_user_etiquetado (
   unm varchar,
   pwd varchar
@@ -789,6 +795,7 @@ end;
 $$ language plpgsql;
 
 
+-- Esta es la función para los usuarios
 
 create or replace function bioacustica.create_user_usuario (
   unm varchar,
@@ -817,6 +824,8 @@ begin
 
 end;
 $$ language plpgsql;
+
+-- Esta función tiene como utilidad cambiar la contraseña dentro de la DB, no afecta la tabla users.
 
 create or replace function bioacustica.change_password (
   unm varchar,
@@ -853,3 +862,91 @@ begin
 
 end;
 $$ language plpgsql;
+
+--tabla de filtros  si no se espeficica un parametro se toma como Null--
+
+create or replace function bioacustica.get_join(
+    catalogo varchar default NULL,
+    habitat_q varchar default NULL,
+    municipio varchar default NULL,
+    evento_q varchar default NULL,
+    tipo_case varchar default NULL,
+    tipo_micro varchar default NULL,
+    metodo_etiquetado varchar default NULL,
+    software_q varchar default NULL,
+    tipo_grabadora varchar default NULL
+)
+
+    returns table (
+        id_record integer,
+        formato_ varchar,
+        chunk_ smallint,
+        date_ timestamp,
+        catalogo_ varchar,
+        elevation integer,
+        chunks_ smallint,
+        tipo_grabadora_ varchar,
+        case_ varchar,
+        microphone varchar,
+        sampling_description varchar,
+        habitat_ varchar,
+        ciudad_ varchar,
+        departamento_ varchar,
+        type_ varchar,
+        metodo_etiquetado_ varchar,
+        software_etiquetado_ varchar
+    )
+
+    language plpgsql
+as $$
+begin
+    return query
+        select
+            record.id_record,
+            format.description,
+            record.chunk,
+            record.date,
+            catalogue.description,
+            catalogue.elevation,
+            catalogue.chunks,
+            hardware.description,
+            "case".description,
+            microphone.description,
+            sampling.description,
+            habitat.description,
+            municipality.description,
+            department.description,
+            type.description,
+            evidence.description,
+            software.descripton
+
+        from
+            catalogue
+        INNER JOIN record ON catalogue.id_catalogue=record.id_catalogue
+        --where catalogue.description = (CASE WHEN catalogo IS NOT NULL THEN catalogo ELSE catalogue.description END)
+        INNER JOIN format ON record.id_format=format.id_format
+        INNER JOIN h_serial ON catalogue.id_h_serial=h_serial.id_h_serial
+        INNER JOIN hardware ON h_serial.id_hardware=hardware.id_hardware
+        INNER JOIN "case" ON catalogue.id_case="case".id_case
+        INNER JOIN microphone ON catalogue.id_microphone=microphone.id_microphone
+        INNER JOIN sampling ON catalogue.id_sampling=sampling.id_sampling
+        INNER JOIN habitat ON catalogue.id_habitat=habitat.id_habitat
+        INNER JOIN municipality ON catalogue.id_municipality=municipality.id_municipality
+        INNER JOIN department ON catalogue.id_department=department.id_department
+        LEFT OUTER JOIN labeled ON record.id_record=labeled.id_record
+        LEFT OUTER JOIN label ON labeled.id_label=label.id_label
+        LEFT OUTER JOIN type ON label.id_type=type.id_type
+        LEFT OUTER JOIN evidence ON labeled.id_evidence=evidence.id_evidence
+        LEFT OUTER JOIN software ON labeled.id_software=software.id_software
+
+        where municipality.description = (CASE WHEN municipio IS NOT NULL THEN municipio ELSE municipality.description END)
+        and   catalogue.description = (CASE WHEN catalogo IS NOT NULL THEN catalogo ELSE catalogue.description END)
+        and   habitat.description = (CASE WHEN habitat_q IS NOT NULL THEN habitat_q ELSE habitat.description END)
+        --and   type.description = (CASE WHEN evento_q IS NOT NULL THEN evento_q ELSE type.description END)
+        and   "case".description = (CASE WHEN tipo_case IS NOT NULL THEN tipo_case ELSE "case".description END)
+        and   microphone.description = (CASE WHEN tipo_micro IS NOT NULL THEN tipo_micro ELSE microphone.description END)
+        --and   evidence.description = (CASE WHEN metodo_etiquetado IS NOT NULL THEN metodo_etiquetado ELSE evidence.description END)
+        --and   software.descripton = (CASE WHEN software_q IS NOT NULL THEN software_q ELSE software.descripton END)
+        --and   hardware.description = (CASE WHEN tipo_grabadora IS NOT NULL THEN tipo_grabadora ELSE hardware.description END)
+        ;
+end;$$

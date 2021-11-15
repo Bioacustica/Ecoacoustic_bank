@@ -40,7 +40,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "animalesitm@gmail.com"
 EMAIL_HOST_PASSWORD = "3sz7JufS:eMzaxe"
 EMAIL_USE_TLS = True
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -228,7 +227,7 @@ LOGGING = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=20),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,

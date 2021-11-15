@@ -1,11 +1,24 @@
-from django import urls
-from django.contrib import admin
+"""
+Modulo de las URLS , aca se agregan todos los endopoints que seran consumidos por la api del Frontend
+"""
+from __future__ import barry_as_FLUFL
+
+__author__ = "Victor Torres"
+__version__ = "0.1"
+__license__ = "GPL"
+__status__ = "Development"
+__maintainer__ = "Victor Torres"
+
+
 from django.urls import path, include
 from apiCRUD import views
 
-from .views import ChangePasswordView, registration, filtered_record_view, user_delete_view, my_obtain_token_view ,downolad_record_views
+from .views import (ChangePasswordView, registration, filtered_record_view, user_delete_view, my_obtain_token_view ,
+                    downolad_record_views_csv,
+                    download_records_files,
+                    lista_filtros
+                    )
 from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
     TokenRefreshView,
 )
 from rest_framework.routers import DefaultRouter
@@ -56,7 +69,8 @@ urlpatterns = [
     path("token/refresh/", TokenRefreshView.as_view()),
     path("register/", registration, name="register"),
     path("filter/", filtered_record_view, name="filter"),
-    path("down/", downolad_record_views, name= "download"),
+    path("down/", downolad_record_views_csv, name="download"),
+    path("donwloadzip/", download_records_files, name="zip_file"),
     path("change-password/", ChangePasswordView.as_view(), name="change-pwd"),
     path(
         "password_reset/",
@@ -67,4 +81,6 @@ urlpatterns = [
         include("django_rest_passwordreset.urls", namespace="password_reset_confirm"),
     ),
     path("delete/<int:id_user>/", views.user_delete_view, name="delete_user"),
+    path("lista_filtros/", views.lista_filtros, name="lista_filtros"),
+    path("contactanos/", views.contactanos_view, name="contacto")
 ]

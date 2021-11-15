@@ -1,10 +1,22 @@
-from django.conf import settings
+"""
+Modulo donde se crean funciones utiles que son usadas en las vistas de Django
+"""
+from __future__ import barry_as_FLUFL
+
+__author__ = "Victor Torres"
+__version__ = "0.1"
+__license__ = "GPL"
+__status__ = "Development"
+__maintainer__ = "Victor Torres"
+
+
 import psycopg2
 import json
 import jwt
+import base64
 
 from cryptography.fernet import Fernet
-
+from django.conf import settings
 
 def choose_role(username: str, password: str, roles: str) -> str:
     """Función encargada de crear roles con el usuario y contraseña
@@ -59,13 +71,34 @@ def delete_user(username: str) -> str:
     return query
 
 
-def consulta_filtros(token: str) -> list:
+def consulta_filtros(
+    token: str,
+    catalogo=None,
+    habitat=None,
+    municipio=None,
+    evento=None,
+    tipo_case=None,
+    tipo_micro=None,
+    metodo_etiquetado=None,
+    software=None,
+    tipo_grabadora=None,
+) -> list:
     """
     Esta función  tiene 2 partes la primera es la extracción del nombre y el password del token
     la segunda es la creación de una consulta  a la bd que se hará con las credenciales extraidas
     se hace una consulta externa a la django ya que a nivel de bases de datos se están usando
     permisos personalizados
 
+
+    :param catalogo:
+    :param habitat:
+    :param municipio:
+    :param evento:
+    :param tipo_case:
+    :param tipo_micro:
+    :param metodo_etiquetado:
+    :param software:
+    :param tipo_grabadora:
     :param token: es un str donde están codificada información de interés
     :return: retorna una lista de diccionarios
     """
@@ -84,10 +117,8 @@ def consulta_filtros(token: str) -> list:
     }
     conexion1 = psycopg2.connect(**credenciales_db_admin)
     conexion1.autocommit = True
-    key_query = (
-        """SELECT key FROM bioacustica."apiCRUD_keys" where username='{}';""".format(
-            nombre_usuario
-        )
+    key_query = "SELECT key FROM bioacustica.keys where username='{}';".format(
+        nombre_usuario
     )
     # se extrae la información necesaria
     with conexion1.cursor() as cursor1:
@@ -114,9 +145,31 @@ def consulta_filtros(token: str) -> list:
         "port": db_port,
         "database": db_name,
     }
-    # se hace la consulta y se crea el objecto con los datos consultados
+    # se hace la consulta y se crea el objecto con los datos consultados}
+    #TODO Implementar logica en caso de que se pase un None desde el request
+    print(type(catalogo))
+    print(type(habitat))
+    print(municipio)
+    print(evento)
+    print(tipo_case)
+    print(tipo_micro)
+    print(metodo_etiquetado)
+    print(software)
+    print(tipo_grabadora)
     conexion2 = psycopg2.connect(**credenciales_db)
-    query = "SELECT * FROM bioacustica.user"
+    query = "SELECT * FROM bioacustica.get_join ({0},{1},{2},{3},{4},{5},{6},{7},{8});".format(
+
+            catalogo,
+            habitat,
+            municipio,
+            evento,
+            tipo_case,
+            tipo_micro,
+            metodo_etiquetado,
+            software,
+            tipo_grabadora
+
+    )
     with conexion2.cursor() as cursor2:
         cursor2.execute(query)
         fetch = cursor2.fetchall()
@@ -125,3 +178,29 @@ def consulta_filtros(token: str) -> list:
         for record in fetch:
             objects_list.append(dict(zip(column_names, record)))
     return objects_list
+
+
+def base_64_encoding(file_path: str) -> bytes:
+    """
+    Función encargada de convertir a base64
+    archivos de audio con extensión .wav
+
+    :param file_path:  recibe los diccionarios donde se ecuentran los paths
+    :return: retorna el contenido del base 64
+    """
+    # converted = AudioSegment.from_mp3(file_path)
+    # converted.export("converted.wav", format="wav")
+    file = open(file_path, "rb")
+    audio_content = file.read()
+    b64_content = base64.b64encode(audio_content)
+    return b64_content
+
+
+def read_file(filename, buf_size=1000000):
+    with open(filename, "rb") as f:
+        while True:
+            content = f.read(buf_size)
+            if content:
+                yield content
+            else:
+                break
