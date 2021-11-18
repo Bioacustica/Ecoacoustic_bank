@@ -28,7 +28,7 @@ function Navbar(){
           SOBRE NOSOTROS
         </a>
         <a
-        onClick
+      
           href="#visualizacion"
           className="text-white mr-26.5  content-center font-poppins hover:text-green-900"
         >
@@ -55,7 +55,7 @@ function Navbar(){
         </a>
       </nav>
 
-      {showModal && <ContactModal close={closeModal} modal={setShowModal}/>}
+      {showModal && <ContactModal close={closeModal}/>}
         </div>
        
       )
