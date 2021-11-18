@@ -33,6 +33,16 @@ SECRET_KEY = config("SECRET_KEY")
 # DEBUG = env.bool('DJANGO_DEBUG ', default=False)
 DEBUG = True
 # ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS', default=[]))
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+# CORS_ALLOWED_ORIGINS = ['*']
 ALLOWED_HOSTS = ["*"]
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
@@ -50,6 +60,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework_tracking",
+    "corsheaders",
     "django_rest_passwordreset",
     "apiCRUD",
     "rest_framework",
@@ -61,6 +72,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

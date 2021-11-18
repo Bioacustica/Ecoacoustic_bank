@@ -71,6 +71,13 @@ def delete_user(username: str) -> str:
     return query
 
 
+def str_none(value) -> str or None:
+    if value is "":
+        return 'NUll'
+    else:
+        return "'"+value+"'"
+
+
 def consulta_filtros(
     token: str,
     catalogo=None,
@@ -145,30 +152,32 @@ def consulta_filtros(
         "port": db_port,
         "database": db_name,
     }
+    filter_values = {
+        'catalogo': str_none(catalogo),
+        'habitat': str_none(habitat),
+        'municipio': str_none(municipio),
+        'evento': str_none(evento),
+        'tipo_case': str_none(tipo_case),
+        'tipo_micro': str_none(tipo_micro),
+        'metodo_etiquetado': str_none(metodo_etiquetado),
+        'software': str_none(software),
+        'tipo_grabadora': str_none(tipo_grabadora)
+    }
+    print(filter_values['habitat'])
     # se hace la consulta y se crea el objecto con los datos consultados}
     #TODO Implementar logica en caso de que se pase un None desde el request
-    print(type(catalogo))
-    print(type(habitat))
-    print(municipio)
-    print(evento)
-    print(tipo_case)
-    print(tipo_micro)
-    print(metodo_etiquetado)
-    print(software)
-    print(tipo_grabadora)
     conexion2 = psycopg2.connect(**credenciales_db)
     query = "SELECT * FROM bioacustica.get_join ({0},{1},{2},{3},{4},{5},{6},{7},{8});".format(
 
-            catalogo,
-            habitat,
-            municipio,
-            evento,
-            tipo_case,
-            tipo_micro,
-            metodo_etiquetado,
-            software,
-            tipo_grabadora
-
+            filter_values['catalogo'],
+            filter_values['habitat'],
+            filter_values['municipio'],
+            filter_values['evento'],
+            filter_values['tipo_case'],
+            filter_values['tipo_micro'],
+            filter_values['metodo_etiquetado'],
+            filter_values['software'],
+            filter_values['tipo_grabadora']
     )
     with conexion2.cursor() as cursor2:
         cursor2.execute(query)

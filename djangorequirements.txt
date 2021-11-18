@@ -22,3 +22,4 @@ pyarrow
 django-utils-six
 sqlalchemy
 openpyxl
+django-cors-headers
