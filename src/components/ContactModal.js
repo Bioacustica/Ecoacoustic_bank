@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import { sendMenssage } from "../services";
 
 import closeimg from "../images/06.Contacto/x.png";
-import axios from "axios";
 import { ContactService } from "../services/contacto/Contacto";
 
 require("typeface-poppins");
 require("typeface-rubik");
 
 function ContactModal({ close, modal }) {
+const FormData = require('form-data');
+const fs = require('fs');
+
+
   const [mensaje, setMensaje] = useState({
-    subject: "",
-    from_email: "",
-    message: "",
+    subject: '',
+    from_email: '',
+    message: '',
   });
   const handleChange = (event) => {
     setMensaje({
@@ -22,9 +25,13 @@ function ContactModal({ close, modal }) {
     console.log(mensaje);
   };
 
-  const enviarDatos =async (e,message) => {
+  const enviarDatos =async (e,{subject,from_email,message}) => {
   e.preventDefault()
-  const {data}=await ContactService("contactanos",message)
+  const formData = new FormData();
+  formData.append('subject', subject);
+  formData.append('from_email', from_email);
+  formData.append('message', message);
+  const {data}=await ContactService("contactanos/",formData)
   console.log(data)
    /* axios
       .post(
@@ -122,8 +129,8 @@ function ContactModal({ close, modal }) {
                   </div>
 
                   <div className="flex h-28 justify-center items-center">
-                    <button
-                      
+                    <button 
+                    type="submit"
                       className=" bg-blue-850 text-3xl text-white font-semibold hover:shadow-2xl font-poppins h-14.25 py-2 px-4 w-48  rounded"
                     >
                       Enviar
