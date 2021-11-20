@@ -18,9 +18,9 @@ class Recuperar extends Component {
 
         <div className="flex justify-center">
           <div className="justify-center w-341.5 h-133.5 bg-green-450 mt-8">
-            <div className="h-0.625 bg-blue-850 mx-auto mt-14 w-107 "></div>
+            <div className="h-0.625 bg-blue-850 mx-auto mt-14 w-107 mb-3"></div>
             <div className="text-center">
-              <h1 className="text-blue-850 font-poppins font-extrabold text-4xl">
+              <h1 className="text-blue-850 font-poppins font-extrabold text-4xl mb-3">
                 Recuperar Contraseña
               </h1>
             </div>

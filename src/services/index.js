@@ -1,18 +1,23 @@
 import axios from 'axios'
+import { ContactService } from "../services/contacto/Contacto";
 const baseUrl = "http://localhost:8000"
 
 
 
-export async function sendMenssage(information){
+export async function sendMenssage({subject,from_email,message}){
 
-try {
-    await axios.post(`${baseUrl}/contactanos`,information).then(res=>{
-        console.log(res)
-        console.log(res.data)
-    })
-    console.log('error')
-} catch (e) {
-    console.log('Fail')
-    console.log(e)
-}
+    try {
+        const formData = new FormData();
+    formData.append('subject', subject);
+    formData.append('from_email', from_email);
+    formData.append('message', message);
+    const {data}=await ContactService("contactanos/",formData)
+    console.log(data)
+    return true
+        
+    } catch (error) {
+    alert("Algo salio mal")
+    return false 
+    }
+    
 }

@@ -30,7 +30,7 @@ class Footer extends Component {
         <img src={gha} alt=""/>
         </div>
 
-        <label className=" ml-64 font-semibold text-xl mr-1">
+        <label className=" ml-64 font-semibold text-xl mr-3">
           Apoya:</label>
         <div className=" h-11 mr-3.75 w-59.75">
         <img src={minciencias} alt=""/>

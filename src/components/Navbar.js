@@ -22,23 +22,23 @@ function Navbar(){
           INICIO
         </a>
         <a
-          href="#sobre-nosotros"
+          href="/#sobre-nosotros"
           className="text-white mr-26.5  content-center font-poppins hover:text-green-900"
         >
           SOBRE NOSOTROS
         </a>
         <a
       
-          href="#visualizacion"
+          href="/#visualizacion"
           className="text-white mr-26.5  content-center font-poppins hover:text-green-900"
         >
           VISUALIZACIÓN
         </a>
         <a
-          href="#filtros"
+          href="/#filtros"
           className="text-white mr-26.5  content-center font-poppins hover:text-green-900"
         >
-          FILTRO
+          FILTROS
         </a>
         <button
           href="#"

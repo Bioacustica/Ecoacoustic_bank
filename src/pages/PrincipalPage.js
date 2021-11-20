@@ -20,7 +20,6 @@ function PrincipalPage() {
 
   return (
     <div>
-      
       <div className="flex justify-center items-center">
         <Head />
       </div>
@@ -44,20 +43,20 @@ function PrincipalPage() {
         </div>
       </div>
 
-      <div className="h-0.625 bg-blue-850 mx-auto w-83 " id="sobre-nosotros"></div>
+      <div className="h-0.625 bg-blue-850 mx-auto w-83 mb-3" id="sobre-nosotros"></div>
       <div>
-        <h1 className="text-center font-extrabold font-poppins text-4.5xl text-blue-850">
+        <h1 className="text-center font-extrabold font-poppins text-4.5xl text-blue-850 mb-3">
           Sobre nosotros
         </h1>
       </div>
       <div className="h-0.625 bg-blue-850 mx-auto mb-11.5 w-83"></div>
 
-      <div className="flex justify-center items-center">
-        <div className="flex  w-341.5   ">
-          <div className="w-118.5 h-159  ml-37 mr-18.5">
+      <div className="flex justify-center items-center mb-7  ">
+        <div className="flex  w-341.5 ">
+          <div className="w-118.5 h-159  ml-37 mr-18.5 ">
             <img src={aboutUs} alt="" />
           </div>
-          <div className="w-128.25 h-159  mb-3.5  ">
+          <div className="w-128.25 h-159  ">
             <p className="text-justify font-normal font-rubik text-1.5xl text-blue-850">
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
               nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
@@ -84,10 +83,10 @@ function PrincipalPage() {
 
       <div className="flex justify-center items-center " id="visualizacion">
         <div className="bg-blue-250 w-341.5 ">
-          <br />
-          <div className="h-0.625 bg-blue-850 mx-auto w-76  "></div>
+  
+          <div className="h-0.625 bg-blue-850 mx-auto w-76  mt-7 mb-3"></div>
           <div >
-            <h1 className="text-center font-extrabold font-poppins text-4.5xl text-blue-850">
+            <h1 className="text-center font-extrabold font-poppins text-4.5xl text-blue-850 mb-3">
               Visualización
             </h1>
           </div>
@@ -139,12 +138,15 @@ function PrincipalPage() {
         </div>
       </div>
 
-      <PublicFilter/>
+      <div id="filtros" >
+          <PublicFilter/>
+      </div>
+    
 
 
       
       
-      <div className="flex justify-center items-center mt-10.75">
+      <div className="flex justify-center items-center mt-11.25 ">
       <Footer/>
       </div>
       

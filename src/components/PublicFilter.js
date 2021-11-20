@@ -7,17 +7,17 @@ class PublicFilter extends Component {
     render() {
       return (
         <div>
-        <div className="h-0.625 bg-blue-850 mx-auto w-76 mt-25.5 " id="filtros"></div>
+        <div className="h-0.625 bg-blue-850 mx-auto w-37 mt-11.25  mb-3" ></div>
       <div>
-        <h1 className="text-center font-extrabold font-poppins text-4.5xl text-blue-850">
+        <h1 className="text-center font-extrabold font-poppins text-4.5xl text-blue-850 mb-3">
           Filtros
         </h1>
       </div>
-      <div className="h-0.625 bg-blue-850 mx-auto mb-25.5 w-76 "></div>
+      <div className="h-0.625 bg-blue-850 mx-auto mb-11.25 w-37 "></div>
 
       <div className="flex justify-center items-center content-center mb-8.5">
         <div className="flex w-341.5 justify-center items-center">
-          <label className="block text-center w-54.25 mr-26.75">
+          <label className="block text-center w-54.25 mr-41.5">
             <span className="text-blue-850 content-center">Ciudades</span>
             <select className="block w-full border border-blue-850 rounded-md bg-white  shadow-lg focus:border-indigo-200 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
               <option>seleccionar</option>
@@ -25,7 +25,7 @@ class PublicFilter extends Component {
             </select>
           </label>
 
-          <label className="block text-center w-54.25 mr-26.75">
+          <label className="block text-center w-54.25 mr-41.5">
             <span className="text-blue-850 content-center">Habitat</span>
             <select className="block  border border-blue-850 w-full mt-1 rounded-md bg-white  shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50mt-1 h-7.75">
               <option>seleccionar</option>
@@ -33,7 +33,7 @@ class PublicFilter extends Component {
             </select>
           </label>
 
-          <label className="block text-center w-54.25 mr-26.75">
+          <label className="block text-center w-54.25 mr-41.5">
             <span className="text-blue-850 content-center">Municipio</span>
             <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75 mt-1">
               <option>seleccionar</option>
@@ -53,7 +53,7 @@ class PublicFilter extends Component {
 
       <div className="flex justify-center items-center content-center mb-8.5">
         <div className="flex w-341.5 justify-center items-center">
-          <label className="block text-center w-54.25 mr-26.75">
+          <label className="block text-center w-54.25 mr-41.5">
             <span className="text-blue-850 content-center">Tipo de case</span>
             <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
               <option>seleccionar</option>
@@ -61,7 +61,7 @@ class PublicFilter extends Component {
             </select>
           </label>
 
-          <label className="block text-center w-54.25 mr-26.75">
+          <label className="block text-center w-54.25 mr-41.5">
             <span className="text-blue-850 content-center">
               Tipo de microfono
             </span>
@@ -71,7 +71,7 @@ class PublicFilter extends Component {
             </select>
           </label>
 
-          <label className="block text-center w-54.25 mr-26.75">
+          <label className="block text-center w-54.25 mr-41.5">
             <span className="text-blue-850 content-center">
               Metodo de etiquetado
             </span>
@@ -95,7 +95,7 @@ class PublicFilter extends Component {
 
       <div className="flex justify-center items-center content-center mb-8.5">
         <div className="flex w-341.5 justify-center items-center">
-          <label className="block text-center w-54.25 mr-26.75">
+          <label className="block text-center w-54.25 mr-41.5">
             <span className="text-blue-850 content-center">Tipo de grabadora</span>
             <select className="block w-full mt-1 rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75">
               <option>seleccionar</option>
@@ -103,7 +103,7 @@ class PublicFilter extends Component {
             </select>
           </label>
 
-          <label className="block text-center w-54.25 mr-26.75">
+          <label className="block text-center w-54.25 mr-41.5">
             <span className="text-blue-850">Fecha de inicio</span>
             <input
               type="date"
@@ -111,7 +111,7 @@ class PublicFilter extends Component {
             />
           </label>
 
-          <label className="block text-center w-54.25 mr-26.75">
+          <label className="block text-center w-54.25 mr-41.5">
             <span className="text-blue-850">Fecha final</span>
             <input
               type="date"
@@ -134,7 +134,7 @@ class PublicFilter extends Component {
       <div className="flex justify-center items-center content-center mb-8.5">
         <div className="flex w-341.5 justify-center items-center">
 
-          <label className="block text-center w-54.25 mr-26.75">
+          <label className="block text-center w-54.25 mr-41.5">
             <span className="text-blue-850">Elevacion maxima</span>
             <input
               type="text"
@@ -157,7 +157,7 @@ class PublicFilter extends Component {
 
 
       <div className="flex justify-center items-center mb-10.75">
-      <div className="w-341.5 h-139 bg-gray-50 overflow-x-auto">
+      <div className="w-341.5 h-151.25 bg-gray-50 overflow-x-auto">
         <PublicTable />
       </div>
       </div>
@@ -173,7 +173,7 @@ class PublicFilter extends Component {
             </svg>
           </a>
           {/* Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" */}
-          <a href="#" aria-current="page" className="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+          <a href="#" aria-current="page" className="z-10 bg-green-450 border-green-450 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">
             1
           </a>
           <a href="#" className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">

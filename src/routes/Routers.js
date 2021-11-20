@@ -9,6 +9,10 @@ function Routers() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<PrincipalPage/>}/>
+          <Route exact path="/#sobre-nosotros" element={<PrincipalPage/>}/>
+          <Route exact path="/#visualizacion" element={<PrincipalPage/>}/>
+          <Route exact path="/#filtros" element={<PrincipalPage/>}/>
+
           <Route exact path="/login" element={<Login/>}/>
           <Route exact path="/recoverpassword" element={<RecoverPassword/>}/>
         </Routes>

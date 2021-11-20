@@ -18,9 +18,9 @@ class Login extends Component {
         </div>
         <div className="flex justify-center">
           <div className="justify-center w-341.5 h-165.25 bg-green-450 mt-8">
-            <div className="h-0.625 bg-blue-850 mx-auto mt-14 w-79 "></div>
+            <div className="h-0.625 bg-blue-850 mx-auto mt-14 w-79 mb-3"></div>
             <div className="text-center">
-              <h1 className=" font-poppins font-extrabold text-4.5xl text-blue-850">
+              <h1 className=" font-poppins font-extrabold text-4.5xl text-blue-850 mb-3">
                 Iniciar Sesión
               </h1>
             </div>
@@ -62,6 +62,7 @@ class Login extends Component {
                 <div className="flex justify-end w-166.25 mb-10 ">
                   <a
                     className=" text-white text-right
+                    font-rubik font-normal text-xl
           hover:text-whithe border-b-2 border-green-450
           hover:border-b-2 hover:border-white"
                     href="/recoverpassword"

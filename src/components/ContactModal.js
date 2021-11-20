@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { sendMenssage } from "../services";
 
 import closeimg from "../images/06.Contacto/x.png";
-import { ContactService } from "../services/contacto/Contacto";
+
 
 require("typeface-poppins");
 require("typeface-rubik");
@@ -10,7 +10,7 @@ require("typeface-rubik");
 function ContactModal({ close, modal }) {
 const FormData = require('form-data');
 const fs = require('fs');
-
+const [success, setSuccess] = useState(null)
 
   const [mensaje, setMensaje] = useState({
     subject: '',
@@ -25,14 +25,11 @@ const fs = require('fs');
     console.log(mensaje);
   };
 
-  const enviarDatos =async (e,{subject,from_email,message}) => {
+  const sendData =async (e,mensaje) => {
   e.preventDefault()
-  const formData = new FormData();
-  formData.append('subject', subject);
-  formData.append('from_email', from_email);
-  formData.append('message', message);
-  const {data}=await ContactService("contactanos/",formData)
-  console.log(data)
+    const response=sendMenssage(mensaje)
+
+    response ? setSuccess(true):setSuccess(false)
    /* axios
       .post(
         baseUrl,
@@ -56,7 +53,7 @@ const fs = require('fs');
           {/*content*/}
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/* ACA EMPIEZA EL FORMULARIO*/}
-            <form onSubmit={(e) => enviarDatos(e,mensaje)}>
+            <form onSubmit={(e) => sendData(e,mensaje)}>
               <div className="flex justify-center items-center ">
                 <div className="w-263.75 h-148.5 bg-blue-250 rounded-lg">
                   <div className="flex w-263.75 justify-end items-end mb-2">
@@ -96,6 +93,18 @@ const fs = require('fs');
                           ITM Institución Universitaria
                         </h1>
                       </div>
+                      {success && <div>
+                        <h2 className="text-left font-semibold font-poppins mt-3 text-2.5xl text-blue-900">
+                          Mensaje enviado con exito
+                        </h2>
+                      </div>} 
+
+                      {success==false && <div>
+                        <h2 className="text-left font-semibold font-poppins mt-3 text-xl text-red-600">
+                          Error al enviar el mensaje, intentelo nuevamente.
+                        </h2>
+                      </div>}
+
                     </div>
 
                     <div className="mr-12 w-1/2 ">
@@ -105,7 +114,7 @@ const fs = require('fs');
                         onChange={handleChange}
                         placeholder="Nombre"
                         required
-                        className="placeholder-blue-850 bg-white w-126.75 h-17.25 font-poppins font-semibold rounded-lg border-2 text-4xl  border-white border-opacity-100 "
+                        className="placeholder-blue-850 bg-white p-3 w-126.75 h-17.25 font-poppins font-semibold rounded-lg border-2 text-4xl  border-white border-opacity-100 "
                       />
 
                       <input
@@ -114,7 +123,7 @@ const fs = require('fs');
                         onChange={handleChange}
                         required
                         placeholder="Correo"
-                        className="placeholder-blue-850 mt-5 bg-white w-126.75 h-17.25 font-poppins font-semibold rounded-lg text-4xl  border-2 border-white border-opacity-100 "
+                        className="placeholder-blue-850 mt-5 bg-white p-3 w-126.75 h-17.25 font-poppins font-semibold rounded-lg text-4xl  border-2 border-white border-opacity-100 "
                       />
 
                       <textarea
