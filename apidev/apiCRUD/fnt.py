@@ -9,11 +9,13 @@ __license__ = "GPL"
 __status__ = "Development"
 __maintainer__ = "Victor Torres"
 
+import os
 
 import psycopg2
 import json
 import jwt
 import base64
+import zipfile
 
 from cryptography.fernet import Fernet
 from django.conf import settings

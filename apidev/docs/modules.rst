@@ -5,3 +5,5 @@ apidev
    :maxdepth: 4
 
    apiCRUD
+   apidev
+
