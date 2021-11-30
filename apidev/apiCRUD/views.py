@@ -43,7 +43,7 @@ from .fnt import (
     change_password,
     delete_user,
     consulta_filtros,
-    base_64_encoding,
+    base_64_encoding, consulta_filtros_publicos,
 )
 from .serializers import *
 from .custom_permissions import IsAdmin
@@ -267,6 +267,43 @@ def filtered_record_view(request):
 
 
 @decorators.api_view(["GET"])
+def public_record_view(request):
+    """
+    vista encargada de retornar los audios a los que tiene acceso
+    el público general
+    """
+    catalogo = request.data["catalogo"].upper()
+    habitat = request.data["habitat"].upper()
+    municipio = request.data["municipio"].upper()
+    evento = request.data["evento"].upper()
+    tipo_case = request.data["tipo de case"].upper()
+    tipo_micro = request.data["tipo de micro"].upper()
+    metodo_etiquetado = request.data["metodo etiquetado"].upper()
+    software = request.data["software"].upper()
+    tipo_grabadora = request.data["tipo de grabadora"].upper()
+    # fecha = request.data["fecha"]
+    # fecha_dt = datetime.strptime(fecha, '%d/%m/%Y')
+    # elevation = request.data["elevation"]
+
+    paginator = PageNumberPagination()
+    paginator.page_size = 2
+    context = paginator.paginate_queryset(consulta_filtros_publicos(
+        catalogo,
+        habitat,
+        municipio,
+        evento,
+        tipo_case,
+        tipo_micro,
+        metodo_etiquetado,
+        software,
+        tipo_grabadora,
+        ),
+        request
+    )
+    return paginator.get_paginated_response(context)
+
+
+@decorators.api_view(["GET"])
 def lista_filtros(request):
     """
     Vista encargada de entregar la listas de los datos existentes
@@ -288,15 +325,15 @@ def lista_filtros(request):
 
     # TODO  cambiar estructura del diccionario,  agregar departamentos.
     diccionario_filtros = {
-        "ciudad": ciudad,
-        "habitat": habitat,
-        "municipio": municipio,
-        "evento": evento,
-        "tipo de case": case,
-        "tipo de micro": micro,
-        "Metodo etiquetado": evidence,
-        "software etiquetado": software,
-        "Tipo de grabadora": hardware,
+        "ciudad":ciudad,
+        "habitat":habitat,
+        "municipio":municipio,
+        "evento":evento,
+        "tipo_de_case":case,
+        "tipo_de_micro":micro,
+        "Metodo_etiquetado":evidence,
+        "software_etiquetado":software,
+        "Tipo_de_grabadora":hardware,
     }
     return Response(diccionario_filtros)
 

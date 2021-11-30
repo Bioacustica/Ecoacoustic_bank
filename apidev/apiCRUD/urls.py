@@ -82,5 +82,7 @@ urlpatterns = [
     ),
     path("delete/<int:id_user>/", views.user_delete_view, name="delete_user"),
     path("lista_filtros/", views.lista_filtros, name="lista_filtros"),
-    path("contactanos/", views.contactanos_view, name="contacto")
+    path("contactanos/", views.contactanos_view, name="contacto"),
+# URL VISTA AUDIOS PÚBLICOS
+    path("public-records/", views.public_record_view, name="public_records"),
 ]

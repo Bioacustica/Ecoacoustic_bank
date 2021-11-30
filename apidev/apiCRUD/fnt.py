@@ -181,7 +181,9 @@ def consulta_filtros(
             filter_values['software'],
             filter_values['tipo_grabadora']
     )
+    query2 = "SET search_path TO bioacustica;"
     with conexion2.cursor() as cursor2:
+        cursor2.execute(query2)
         cursor2.execute(query)
         fetch = cursor2.fetchall()
         objects_list = []
@@ -205,6 +207,68 @@ def base_64_encoding(file_path: str) -> bytes:
     audio_content = file.read()
     b64_content = base64.b64encode(audio_content)
     return b64_content
+
+
+def consulta_filtros_publicos (
+    catalogo=None,
+    habitat=None,
+    municipio=None,
+    evento=None,
+    tipo_case=None,
+    tipo_micro=None,
+    metodo_etiquetado=None,
+    software=None,
+    tipo_grabadora=None,
+) -> list:
+    db_name = settings.DATABASES["animalesitm"]["NAME"]
+    db_port = settings.DATABASES["animalesitm"]["PORT"]
+    db_host = settings.DATABASES["animalesitm"]["HOST"]
+    # FIXME: Cambiar credenciales de admin por usuario normi
+    credenciales_db_publico = {
+        "user": "animalesitm",
+        "password": "animalesitm",
+        "host": db_host,
+        "port": db_port,
+        "database": db_name,
+    }
+    filter_values = {
+        'catalogo': str_none(catalogo),
+        'habitat': str_none(habitat),
+        'municipio': str_none(municipio),
+        'evento': str_none(evento),
+        'tipo_case': str_none(tipo_case),
+        'tipo_micro': str_none(tipo_micro),
+        'metodo_etiquetado': str_none(metodo_etiquetado),
+        'software': str_none(software),
+        'tipo_grabadora': str_none(tipo_grabadora)
+    }
+    print(filter_values['habitat'])
+    # se hace la consulta y se crea el objecto con los datos consultados}
+    # TODO Implementar logica en caso de que se pase un None desde el request
+    conexion= psycopg2.connect(**credenciales_db_publico)
+
+    query1 = "SELECT * FROM bioacustica.get_join ({0},{1},{2},{3},{4},{5},{6},{7},{8});".format(
+
+        filter_values['catalogo'],
+        filter_values['habitat'],
+        filter_values['municipio'],
+        filter_values['evento'],
+        filter_values['tipo_case'],
+        filter_values['tipo_micro'],
+        filter_values['metodo_etiquetado'],
+        filter_values['software'],
+        filter_values['tipo_grabadora']
+    )
+    query2 = "SET search_path TO bioacustica;"
+    with conexion.cursor() as cursor2:
+        cursor2.execute(query2)
+        cursor2.execute(query1)
+        fetch = cursor2.fetchall()
+        objects_list = []
+        column_names = [column[0] for column in cursor2.description]
+        for record in fetch:
+            objects_list.append(dict(zip(column_names, record)))
+    return objects_list
 
 
 def read_file(filename, buf_size=1000000):
