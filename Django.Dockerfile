@@ -13,6 +13,8 @@ COPY mapping.py /
 COPY MasterTablesBuenas.xlsx /
 COPY second_tables.xlsx /
 COPY relaciones_data.xlsx /
+RUN apt-get update  && \
+    apt-get install -y make
 
 ENTRYPOINT  python /LoadMasterTable.py && \
             python manage.py makemigrations && \

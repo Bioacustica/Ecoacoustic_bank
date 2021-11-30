@@ -1,6 +1,65 @@
 apiCRUD package
 ===============
 
+
+----------
+
+apiCRUD.admin module
+--------------------
+
+.. automodule:: apiCRUD.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+apiCRUD.apps module
+-------------------
+
+.. automodule:: apiCRUD.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+apiCRUD.backends module
+-----------------------
+
+.. automodule:: apiCRUD.backends
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+apiCRUD.custom\_permissions module
+----------------------------------
+
+.. automodule:: apiCRUD.custom_permissions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+apiCRUD.fnt module
+------------------
+
+.. automodule:: apiCRUD.fnt
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+apiCRUD.forms module
+--------------------
+
+.. automodule:: apiCRUD.forms
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+apiCRUD.models module
+---------------------
+
+.. automodule:: apiCRUD.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 apiCRUD.serializers module
 --------------------------
 
@@ -24,7 +83,6 @@ apiCRUD.views module
    :members:
    :undoc-members:
    :show-inheritance:
-
 
 Module contents
 ---------------

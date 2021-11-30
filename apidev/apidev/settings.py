@@ -182,7 +182,9 @@ AUTH_USER_MODEL = "apiCRUD.User"
 # Django REST Framework
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
-
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAdmin",
         "rest_framework.permissions.IsUsuario",

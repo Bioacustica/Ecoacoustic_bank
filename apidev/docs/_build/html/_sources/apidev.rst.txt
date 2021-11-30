@@ -4,14 +4,6 @@ apidev package
 Submodules
 ----------
 
-apidev.asgi module
-------------------
-
-.. automodule:: apidev.asgi
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 apidev.settings module
 ----------------------
 
