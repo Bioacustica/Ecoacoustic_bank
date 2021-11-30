@@ -5,10 +5,8 @@ export const Http= axios.create({
     timeout: 10000,
     headers: {
         "Access-Control-Allow-Origin": "*",
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "aplication/json",
       }, 
-    
-
 })
 
 Http.interceptors.response.use((resp) => {

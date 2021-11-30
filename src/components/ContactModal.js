@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { sendMenssage } from "../services";
-
 import closeimg from "../images/06.Contacto/x.png";
 
 
 require("typeface-poppins");
 require("typeface-rubik");
 
-function ContactModal({ close, modal }) {
-const FormData = require('form-data');
-const fs = require('fs');
+function ContactModal({close}) {
+
 const [success, setSuccess] = useState(null)
 
   const [mensaje, setMensaje] = useState({
@@ -22,28 +20,14 @@ const [success, setSuccess] = useState(null)
       ...mensaje,
       [event.target.name]: event.target.value,
     });
-    console.log(mensaje);
   };
 
   const sendData =async (e,mensaje) => {
   e.preventDefault()
-    const response=sendMenssage(mensaje)
+    const response= await sendMenssage(mensaje)
 
     response ? setSuccess(true):setSuccess(false)
-   /* axios
-      .post(
-        baseUrl,
-        {
-          subject: subject,
-          from_email: from_email,
-          message: message
-        }
-      )
-      .then((response) => {
-        console.log(response);
-        alert(response);
-      })
-      .catch((err) => alert(err+'  <- Este es el error papi'));*/
+   
   };
 
   return (
@@ -99,7 +83,7 @@ const [success, setSuccess] = useState(null)
                         </h2>
                       </div>} 
 
-                      {success==false && <div>
+                      {success===false && <div>
                         <h2 className="text-left font-semibold font-poppins mt-3 text-xl text-red-600">
                           Error al enviar el mensaje, intentelo nuevamente.
                         </h2>

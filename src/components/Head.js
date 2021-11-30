@@ -8,7 +8,7 @@ class Head extends Component {
     return (
       <div className="flex bg-white items-center w-341.5 mt-8.75 h-16 justify-center mb-8.75">
         <div className="ml-68.25 mr-17.5 h-16 w-36.75 bg-gray-500">    
-          <h1>hola</h1>
+          <h1>Logo principal</h1>
         </div>
         <div className="h-16 mr-17.5 w-36.75">
             <img src={imagesHead.img2} alt=""/>

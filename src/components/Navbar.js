@@ -48,7 +48,7 @@ function Navbar(){
           CONTACTO
         </button>
         <a
-          href="/login"
+          href="/log-in"
           className="text-white content-center mr-26.75 font-poppins hover:text-green-900"
         >
           INICIAR SESIÓN
