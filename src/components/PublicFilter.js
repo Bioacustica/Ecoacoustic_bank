@@ -24,6 +24,7 @@ class PublicFilter extends Component {
       evento: response.data.evento,
       habitat: response.data.habitat,
       ciudad: response.data.ciudad,
+      tipo_grabadora:response.data.Tipo_de_grabadora,
     });
   };
   render() {
@@ -145,7 +146,13 @@ class PublicFilter extends Component {
               </span>
               <select className="block w-full mt-1 rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75">
                 <option value={null}>seleccionar</option>
-                <option>Medallo</option>
+                {this.state.tipo_grabadora.map((elemento) =>
+                  elemento.map((event) => (
+                    <option key={event} value={event}>
+                      {event}
+                    </option>
+                  ))
+                )}
               </select>
             </label>
 
