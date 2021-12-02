@@ -26,9 +26,10 @@ function Login() {
     setShowModal(true);
     const response = await sendCredentialsData(credentials);
     console.log(response.status);
+    console.log(response.data)
 
     if (response.status) {
-      if (response.data ===" Logeado con exito") {
+      if (response.data ==="Logeado con exito") {
         window.location.href = "./admin";
         setShowModal(false);
       }else{

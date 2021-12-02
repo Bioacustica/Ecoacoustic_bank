@@ -1,16 +1,13 @@
 import React, {useState} from "react";
 import { Component } from "react";
 import { formList } from "../services";
-import PublicTable from "./PublicTable";
+import PrivateAssignmentTable from "./PrivateAssignmentTable";
 
 require("typeface-poppins");
 require("typeface-rubik");
-class PublicFilter extends Component
+class PrivateAssignmentFilter extends Component
 {
-  /*const [stado, setCredentials] = useState({
-    email: "",
-    password: "",
-  });*/
+
 
   state = {
     metodo_etiquetado: [],
@@ -50,7 +47,7 @@ class PublicFilter extends Component
         
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">Ciudades</span>
               <select
               name="ciudad"
@@ -69,7 +66,7 @@ class PublicFilter extends Component
               </select>
             </label>
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">Habitat</span>
               <select className="block  border border-blue-850 w-full mt-1 rounded-md bg-white  shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
@@ -83,7 +80,7 @@ class PublicFilter extends Component
               </select>
             </label>
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">Municipio</span>
               <select
                 disabled
@@ -118,7 +115,7 @@ class PublicFilter extends Component
 
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">Tipo de case</span>
               <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
@@ -132,7 +129,7 @@ class PublicFilter extends Component
               </select>
             </label>
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">
                 Tipo de microfono
               </span>
@@ -148,7 +145,7 @@ class PublicFilter extends Component
               </select>
             </label>
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">
                 Metodo de etiquetado
               </span>
@@ -184,7 +181,7 @@ class PublicFilter extends Component
 
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">
                 Tipo de grabadora
               </span>
@@ -201,7 +198,7 @@ class PublicFilter extends Component
             </label>
             
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850">Fecha de inicio</span>
               <input
                 type="date"
@@ -209,7 +206,7 @@ class PublicFilter extends Component
               />
             </label>
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850">Fecha final</span>
               <input
                 type="date"
@@ -229,7 +226,7 @@ class PublicFilter extends Component
 
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850">Elevacion maxima</span>
               <input
                 type="text"
@@ -239,16 +236,16 @@ class PublicFilter extends Component
 
             <label className="block text-center w-54.25">
               <br />
-              <button className="block rounded-md font-semibold font-poppins text-white bg-green-550 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
+              <button className="block rounded-md font-semibold font-poppins text-white bg-gray-250 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
                 Buscar
               </button>
             </label>
           </div>
         </div>
 
-        <div className="flex justify-center items-center mb-10.75">
-          <div className="w-341.5 h-151.25">
-            <PublicTable />
+        <div className="flex justify-center items-center mb-32">
+          <div className="w-341.5 h-132.25">
+            <PrivateAssignmentTable />
           </div>
         </div>
 
@@ -327,4 +324,4 @@ class PublicFilter extends Component
     );
                   }
 }
-export default PublicFilter;
+export default PrivateAssignmentFilter;
