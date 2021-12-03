@@ -14,7 +14,7 @@ function Navbar(){
   
       return (
         <div className="">
-             <nav className="bg-green-450 flex text- h-11 w-341.5 justify-center items-center">
+             <nav className="bg-green-450 flex  h-11 w-341.5 justify-center items-center">
         <a
           href="/"
           className="text-white ml-26.75 mr-26.5 content-center font-poppins   hover:text-white

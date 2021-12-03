@@ -240,7 +240,7 @@ class PrivateLabel extends Component
 
             <label className="block text-center w-54.25">
               <br />
-              <button className="block rounded-md font-semibold font-poppins text-white bg-gray-250 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
+              <button className="block font-semibold font-poppins text-white bg-gray-250 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
                 Buscar
               </button>
             </label>

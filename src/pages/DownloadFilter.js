@@ -4,7 +4,7 @@ import AdministratorNavbar from "../components/AdministratorNavbar";
 import imgbanner from "../images/02.banner 1/imgBanner.jpg";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-import PrivateAssignmentFilter from "../components/PrivateAssignmentFilter";
+import PrivateDonwloadFilter from "../components/PrivateDonwloadFilter";
 
 require("typeface-poppins");
 require("typeface-rubik");
@@ -14,7 +14,7 @@ require("typeface-rubik");
 require("typeface-poppins");
 require("typeface-rubik");
 
-function AssignmentAdmin() {
+function DownloadFilter() {
   return (
     <>
       <div className="flex justify-center items-center">
@@ -49,7 +49,7 @@ function AssignmentAdmin() {
               <div className="hover:bg-blue-200 ">
               <Link to="/admin-label-filter">
                 <button className="text-white w-113.8333 text-xl">
-                  <label> FILTRO DE </label>
+                <label> FILTRO DE </label>
                   <br />
                   <label> ETIQUETADO </label>
                 </button>
@@ -57,17 +57,17 @@ function AssignmentAdmin() {
               </div>
               <div className="hover:bg-blue-200  ">
               <Link to="/admin-assignment-filter">
-                <button className="text-blue-850 w-113.8333 text-xl">
+                <button className="text-white w-113.8333 text-xl">
                   <label> FILTRO ASIGNACIÓN </label>
                   <br />
                   <label> DE AUDIOS PÚBLICOS </label>
                 </button>
                 </Link>
               </div>
-
+              
               <div className="hover:bg-blue-200  ">
               <Link to="/admin-dowload-filter">
-                <button className="text-white w-113.8333 text-xl">
+                <button className="text-blue-850 w-113.8333 text-xl">
                   <label> FILTRO DESCARGA </label>
                   <br />
                   <label> DE AUDIOS </label>
@@ -76,7 +76,7 @@ function AssignmentAdmin() {
               </div>
             </div>
             <div className="mt-16">
-            <PrivateAssignmentFilter/>
+            <PrivateDonwloadFilter/>
             </div>
             
           </body>
@@ -94,4 +94,4 @@ function AssignmentAdmin() {
 <script type="text/javascript">
   window.history.forward(); function noBack() {window.history.forward()}
 </script>;
-export default AssignmentAdmin;
+export default DownloadFilter;

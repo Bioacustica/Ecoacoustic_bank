@@ -50,7 +50,7 @@ class Recuperar extends Component {
                 </div>
                 <div className="flex justify-end w-166.25 mb-10 ">
                   <a
-                    href="/login"
+                    href="/log-in"
                     className="text-white text-right font-rubik font-semibold
                   text-xl
                   hover:text-whithe border-b-2 border-green-450

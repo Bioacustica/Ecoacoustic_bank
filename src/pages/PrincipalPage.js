@@ -15,7 +15,7 @@ require("typeface-rubik");
 function PrincipalPage() {
   return (
     <div>
-      <header className="sticky top-0 z-50  bg-white">
+      <header className="sticky top-0 z-30  bg-white">
         <div className="flex justify-center items-center">
           <Head />
         </div>

@@ -19,7 +19,7 @@ function LabelledFilter() {
     <>
       <div className="flex justify-center items-center">
         <div className="w-341.5 ">
-          <header className="sticky top-0 z-50  bg-white">
+          <header className="sticky top-0 z-30  bg-white">
             <div className="flex justify-center items-center">
               <Head />
             </div>
@@ -49,9 +49,9 @@ function LabelledFilter() {
               <div className="hover:bg-blue-200 ">
               <Link to="/admin-label-filter">
                 <button className="text-blue-850 w-113.8333 text-xl">
-                  <label> FILTRO ASIGNACIÓN </label>
+                <label> FILTRO DE </label>
                   <br />
-                  <label> DE AUDIOS PÚBLICOS </label>
+                  <label> ETIQUETADO </label>
                 </button>
                 </Link>
               </div>
@@ -66,11 +66,13 @@ function LabelledFilter() {
               </div>
 
               <div className="hover:bg-blue-200  ">
+              <Link to="/admin-dowload-filter">
                 <button className="text-white w-113.8333 text-xl">
                   <label> FILTRO DESCARGA </label>
                   <br />
                   <label> DE AUDIOS </label>
                 </button>
+                </Link>
               </div>
             </div>
             <div className="mt-16">

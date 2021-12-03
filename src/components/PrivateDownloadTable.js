@@ -1,9 +1,9 @@
-import React,{useState}  from "react";
+import React ,{useState}from "react";
 import MoreInformationModal from "./MoreInformationModal";
 
 require("typeface-poppins");
 require("typeface-rubik");
-function PrivateAssignmentTable() {
+function PrivateDownloadTable() {
   const columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const [showModal, setShowModal] = useState(false)
 
@@ -33,8 +33,8 @@ function PrivateAssignmentTable() {
     <div className="flex items-center justify-center ">
       <div className="border overflow-x-auto w-212.5">
         <table className=" border border-collapse ">
-          <thead>
-            <tr className="">
+          <thead className="h-11.25">
+            <tr className="h-11.25">
               <td className="border-2 font-rubik border-blue-850 text-base h-11.25 px-4 text-center">
                 Id
               </td>
@@ -141,21 +141,20 @@ function PrivateAssignmentTable() {
         <table>
           <thead>
             <tr className="">
-              <td className=" font-rubik font-semibold text-base h-20 px-4 text-center"></td>
+              <td className=" font-rubik font-semibold text-base h-20 text-center w-28 ">
+                <button className="bg-blue-250 font-semibold text-white p-1 w-full">Seleccionar todo</button>
+              </td>
             </tr>
           </thead>
           <tbody>
             {columns.map((rowscounter) => (
               <tr>
-                <td className="font-rubik font-light text-base h-13.5 ">
-                  <button 
-                  onClick={openModal}
+                <td className=" flex font-rubik font-light text-base h-13.5 w-39.5 ">
+                  <button onClick={openModal}
                   className=" bg-yellow-400 font-semibold text-white text-lg w-31.25 h-7.75">
-                  Más
+                    Más
                   </button>
-                </td>
-                <td className="font-rubik font-light text-base h-13.5 ">
-                <input className="w-7.75 h-7.75 ml-2  mt-2 text-blue-850 " type="checkbox"/>
+                  <input className="w-7.75 h-7.75 ml-2 text-white "  type="checkbox"/>
                 </td>
               </tr>
             ))}
@@ -163,8 +162,10 @@ function PrivateAssignmentTable() {
         </table>
         {showModal && <MoreInformationModal className="z-50" close={closeModal}/>}
       </div>
+      
     </div>
+    
   );
 }
 
-export default PrivateAssignmentTable;
+export default PrivateDownloadTable;

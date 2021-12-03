@@ -1,17 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Component } from "react";
 import { formList } from "../services";
-import PublicTable from "./PublicTable";
+import PrivateDownloadTable from "./PrivateDownloadTable";
 
 require("typeface-poppins");
 require("typeface-rubik");
-class PublicFilter extends Component
-{
-  /*const [stado, setCredentials] = useState({
-    email: "",
-    password: "",
-  });*/
-
+class PrivateDonwloadFilter extends Component {
   state = {
     metodo_etiquetado: [],
     tipo_grabadora: [],
@@ -22,12 +16,9 @@ class PublicFilter extends Component
     software: [],
     tipo_case: [],
     tipo_microfono: [],
-
   };
 
-
-  componentDidMount= async () => {
-
+  componentDidMount = async () => {
     const response = await formList();
     console.log(response);
 
@@ -35,26 +26,24 @@ class PublicFilter extends Component
       eventos: response.data.evento,
       habitats: response.data.habitat,
       ciudades: response.data.ciudad,
-      tipo_grabadora:response.data.Tipo_de_grabadora,
-      tipo_case:response.data.tipo_de_case,
-      tipo_microfono:response.data.tipo_de_micro,
-      metodo_etiquetado:response.data.Metodo_etiquetado,
-      software:response.data.software_etiquetado,
-      municipio:response.data.municipio,
-      
+      tipo_grabadora: response.data.Tipo_de_grabadora,
+      tipo_case: response.data.tipo_de_case,
+      tipo_microfono: response.data.tipo_de_micro,
+      metodo_etiquetado: response.data.Metodo_etiquetado,
+      software: response.data.software_etiquetado,
+      municipio: response.data.municipio,
     });
   };
   render() {
     return (
       <div>
-        
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">Ciudades</span>
               <select
-              name="ciudad"
-              onChange={event=>this.valueToState(event.target)}
+                name="ciudad"
+                onChange={(event) => this.valueToState(event.target)}
                 disabled
                 className="block w-full border border-blue-850 rounded-md bg-white  shadow-lg focus:border-indigo-200 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75"
               >
@@ -69,7 +58,7 @@ class PublicFilter extends Component
               </select>
             </label>
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">Habitat</span>
               <select className="block  border border-blue-850 w-full mt-1 rounded-md bg-white  shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
@@ -83,7 +72,7 @@ class PublicFilter extends Component
               </select>
             </label>
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">Municipio</span>
               <select
                 disabled
@@ -118,7 +107,7 @@ class PublicFilter extends Component
 
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">Tipo de case</span>
               <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
@@ -132,7 +121,7 @@ class PublicFilter extends Component
               </select>
             </label>
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">
                 Tipo de microfono
               </span>
@@ -148,7 +137,7 @@ class PublicFilter extends Component
               </select>
             </label>
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">
                 Metodo de etiquetado
               </span>
@@ -182,9 +171,9 @@ class PublicFilter extends Component
           </div>
         </div>
 
-        <div className="flex justify-center items-center content-center mb-8.5">
+        <div className="flex justify-center items-center content-center ">
           <div className="flex w-341.5 justify-center items-center">
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">
                 Tipo de grabadora
               </span>
@@ -199,9 +188,8 @@ class PublicFilter extends Component
                 )}
               </select>
             </label>
-            
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850">Fecha de inicio</span>
               <input
                 type="date"
@@ -209,7 +197,7 @@ class PublicFilter extends Component
               />
             </label>
 
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850">Fecha final</span>
               <input
                 type="date"
@@ -229,7 +217,7 @@ class PublicFilter extends Component
 
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
-            <label className="block text-center w-54.25 mr-41.5">
+            <label className="block text-center w-54.25 mr-15.666 mt-8.5">
               <span className="text-blue-850">Elevacion maxima</span>
               <input
                 type="text"
@@ -237,20 +225,51 @@ class PublicFilter extends Component
               />
             </label>
 
-            <label className="block text-center w-54.25">
+            <label className="block text-center w-54.25 mr-15.666">
               <br />
-              <button className="block  font-semibold font-poppins text-white bg-green-550 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
-                Buscar
-              </button>
+              <div>
+                <button className="block mb-2 font-semibold text-xl font-poppins text-white bg-gray-250 hover:shadow-lg w-54.25 h-7.75 ">
+                  Buscar
+                </button>
+              </div>
+              <div>
+                <button className="block font-semibold  text-xl font-poppins text-white bg-gray-250 hover:shadow-lg  w-54.25 h-7.75 ">
+                  Descargar
+                </button>
+              </div>
+            </label>
+
+            <label className="block  text-center w-54.25 ">
+              <br />
+              <div className="flex">
+                <input
+                  className="w-7.75 h-7.75 ml-2 text-white mr-2"
+                  type="checkbox"
+                />
+                <label className="block  mb-2 font-semibold text-2xl font-poppins text-white bg-blue-250 w-45.5 h-7.75 ">
+                  Excel
+                </label>
+              </div>
+              <div className="flex">
+                <input
+                  className="w-7.75 h-7.75 ml-2 text-white mr-2"
+                  type="checkbox"
+                />
+                <label className="block  font-semibold font-poppins text-2xl text-white bg-blue-250 w-45.5 h-7.75 ">
+                  CSV
+                </label>
+              </div>
             </label>
           </div>
         </div>
 
-        <div className="flex justify-center items-center mb-10.75">
-          <div className="w-341.5 h-151.25">
-            <PublicTable />
+        <div className="flex justify-center items-center mb-32">
+          <div className="w-341.5 h-132.25">
+            <PrivateDownloadTable />
           </div>
         </div>
+
+       
 
         <div className="flex items-center justify-center">
           <nav
@@ -325,6 +344,6 @@ class PublicFilter extends Component
         </div>
       </div>
     );
-                  }
+  }
 }
-export default PublicFilter;
+export default PrivateDonwloadFilter;

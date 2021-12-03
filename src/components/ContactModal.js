@@ -2,18 +2,16 @@ import React, { useState } from "react";
 import { sendMenssage } from "../services";
 import closeimg from "../images/06.Contacto/x.png";
 
-
 require("typeface-poppins");
 require("typeface-rubik");
 
-function ContactModal({close}) {
-
-const [success, setSuccess] = useState(null)
+function ContactModal({ close }) {
+  const [success, setSuccess] = useState(null);
 
   const [mensaje, setMensaje] = useState({
-    subject: '',
-    from_email: '',
-    message: '',
+    subject: "",
+    from_email: "",
+    message: "",
   });
   const handleChange = (event) => {
     setMensaje({
@@ -22,12 +20,11 @@ const [success, setSuccess] = useState(null)
     });
   };
 
-  const sendData =async (e,mensaje) => {
-  e.preventDefault()
-    const response= await sendMenssage(mensaje)
+  const sendData = async (e, mensaje) => {
+    e.preventDefault();
+    const response = await sendMenssage(mensaje);
 
-    response ? setSuccess(true):setSuccess(false)
-   
+    response ? setSuccess(true) : setSuccess(false);
   };
 
   return (
@@ -37,7 +34,7 @@ const [success, setSuccess] = useState(null)
           {/*content*/}
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/* ACA EMPIEZA EL FORMULARIO*/}
-            <form onSubmit={(e) => sendData(e,mensaje)}>
+            <form onSubmit={(e) => sendData(e, mensaje)}>
               <div className="flex justify-center items-center ">
                 <div className="w-263.75 h-148.5 bg-blue-250 rounded-lg">
                   <div className="flex w-263.75 justify-end items-end mb-2">
@@ -49,7 +46,7 @@ const [success, setSuccess] = useState(null)
                     </button>
                   </div>
 
-                  <div className="flex">
+                  <div className="flex ">
                     <div className="ml-12 w-1/2">
                       <h1 className="text-left font-extrabold font-poppins text-5.5xl text-blue-850">
                         Contacto
@@ -77,18 +74,21 @@ const [success, setSuccess] = useState(null)
                           ITM Institución Universitaria
                         </h1>
                       </div>
-                      {success && <div>
-                        <h2 className="text-left font-semibold font-poppins mt-3 text-2.5xl text-blue-900">
-                          Mensaje enviado con exito
-                        </h2>
-                      </div>} 
+                      {success && (
+                        <div>
+                          <h2 className="text-left font-semibold font-poppins mt-3 text-2.5xl text-blue-900">
+                            Mensaje enviado con exito
+                          </h2>
+                        </div>
+                      )}
 
-                      {success===false && <div>
-                        <h2 className="text-left font-semibold font-poppins mt-3 text-xl text-red-600">
-                          Error al enviar el mensaje, intentelo nuevamente.
-                        </h2>
-                      </div>}
-
+                      {success === false && (
+                        <div>
+                          <h2 className="text-left font-semibold font-poppins mt-3 text-xl text-red-600">
+                            Error al enviar el mensaje, intentelo nuevamente.
+                          </h2>
+                        </div>
+                      )}
                     </div>
 
                     <div className="mr-12 w-1/2 ">
@@ -122,8 +122,8 @@ const [success, setSuccess] = useState(null)
                   </div>
 
                   <div className="flex h-28 justify-center items-center">
-                    <button 
-                    type="submit"
+                    <button
+                      type="submit"
                       className=" bg-blue-850 text-3xl text-white font-semibold hover:shadow-2xl font-poppins h-14.25 py-2 px-4 w-48  rounded"
                     >
                       Enviar

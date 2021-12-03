@@ -234,18 +234,28 @@ class PrivateAssignmentFilter extends Component
               />
             </label>
 
-            <label className="block text-center w-54.25">
+            <label className="block text-center items-center justify-center w-54.25 ">
               <br />
-              <button className="block rounded-md font-semibold font-poppins text-white bg-gray-250 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
+              <button className="block font-semibold font-poppins text-white bg-gray-250 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
                 Buscar
               </button>
             </label>
           </div>
         </div>
 
-        <div className="flex justify-center items-center mb-32">
+        <div className="flex justify-center items-center mb-28">
           <div className="w-341.5 h-132.25">
             <PrivateAssignmentTable />
+          </div>
+        </div>
+
+        <div className="flex justify-center items-end mb-5">
+          <div className="w-260 items-end">
+            <div className=" font-rubik font-semibold text-base inline-flex  text-center justify-end w-full">
+              <button className="bg-green-550 font-semibold text-white p-1 w-40 ">
+                Guardar
+              </button>
+            </div>
           </div>
         </div>
 
