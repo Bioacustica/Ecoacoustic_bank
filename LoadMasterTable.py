@@ -69,25 +69,25 @@ from sqlalchemy.orm import Session
 session = Session(engine)
 
 
-def SamplingAdd(file, session):
+def SamplingAdd(file, session, id):
     
     udas = pd.read_excel(file, sheet_name = "UDAS", header = 0)
     
-    id_season = session.query(Base.classes["season"]).filter(Base.classes["season"].description == udas.iloc[0]["season_HA"]).first().id_season
+    id_season = session.query(Base.classes["season"]).filter(Base.classes["season"].description == udas.iloc[id]["season_HA"]).first().id_season
     #id_funding = session.query(Base.classes["funding"]).filter(Base.classes["funding"].description == udas.iloc[0]["funding_PR"]).first().id_funding
-    id_project = session.query(Base.classes["project"]).filter(Base.classes["project"].description == udas.iloc[0]["project_name_PR"]).first().id_project
-    id_cataloger = session.query(Base.classes["user"]).filter(Base.classes["user"].email == udas.iloc[0]["collector_email_PR"]).first().id_user
+    id_project = session.query(Base.classes["project"]).filter(Base.classes["project"].description == udas.iloc[id]["project_name_PR"]).first().id_project
+    id_cataloger = session.query(Base.classes["user"]).filter(Base.classes["user"].email == udas.iloc[id]["collector_email_PR"]).first().id_user
     
     session.add(Base.classes["sampling"](id_project = id_project,
                                          id_cataloger = id_cataloger,
                                          id_season = id_season,
                                          date = datetime.datetime.now(),
-                                         description = udas.iloc[0]["id_DM"]))
+                                         description = udas.iloc[id]["id_DM"]))
     session.commit()
 
 
 
-SamplingAdd(file = "../UDAS_20210406.xls", session = session)
+SamplingAdd(file = "../UDAS_20210406.xls", session = session, id = 0)
 
 #----------------------------------
 import os
@@ -200,8 +200,44 @@ def CatalogueAdd(file, session, id):
     session.commit()
 
 
-
 CatalogueAdd(file = "../UDAS_20210406.xls", session = session, id = 1)
+
+def CataloguesAdd(file, session):
+    
+    udas = pd.read_excel(file, sheet_name = "Template", header = 0)
+    
+    for i in range(udas.shape[0]):
+        
+        id_sampling = 0
+        id_sampling = session.query(Base.classes["sampling"]). \
+                      filter(Base.classes["sampling"].description == udas.iloc[i]["sampling"]). \
+                      first().id_sampling
+        
+        # Si el sampling no esta creado lo crea
+        if id_sampling == 0:
+            
+            SamplingAdd(file = file, session = session, id = i)
+            id_sampling = session.query(Base.classes["sampling"]). \
+                      filter(Base.classes["sampling"].description == udas.iloc[i]["sampling"]). \
+                      first().id_sampling
+        
+        CatalogueAdd(file = file,
+                     session = session,
+                     id = i)
+        
+        id_catalogue = session.query(Base.classes["catalogue"]). \
+                       filter(Base.classes["catalogue"].description == udas.iloc[i]["catalogue"]). \
+                       first().id_catalogue
+        
+        RecordsAdd(file = udas.iloc[i]["record"],
+                   id_catalogue = id_catalogue,
+                   session = session)
+
+        
+
+
+
+CataloguesAdd(file = "UDAS_20210406.xls", session = session)
 
 #----------------------------------
 
