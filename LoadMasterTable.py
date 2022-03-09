@@ -15,16 +15,22 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     tableToLoad.columns = [columns_names[1]]
     tableToLoad[columns_names[0]] = range(1,tableToLoad.shape[0]+1)
     tableToLoad = tableToLoad.reindex(columns = columns_names)
-    tableToLoad.to_sql(name = table_name, schema ='bioacustica', index = False, con = engine, if_exists = 'append')
+
+    for i in range(len(tableToLoad)):
+        try:
+            tableToLoad.iloc[i:i+1].to_sql(name = table_name, con = engine, schema = 'bioacustica', if_exists = 'append', index = False)
+        except:
+            pass
 
 
 
-sheets = pd.ExcelFile('MasterTables.xls').sheet_names
+
+sheets = pd.ExcelFile('/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables.xls').sheet_names
 
 for sheet in sheets:
     try:
         LoadMasterTable(mapping = Base.classes,
-                        info_path = 'MasterTables.xls',
+                        info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables.xls',
                         table_name = sheet,
                         engine = engine,
                         schema = 'bioacustica')
