@@ -100,9 +100,7 @@ from sqlalchemy.orm import Session
 session = Session(engine)
 
 
-def SamplingAdd(file, session, id):
-    
-    udas = pd.read_excel(file, sheet_name = "UDAS", header = 0)
+def SamplingAdd(udas, session, id):
     
     id_season = session.query(Base.classes["season"]).filter(Base.classes["season"].description == udas.iloc[id]["season_HA"]).first().id_season
     id_project = session.query(Base.classes["project"]).filter(Base.classes["project"].description == udas.iloc[id]["project_name_PR"]).first().id_project
@@ -116,8 +114,16 @@ def SamplingAdd(file, session, id):
     session.commit()
 
 
+def SamplingsAdd(file, session, id):
 
-SamplingAdd(file = "../UDAS_20210406.xls", session = session, id = 0)
+    udas = pd.read_excel(file, sheet_name = "UDAS", header = 0)
+
+    for i in range(udas.shape[0]):
+
+        SamplingAdd(udas, session, id)
+
+
+SamplingsAdd(file = "../UDAS_20210406.xls", session = session, id = 0)
 
 #----------------------------------
 import os
