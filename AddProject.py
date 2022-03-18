@@ -12,7 +12,7 @@ def AddProject(udas, session, id):
         session.add(Base.classes["project"](id_funding = id_funding,
                                             description = udas.iloc[id]["project_name_PR"]))
     except:
-        print("id_funding - " + str(id+1) + " ->  " + str(udas.iloc[id]["funding_PR"]) )
+        print("ERROR: funding_PR - " + str(id+1) + " ->  " + str(udas.iloc[id]["funding_PR"]) )
 
 
 
