@@ -11,26 +11,26 @@ session = Session(engine)
 def AddCatalogue(udas, session, id):
     
     id_sampling = session.query(Base.classes["sampling"]). \
-                  filter(Base.classes["sampling"].description == udas.iloc[id]["sampling"]). \
+                  filter(Base.classes["sampling"].description == udas.iloc[id]["id_DM"]). \
                   first().id_sampling
     
     id_country =  session.query(Base.classes["country"]). \
-                  filter(Base.classes["country"].description == udas.iloc[id]["country"].replace('"','').upper()). \
+                  filter(Base.classes["country"].description == udas.iloc[id]["country_IG"].replace('"','').upper()). \
                   first().id_country
     
     id_department = session.query(Base.classes["department"]). \
-                    filter(Base.classes["department"].description == udas.iloc[id]["department"].replace('"','').upper()). \
+                    filter(Base.classes["department"].description == udas.iloc[id]["department_IG"].replace('"','').upper()). \
                     first().id_department
     
     id_m = session.query(Base.classes["municipality"]). \
-           filter(Base.classes["municipality"].description == udas.iloc[id]["municipality"].replace('"','').upper()). \
+           filter(Base.classes["municipality"].description == udas.iloc[id]["municipality_IG"].replace('"','').upper()). \
            first().id_municipality
     
     id_vereda = 1
     id_locality = 1
     
     id_gain = session.query(Base.classes["gain"]). \
-              filter(Base.classes["gain"].description == udas.iloc[id]["gain"].replace('"','').upper()). \
+              filter(Base.classes["gain"].description == udas.iloc[id]["gain_RE"].replace('"','').upper()). \
               first().id_gain
     
     #id_filter = session.query(Base.classes["filter"]). \
@@ -38,7 +38,7 @@ def AddCatalogue(udas, session, id):
     #          first().id_filter
     id_filter = 1
     
-    id_collector = session.query(Base.classes["user"]).filter(Base.classes["user"].email == udas.iloc[id]["collector"]).first().id_user
+    id_collector = session.query(Base.classes["user"]).filter(Base.classes["user"].email == udas.iloc[id]["collector_email_PR"]).first().id_user
     id_h_serial = 1
     
     id_supply = session.query(Base.classes["supply"]). \
@@ -75,7 +75,7 @@ def AddCatalogue(udas, session, id):
     longitude = udas.iloc[id]["longitude"]
     description = udas.iloc[id]["catalogue"]
     record_dir = udas.iloc[id]["record"]
-    
+
     infoDir = os.listdir(record_dir)
     chunks = len(infoDir)
     size = 1
