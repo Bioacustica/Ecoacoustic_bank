@@ -65,32 +65,6 @@ session.commit()
 
 #---------------------------------
 
-import pandas as pd
-from mapping import Base
-from mapping import engine
-from sqlalchemy.orm import Session
-
-session = Session(engine)
-
-def ProjectAdd(udas, session, id):
-
-    id_funding = session.query(Base.classes["funding"]).filter(Base.classes["funding"].description == udas.iloc[0]["funding_PR"]).first().id_funding
-    
-    session.add(Base.classes["project"](id_funding = id_funding,
-                                        description = udas.iloc[id]["project_name_PR"]))
-
-
-def ProjectsAdd(file, session, id):
-
-    udas = pd.read_excel(file, sheet_name = "UDAS", header = 0)
-    
-    for i in range(udas.shape[0]):
-
-        ProjectAdd(udas, session, id)
-
-
-#----------------------------------
-
 import datetime
 import pandas as pd
 from mapping import Base
@@ -114,12 +88,12 @@ def SamplingAdd(udas, session, id):
     session.commit()
 
 
-def SamplingsAdd(file, session, id):
-
+def SamplingsAdd(file, session):
+    
     udas = pd.read_excel(file, sheet_name = "UDAS", header = 0)
-
-    for i in range(udas.shape[0]):
-
+    
+    for id in range(udas.shape[0]):
+        
         SamplingAdd(udas, session, id)
 
 
