@@ -42,39 +42,39 @@ def AddCatalogue(udas, session, id):
     id_h_serial = 1
     
     id_supply = session.query(Base.classes["supply"]). \
-                filter(Base.classes["supply"].description == udas.iloc[id]["supply"].replace('"','').upper()). \
+                filter(Base.classes["supply"].description == udas.iloc[id]["power_source_RE"].replace('"','').upper()). \
                 first().id_supply
     
     id_case = session.query(Base.classes["case"]). \
-              filter(Base.classes["case"].description == udas.iloc[id]["case"].replace('"','').upper()). \
+              filter(Base.classes["case"].description == udas.iloc[id]["rec_case_RE"].replace('"','').upper()). \
               first().id_case
     
     id_memory = session.query(Base.classes["memory"]). \
-                filter(Base.classes["memory"].description == udas.iloc[id]["memory"].replace('"','').upper()). \
+                filter(Base.classes["memory"].description == udas.iloc[id]["memory_card_RE"].replace('"','').upper()). \
                 first().id_memory
     
     id_habitat = session.query(Base.classes["habitat"]). \
-                 filter(Base.classes["habitat"].description == udas.iloc[id]["habitat"].replace('"','').upper()). \
+                 filter(Base.classes["habitat"].description == udas.iloc[id]["habitat_HA"].replace('"','').upper()). \
                  first().id_habitat
     
     id_precision = session.query(Base.classes["precision"]). \
-                   filter(Base.classes["precision"].description == udas.iloc[id]["precision"].replace('"','').upper()). \
+                   filter(Base.classes["precision"].description == udas.iloc[id]["precision_IG"].replace('"','').upper()). \
                    first().id_precision
     
     id_datum = session.query(Base.classes["datum"]). \
-               filter(Base.classes["datum"].description == udas.iloc[id]["datum"].replace('"','').upper()).  \
+               filter(Base.classes["datum"].description == udas.iloc[id]["datum_IG"].replace('"','').upper()).  \
                first().id_datum
     
     id_microphone = session.query(Base.classes["microphone"]). \
-                    filter(Base.classes["microphone"].description == udas.iloc[id]["microphone"].replace('"','').upper()). \
+                    filter(Base.classes["microphone"].description == udas.iloc[id]["microphone_RE"].replace('"','').upper()). \
                     first().id_microphone
     
-    elevation = udas.iloc[id]["elevation"]
-    height = udas.iloc[id]["height"]
-    latitude = udas.iloc[id]["latitude"]
-    longitude = udas.iloc[id]["longitude"]
-    description = udas.iloc[id]["catalogue"]
-    record_dir = udas.iloc[id]["record"]
+    elevation = udas.iloc[id]["min_elevation_IG"]
+    height = udas.iloc[id]["rec_height_HA"]
+    latitude = udas.iloc[id]["latitude_IG"]
+    longitude = udas.iloc[id]["longitud_IG"]
+    description = udas.iloc[id]["field_number_PR"]
+    record_dir = udas.iloc[id]["path_records_PR"]
 
     infoDir = os.listdir(record_dir)
     chunks = len(infoDir)
@@ -111,7 +111,7 @@ def AddCatalogue(udas, session, id):
 
 def AddCatalogues(file, session):
     
-    udas = pd.read_excel(file, sheet_name = "Template", header = 0)
+    udas = pd.read_excel(file, sheet_name = "UDAS", header = 0)
     
     for i in range(udas.shape[0]):
         
