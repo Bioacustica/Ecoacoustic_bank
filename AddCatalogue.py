@@ -143,43 +143,30 @@ def AddCatalogue(udas, session, id):
             print("ERROR: microphone_RE - " + str(id+1) + " ->  " + str(udas.iloc[id]["microphone_RE"]) )
           
 
-
-
-#CatalogueAdd(file = "../UDAS_20210406.xls", session = session, id = 1)
-
-def AddCatalogues(file, session):
+def AddCatalogues_(file, session):
     
     udas = pd.read_excel(file, sheet_name = "UDAS", header = 0)
     
-    for i in range(udas.shape[0]):
-        
-        id_sampling = 0
-        id_sampling = session.query(Base.classes["sampling"]). \
-                      filter(Base.classes["sampling"].description == udas.iloc[i]["sampling"]). \
-                      first().id_sampling
-        
-        # Si el sampling no esta creado lo crea
-        if id_sampling == 0:
-            
-            AddSampling(file = file, session = session, id = i)
-            id_sampling = session.query(Base.classes["sampling"]). \
-                      filter(Base.classes["sampling"].description == udas.iloc[i]["sampling"]). \
-                      first().id_sampling
-        
-        AddCatalogue(file = file,
-                     session = session,
-                     id = i)
-        
-        id_catalogue = session.query(Base.classes["catalogue"]). \
-                       filter(Base.classes["catalogue"].description == udas.iloc[i]["catalogue"]). \
-                       first().id_catalogue
-        
-        RecordsAdd(file = udas.iloc[i]["record"],
-                   id_catalogue = id_catalogue,
-                   session = session)
+    for id in range(udas.shape[0]):
+
+        AddCatalogue(udas, session, id)
+
+
+
+
+
+
+
+#id_catalogue = session.query(Base.classes["catalogue"]). \
+#               filter(Base.classes["catalogue"].description == udas.iloc[i]["catalogue"]). \
+#               first().id_catalogue
+
+#RecordsAdd(file = udas.iloc[i]["record"],
+#            id_catalogue = id_catalogue,
+#            session = session)
 
         
 
 
 
-CataloguesAdd(file = "UDAS_20210406.xls", session = session)
+#AddCatalogues_(file = "UDAS_20210406.xls", session = session)

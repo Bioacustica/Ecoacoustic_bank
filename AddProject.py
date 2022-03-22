@@ -16,7 +16,7 @@ def AddProject(udas, session, id):
 
 
 
-def AddProjects(file, session):
+def AddProjects_(file, session):
     
     udas = pd.read_excel(file, sheet_name = "UDAS", header = 0)
     
@@ -26,6 +26,9 @@ def AddProjects(file, session):
 
 
 
-AddProjects(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/UDAS_20210406.xls', session = session)
+#AddProjects(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/UDAS_20210406.xls',
+#            session = session)
+
+
 
 

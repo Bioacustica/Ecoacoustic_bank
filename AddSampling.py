@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 session = Session(engine)
 
 
-def SamplingAdd(udas, session, id):
+def AddSampling(udas, session, id):
     
     try:
         id_season = session.query(Base.classes["season"]).filter(Base.classes["season"].description == udas.iloc[id]["season_HA"]).first().id_season
@@ -30,13 +30,18 @@ def SamplingAdd(udas, session, id):
 
 
 
-def SamplingsAdd(file, session):
+def AddSamplings_(file, session):
     
     udas = pd.read_excel(file, sheet_name = "UDAS", header = 0)
     
     for id in range(udas.shape[0]):
         
-        SamplingAdd(udas, session, id)
+        AddSampling(udas, session, id)
 
 
-SamplingsAdd(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/UDAS_20210406.xls', session = session)
+#AddSamplings_(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/UDAS_20210406.xls',
+#             session = session)
+
+
+
+
