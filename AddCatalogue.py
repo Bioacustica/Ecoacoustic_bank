@@ -1,6 +1,7 @@
 import os
 import datetime
 import pandas as pd
+from mapping import Bug
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
@@ -107,6 +108,7 @@ def AddCatalogue(udas, session, id):
                                               description = description))
         session.commit()
     except:
+        Bug = True
         if not 'id_sampling' in locals():
             print("ERROR: id_DM - " + str(id+1) + " ->  " + str(udas.iloc[id]["id_DM"]) )
         elif not 'id_country' in locals():
@@ -148,7 +150,7 @@ def AddCatalogues_(file, session):
     udas = pd.read_excel(file, sheet_name = "UDAS", header = 0)
     
     for id in range(udas.shape[0]):
-
+        
         AddCatalogue(udas, session, id)
 
 

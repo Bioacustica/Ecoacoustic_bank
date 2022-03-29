@@ -1,5 +1,6 @@
 import datetime
 import pandas as pd
+from mapping import Bug
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
@@ -21,6 +22,7 @@ def AddSampling(udas, session, id):
                                              description = udas.iloc[id]["id_DM"]))
         session.commit()
     except:
+        Bug = True
         if not 'id_season' in locals():
             print("ERROR: season_HA - " + str(id+1) + " ->  " + str(udas.iloc[id]["season_HA"]) )
         elif not 'id_project' in locals():

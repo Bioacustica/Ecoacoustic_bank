@@ -1,8 +1,8 @@
-
 import os
 import datetime
 import pandas as pd
 import audio_metadata
+from mapping import Bug
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
@@ -41,11 +41,11 @@ def AddRecords(file, id_catalogue, session):
         for i in range(len(files)):
             
             date = datetime.datetime(year = int(files[i][0:4]),
-                                    month = int(files[i][4:6]),
-                                    day = int(files[i][6:8]),
-                                    hour = int(files[i][9:11]),
-                                    minute = int(files[i][11:13]),
-                                    second = int(files[i][13:15]))
+                                     month = int(files[i][4:6]),
+                                     day = int(files[i][6:8]),
+                                     hour = int(files[i][9:11]),
+                                     minute = int(files[i][11:13]),
+                                     second = int(files[i][13:15]))
             
             AddRecord(file = os.path.join(file,files[i]),
                       id_catalogue = id_catalogue,
@@ -71,6 +71,7 @@ def AddRecords_(file, session):
             file = udas.iloc[id]["path_records_PR"]
             AddRecords(file, id_catalogue, session)
         except:
+            Bug = True
             if file != file:
                 print("ERROR: path_records_PR - " + str(id+1) + " ->  " + str(file))
             elif not 'id_catalogue' in locals():
