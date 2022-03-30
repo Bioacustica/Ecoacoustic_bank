@@ -110,39 +110,39 @@ def AddCatalogue(udas, session, id):
     except:
         Bug = True
         if not 'id_sampling' in locals():
-            print("ERROR: id_DM - " + str(id+1) + " ->  " + str(udas.iloc[id]["id_DM"]) )
+            print("ERROR: id_DM - " + str(id + 2) + " ->  " + str(udas.iloc[id]["id_DM"]) )
         elif not 'id_country' in locals():
-            print("ERROR: country_IG - " + str(id+1) + " ->  " + str(udas.iloc[id]["country_IG"]) )
+            print("ERROR: country_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["country_IG"]) )
         elif not 'id_department' in locals():
-            print("ERROR: department_IG - " + str(id+1) + " ->  " + str(udas.iloc[id]["department_IG"]) ) 
+            print("ERROR: department_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["department_IG"]) ) 
         elif not 'id_m' in locals():
-            print("ERROR: municipality_IG - " + str(id+1) + " ->  " + str(udas.iloc[id]["municipality_IG"]) )
+            print("ERROR: municipality_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["municipality_IG"]) )
         elif not 'id_vereda' in locals():
-            print("ERROR: id_vereda - " + str(id+1) + " ->  " + str(udas.iloc[id]["id_vereda"]) )
+            print("ERROR: id_vereda - " + str(id + 2) + " ->  " + str(udas.iloc[id]["id_vereda"]) )
         elif not 'id_locality' in locals():
-            print("ERROR: id_locality - " + str(id+1) + " ->  " + str(udas.iloc[id]["id_locality"]) )
+            print("ERROR: id_locality - " + str(id + 2) + " ->  " + str(udas.iloc[id]["id_locality"]) )
         elif not 'id_gain' in locals():
-            print("ERROR: gain_RE - " + str(id+1) + " ->  " + str(udas.iloc[id]["gain_RE"]) ) 
+            print("ERROR: gain_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["gain_RE"]) ) 
         elif not 'id_filter' in locals():
-            print("ERROR: filters_RE - " + str(id+1) + " ->  " + str(udas.iloc[id]["filters_RE"]) )
+            print("ERROR: filters_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["filters_RE"]) )
         elif not 'id_collector' in locals():
-            print("ERROR: collector_email_PR - " + str(id+1) + " ->  " + str(udas.iloc[id]["collector_email_PR"]) )
+            print("ERROR: collector_email_PR - " + str(id + 2) + " ->  " + str(udas.iloc[id]["collector_email_PR"]) )
         elif not 'id_h_serial' in locals():
-            print("ERROR: rec_serial_RE - " + str(id+1) + " ->  " + str(udas.iloc[id]["rec_serial_RE"]) )
+            print("ERROR: rec_serial_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["rec_serial_RE"]) )
         elif not 'id_supply' in locals():
-            print("ERROR: power_source_RE - " + str(id+1) + " ->  " + str(udas.iloc[id]["power_source_RE"]) ) 
+            print("ERROR: power_source_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["power_source_RE"]) ) 
         elif not 'id_case' in locals():
-            print("ERROR: rec_case_RE - " + str(id+1) + " ->  " + str(udas.iloc[id]["rec_case_RE"]) )
+            print("ERROR: rec_case_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["rec_case_RE"]) )
         elif not 'id_memory' in locals():
-            print("ERROR: memory_card_RE - " + str(id+1) + " ->  " + str(udas.iloc[id]["memory_card_RE"]) )
+            print("ERROR: memory_card_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["memory_card_RE"]) )
         elif not 'id_habitat' in locals():
-            print("ERROR: habitat_HA - " + str(id+1) + " ->  " + str(udas.iloc[id]["habitat_HA"]) )
+            print("ERROR: habitat_HA - " + str(id + 2) + " ->  " + str(udas.iloc[id]["habitat_HA"]) )
         elif not 'id_precision' in locals():
-            print("ERROR: precision_IG - " + str(id+1) + " ->  " + str(udas.iloc[id]["precision_IG"]) ) 
+            print("ERROR: precision_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["precision_IG"]) ) 
         elif not 'id_datum' in locals():
-            print("ERROR: datum_IG - " + str(id+1) + " ->  " + str(udas.iloc[id]["datum_IG"]) )
+            print("ERROR: datum_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["datum_IG"]) )
         elif not 'id_microphone' in locals():
-            print("ERROR: microphone_RE - " + str(id+1) + " ->  " + str(udas.iloc[id]["microphone_RE"]) )
+            print("ERROR: microphone_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["microphone_RE"]) )
           
 
 def AddCatalogues_(file, session):

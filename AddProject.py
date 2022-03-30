@@ -15,7 +15,7 @@ def AddProject(udas, session, id):
                                             description = udas.iloc[id]["project_name_PR"]))
     except:
         Bug = True
-        print("ERROR: funding_PR - " + str(id+1) + " ->  " + str(funding) )
+        print("ERROR: funding_PR - " + str(id + 2) + " ->  " + str(funding) )
 
 
 

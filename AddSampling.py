@@ -24,11 +24,11 @@ def AddSampling(udas, session, id):
     except:
         Bug = True
         if not 'id_season' in locals():
-            print("ERROR: season_HA - " + str(id+1) + " ->  " + str(udas.iloc[id]["season_HA"]) )
+            print("ERROR: season_HA - " + str(id + 2) + " ->  " + str(udas.iloc[id]["season_HA"]) )
         elif not 'id_project' in locals():
-            print("ERROR: project_name_PR - " + str(id+1) + " ->  " + str(udas.iloc[id]["project_name_PR"]) )
+            print("ERROR: project_name_PR - " + str(id + 2) + " ->  " + str(udas.iloc[id]["project_name_PR"]) )
         elif not 'id_cataloger' in locals():
-            print("ERROR: collector_email_PR - " + str(id+1) + " ->  " + str(udas.iloc[id]["collector_email_PR"]) )    
+            print("ERROR: collector_email_PR - " + str(id + 2) + " ->  " + str(udas.iloc[id]["collector_email_PR"]) )    
 
 
 

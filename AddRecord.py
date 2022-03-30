@@ -73,9 +73,9 @@ def AddRecords_(file, session):
         except:
             Bug = True
             if file != file:
-                print("ERROR: path_records_PR - " + str(id+1) + " ->  " + str(file))
+                print("ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(file))
             elif not 'id_catalogue' in locals():
-                print("ERROR: field_number_PR - " + str(id+1) + " ->  " + str(catalogue))
+                print("ERROR: field_number_PR - " + str(id + 2) + " ->  " + str(catalogue))
 
 
 
