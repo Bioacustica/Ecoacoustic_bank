@@ -32,6 +32,6 @@ LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/UDAS_20
          session = session) 
 
 # incrementar el ID que se imprime
-# cuando se genere los erroes descargar el ultimo masterTable
+# cuando se genere los errores descargar el ultimo masterTable
 # quitar tildes
 # precision_IG - 1 y 2 revisar por que sale error en las primeras filas
