@@ -1,5 +1,5 @@
 import pandas as pd
-from mapping import Bug
+import Globals
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
@@ -14,7 +14,7 @@ def AddProject(udas, session, id):
         session.add(Base.classes["project"](id_funding = id_funding,
                                             description = udas.iloc[id]["project_name_PR"]))
     except:
-        Bug = True
+        Globals.Bug = True
         print("ERROR: funding_PR - " + str(id + 2) + " ->  " + str(funding) )
 
 

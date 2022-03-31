@@ -1,5 +1,5 @@
 import pandas as pd
-from mapping import Bug
+import Globals
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
@@ -12,6 +12,8 @@ from AddRecord import AddRecords_
 from GenerateMasterTable import GenerateMasterTable
 
 session = Session(engine)
+
+Globals.init()
 
 
 def LoadData(file, session):
@@ -28,11 +30,11 @@ def LoadData(file, session):
     print("Stage 4: Records")
     AddRecords_(file, session)
 
-    if Bug:
+    if Globals.Bug:
         print("Generating: Master Table file")
         GenerateMasterTable(file = "MasterTablesGenerada.xls",
                             session = session)
-    Bug = False
+    Globals.Bug = False
 
 
 LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/UDAS_20210406.xls',
@@ -42,3 +44,5 @@ LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/UDAS_20
 # cuando se genere los erroes descargar el ultimo masterTable (ok)
 # quitar tildes
 # precision_IG - 1 y 2 revisar por que sale error en las primeras filas (ok)
+# Agregar al generateMasterTable filter, no se agrego por que en la tabla esta mal escrita el campo 
+# description aparece como decription

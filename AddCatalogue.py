@@ -1,7 +1,7 @@
 import os
 import datetime
 import pandas as pd
-from mapping import Bug
+import Globals
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
@@ -108,7 +108,7 @@ def AddCatalogue(udas, session, id):
                                               description = description))
         session.commit()
     except:
-        Bug = True
+        Globals.Bug = True
         if not 'id_sampling' in locals():
             print("ERROR: id_DM - " + str(id + 2) + " ->  " + str(udas.iloc[id]["id_DM"]) )
         elif not 'id_country' in locals():

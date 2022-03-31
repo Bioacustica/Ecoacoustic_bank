@@ -2,7 +2,7 @@ import os
 import datetime
 import pandas as pd
 import audio_metadata
-from mapping import Bug
+import Globals
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
@@ -31,8 +31,8 @@ def AddRecord(file, id_catalogue, date, chunk, session):
                                     channels = metadata['streaminfo'].channels)
     session.add(ObjRec)
     session.commit()
-    session.refresh(ObjRec)
-    ObjRec.id
+    #session.refresh(ObjRec)
+    #ObjRec.id
 
 
 def AddRecords(file, id_catalogue, session):
@@ -76,7 +76,7 @@ def AddRecords_(file, session):
             file = udas.iloc[id]["path_records_PR"]
             AddRecords(file, id_catalogue, session)
         except:
-            Bug = True
+            Globals.Bug = True
             if file != file:
                 print("ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(file))
             elif not 'id_catalogue' in locals():
