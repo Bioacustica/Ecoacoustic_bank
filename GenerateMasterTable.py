@@ -27,6 +27,6 @@ def GenerateMasterTable(file, session):
 
 
 
-GenerateMasterTable(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTablesGenerada.xls',
+GenerateMasterTable(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTablesGenerada.xlsx',
                     session = session)
 

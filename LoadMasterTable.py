@@ -10,7 +10,7 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     # engine: database conection
     # schema: ('bioacustica')
     columns_names = mapping[table_name].__table__.columns.keys()
-    tableToLoad = pd.read_excel(info_path, sheet_name = table_name, header = None)
+    tableToLoad = pd.read_excel(info_path, sheet_name = table_name, header = None, engine = 'openpyxl')
     tableToLoad = tableToLoad.applymap(lambda x: x.replace('"','').upper())
     tableToLoad.columns = [columns_names[1]]
     tableToLoad[columns_names[0]] = range(1,tableToLoad.shape[0]+1)
@@ -25,7 +25,7 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
 
 def LoadMasterTables(info_path, mapping, engine):
     
-    sheets = pd.ExcelFile(info_path).sheet_names
+    sheets = pd.ExcelFile(info_path, engine = 'openpyxl').sheet_names
     
     for sheet in sheets:
         try:
@@ -38,7 +38,7 @@ def LoadMasterTables(info_path, mapping, engine):
             print("Error",sheet)
 
 
-LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables.xls',
+LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTablesGenerada.xlsx',
                  mapping = Base.classes,
                  engine = engine)
 
