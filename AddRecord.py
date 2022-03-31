@@ -7,9 +7,11 @@ from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
 
+#https://www.altaruru.com/calculando-el-hash-en-python/
 
 session = Session(engine)
 
+#AddRecordFile
 
 def AddRecord(file, id_catalogue, date, chunk, session):
     
@@ -19,15 +21,18 @@ def AddRecord(file, id_catalogue, date, chunk, session):
                 filter(Base.classes["format"].description == os.path.splitext(file)[1].split('.')[1]).  \
                 first().id_format
     
-    session.add(Base.classes["record"](id_catalogue = id_catalogue,
-                                       id_format = id_format,
-                                       date = date,
-                                       length = metadata['streaminfo'].duration,
-                                       size = metadata.filesize,
-                                       sample_rate = metadata['streaminfo'].sample_rate,
-                                       chunk = chunk,
-                                       channels = metadata['streaminfo'].channels))
+    ObjRec = Base.classes["record"](id_catalogue = id_catalogue,
+                                    id_format = id_format,
+                                    date = date,
+                                    length = metadata['streaminfo'].duration,
+                                    size = metadata.filesize,
+                                    sample_rate = metadata['streaminfo'].sample_rate,
+                                    chunk = chunk,
+                                    channels = metadata['streaminfo'].channels)
+    session.add(ObjRec)
     session.commit()
+    session.refresh(ObjRec)
+    ObjRec.id
 
 
 def AddRecords(file, id_catalogue, session):
