@@ -10,14 +10,18 @@ def GenerateMasterTable(file, session):
     sheetToGenerate = ['format', 'country', 'department', 'municipality',
                        'vereda', 'locality', 'hardware', 'case',
                        'microphone', 'memory', 'supply', 'datum',
-                       'precision', 'habitat', 'season', 'filter',
+                       'precision', 'habitat', 'season',
                        'gain', 'project', 'funding']
     
     writer = pd.ExcelWriter(file, engine = 'xlsxwriter')
     
     for sheet in sheetToGenerate:
-        infoSheet = pd.DataFrame(session.query(Base.classes[sheet].description).all())
-        infoSheet.to_excel(writer, sheet_name = sheet, index = False, header = False)
+        try:
+            infoSheet = pd.DataFrame(session.query(Base.classes[sheet].description).all())
+            infoSheet.to_excel(writer, sheet_name = sheet, index = False, header = False)
+        except:
+            infoSheet = pd.DataFrame()
+            infoSheet.to_excel(writer, sheet_name = sheet, index = False, header = False)
     
     writer.save()
 
