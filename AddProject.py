@@ -10,9 +10,16 @@ def AddProject(udas, session, id):
     
     try:
         funding = str(udas.iloc[id]["funding_PR"]).upper()
-        id_funding = session.query(Base.classes["funding"]).filter(Base.classes["funding"].description == funding).first().id_funding
-        session.add(Base.classes["project"](id_funding = id_funding,
-                                            description = udas.iloc[id]["project_name_PR"]))
+        id_funding = session.query(Base.classes["funding"]). \
+                                   filter(Base.classes["funding"].description == funding).  \
+                                   first().id_funding
+        id_project = session.query(Base.classes["project"]).  \
+                                   filter(Base.classes["project"].id_funding == id_funding).  \
+                                   filter(Base.classes["project"].description == udas.iloc[id]["project_name_PR"] ). \
+                                   first().id_project
+        if id_project != id_project:
+            session.add(Base.classes["project"](id_funding = id_funding,
+                                                description = udas.iloc[id]["project_name_PR"]))
     except:
         Globals.Bug = True
         print("ERROR: funding_PR - " + str(id + 2) + " ->  " + str(funding) )
