@@ -20,6 +20,7 @@ def AddProject(udas, session, id):
         if id_project != id_project:
             session.add(Base.classes["project"](id_funding = id_funding,
                                                 description = udas.iloc[id]["project_name_PR"]))
+            print("  Creating " + udas.iloc[id]["project_name_PR"])
     except:
         Globals.Bug = True
         print("ERROR: funding_PR - " + str(id + 2) + " ->  " + str(funding) )
