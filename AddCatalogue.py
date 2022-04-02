@@ -106,7 +106,7 @@ def AddCatalogue(udas, session, id):
                                               latitude = pd.to_numeric(latitude, downcast = 'float'),
                                               longitude = pd.to_numeric(longitude, downcast = 'float'),
                                               description = description))
-        session.commit()
+        #session.commit()
     except:
         Globals.Bug = True
         if not 'id_sampling' in locals():
@@ -143,7 +143,8 @@ def AddCatalogue(udas, session, id):
             print("ERROR: datum_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["datum_IG"]) )
         elif not 'id_microphone' in locals():
             print("ERROR: microphone_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["microphone_RE"]) )
-          
+        elif record_dir != record_dir:
+            print("ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(udas.iloc[id]["path_records_PR"]) )
 
 def AddCatalogues_(file, session):
     

@@ -16,7 +16,7 @@ session = Session(engine)
 def AddRecord(file, id_catalogue, date, chunk, session):
     
     metadata = audio_metadata.load(file)
-    
+    #try para format
     id_format = session.query(Base.classes["format"]). \
                 filter(Base.classes["format"].description == os.path.splitext(file)[1].split('.')[1]).  \
                 first().id_format
@@ -30,9 +30,9 @@ def AddRecord(file, id_catalogue, date, chunk, session):
                                     chunk = chunk,
                                     channels = metadata['streaminfo'].channels)
     session.add(ObjRec)
-    session.commit()
-    #session.refresh(ObjRec)
-    #ObjRec.id
+    session.flush()
+    print(ObjRec.id_record)
+    #session.commit()
 
 
 def AddRecords(file, id_catalogue, session):
@@ -77,10 +77,10 @@ def AddRecords_(file, session):
             AddRecords(file, id_catalogue, session)
         except:
             Globals.Bug = True
-            if file != file:
-                print("ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(file))
-            elif not 'id_catalogue' in locals():
+            if not 'id_catalogue' in locals():
                 print("ERROR: field_number_PR - " + str(id + 2) + " ->  " + str(catalogue))
+            elif file != file:
+                print("ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(file))
 
 
 

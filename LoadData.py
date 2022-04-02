@@ -29,11 +29,14 @@ def LoadData(file, session):
     
     print("Stage 4: Records")
     AddRecords_(file, session)
-
+    
     if Globals.Bug:
         print("Generating: Master Table file")
         GenerateMasterTable(file = "MasterTablesGenerada.xls",
                             session = session)
+        session.rollback()
+    else:
+        session.commit()
     Globals.Bug = False
 
 
@@ -46,3 +49,4 @@ LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/UDAS_20
 # precision_IG - 1 y 2 revisar por que sale error en las primeras filas (ok)
 # Agregar al generateMasterTable filter, no se agrego por que en la tabla esta mal escrita el campo 
 # description aparece como decription
+# revisar si es el master table generado se puede sobreescibir (si)

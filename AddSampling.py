@@ -20,7 +20,7 @@ def AddSampling(udas, session, id):
                                              id_season = id_season,
                                              date = datetime.datetime.now(),
                                              description = udas.iloc[id]["id_DM"]))
-        session.commit()
+        #session.commit()
     except:
         Globals.Bug = True
         if not 'id_season' in locals():
