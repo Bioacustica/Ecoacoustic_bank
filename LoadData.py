@@ -29,21 +29,21 @@ def LoadData(file, session):
     
     print("Stage 4: Records")
     AddRecords_(file, session)
-    
+
     if Globals.Bug:
-        print("Generating: Master Table file")
-        GenerateMasterTable(file = "MasterTablesGenerada.xls",
-                            session = session)
         session.rollback()
+        print("Generating: Master Table file")
+        GenerateMasterTable(file = "MasterTablesGenerada_.xlsx",
+                            session = session)
     else:
         session.commit()
     Globals.Bug = False
 
 
-LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/UDAS_20210406.xls',
+LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/Tesis_Cano_20211026.xls',
          session = session) 
 
-# incrementar el ID que se imprime
+# incrementar el ID que se imprime (ok)
 # cuando se genere los erroes descargar el ultimo masterTable (ok)
 # quitar tildes
 # precision_IG - 1 y 2 revisar por que sale error en las primeras filas (ok)
