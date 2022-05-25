@@ -8,6 +8,7 @@ __license__ = "GPL"  # Pendiente por definir
 __status__ = "Development"
 __maintainer__ = "Victor Torres"
 
+import io
 import os
 import csv
 import json
@@ -16,6 +17,7 @@ import logging
 
 import jwt
 import zipfile
+import bz2
 from zipfile import ZipFile
 from io import BytesIO
 
@@ -36,7 +38,7 @@ from dry_rest_permissions.generics import DRYPermissions
 from rest_framework_tracking.mixins import LoggingMixin
 from rest_framework_simplejwt.tokens import RefreshToken
 from cryptography.fernet import Fernet
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, StreamingHttpResponse, FileResponse
 
 from .fnt import (
     choose_role,
@@ -74,88 +76,80 @@ def my_obtain_token_view(request):
     # Verificamos las credenciales y creamos el objeto usuario
     user = authenticate(username=username, password=password)
 
-    if user is not None and user.roles != "etiquetado":
-        """si el usuario no es nulo se crea un key que servirá
-        posteriormente para desencriptar la contraseña del usuario
-        en el response
-        """
-        key = Fernet.generate_key()
-        fernet = Fernet(key)
-        encMessage = fernet.encrypt(request.data["password"].encode())
-        llave = key.decode()
-        # Creamos un cursor principal
-        credenciales_db = {
-            "user": "animalesitm",
-            "password": "animalesitm",
-            "host": "postgres",
-            "port": 5432,
-            "database": "animalesitm",
-        }
-        conexion1 = psycopg2.connect(**credenciales_db)
-        conexion1.autocommit = True
-        # ejecutamos una verifación para saber si el usuario existe
-        verificacion = (
-            "SELECT  username FROM bioacustica.keys WHERE username='{}';".format(
-                user.username
-            )
-        )
-        with conexion1.cursor() as cursor1:
-            cursor1.execute(verificacion)
-            name = cursor1.fetchone()
-
-            if name is None:
-                with conexion1.cursor() as cursor2:
-                    payload2 = "INSERT INTO bioacustica.keys (username, key) VALUES ('{}', '{}') ;".format(
-                        user.username, llave
-                    )
-                    cursor2.execute(payload2)
-            cursor1.execute(verificacion)
-            nombre = cursor1.fetchone()
-
-            if user.username == nombre[0]:
-                payload = "UPDATE bioacustica.keys SET key = '{}' WHERE username ='{}' ;".format(
-                    llave, user.username
-                )
-                cursor1.execute(payload)
-            else:
-                payload2 = "INSERT INTO bioacustica.keys (username, key) VALUES ('{}', '{}') ;".format(
-                    user.username, llave
-                )
-                cursor1.execute(payload2)
-
-        diccio = {"username": user.username, "key": llave}
-        with open("keys.json", "w") as f:
-            json.dump(diccio, f)
-
-        refreshToken = RefreshToken.for_user(user)
-        accessToken = refreshToken.access_token
-
-        decodeJTW = jwt.decode(
-            str(accessToken), settings.SECRET_KEY, algorithms=["HS256"]
-        )
-
-        # add payload here!!
-        decodeJTW["user"] = user.username
-        decodeJTW["password"] = encMessage.decode()
-
-        # encode
-        encoded = jwt.encode(decodeJTW, settings.SECRET_KEY, algorithm="HS256")
-
-        return JsonResponse(
-            {
-                "status": "Logeado con exito",
-                "refresh": str(refreshToken),
-                "access": str(encoded),
-                "username": str(user.username),
-                "roles": str(user.roles),
-            }
-        )
-
-    else:
+    if user is None or user.roles == "etiquetado":
         return Response(
             {"status": "Sus credenciales no son correctas"},
             status=status.HTTP_400_BAD_REQUEST,
         )
+    """si el usuario no es nulo se crea un key que servirá
+        posteriormente para desencriptar la contraseña del usuario
+        en el response
+        """
+    key = Fernet.generate_key()
+    fernet = Fernet(key)
+    encMessage = fernet.encrypt(request.data["password"].encode())
+    llave = key.decode()
+    # Creamos un cursor principal
+    credenciales_db = {
+        "user": "animalesitm",
+        "password": "animalesitm",
+        "host": "postgres",
+        "port": 5432,
+        "database": "animalesitm",
+    }
+    conexion1 = psycopg2.connect(**credenciales_db)
+    conexion1.autocommit = True
+        # ejecutamos una verifación para saber si el usuario existe
+    verificacion = f"SELECT  username FROM bioacustica.keys WHERE username='{user.username}';"
+
+    with conexion1.cursor() as cursor1:
+        cursor1.execute(verificacion)
+        name = cursor1.fetchone()
+
+        if name is None:
+            with conexion1.cursor() as cursor2:
+                payload2 = f"INSERT INTO bioacustica.keys (username, key) VALUES ('{user.username}', '{llave}') ;"
+
+                cursor2.execute(payload2)
+        cursor1.execute(verificacion)
+        nombre = cursor1.fetchone()
+
+        if user.username == nombre[0]:
+            payload = f"UPDATE bioacustica.keys SET key = '{llave}' WHERE username ='{user.username}' ;"
+
+            cursor1.execute(payload)
+        else:
+            payload2 = f"INSERT INTO bioacustica.keys (username, key) VALUES ('{user.username}', '{llave}') ;"
+
+            cursor1.execute(payload2)
+
+    diccio = {"username": user.username, "key": llave}
+    with open("keys.json", "w") as f:
+        json.dump(diccio, f)
+
+    refreshToken = RefreshToken.for_user(user)
+    accessToken = refreshToken.access_token
+
+    decodeJTW = jwt.decode(
+        str(accessToken), settings.SECRET_KEY, algorithms=["HS256"]
+    )
+
+    # add payload here!!
+    decodeJTW["user"] = user.username
+    decodeJTW["password"] = encMessage.decode()
+
+    # encode
+    encoded = jwt.encode(decodeJTW, settings.SECRET_KEY, algorithm="HS256")
+
+    return JsonResponse(
+        {
+            "status": "Logeado con exito",
+            "refresh": str(refreshToken),
+            "access": str(encoded),
+            "username": str(user.username),
+            "roles": str(user.roles),
+        }
+    )
 
 
 #  Función  encargada de registrar usuarios
@@ -195,13 +189,12 @@ def registration(request):
         bioacustica = cursor.fetchall()
 
     serializer = UserCreateSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return response.Response(
-            "Creado de forma exitosa", status=status.HTTP_201_CREATED
-        )
-    else:
+    if not serializer.is_valid():
         return response.Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
+    serializer.save()
+    return response.Response(
+        "Creado de forma exitosa", status=status.HTTP_201_CREATED
+    )
 
 
 @authentication_classes([JWTAuthentication])
@@ -376,7 +369,7 @@ def downolad_record_views_csv(request):
 
 @authentication_classes([JWTAuthentication])
 @decorators.api_view(["GET"])
-def download_records_files(request) -> dict:
+def download_records_files(request):
     """Vista encargada de extraer los paths de records
     y generar los base 64
     de forma adcional se crea un diccionario
@@ -386,32 +379,68 @@ def download_records_files(request) -> dict:
     :return: retorna un diccionario con el base 64, su nombre y su tipo de compresión
     """
     filenames = [
-        "/code/apiCRUD/sample_audios/audio1.zip",
-        "/code/apiCRUD/sample_audios/audio2.zip",
-        "/code/apiCRUD/sample_audios/audio3.zip",
+
     ]
-    # Creamos el base 64
-    lista = []
-    for fname in filenames:
-        lista.append(base_64_encoding(fname))
+    files = os.listdir('/code/apiCRUD/sample_audios/')
 
-    # Extraemos su tipo compresión y su nombre
-    tipo_compresion = []
-    audio_name = []
-    for zipname in filenames:
-        zf = zipfile.ZipFile(zipname, "r")
-        for f in zf.namelist():
-            audio_name.append(zf.namelist())
-            zf1 = zf.getinfo(f)
-            tipo_compresion.append(zf1.compress_type)
+    c = 0
+    for file in files:
+        c += 1
+        filenames.append(f"/code/apiCRUD/sample_audios/{file}")
+        if c == 100:
+            break
 
-    # Creamos el diccionario
-    diccionario_base64_tipocompresion = {
-        str(x): {"base 64": y, "tipo compresion": z}
-        for x, y, z in zip(audio_name, lista, tipo_compresion)
-    }
 
-    return Response(diccionario_base64_tipocompresion)
+    # #metodo1
+    # # Creamos el base 64
+    # lista = []
+    # for fname in filenames:
+    #     lista.append(base_64_encoding(fname))
+    #
+    # # Extraemos su tipo compresión y su nombre
+    # tipo_compresion = []
+    # audio_name = []
+    # for zipname in filenames:
+    #     zf = zipfile.ZipFile(zipname, "r", compresslevel=9)
+    #     for f in zf.namelist():
+    #         audio_name.append(zf.namelist())
+    #         zf1 = zf.getinfo(f)
+    #         tipo_compresion.append(zf1.compress_type)
+    #
+    # # Creamos el diccionario
+    # diccionario_base64_tipocompresion = {
+    #     str(x): {"base 64": y, "tipo compresion": z}
+    #     for x, y, z in zip(audio_name, lista, tipo_compresion)
+    # }
+    # return Response(diccionario_base64_tipocompresion)
+
+    # #metodo2
+    zip_subdir = "Audios"
+    zip_filename = f"{zip_subdir}.zip"
+    s = io.BytesIO()
+    compression = zipfile.ZIP_STORED
+    zf = zipfile.ZipFile(s, "w", compression, allowZip64=True, compresslevel=8)
+    for fpath in filenames:
+        fdir, fname = os.path.split(fpath)
+        zip_path = os.path.join(zip_subdir, fname)
+        zf.write(fpath, zip_path)
+    zf.close()
+    #HttpResponse
+    #FileResponse
+    #StreamingHttpResponse
+    resp = HttpResponse(s.getvalue(), content_type="application/zip")
+    resp['Content-Disposition'] = f'attachment; filename={zip_filename}'
+    return resp
+
+    #metodo3
+    # lista = []
+    # for fname in filenames:
+    #     lista.append(base_64_encoding(fname))
+    # response =HttpResponse(lista, 'rb')
+    # response['content_type'] = "application/octet-stream"
+    # response['Content-Disposition'] = 'attachment; filename= Audios'
+    # return response
+
 
 
 @authentication_classes([JWTAuthentication])
@@ -903,8 +932,7 @@ class ChangePasswordView(generics.UpdateAPIView):
         :return: retorna el objeto usuario
         :rtype: AsbtractBaseUser
         """
-        obj = self.request.user
-        return obj
+        return self.request.user
 
     def update(self, request, *args, **kwargs):
         """con este metodo hacemos directamente la

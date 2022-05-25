@@ -73,7 +73,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>sampling</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <h1>sampling</h1><p><span id="recordNumber">1020</span> rows</p><br />
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -104,8 +104,8 @@
                                 <tbody>
                                 <tr>
                                     <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id_sampling">id_sampling</span></td>
-                                    <td>smallserial</td>
-                                    <td>5</td>
+                                    <td>serial</td>
+                                    <td>10</td>
                                     <td title=''></td>
                                     <td title='Automatically updated by the database'>√</td>
                                     <td>nextval(&#39;bioacustica.sampling_id_sampling_seq&#39;::regclass)</td>
@@ -269,52 +269,99 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
+                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="557,48,743,664">
-<area shape="rect" id="node2" href="user.html" target="_top" title="user" alt="" coords="5,309,168,427">
-<area shape="rect" id="node3" href="sampling.html" target="_top" title="sampling" alt="" coords="212,76,513,321">
-<area shape="rect" id="node4" href="project.html" target="_top" title="project" alt="" coords="9,5,164,152">
-<area shape="rect" id="node5" href="season.html" target="_top" title="season" alt="" coords="11,169,162,287">
+<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="584,48,783,664">
+<area shape="rect" id="node2" href="user.html" target="_top" title="user" alt="" coords="19,309,181,427">
+<area shape="rect" id="node3" href="sampling.html" target="_top" title="sampling" alt="" coords="239,76,540,321">
+<area shape="rect" id="node4" href="project.html" target="_top" title="project" alt="" coords="5,5,195,152">
+<area shape="rect" id="node5" href="season.html" target="_top" title="season" alt="" coords="25,169,175,287">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/sampling.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="apiCRUD_historicalfunding.html" target="_top" title="apiCRUD_historicalfunding" alt="" coords="507,1483,825,1571">
-<area shape="rect" id="node2" href="user.html" target="_top" title="user" alt="" coords="208,812,371,929">
-<area shape="rect" id="node3" href="catalogue.html" target="_top" title="catalogue" alt="" coords="961,1060,1147,1676">
-<area shape="rect" id="node4" href="case.html" target="_top" title="case" alt="" coords="598,1693,734,1781">
-<area shape="rect" id="node5" href="country.html" target="_top" title="country" alt="" coords="588,499,744,587">
-<area shape="rect" id="node6" href="datum.html" target="_top" title="datum" alt="" coords="593,2115,739,2203">
-<area shape="rect" id="node7" href="department.html" target="_top" title="department" alt="" coords="570,604,762,692">
-<area shape="rect" id="node8" href="filter.html" target="_top" title="filter" alt="" coords="598,1236,734,1324">
-<area shape="rect" id="node9" href="gain.html" target="_top" title="gain" alt="" coords="598,1131,734,1219">
-<area shape="rect" id="node10" href="h_serial.html" target="_top" title="h_serial" alt="" coords="588,1377,744,1465">
-<area shape="rect" id="node11" href="habitat.html" target="_top" title="habitat" alt="" coords="590,1904,742,1992">
-<area shape="rect" id="node12" href="locality.html" target="_top" title="locality" alt="" coords="590,1025,742,1113">
-<area shape="rect" id="node13" href="memory.html" target="_top" title="memory" alt="" coords="586,1799,746,1887">
-<area shape="rect" id="node14" href="microphone.html" target="_top" title="microphone" alt="" coords="570,2220,762,2308">
-<area shape="rect" id="node15" href="municipality.html" target="_top" title="municipality" alt="" coords="568,709,764,797">
-<area shape="rect" id="node16" href="precision.html" target="_top" title="precision" alt="" coords="582,2009,750,2097">
-<area shape="rect" id="node17" href="sampling.html" target="_top" title="sampling" alt="" coords="515,25,817,271">
-<area shape="rect" id="node18" href="supply.html" target="_top" title="supply" alt="" coords="592,1588,740,1676">
-<area shape="rect" id="node19" href="vereda.html" target="_top" title="vereda" alt="" coords="591,920,741,1008">
-<area shape="rect" id="node26" href="project.html" target="_top" title="project" alt="" coords="212,5,367,152">
-<area shape="rect" id="node29" href="season.html" target="_top" title="season" alt="" coords="214,169,365,287">
-<area shape="rect" id="node20" href="catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="1191,1168,1403,1256">
-<area shape="rect" id="node21" href="django_admin_log.html" target="_top" title="django_admin_log" alt="" coords="544,288,788,376">
-<area shape="rect" id="node22" href="django_rest_passwordreset_resetpasswordtoken.html" target="_top" title="django_rest_passwordreset_resetpasswordtoken" alt="" coords="415,393,917,481">
-<area shape="rect" id="node23" href="labeled.html" target="_top" title="labeled" alt="" coords="1447,1687,1600,1775">
-<area shape="rect" id="node24" href="record.html" target="_top" title="record" alt="" coords="1219,1063,1374,1151">
-<area shape="rect" id="node25" href="photo_path.html" target="_top" title="photo_path" alt="" coords="1203,1273,1391,1361">
+<area shape="rect" id="node1" href="apiCRUD_historicalfunding.html" target="_top" title="apiCRUD_historicalfunding" alt="" coords="534,1483,851,1571">
+<area shape="rect" id="node2" href="user.html" target="_top" title="user" alt="" coords="221,812,384,929">
+<area shape="rect" id="node3" href="catalogue.html" target="_top" title="catalogue" alt="" coords="988,1060,1187,1676">
+<area shape="rect" id="node4" href="case.html" target="_top" title="case" alt="" coords="625,1693,761,1781">
+<area shape="rect" id="node5" href="country.html" target="_top" title="country" alt="" coords="615,499,771,587">
+<area shape="rect" id="node6" href="datum.html" target="_top" title="datum" alt="" coords="619,2115,766,2203">
+<area shape="rect" id="node7" href="department.html" target="_top" title="department" alt="" coords="597,604,789,692">
+<area shape="rect" id="node8" href="filter.html" target="_top" title="filter" alt="" coords="625,1236,761,1324">
+<area shape="rect" id="node9" href="gain.html" target="_top" title="gain" alt="" coords="625,1131,761,1219">
+<area shape="rect" id="node10" href="h_serial.html" target="_top" title="h_serial" alt="" coords="598,1377,787,1465">
+<area shape="rect" id="node11" href="habitat.html" target="_top" title="habitat" alt="" coords="617,1904,769,1992">
+<area shape="rect" id="node12" href="locality.html" target="_top" title="locality" alt="" coords="617,1025,769,1113">
+<area shape="rect" id="node13" href="memory.html" target="_top" title="memory" alt="" coords="613,1799,773,1887">
+<area shape="rect" id="node14" href="microphone.html" target="_top" title="microphone" alt="" coords="597,2220,789,2308">
+<area shape="rect" id="node15" href="municipality.html" target="_top" title="municipality" alt="" coords="595,709,791,797">
+<area shape="rect" id="node16" href="precision.html" target="_top" title="precision" alt="" coords="609,2009,777,2097">
+<area shape="rect" id="node17" href="sampling.html" target="_top" title="sampling" alt="" coords="542,25,843,271">
+<area shape="rect" id="node18" href="supply.html" target="_top" title="supply" alt="" coords="619,1588,767,1676">
+<area shape="rect" id="node19" href="vereda.html" target="_top" title="vereda" alt="" coords="618,920,767,1008">
+<area shape="rect" id="node26" href="project.html" target="_top" title="project" alt="" coords="208,5,397,152">
+<area shape="rect" id="node29" href="season.html" target="_top" title="season" alt="" coords="227,169,378,287">
+<area shape="rect" id="node20" href="catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="1231,1168,1443,1256">
+<area shape="rect" id="node21" href="django_admin_log.html" target="_top" title="django_admin_log" alt="" coords="571,288,815,376">
+<area shape="rect" id="node22" href="django_rest_passwordreset_resetpasswordtoken.html" target="_top" title="django_rest_passwordreset_resetpasswordtoken" alt="" coords="441,393,944,481">
+<area shape="rect" id="node23" href="labeled.html" target="_top" title="labeled" alt="" coords="1487,1687,1640,1775">
+<area shape="rect" id="node24" href="record.html" target="_top" title="record" alt="" coords="1232,1063,1441,1151">
+<area shape="rect" id="node25" href="photo_path.html" target="_top" title="photo_path" alt="" coords="1243,1273,1431,1361">
 <area shape="rect" id="node27" href="funding.html" target="_top" title="funding" alt="" coords="5,37,164,125">
-<area shape="rect" id="node28" href="rest_framework_tracking_apirequestlog.html" target="_top" title="rest_framework_tracking_apirequestlog" alt="" coords="453,815,879,903">
-<area shape="rect" id="node30" href="voucher.html" target="_top" title="voucher" alt="" coords="1217,957,1377,1045">
+<area shape="rect" id="node28" href="rest_framework_tracking_apirequestlog.html" target="_top" title="rest_framework_tracking_apirequestlog" alt="" coords="479,815,906,903">
+<area shape="rect" id="node30" href="voucher.html" target="_top" title="voucher" alt="" coords="1251,957,1422,1045">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/sampling.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="584,48,783,664">
+<area shape="rect" id="node2" href="user.html" target="_top" title="user" alt="" coords="19,309,181,427">
+<area shape="rect" id="node3" href="sampling.html" target="_top" title="sampling" alt="" coords="239,76,540,321">
+<area shape="rect" id="node4" href="project.html" target="_top" title="project" alt="" coords="5,5,195,152">
+<area shape="rect" id="node5" href="season.html" target="_top" title="season" alt="" coords="25,169,175,287">
+</map>
+                                        <a name='diagram'><img id="oneimpliedDegreeImg" src="../diagrams/tables/sampling.implied1degrees.png" usemap="#oneDegreeRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="twoDegreesRelationshipsDiagramImplied" name="twoDegreesRelationshipsDiagramImplied">
+<area shape="rect" id="node1" href="apiCRUD_historicalfunding.html" target="_top" title="apiCRUD_historicalfunding" alt="" coords="534,1483,851,1571">
+<area shape="rect" id="node2" href="user.html" target="_top" title="user" alt="" coords="221,812,384,929">
+<area shape="rect" id="node3" href="catalogue.html" target="_top" title="catalogue" alt="" coords="988,1060,1187,1676">
+<area shape="rect" id="node4" href="case.html" target="_top" title="case" alt="" coords="625,1693,761,1781">
+<area shape="rect" id="node5" href="country.html" target="_top" title="country" alt="" coords="615,499,771,587">
+<area shape="rect" id="node6" href="datum.html" target="_top" title="datum" alt="" coords="619,2115,766,2203">
+<area shape="rect" id="node7" href="department.html" target="_top" title="department" alt="" coords="597,604,789,692">
+<area shape="rect" id="node8" href="filter.html" target="_top" title="filter" alt="" coords="625,1236,761,1324">
+<area shape="rect" id="node9" href="gain.html" target="_top" title="gain" alt="" coords="625,1131,761,1219">
+<area shape="rect" id="node10" href="h_serial.html" target="_top" title="h_serial" alt="" coords="598,1377,787,1465">
+<area shape="rect" id="node11" href="habitat.html" target="_top" title="habitat" alt="" coords="617,1904,769,1992">
+<area shape="rect" id="node12" href="locality.html" target="_top" title="locality" alt="" coords="617,1025,769,1113">
+<area shape="rect" id="node13" href="memory.html" target="_top" title="memory" alt="" coords="613,1799,773,1887">
+<area shape="rect" id="node14" href="microphone.html" target="_top" title="microphone" alt="" coords="597,2220,789,2308">
+<area shape="rect" id="node15" href="municipality.html" target="_top" title="municipality" alt="" coords="595,709,791,797">
+<area shape="rect" id="node16" href="precision.html" target="_top" title="precision" alt="" coords="609,2009,777,2097">
+<area shape="rect" id="node17" href="sampling.html" target="_top" title="sampling" alt="" coords="542,25,843,271">
+<area shape="rect" id="node18" href="supply.html" target="_top" title="supply" alt="" coords="619,1588,767,1676">
+<area shape="rect" id="node19" href="vereda.html" target="_top" title="vereda" alt="" coords="618,920,767,1008">
+<area shape="rect" id="node26" href="project.html" target="_top" title="project" alt="" coords="208,5,397,152">
+<area shape="rect" id="node29" href="season.html" target="_top" title="season" alt="" coords="227,169,378,287">
+<area shape="rect" id="node20" href="catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="1231,1220,1443,1308">
+<area shape="rect" id="node21" href="django_admin_log.html" target="_top" title="django_admin_log" alt="" coords="571,288,815,376">
+<area shape="rect" id="node22" href="django_rest_passwordreset_resetpasswordtoken.html" target="_top" title="django_rest_passwordreset_resetpasswordtoken" alt="" coords="441,393,944,481">
+<area shape="rect" id="node23" href="labeled.html" target="_top" title="labeled" alt="" coords="1487,1687,1640,1775">
+<area shape="rect" id="node24" href="record.html" target="_top" title="record" alt="" coords="1232,1115,1441,1203">
+<area shape="rect" id="node25" href="photo_path.html" target="_top" title="photo_path" alt="" coords="1243,1325,1431,1413">
+<area shape="rect" id="node27" href="funding.html" target="_top" title="funding" alt="" coords="5,37,164,125">
+<area shape="rect" id="node28" href="rest_framework_tracking_apirequestlog.html" target="_top" title="rest_framework_tracking_apirequestlog" alt="" coords="479,815,906,903">
+<area shape="rect" id="node30" href="voucher.html" target="_top" title="voucher" alt="" coords="1251,1009,1422,1097">
+</map>
+                                        <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/sampling.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
                                 </div>
                             </div>
