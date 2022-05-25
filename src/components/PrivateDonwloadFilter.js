@@ -59,7 +59,7 @@ class PrivateDonwloadFilter extends Component {
             </label>
 
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850 content-center">Habitat</span>
+              <span className="text-blue-850 content-center">Hábitat</span>
               <select className="block  border border-blue-850 w-full mt-1 rounded-md bg-white  shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
                 {this.state.habitats.map((elemento) =>
@@ -108,7 +108,7 @@ class PrivateDonwloadFilter extends Component {
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850 content-center">Tipo de case</span>
+              <span className="text-blue-850 content-center">Tipo de carcasa</span>
               <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
                 {this.state.tipo_case.map((elemento) =>
@@ -123,7 +123,7 @@ class PrivateDonwloadFilter extends Component {
 
             <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">
-                Tipo de microfono
+                Tipo de micrófono
               </span>
               <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
@@ -139,7 +139,7 @@ class PrivateDonwloadFilter extends Component {
 
             <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850 content-center">
-                Metodo de etiquetado
+                Método de etiquetado
               </span>
               <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75 mt-1">
                 <option value={null}>seleccionar</option>
@@ -206,7 +206,7 @@ class PrivateDonwloadFilter extends Component {
             </label>
 
             <label className="block text-center w-54.25">
-              <span className="text-blue-850">Elevacion minima</span>
+              <span className="text-blue-850">Elevación mínima</span>
               <input
                 type="text"
                 className="mt-1 block w-full h-7.75 rounded-md border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -218,7 +218,7 @@ class PrivateDonwloadFilter extends Component {
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-15.666 mt-8.5">
-              <span className="text-blue-850">Elevacion maxima</span>
+              <span className="text-blue-850">Elevación máxima</span>
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border border-blue-850 h-7.75 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"

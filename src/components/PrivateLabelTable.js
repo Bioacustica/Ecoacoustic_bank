@@ -50,7 +50,7 @@ function PrivateLabelTable() {
                 Fecha
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Habitat
+                Hábitat
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
                 Departamento
@@ -62,7 +62,7 @@ function PrivateLabelTable() {
                 Ciudad
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Elevacion
+                Elevación
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
                 Evento
@@ -71,10 +71,10 @@ function PrivateLabelTable() {
                 Formato
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Tipo de microfono
+                Tipo de micrófono
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Metodo de etiquetado
+                Método de etiquetado
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
                 Tipo de grabadora
@@ -83,7 +83,7 @@ function PrivateLabelTable() {
                 Software de etiquetado
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Tipo de case
+                Tipo de carcasa
               </td>
             </tr>
           </thead>
@@ -92,49 +92,49 @@ function PrivateLabelTable() {
             {columns.map((rowscounter) => (
               <tr className="">
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato1
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato2
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato3
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato4
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato5
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato6
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato7
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato8
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato9
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato10
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato11
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato12
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato13
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato14
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                  Dato15
+                Dato_Audio{rowscounter}
                 </td>
               </tr>
             ))}

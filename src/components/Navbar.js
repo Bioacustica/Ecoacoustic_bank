@@ -49,7 +49,7 @@ function Navbar(){
           FILTROS
         </a>
         <button
-          href="#"
+          href="#filtros"
           className=" mr-26.5 font-poppins text-white  content-center hover:text-white
           hover:text-whithe border-b-2 border-green-450
           hover:border-b-2 hover:border-white"

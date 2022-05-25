@@ -140,7 +140,7 @@ function PrincipalPage() {
           </div>
         </div>
 
-        <div className="h-0.625 bg-blue-850 mx-auto w-37 mt-11.25  mb-3"></div>
+        <div className=" h-0.625 bg-blue-850 mx-auto w-37 mt-11.25  mb-3" id="filtros"></div>
         <div>
           <h1 className="text-center font-extrabold font-poppins text-4.5xl text-blue-850 mb-3">
             Filtros

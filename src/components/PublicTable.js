@@ -1,4 +1,5 @@
 import React, {useState}  from "react";
+import MoreInformationModal from "./MoreInformationModal";
 
 require("typeface-poppins");
 require("typeface-rubik");
@@ -27,7 +28,7 @@ function PublicTable() {
                 Fecha
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-12.75 px-4 text-center">
-                Habitat
+                Hábitat
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-12.75 px-4 text-center">
                 Departamento
@@ -39,7 +40,7 @@ function PublicTable() {
                 Ciudad
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-12.75 px-4 text-center">
-                Elevacion
+                Elevación
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-12.75 px-4 text-center">
                 Evento
@@ -48,10 +49,10 @@ function PublicTable() {
                 Formato
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-12.75 px-4 text-center">
-                Tipo de microfono
+                Tipo de micrófono
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-12.75 px-4 text-center">
-                Metodo de etiquetado
+                Método de etiquetado
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-12.75 px-4 text-center">
                 Tipo de grabadora
@@ -60,7 +61,7 @@ function PublicTable() {
                 Software de etiquetado
               </td>
               <td className="border-2 font-rubik border-blue-850 text-base h-12.75 px-4 text-center">
-                Tipo de case
+                Tipo de carcasa
               </td>
             </tr>
           </thead>
@@ -69,49 +70,49 @@ function PublicTable() {
             {columns.map((rowscounter) => (
               <tr className="">
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato1
+                  Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato2
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato3
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato4
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato5
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato6
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato7
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato8
+                Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato9
+                  Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato10
+                  Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato11
+                  Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato12
+                  Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato13
+                  Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato14
+                  Dato_Audio{rowscounter}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato15
+                  Dato_Audio{rowscounter}
                 </td>
               </tr>
             ))}
@@ -123,14 +124,16 @@ function PublicTable() {
         <table>
           <thead>
             <tr className="">
-              <td className=" font-rubik font-semibold text-base h-20 px-4 text-center"></td>
+              <td className=" font-rubik font-semibold text-base h-14 px-4 text-center"></td>
             </tr>
           </thead>
           <tbody>
             {columns.map((rowscounter) => (
               <tr>
                 <td className="font-rubik font-light text-base h-12.75 ml-4">
-                  <button className=" bg-yellow-400 font-semibold text-xl text-white  w-31.25">
+                  <button 
+                  onClick={openModal}
+                  className=" bg-yellow-400 font-semibold text-xl text-white  w-31.25">
                     Más
                   </button>
                 </td>
@@ -138,6 +141,7 @@ function PublicTable() {
             ))}
           </tbody>
         </table>
+        {showModal && <MoreInformationModal className="z-50" close={closeModal}/>}
       </div>
     </div>
   );

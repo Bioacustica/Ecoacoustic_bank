@@ -5,7 +5,11 @@ import MoreInformationModal from "./MoreInformationModal";
 require("typeface-poppins");
 require("typeface-rubik");
 function UserTable() {
-  const columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const columns = [1, 2];
+  const columns2 = [3, 4];
+  const columns5 = [5, 6];
+  const columns3 = [7, 8, 9, 10];
+  const columns4=[1,2,3,4,5,6,7,8,9,10]
   const [showModal, setShowModal] = useState(false)
 
   const openModal=()=>setShowModal(true)
@@ -38,16 +42,64 @@ function UserTable() {
             {columns.map((rowscounter) => (
               <tr className="">
                 <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
-                  Dato1
+                  Id{rowscounter}
                 </td>
                 <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
-                  Dato2
+                  Usuario{rowscounter}
                 </td>
                 <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
-                  Dato3
+                  Usuario{rowscounter}@gmail.com
+                </td>
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center" >
+                  Administrador
+                </td>
+              </tr>
+            ))}
+             {columns2.map((rowscounter) => (
+              <tr className="">
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
+                  Id{rowscounter}
                 </td>
                 <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
-                  Dato4
+                  Usuario{rowscounter}
+                </td>
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
+                  Usuario{rowscounter}@gmail.com
+                </td>
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center" >
+                  Colaborador de registros
+                </td>
+              </tr>
+            ))}
+             {columns5.map((rowscounter) => (
+              <tr className="">
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
+                  Id{rowscounter}
+                </td>
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
+                  Usuario{rowscounter}
+                </td>
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
+                  Usuario{rowscounter}@gmail.com
+                </td>
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center" >
+                  Colaborador de etiquetado
+                </td>
+              </tr>
+            ))}
+            {columns3.map((rowscounter) => (
+              <tr className="">
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
+                  Id{rowscounter}
+                </td>
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
+                  Usuario{rowscounter}
+                </td>
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center">
+                  Usuario{rowscounter}@gmail.com
+                </td>
+                <td className="border-2 font-rubik font-light border-blue-850 text-base h-13.5 px-4 text-center" >
+                  Usuario
                 </td>
               </tr>
             ))}
@@ -63,7 +115,7 @@ function UserTable() {
             </tr>
           </thead>
           <tbody>
-            {columns.map((rowscounter) => (
+            {columns4.map((rowscounter) => (
               <tr>
                 <td className="font-rubik font-light text-base h-13.5 ">
                   <button

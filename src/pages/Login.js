@@ -7,6 +7,7 @@ import { sendCredentialsData } from "../services";
 
 require("typeface-poppins");
 require("typeface-rubik");
+
 function Login() {
   const [showModal, setShowModal] = useState(false);
 
