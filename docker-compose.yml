@@ -56,7 +56,7 @@ services:
       context: .
       dockerfile: Node.Dockerfile
     volumes:
-      - .:/bioacustica-front
+      - .:/bioacustica
     ports:
       - 3000:3000
     image: app:react
