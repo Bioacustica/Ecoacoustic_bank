@@ -30,10 +30,12 @@ function Administrator() {
               <div className="absolute self-center justify-center w-341.5 ">
                 <div className="space-y-3">
                   <h1 className="text-center font-extrabold font-poppins text-4.5xl text-white">
-                    Bienvenido Administrador,
+                    Bienvenido Administrador
                   </h1>
                   <h1 className="text-center font-extrabold font-poppins  text-4.5xl text-white">
-                    Alejandro Piedrahita
+                    { 
+                    //******ACAAAAAAAAAAAAAAAAAAA FALTAAAAAAAAAAAAAAA COLOCAR EL NOMBRE DE LA PERSONA OTRA VEZ*****
+                    }
                   </h1>
                 </div>
               </div>

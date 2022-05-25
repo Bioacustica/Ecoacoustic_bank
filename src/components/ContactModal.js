@@ -53,10 +53,10 @@ function ContactModal({ close }) {
                       </h1>
                       <div className="mt-10">
                         <h1 className="text-left font-semibold font-poppins text-2.5xl text-blue-850">
-                          Pepito Peréz Acevedo
+                        Nombre de contacto UdeA
                         </h1>
                         <h1 className="text-left font-semibold font-poppins text-2.5xl text-blue-850">
-                          pperézacevedo@udea.edu.co
+                          contactoUdeA@udea.edu.co
                         </h1>
                         <h1 className="text-left italic font-rubik text-2.5xl text-blue-850">
                           Universidad de Antioquia
@@ -65,10 +65,10 @@ function ContactModal({ close }) {
 
                       <div className="mt-13.25">
                         <h1 className="text-left font-semibold font-poppins text-2.5xl text-blue-850">
-                          Pepito Peréz Ospina
+                          Nombre de contacto ITM
                         </h1>
                         <h1 className="text-left font-semibold font-poppins text-2.5xl text-blue-850">
-                          pperézospina@itm.edu.co
+                          contactoITM@itm.edu.co
                         </h1>
                         <h1 className="text-left italic font-rubik text-2.5xl text-blue-850">
                           ITM Institución Universitaria
