@@ -1,4 +1,5 @@
 import os
+import hashlib
 import datetime
 import pandas as pd
 import audio_metadata
@@ -11,7 +12,38 @@ from sqlalchemy.orm import Session
 
 session = Session(engine)
 
+def GetFingerprint(file):
+    try:
+        hashmd5 = hashlib.md5()
+        with open(file, "rb") as f:
+            for bloque in iter(lambda: f.read(4096), b""):
+                hashmd5.update(bloque)
+        return hashmd5.hexdigest()
+    except Exception as e:
+        print("Error: %s" % (e))
+        return ""
+    except:
+        print("Error desconocido")
+        return ""
+
 #AddRecordFile
+def AddRecordFile(file, id_record):
+    #crear directorio usando las primeras letras del fingerprint
+    fingerprint = GetFingerprint(file)
+    path_db = "/home/andres/Proyectos/Software/Bioacustico/DB/" + fingerprint[0:3]
+    try:
+        os.mkdir(path_db)
+    except OSError:
+        pass
+    record_path = path_db + "/" + fingerprint + ".WAV"
+    command = "cp " + file + " " + record_path
+    os.system(command) 
+    session.add(Base.classes["record_path"](id_record = id_record,
+                                            record_path = record_path,
+                                            fingerprint = fingerprint))
+    session.flush()
+
+
 
 def AddRecord(file, id_catalogue, date, chunk, session):
     
@@ -21,17 +53,21 @@ def AddRecord(file, id_catalogue, date, chunk, session):
                 filter(Base.classes["format"].description == os.path.splitext(file)[1].split('.')[1]).  \
                 first().id_format
     
-    ObjRec = Base.classes["record"](id_catalogue = id_catalogue,
-                                    id_format = id_format,
-                                    date = date,
-                                    length = metadata['streaminfo'].duration,
-                                    size = metadata.filesize,
-                                    sample_rate = metadata['streaminfo'].sample_rate,
-                                    chunk = chunk,
-                                    channels = metadata['streaminfo'].channels)
-    session.add(ObjRec)
+    Rec = Base.classes["record"](id_catalogue = id_catalogue,
+                                 id_format = id_format,
+                                 date = date,
+                                 length = metadata['streaminfo'].duration,
+                                 size = metadata.filesize,
+                                 sample_rate = metadata['streaminfo'].sample_rate,
+                                 chunk = chunk,
+                                 channels = metadata['streaminfo'].channels)
+    session.add(Rec)
     session.flush()
-    print(ObjRec.id_record)
+    id_record = session.query(Base.classes["record"]). \
+                              filter(Base.classes["record"].id_record == Rec.id_record). \
+                              first().id_record
+    AddRecordFile(file = file,
+                  id_record = id_record)
     #session.commit()
 
 
@@ -78,9 +114,9 @@ def AddRecords_(file, session):
         except:
             Globals.Bug = True
             if not 'id_catalogue' in locals():
-                print("ERROR: field_number_PR - " + str(id + 2) + " ->  " + str(catalogue))
+                print("  ERROR: field_number_PR - " + str(id + 2) + " ->  " + str(catalogue))
             elif file != file:
-                print("ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(file))
+                print("  ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(file))
 
 
 
