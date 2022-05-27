@@ -4,18 +4,12 @@ import datetime
 import pandas as pd
 from sqlalchemy import true
 import Globals
+from Globals import VerifyField
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
 
 session = Session(engine)
-
-def VerifyField(field, value, id):
-    if value != value:
-        print("  ERROR: " + field + " - " + str(id + 2) + " ->  " + str(value) )
-        return False
-    else:
-        return True
 
 def FailCatalogue(id_sampling, description):
     catalogue_ = session.query(Base.classes["catalogue"]).  \
