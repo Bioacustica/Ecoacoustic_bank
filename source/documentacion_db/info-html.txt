@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 date=2022-05-25 02:02:57+0000
+=======
+date=2022-05-07 23:31:06+0000
+>>>>>>> origin/django_api_develop_v
 os=Linux 5.13.0-40-generic
 schemaspy-version=6.1.0
 schemaspy-build=6.1.0.41 2019-09-17 21:52:57

@@ -106,23 +106,18 @@
                     var tableData = [
     {
         "tableName": "rest_framework_tracking_apirequestlog",
+<<<<<<< HEAD
         "tableType": "Table",
         "keyClass": "indexedColumn",
         "keyTitle": "Indexed",
         "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>requested_at",
         "type": "timestamptz",
         "length": 35,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "catalogue",
+=======
         "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "elevation",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>status_code",
         "type": "int4",
         "length": 10,
         "nullable": "√",
@@ -131,6 +126,47 @@
         "comments": ""
     },
     {
+        "tableName": "apiCRUD_locality",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "django_migrations",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "app",
+        "type": "varchar",
+        "length": 255,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_h_serial",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "sampling",
         "tableType": "Table",
         "keyClass": "",
@@ -139,11 +175,22 @@
         "type": "timestamp",
         "length": 29,
         "nullable": "√",
+=======
+        "tableName": "django_rest_passwordreset_resetpasswordtoken",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "user_agent",
+        "type": "varchar",
+        "length": 256,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "season",
         "tableType": "Table",
         "keyClass": "",
@@ -152,6 +199,16 @@
         "type": "varchar",
         "length": 100,
         "nullable": "",
+=======
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "is_superuser",
+        "type": "bool",
+        "length": 1,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -159,10 +216,17 @@
     {
         "tableName": "season",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_season",
         "type": "smallserial",
+=======
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_collector",
+        "type": "int2",
+>>>>>>> origin/django_api_develop_v
         "length": 5,
         "nullable": "",
         "autoUpdated": "√",
@@ -170,6 +234,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "locality",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -193,6 +258,31 @@
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.case_id_case_seq'::regclass)",
+=======
+        "tableName": "apiCRUD_frequencydetail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "peak",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "longitude",
+        "type": "float4",
+        "length": 8,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+>>>>>>> origin/django_api_develop_v
         "comments": ""
     },
     {
@@ -200,15 +290,22 @@
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "membership",
         "type": "numeric",
         "length": 4,
+=======
+        "name": "query_params",
+        "type": "text",
+        "length": 2147483647,
+>>>>>>> origin/django_api_develop_v
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "user",
         "tableType": "Table",
         "keyClass": "",
@@ -217,29 +314,12 @@
         "type": "varchar",
         "length": 100,
         "nullable": "√",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "auth_group_permissions",
+=======
+        "tableName": "django_admin_log",
         "tableType": "Table",
-        "keyClass": "primaryKey",
-        "keyTitle": "Primary Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
-        "type": "bigserial",
-        "length": 19,
-        "nullable": "",
-        "autoUpdated": "√",
-        "defaultValue": "nextval('bioacustica.auth_group_permissions_id_seq'::regclass)",
-        "comments": ""
-    },
-    {
-        "tableName": "catalogue",
-        "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_filter",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "action_flag",
         "type": "int2",
         "length": 5,
         "nullable": "",
@@ -248,6 +328,110 @@
         "comments": ""
     },
     {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.catalogue_id_catalogue_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "type",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_type",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_measure",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_filter",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+=======
+        "tableName": "funding",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "host",
+        "type": "varchar",
+        "length": 200,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>requested_at",
+        "type": "timestamptz",
+        "length": 35,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "response",
+        "type": "text",
+        "length": 2147483647,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "pulse_type",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -258,22 +442,48 @@
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.pulse_type_id_pulse_type_seq'::regclass)",
-        "comments": ""
-    },
-    {
-        "tableName": "record",
+=======
+        "tableName": "django_admin_log",
         "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
-        "type": "int4",
-        "length": 10,
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "object_repr",
+        "type": "varchar",
+        "length": 200,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "django_admin_log",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>user_id",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+>>>>>>> origin/django_api_develop_v
+        "comments": ""
+    },
+    {
+        "tableName": "sampling",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_season",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "label",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -292,27 +502,91 @@
         "keyClass": "",
         "keyTitle": "",
         "name": "description",
-        "type": "varchar",
-        "length": 100,
+=======
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_memory",
+        "type": "int2",
+        "length": 5,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "django_admin_log",
+        "tableName": "habitat",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
-        "type": "serial",
-        "length": 10,
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_habitat",
+        "type": "smallserial",
+        "length": 5,
         "nullable": "",
         "autoUpdated": "√",
-        "defaultValue": "nextval('bioacustica.django_admin_log_id_seq'::regclass)",
+        "defaultValue": "nextval('bioacustica.habitat_id_habitat_seq'::regclass)",
         "comments": ""
     },
     {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "chunks",
+        "type": "int2",
+        "length": 5,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "photo_path",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "path",
+>>>>>>> origin/django_api_develop_v
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "django_admin_log",
+=======
+        "tableName": "h_serial",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "h_serial",
+        "type": "varchar",
+        "length": 64,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "django_rest_passwordreset_resetpasswordtoken",
+>>>>>>> origin/django_api_develop_v
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "ip_address",
+        "type": "inet",
+        "length": 2147483647,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "municipality",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -346,12 +620,35 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_software",
         "type": "int2",
         "length": 5,
+=======
+        "tableName": "supply",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 2147483647,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "django_migrations",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "name",
+        "type": "varchar",
+        "length": 255,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "funding",
         "tableType": "Table",
         "keyClass": "",
@@ -359,6 +656,15 @@
         "name": "description",
         "type": "varchar",
         "length": 100,
+=======
+        "tableName": "record_path",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record",
+        "type": "int4",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
@@ -367,17 +673,26 @@
     {
         "tableName": "gain",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "",
         "keyTitle": "",
         "name": "description",
         "type": "varchar",
         "length": 100,
+=======
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_vereda",
+        "type": "int2",
+        "length": 5,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "hardware",
         "tableType": "Table",
         "keyClass": "",
@@ -396,6 +711,13 @@
         "keyClass": "",
         "keyTitle": "",
         "name": "begining",
+=======
+        "tableName": "frequency_detail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "ending",
+>>>>>>> origin/django_api_develop_v
         "type": "int4",
         "length": 10,
         "nullable": "√",
@@ -404,6 +726,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "time_detail",
         "tableType": "Table",
         "keyClass": "",
@@ -411,12 +734,22 @@
         "name": "beging",
         "type": "int2",
         "length": 5,
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "membership",
+        "type": "numeric",
+        "length": 4,
+>>>>>>> origin/django_api_develop_v
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "user",
         "tableType": "Table",
         "keyClass": "",
@@ -435,6 +768,26 @@
         "keyClass": "indexedColumn",
         "keyTitle": "Indexed",
         "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>status_code",
+=======
+        "tableName": "label",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_label",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.label_id_label_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "django_admin_log",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>content_type_id",
+>>>>>>> origin/django_api_develop_v
         "type": "int4",
         "length": 10,
         "nullable": "√",
@@ -443,6 +796,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "frequency_detail",
         "tableType": "Table",
         "keyClass": "",
@@ -451,11 +805,22 @@
         "type": "int4",
         "length": 10,
         "nullable": "√",
+=======
+        "tableName": "django_content_type",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>app_label",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "labeled",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -464,12 +829,22 @@
         "type": "int2",
         "length": 5,
         "nullable": "√",
+=======
+        "tableName": "django_content_type",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>model",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "record",
+        "tableName": "sampling",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
@@ -482,6 +857,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "auth_permission",
         "tableType": "Table",
         "keyClass": "indexedColumn",
@@ -490,11 +866,22 @@
         "type": "varchar",
         "length": 100,
         "nullable": "",
+=======
+        "tableName": "voucher",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "voucher",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "voucher",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -513,10 +900,31 @@
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_project",
+=======
+        "tableName": "sampling",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_user",
+>>>>>>> origin/django_api_develop_v
         "type": "smallserial",
         "length": 5,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.project_id_project_seq'::regclass)",
         "comments": ""
     },
@@ -541,59 +949,19 @@
         "name": "action_time",
         "type": "timestamptz",
         "length": 35,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+=======
+        "defaultValue": "nextval('bioacustica.user_id_user_seq'::regclass)",
         "comments": ""
     },
     {
-        "tableName": "django_admin_log",
-        "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "object_id",
-        "type": "text",
-        "length": 2147483647,
-        "nullable": "√",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "photo_path",
+        "tableName": "labeled",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
-        "type": "int4",
-        "length": 10,
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_labeler",
+        "type": "int2",
+        "length": 5,
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "record_obs",
-        "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record",
-        "type": "int4",
-        "length": 10,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "record",
-        "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "sample_rate",
-        "type": "int4",
-        "length": 10,
-        "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -606,12 +974,139 @@
         "name": "description",
         "type": "varchar",
         "length": 100,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "django_admin_log",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+<<<<<<< HEAD
+        "name": "object_id",
+        "type": "text",
+        "length": 2147483647,
+        "nullable": "√",
+=======
+        "name": "action_time",
+        "type": "timestamptz",
+        "length": 35,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "photo_path",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
+=======
+        "tableName": "auth_group_permissions",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>group_id",
+>>>>>>> origin/django_api_develop_v
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "record_obs",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+=======
+        "tableName": "apiCRUD_frequencydetail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "ending",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "sample_rate",
+        "type": "int4",
+        "length": 10,
+=======
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "username_persistent",
+        "type": "varchar",
+        "length": 200,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "datum",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+=======
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>view",
+        "type": "varchar",
+        "length": 200,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "errors",
+        "type": "text",
+        "length": 2147483647,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "auth_group_permissions",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -646,21 +1141,79 @@
         "type": "inet",
         "length": 2147483647,
         "nullable": "√",
+=======
+        "tableName": "keys",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "key",
+        "type": "varchar",
+        "length": 200,
+        "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "django_admin_log",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "object_id",
+        "type": "text",
+        "length": 2147483647,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "project",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_project",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.project_id_project_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "gain",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "labeled",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_measure",
         "type": "int2",
+=======
+        "tableName": "locality",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_locality",
+        "type": "smallserial",
+>>>>>>> origin/django_api_develop_v
         "length": 5,
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.locality_id_locality_seq'::regclass)",
         "comments": ""
     },
     {
@@ -679,22 +1232,47 @@
     {
         "tableName": "record",
         "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_labeled",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.labeled_id_labeled_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "date",
         "type": "timestamp",
         "length": 29,
+=======
+        "name": "size",
+        "type": "float4",
+        "length": 8,
+>>>>>>> origin/django_api_develop_v
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "sampling",
+        "tableName": "gain",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_project",
+=======
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_gain",
+>>>>>>> origin/django_api_develop_v
         "type": "int2",
         "length": 5,
         "nullable": "",
@@ -703,6 +1281,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_session",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -717,11 +1296,14 @@
     },
     {
         "tableName": "measure",
+=======
+        "tableName": "django_admin_log",
+>>>>>>> origin/django_api_develop_v
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
-        "name": "description",
-        "type": "varchar",
+        "name": "change_message",
+        "type": "text",
         "length": 2147483647,
         "nullable": "",
         "autoUpdated": "",
@@ -729,6 +1311,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -736,25 +1319,43 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_municipality",
         "type": "int2",
         "length": 5,
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record",
+        "type": "int4",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "microphone",
+=======
+        "tableName": "hardware",
+>>>>>>> origin/django_api_develop_v
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
         "name": "description",
         "type": "varchar",
         "length": 100,
+<<<<<<< HEAD
         "nullable": "√",
+=======
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_frequencydetail",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -775,12 +1376,22 @@
         "name": "description",
         "type": "varchar",
         "length": 100,
+=======
+        "tableName": "voucher",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
+        "type": "int4",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
         "keyClass": "",
@@ -804,6 +1415,31 @@
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.habitat_id_habitat_seq'::regclass)",
+=======
+        "tableName": "department",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_department",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.department_id_department_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "django_admin_log",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.django_admin_log_id_seq'::regclass)",
+>>>>>>> origin/django_api_develop_v
         "comments": ""
     },
     {
@@ -811,7 +1447,11 @@
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "is_superuser",
+=======
+        "name": "is_staff",
+>>>>>>> origin/django_api_develop_v
         "type": "bool",
         "length": 1,
         "nullable": "√",
@@ -820,6 +1460,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_keys",
         "tableType": "Table",
         "keyClass": "",
@@ -827,12 +1468,22 @@
         "name": "username",
         "type": "varchar",
         "length": 200,
+=======
+        "tableName": "locality",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_historicalfunding",
         "tableType": "Table",
         "keyClass": "",
@@ -841,6 +1492,16 @@
         "type": "varchar",
         "length": 100,
         "nullable": "√",
+=======
+        "tableName": "project",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_funding",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -848,9 +1509,15 @@
     {
         "tableName": "catalogue",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "",
         "keyTitle": "",
         "name": "chunks",
+=======
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_gain",
+>>>>>>> origin/django_api_develop_v
         "type": "int2",
         "length": 5,
         "nullable": "√",
@@ -859,6 +1526,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "record",
         "tableType": "Table",
         "keyClass": "",
@@ -866,12 +1534,22 @@
         "name": "chunk",
         "type": "int2",
         "length": 5,
+=======
+        "tableName": "apiCRUD_historicalfunding",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> origin/django_api_develop_v
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "gain",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -879,12 +1557,22 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_gain",
         "type": "int2",
         "length": 5,
+=======
+        "tableName": "django_session",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>session_key",
+        "type": "varchar",
+        "length": 40,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "labeled",
         "tableType": "Table",
         "keyClass": "",
@@ -892,6 +1580,15 @@
         "name": "date",
         "type": "timestamptz",
         "length": 35,
+=======
+        "tableName": "apiCRUD_historicalfunding",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>id_funding",
+        "type": "int4",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
@@ -911,11 +1608,15 @@
         "comments": ""
     },
     {
-        "tableName": "catalogue",
+        "tableName": "h_serial",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
+<<<<<<< HEAD
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_case",
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_hardware",
+>>>>>>> origin/django_api_develop_v
         "type": "int2",
         "length": 5,
         "nullable": "",
@@ -924,6 +1625,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_frequencydetail",
         "tableType": "Table",
         "keyClass": "",
@@ -945,11 +1647,22 @@
         "type": "int4",
         "length": 10,
         "nullable": "",
+=======
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "latitude",
+        "type": "float4",
+        "length": 8,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "software",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -971,24 +1684,56 @@
         "type": "int4",
         "length": 10,
         "nullable": "√",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "catalogue",
+=======
+        "tableName": "auth_permission",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_precision",
-        "type": "int2",
-        "length": 5,
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>content_type_id",
+        "type": "int4",
+        "length": 10,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "apiCRUD_keys",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "username",
+        "type": "varchar",
+        "length": 200,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+<<<<<<< HEAD
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_precision",
+        "type": "int2",
+        "length": 5,
+=======
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "response_ms",
+        "type": "int4",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
         "keyClass": "",
@@ -997,6 +1742,29 @@
         "type": "text",
         "length": 2147483647,
         "nullable": "√",
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.record_id_record_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_supply",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -1015,6 +1783,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "record_obs",
         "tableType": "Table",
         "keyClass": "",
@@ -1025,35 +1794,59 @@
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
+=======
+        "tableName": "frequency_detail",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_frequency_detail",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.frequency_detail_id_frequency_detail_seq'::regclass)",
+>>>>>>> origin/django_api_develop_v
         "comments": ""
     },
     {
-        "tableName": "django_migrations",
+        "tableName": "apiCRUD_historicalfunding",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "app",
+=======
+        "name": "history_type",
+>>>>>>> origin/django_api_develop_v
         "type": "varchar",
-        "length": 255,
+        "length": 1,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "labeled",
+        "tableName": "memory",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_label",
         "type": "int2",
+=======
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_memory",
+        "type": "smallserial",
+>>>>>>> origin/django_api_develop_v
         "length": 5,
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.memory_id_memory_seq'::regclass)",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "measure",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1061,6 +1854,15 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_measure",
         "type": "smallserial",
         "length": 5,
+=======
+        "tableName": "season",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.measure_id_measure_seq'::regclass)",
@@ -1080,7 +1882,11 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "record",
+=======
+        "tableName": "microphone",
+>>>>>>> origin/django_api_develop_v
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
@@ -1097,7 +1903,11 @@
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
+<<<<<<< HEAD
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_cataloger",
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_datum",
+>>>>>>> origin/django_api_develop_v
         "type": "int2",
         "length": 5,
         "nullable": "",
@@ -1106,6 +1916,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "project",
         "tableType": "Table",
         "keyClass": "",
@@ -1138,6 +1949,14 @@
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_type",
         "type": "int2",
+=======
+        "tableName": "h_serial",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_h_serial",
+        "type": "smallserial",
+>>>>>>> origin/django_api_develop_v
         "length": 5,
         "nullable": "",
         "autoUpdated": "",
@@ -1154,7 +1973,11 @@
         "length": 10,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.labeled_id_labeled_seq'::regclass)",
+=======
+        "defaultValue": "nextval('bioacustica.h_serial_id_h_serial_seq'::regclass)",
+>>>>>>> origin/django_api_develop_v
         "comments": ""
     },
     {
@@ -1162,6 +1985,7 @@
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
+<<<<<<< HEAD
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
         "type": "int4",
         "length": 10,
@@ -1179,11 +2003,18 @@
         "type": "varchar",
         "length": 100,
         "nullable": "√",
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_precision",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "h_serial",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1216,13 +2047,22 @@
         "keyTitle": "",
         "name": "minimal",
         "type": "int4",
+=======
+        "tableName": "catalogue_obs",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue_obs",
+        "type": "serial",
+>>>>>>> origin/django_api_develop_v
         "length": 10,
-        "nullable": "√",
-        "autoUpdated": "",
-        "defaultValue": "null",
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.catalogue_obs_id_catalogue_obs_seq'::regclass)",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "supply",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1263,18 +2103,52 @@
     },
     {
         "tableName": "supply",
+=======
+        "tableName": "country",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
         "name": "description",
         "type": "varchar",
-        "length": 2147483647,
+        "length": 100,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "photo_path",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_photo_path",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.photo_path_id_photo_path_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "auth_permission",
+>>>>>>> origin/django_api_develop_v
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>codename",
+        "type": "varchar",
+<<<<<<< HEAD
+        "length": 2147483647,
+=======
+        "length": 100,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "labeled",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -1285,22 +2159,41 @@
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
+=======
+        "tableName": "pulse_type",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_pulse_type",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.pulse_type_id_pulse_type_seq'::regclass)",
+>>>>>>> origin/django_api_develop_v
         "comments": ""
     },
     {
-        "tableName": "catalogue",
+        "tableName": "time_detail",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_h_serial",
+=======
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "beging",
+>>>>>>> origin/django_api_develop_v
         "type": "int2",
         "length": 5,
-        "nullable": "",
+        "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "label",
         "tableType": "Table",
         "keyClass": "",
@@ -1309,11 +2202,35 @@
         "type": "varchar",
         "length": 100,
         "nullable": "√",
+=======
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "last_login",
+        "type": "date",
+        "length": 13,
+        "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "django_migrations",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "applied",
+        "type": "timestamptz",
+        "length": 35,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "user",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1334,12 +2251,35 @@
         "name": "observation",
         "type": "varchar",
         "length": 100,
+=======
+        "tableName": "frequency_detail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "peak",
+        "type": "int4",
+        "length": 10,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "height",
+        "type": "int4",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "apiCRUD_historicalfunding",
         "tableType": "Table",
         "keyClass": "",
@@ -1347,12 +2287,22 @@
         "name": "history_change_reason",
         "type": "varchar",
         "length": 100,
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "n_calls",
+        "type": "int2",
+        "length": 5,
+>>>>>>> origin/django_api_develop_v
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "time_detail",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1374,11 +2324,35 @@
         "type": "varchar",
         "length": 100,
         "nullable": "√",
+=======
+        "tableName": "country",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_country",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.country_id_country_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "sampling",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_project",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_rest_passwordreset_resetpasswordtoken",
         "tableType": "Table",
         "keyClass": "",
@@ -1387,16 +2361,47 @@
         "type": "varchar",
         "length": 256,
         "nullable": "",
+=======
+        "tableName": "record_path",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "record_path",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "labeled",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_time_detail",
+=======
+        "tableName": "label",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_type",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "sample_rate",
+>>>>>>> origin/django_api_develop_v
         "type": "int4",
         "length": 10,
         "nullable": "√",
@@ -1405,6 +2410,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "keys",
         "tableType": "Table",
         "keyClass": "",
@@ -1413,6 +2419,42 @@
         "type": "varchar",
         "length": 200,
         "nullable": "",
+=======
+        "tableName": "time_detail",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_time_detail",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.time_detail_id_time_detail_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "funding",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_funding",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.funding_id_funding_seq'::regclass)",
+        "comments": "<p>ID Auto incremental<\/p>"
+    },
+    {
+        "tableName": "format",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -1431,6 +2473,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_admin_log",
         "tableType": "Table",
         "keyClass": "",
@@ -1454,14 +2497,32 @@
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
+=======
+        "tableName": "vereda",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_vereda",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.vereda_id_vereda_seq'::regclass)",
+>>>>>>> origin/django_api_develop_v
         "comments": ""
     },
     {
         "tableName": "department",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "",
         "keyTitle": "",
         "name": "description",
+=======
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>path",
+>>>>>>> origin/django_api_develop_v
         "type": "varchar",
         "length": 100,
         "nullable": "",
@@ -1470,6 +2531,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "",
@@ -1493,14 +2555,30 @@
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
+=======
+        "tableName": "evidence",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_evidence",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.evidence_id_evidence_seq'::regclass)",
+>>>>>>> origin/django_api_develop_v
         "comments": ""
     },
     {
-        "tableName": "user",
+        "tableName": "apiCRUD_historicalfunding",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "email",
+=======
+        "name": "history_change_reason",
+>>>>>>> origin/django_api_develop_v
         "type": "varchar",
         "length": 100,
         "nullable": "",
@@ -1509,6 +2587,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "h_serial",
         "tableType": "Table",
         "keyClass": "",
@@ -1517,12 +2596,23 @@
         "type": "varchar",
         "length": 64,
         "nullable": "√",
+=======
+        "tableName": "filter",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_filter",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
         "tableName": "django_rest_passwordreset_resetpasswordtoken",
+<<<<<<< HEAD
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
@@ -1536,14 +2626,17 @@
     },
     {
         "tableName": "apiCRUD_locality",
+=======
+>>>>>>> origin/django_api_develop_v
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_locality",
-        "type": "smallserial",
-        "length": 5,
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
+        "type": "serial",
+        "length": 10,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.\"apiCRUD_locality_id_locality_seq\"'::regclass)",
         "comments": ""
     },
@@ -1581,12 +2674,26 @@
         "name": "description",
         "type": "varchar",
         "length": 100,
+=======
+        "defaultValue": "nextval('bioacustica.django_rest_passwordreset_resetpasswordtoken_id_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "photo_path",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
+        "type": "int4",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
         "keyClass": "indexedColumn",
@@ -1607,12 +2714,22 @@
         "name": "applied",
         "type": "timestamptz",
         "length": 35,
+=======
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_sampling",
+        "type": "int2",
+        "length": 5,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_keys",
         "tableType": "Table",
         "keyClass": "",
@@ -1621,11 +2738,22 @@
         "type": "varchar",
         "length": 200,
         "nullable": "",
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "chunk",
+        "type": "int2",
+        "length": 5,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "record",
         "tableType": "Table",
         "keyClass": "",
@@ -1634,11 +2762,22 @@
         "type": "float4",
         "length": 8,
         "nullable": "√",
+=======
+        "tableName": "type",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -1685,17 +2824,47 @@
         "name": "description",
         "type": "varchar",
         "length": 100,
+=======
+        "tableName": "django_content_type",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.django_content_type_id_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "length",
+        "type": "int2",
+        "length": 5,
+>>>>>>> origin/django_api_develop_v
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "frequency_detail",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
         "name": "ending",
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_frequency_detail",
+>>>>>>> origin/django_api_develop_v
         "type": "int4",
         "length": 10,
         "nullable": "√",
@@ -1704,6 +2873,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_historicalfunding",
         "tableType": "Table",
         "keyClass": "",
@@ -1711,12 +2881,22 @@
         "name": "history_date",
         "type": "timestamptz",
         "length": 35,
+=======
+        "tableName": "pulse_type",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "labeled",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -1725,25 +2905,91 @@
         "type": "int4",
         "length": 10,
         "nullable": "√",
+=======
+        "tableName": "django_session",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "session_data",
+        "type": "text",
+        "length": 2147483647,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableName": "auth_permission",
         "tableType": "Table",
-        "keyClass": "indexedColumn",
-        "keyTitle": "Indexed",
-        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>path",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "name",
         "type": "varchar",
-        "length": 200,
+        "length": 255,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
+=======
+        "tableName": "frequency_detail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "minimal",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "municipality",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_municipality",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.municipality_id_municipality_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "sampling",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_cataloger",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "apiCRUD_historicalfunding",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>history_id",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.\"apiCRUD_historicalfunding_history_id_seq\"'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "label",
+>>>>>>> origin/django_api_develop_v
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
@@ -1756,15 +3002,24 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "datum",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_datum",
+=======
+        "tableName": "apiCRUD_locality",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_locality",
+>>>>>>> origin/django_api_develop_v
         "type": "smallserial",
         "length": 5,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.datum_id_datum_seq'::regclass)",
         "comments": ""
     },
@@ -1790,51 +3045,12 @@
         "type": "varchar",
         "length": 50,
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+=======
+        "defaultValue": "nextval('bioacustica.\"apiCRUD_locality_id_locality_seq\"'::regclass)",
         "comments": ""
     },
     {
-        "tableName": "catalogue",
-        "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "latitude",
-        "type": "float4",
-        "length": 8,
-        "nullable": "√",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "catalogue",
-        "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_microphone",
-        "type": "int2",
-        "length": 5,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "rest_framework_tracking_apirequestlog",
-        "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "host",
-        "type": "varchar",
-        "length": 200,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "locality",
+        "tableName": "vereda",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
@@ -1847,6 +3063,160 @@
         "comments": ""
     },
     {
+        "tableName": "precision",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_precision",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.precision_id_precision_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "apiCRUD_frequencydetail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "maximun",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "latitude",
+        "type": "float4",
+        "length": 8,
+        "nullable": "√",
+=======
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_software",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+<<<<<<< HEAD
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_microphone",
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_filter",
+>>>>>>> origin/django_api_develop_v
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "host",
+        "type": "varchar",
+        "length": 200,
+=======
+        "tableName": "municipality",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "locality",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+=======
+        "tableName": "record_path",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record_path",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.record_path_id_record_path_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "hardware",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_hardware",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.hardware_id_hardware_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "auth_group_permissions",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
+        "type": "bigserial",
+        "length": 19,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.auth_group_permissions_id_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "time_detail",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_labeled",
+        "type": "int4",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "frequency_detail",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1867,17 +3237,12 @@
         "name": "description",
         "type": "varchar",
         "length": 100,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "h_serial",
+=======
+        "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_hardware",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_habitat",
         "type": "int2",
         "length": 5,
         "nullable": "",
@@ -1886,6 +3251,57 @@
         "comments": ""
     },
     {
+        "tableName": "apiCRUD_keys",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
+        "type": "bigserial",
+        "length": 19,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.\"apiCRUD_keys_id_seq\"'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "django_rest_passwordreset_resetpasswordtoken",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>key",
+        "type": "varchar",
+        "length": 64,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "h_serial",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_hardware",
+        "type": "int2",
+        "length": 5,
+=======
+        "tableName": "apiCRUD_historicalfunding",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "history_date",
+        "type": "timestamptz",
+        "length": 35,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1909,6 +3325,31 @@
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.\"apiCRUD_keys_id_seq\"'::regclass)",
+=======
+        "tableName": "catalogue_obs",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "observation",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "frequency_detail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "maximun",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+>>>>>>> origin/django_api_develop_v
         "comments": ""
     },
     {
@@ -1916,7 +3357,11 @@
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
+<<<<<<< HEAD
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_collector",
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_case",
+>>>>>>> origin/django_api_develop_v
         "type": "int2",
         "length": 5,
         "nullable": "",
@@ -1925,13 +3370,21 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "software",
+=======
+        "tableName": "apiCRUD_keys",
+>>>>>>> origin/django_api_develop_v
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
         "name": "description",
         "type": "varchar",
+<<<<<<< HEAD
         "length": 80,
+=======
+        "length": 200,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
@@ -1942,6 +3395,7 @@
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
+<<<<<<< HEAD
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_season",
         "type": "int2",
         "length": 5,
@@ -1959,11 +3413,18 @@
         "type": "int4",
         "length": 10,
         "nullable": "",
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_country",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "user",
         "tableType": "Table",
         "keyClass": "",
@@ -1972,11 +3433,35 @@
         "type": "varchar",
         "length": 100,
         "nullable": "√",
+=======
+        "tableName": "case",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "apiCRUD_frequencydetail",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_labeled",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "format",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -1998,11 +3483,22 @@
         "type": "inet",
         "length": 2147483647,
         "nullable": "",
+=======
+        "tableName": "django_rest_passwordreset_resetpasswordtoken",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>user_id",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
         "keyClass": "indexedColumn",
@@ -2011,11 +3507,22 @@
         "type": "varchar",
         "length": 200,
         "nullable": "√",
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_format",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_historicalfunding",
         "tableType": "Table",
         "keyClass": "indexedColumn",
@@ -2030,18 +3537,22 @@
     },
     {
         "tableName": "precision",
+=======
+        "tableName": "frequency_detail",
+>>>>>>> origin/django_api_develop_v
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
-        "name": "description",
-        "type": "varchar",
-        "length": 100,
+        "name": "begining",
+        "type": "int4",
+        "length": 10,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_frequencydetail",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -2050,11 +3561,22 @@
         "type": "int4",
         "length": 10,
         "nullable": "",
+=======
+        "tableName": "time_detail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "ending",
+        "type": "int2",
+        "length": 5,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_content_type",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2068,11 +3590,17 @@
         "comments": ""
     },
     {
+=======
+>>>>>>> origin/django_api_develop_v
         "tableName": "apiCRUD_frequencydetail",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "maximun",
+=======
+        "name": "minimal",
+>>>>>>> origin/django_api_develop_v
         "type": "int4",
         "length": 10,
         "nullable": "√",
@@ -2081,6 +3609,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "project",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -2091,14 +3620,32 @@
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
+=======
+        "tableName": "voucher",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_voucher",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.voucher_id_voucher_seq'::regclass)",
+>>>>>>> origin/django_api_develop_v
         "comments": ""
     },
     {
         "tableName": "time_detail",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "",
         "keyTitle": "",
         "name": "ending",
+=======
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_municipality",
+>>>>>>> origin/django_api_develop_v
         "type": "int2",
         "length": 5,
         "nullable": "√",
@@ -2111,7 +3658,11 @@
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
+<<<<<<< HEAD
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_country",
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_locality",
+>>>>>>> origin/django_api_develop_v
         "type": "int2",
         "length": 5,
         "nullable": "",
@@ -2120,6 +3671,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "apiCRUD_historicalfunding",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2127,12 +3679,22 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>history_id",
         "type": "serial",
         "length": 10,
+=======
+        "tableName": "habitat",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.\"apiCRUD_historicalfunding_history_id_seq\"'::regclass)",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "user",
         "tableType": "Table",
         "keyClass": "",
@@ -2140,20 +3702,51 @@
         "name": "is_admin",
         "type": "bool",
         "length": 1,
+=======
+        "tableName": "apiCRUD_historicalfunding",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>history_user_id",
+        "type": "int4",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "auth_group",
+=======
+        "tableName": "django_migrations",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
+        "type": "bigserial",
+        "length": 19,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.django_migrations_id_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "precision",
+>>>>>>> origin/django_api_develop_v
         "tableType": "Table",
         "keyClass": "indexedColumn",
         "keyTitle": "Indexed",
         "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>name",
         "type": "varchar",
+<<<<<<< HEAD
         "length": 150,
         "nullable": "",
+=======
+        "length": 100,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -2163,28 +3756,44 @@
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
+<<<<<<< HEAD
         "name": "is_staff",
         "type": "bool",
         "length": 1,
+=======
+        "name": "name",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> origin/django_api_develop_v
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "microphone",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_microphone",
         "type": "int2",
+=======
+        "tableName": "format",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_format",
+        "type": "smallserial",
+>>>>>>> origin/django_api_develop_v
         "length": 5,
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.format_id_format_seq'::regclass)",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue_obs",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2206,20 +3815,52 @@
         "type": "int2",
         "length": 5,
         "nullable": "",
+=======
+        "tableName": "measure",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_measure",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.measure_id_measure_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "username",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "department",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_department",
+=======
+        "tableName": "supply",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_supply",
+>>>>>>> origin/django_api_develop_v
         "type": "smallserial",
         "length": 5,
         "nullable": "",
         "autoUpdated": "√",
+<<<<<<< HEAD
         "defaultValue": "nextval('bioacustica.department_id_department_seq'::regclass)",
         "comments": ""
     },
@@ -2232,11 +3873,26 @@
         "type": "varchar",
         "length": 200,
         "nullable": "",
+=======
+        "defaultValue": "nextval('bioacustica.supply_id_supply_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "record_obs",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "observation",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_admin_log",
         "tableType": "Table",
         "keyClass": "",
@@ -2297,19 +3953,54 @@
         "type": "int4",
         "length": 10,
         "nullable": "√",
+=======
+        "tableName": "auth_group",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.auth_group_id_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "elevation",
+        "type": "int4",
+        "length": 10,
+        "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "frequency_detail",
+        "tableName": "labeled",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_labeled",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_pulse_type",
+        "type": "int2",
+        "length": 5,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "apiCRUD_frequencydetail",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "begining",
         "type": "int4",
         "length": 10,
-        "nullable": "",
+        "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -2323,11 +4014,57 @@
         "type": "int2",
         "length": 5,
         "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
+        "tableName": "frequency_detail",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_labeled",
+        "type": "int4",
+        "length": 10,
+=======
+        "tableName": "keys",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "username",
+        "type": "varchar",
+        "length": 200,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "django_rest_passwordreset_resetpasswordtoken",
+        "tableType": "Table",
+<<<<<<< HEAD
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_evidence",
+        "type": "int2",
+        "length": 5,
+=======
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "created_at",
+        "type": "timestamptz",
+        "length": 35,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "label",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -2335,12 +4072,22 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_type",
         "type": "int2",
         "length": 5,
+=======
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "email",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "vereda",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2351,13 +4098,26 @@
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.vereda_id_vereda_seq'::regclass)",
+=======
+        "tableName": "auth_group_permissions",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>permission_id",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+>>>>>>> origin/django_api_develop_v
         "comments": ""
     },
     {
-        "tableName": "record_path",
+        "tableName": "case",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
+<<<<<<< HEAD
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record_path",
         "type": "serial",
         "length": 10,
@@ -2377,11 +4137,20 @@
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_case",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.case_id_case_seq'::regclass)",
+>>>>>>> origin/django_api_develop_v
         "comments": ""
     },
     {
         "tableName": "apiCRUD_frequencydetail",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "",
         "keyTitle": "",
         "name": "ending",
@@ -2394,18 +4163,37 @@
     },
     {
         "tableName": "format",
+=======
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_software",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.software_id_software_seq'::regclass)",
+        "comments": ""
+    },
+    {
+        "tableName": "measure",
+>>>>>>> origin/django_api_develop_v
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
         "name": "description",
         "type": "varchar",
+<<<<<<< HEAD
         "length": 100,
+=======
+        "length": 2147483647,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_admin_log",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -2413,12 +4201,22 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>content_type_id",
         "type": "int4",
         "length": 10,
+=======
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "is_active",
+        "type": "bool",
+        "length": 1,
+>>>>>>> origin/django_api_develop_v
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "auth_group",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2440,24 +4238,52 @@
         "type": "varchar",
         "length": 100,
         "nullable": "",
+=======
+        "tableName": "record_path",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "fingerprint",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
-        "tableName": "case",
+        "tableName": "user",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
-        "name": "description",
-        "type": "varchar",
-        "length": 100,
+        "name": "is_admin",
+        "type": "bool",
+        "length": 1,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "case",
+=======
+        "tableName": "record_obs",
+>>>>>>> origin/django_api_develop_v
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record",
+        "type": "int4",
+        "length": 10,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
         "keyClass": "",
@@ -2466,11 +4292,22 @@
         "type": "text",
         "length": 2147483647,
         "nullable": "√",
+=======
+        "tableName": "catalogue_obs",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
+        "type": "int4",
+        "length": 10,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_session",
         "tableType": "Table",
         "keyClass": "indexedColumn",
@@ -2492,11 +4329,35 @@
         "type": "varchar",
         "length": 100,
         "nullable": "√",
-        "autoUpdated": "",
-        "defaultValue": "null",
+=======
+        "tableName": "apiCRUD_frequencydetail",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_frequency_detail",
+        "type": "serial",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.\"apiCRUD_frequencydetail_id_frequency_detail_seq\"'::regclass)",
         "comments": ""
     },
     {
+        "tableName": "labeled",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "date",
+        "type": "timestamptz",
+        "length": 35,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>Fecha de etiquetado<\/p>"
+    },
+    {
+<<<<<<< HEAD
         "tableName": "django_content_type",
         "tableType": "Table",
         "keyClass": "indexedColumn",
@@ -2505,11 +4366,22 @@
         "type": "varchar",
         "length": 100,
         "nullable": "",
+=======
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "data",
+        "type": "text",
+        "length": 2147483647,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "record_path",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -2517,9 +4389,18 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record",
         "type": "int4",
         "length": 10,
+=======
+        "tableName": "season",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_season",
+        "type": "smallserial",
+        "length": 5,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.season_id_season_seq'::regclass)",
         "comments": ""
     },
     {
@@ -2538,17 +4419,27 @@
     {
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "",
         "keyTitle": "",
         "name": "query_params",
         "type": "text",
         "length": 2147483647,
         "nullable": "√",
+=======
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_label",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -2557,11 +4448,22 @@
         "type": "int2",
         "length": 5,
         "nullable": "",
+=======
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>view_method",
+        "type": "varchar",
+        "length": 200,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_session",
         "tableType": "Table",
         "keyClass": "",
@@ -2570,11 +4472,22 @@
         "type": "text",
         "length": 2147483647,
         "nullable": "",
+=======
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "password",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -2582,6 +4495,15 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_sampling",
         "type": "int2",
         "length": 5,
+=======
+        "tableName": "user",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "roles",
+        "type": "varchar",
+        "length": 50,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
@@ -2590,17 +4512,26 @@
     {
         "tableName": "labeled",
         "tableType": "Table",
+<<<<<<< HEAD
         "keyClass": "",
         "keyTitle": "",
         "name": "n_calls",
         "type": "int2",
         "length": 5,
+=======
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_time_detail",
+        "type": "int4",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "keys",
         "tableType": "Table",
         "keyClass": "",
@@ -2609,11 +4540,22 @@
         "type": "varchar",
         "length": 200,
         "nullable": "",
+=======
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_migrations",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2637,35 +4579,77 @@
         "nullable": "",
         "autoUpdated": "√",
         "defaultValue": "nextval('bioacustica.precision_id_precision_seq'::regclass)",
-        "comments": ""
-    },
-    {
-        "tableName": "rest_framework_tracking_apirequestlog",
+=======
+        "tableName": "record",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
-        "name": "response",
-        "type": "text",
-        "length": 2147483647,
+        "name": "size",
+        "type": "float4",
+        "length": 8,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+        "tableName": "microphone",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_microphone",
+        "type": "int2",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+>>>>>>> origin/django_api_develop_v
+        "comments": ""
+    },
+    {
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+<<<<<<< HEAD
+        "name": "response",
+        "type": "text",
+        "length": 2147483647,
+        "nullable": "√",
+=======
+        "name": "method",
+        "type": "varchar",
+        "length": 10,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
         "name": "response_ms",
         "type": "int4",
+=======
+        "tableName": "auth_permission",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
+        "type": "serial",
+>>>>>>> origin/django_api_develop_v
         "length": 10,
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.auth_permission_id_seq'::regclass)",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "record_obs",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2687,17 +4671,36 @@
         "type": "date",
         "length": 13,
         "nullable": "√",
+=======
+        "tableName": "filter",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+        "nullable": "",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "photo_path",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_photo_path",
         "type": "serial",
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_catalogue",
+        "type": "int4",
+>>>>>>> origin/django_api_develop_v
         "length": 10,
         "nullable": "",
         "autoUpdated": "√",
@@ -2705,6 +4708,7 @@
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "auth_permission",
         "tableType": "Table",
         "keyClass": "",
@@ -2712,13 +4716,8 @@
         "name": "name",
         "type": "varchar",
         "length": 255,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "pulse_type",
+=======
+        "tableName": "memory",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
@@ -2726,58 +4725,6 @@
         "type": "varchar",
         "length": 100,
         "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "django_rest_passwordreset_resetpasswordtoken",
-        "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>user_id",
-        "type": "int4",
-        "length": 10,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "catalogue",
-        "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_datum",
-        "type": "int2",
-        "length": 5,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "catalogue",
-        "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_memory",
-        "type": "int2",
-        "length": 5,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": ""
-    },
-    {
-        "tableName": "apiCRUD_locality",
-        "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "description",
-        "type": "varchar",
-        "length": 100,
-        "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -2785,6 +4732,103 @@
     {
         "tableName": "rest_framework_tracking_apirequestlog",
         "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "remote_addr",
+        "type": "inet",
+        "length": 2147483647,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_department",
+        "type": "int2",
+        "length": 5,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "pulse_type",
+=======
+        "tableName": "datum",
+>>>>>>> origin/django_api_develop_v
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_datum",
+        "type": "smallserial",
+        "length": 5,
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.datum_id_datum_seq'::regclass)",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "django_rest_passwordreset_resetpasswordtoken",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>user_id",
+        "type": "int4",
+        "length": 10,
+=======
+        "tableName": "django_session",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>expire_date",
+        "type": "timestamptz",
+        "length": 35,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_datum",
+        "type": "int2",
+        "length": 5,
+=======
+        "tableName": "auth_group",
+        "tableType": "Table",
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>name",
+        "type": "varchar",
+        "length": 150,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "catalogue",
+        "tableType": "Table",
+<<<<<<< HEAD
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_memory",
+        "type": "int2",
+        "length": 5,
+=======
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
@@ -2796,19 +4840,74 @@
         "comments": ""
     },
     {
-        "tableName": "type",
+        "tableName": "frequency_detail",
         "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "description",
-        "type": "varchar",
-        "length": 100,
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_labeled",
+        "type": "int4",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
+        "tableName": "apiCRUD_locality",
+=======
+        "tableName": "record",
+>>>>>>> origin/django_api_develop_v
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "channels",
+        "type": "int2",
+        "length": 5,
+        "nullable": "√",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+        "tableName": "rest_framework_tracking_apirequestlog",
+        "tableType": "Table",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+<<<<<<< HEAD
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
+        "type": "bigserial",
+        "length": 19,
+=======
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_record_obs",
+        "type": "serial",
+        "length": 10,
+>>>>>>> origin/django_api_develop_v
+        "nullable": "",
+        "autoUpdated": "√",
+        "defaultValue": "nextval('bioacustica.rest_framework_tracking_apirequestlog_id_seq'::regclass)",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
+        "tableName": "type",
+=======
+        "tableName": "software",
+>>>>>>> origin/django_api_develop_v
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 80,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": ""
+    },
+    {
+<<<<<<< HEAD
         "tableName": "catalogue_obs",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -2829,12 +4928,22 @@
         "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_gain",
         "type": "int2",
         "length": 5,
+=======
+        "tableName": "department",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "description",
+        "type": "varchar",
+        "length": 100,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "catalogue",
         "tableType": "Table",
         "keyClass": "foreignKey",
@@ -2843,11 +4952,22 @@
         "type": "int2",
         "length": 5,
         "nullable": "",
+=======
+        "tableName": "record",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "date",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "√",
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "django_rest_passwordreset_resetpasswordtoken",
         "tableType": "Table",
         "keyClass": "indexedColumn",
@@ -2855,12 +4975,22 @@
         "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>key",
         "type": "varchar",
         "length": 64,
+=======
+        "tableName": "catalogue",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id_microphone",
+        "type": "int2",
+        "length": 5,
+>>>>>>> origin/django_api_develop_v
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
     },
     {
+<<<<<<< HEAD
         "tableName": "memory",
         "tableType": "Table",
         "keyClass": "primaryKey",
@@ -2888,6 +5018,9 @@
     },
     {
         "tableName": "habitat",
+=======
+        "tableName": "project",
+>>>>>>> origin/django_api_develop_v
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
@@ -2895,6 +5028,7 @@
         "type": "varchar",
         "length": 100,
         "nullable": "",
+<<<<<<< HEAD
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""
@@ -2908,6 +5042,8 @@
         "type": "int2",
         "length": 5,
         "nullable": "",
+=======
+>>>>>>> origin/django_api_develop_v
         "autoUpdated": "",
         "defaultValue": "null",
         "comments": ""

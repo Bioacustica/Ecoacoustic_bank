@@ -1,5 +1,5 @@
 """
-Modulo de las URLS , aca se agregan todos los endopoints que seran consumidos por la api del Frontend
+Modulo de las URLS ,Se agregan todos los endopoints que seran consumidos por la api del Frontend
 """
 from __future__ import barry_as_FLUFL
 
