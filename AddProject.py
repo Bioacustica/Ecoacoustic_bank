@@ -1,31 +1,58 @@
 import pandas as pd
 import Globals
+from Globals import VerifyField
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
 
 session = Session(engine)
 
+def FailProject(id_funding, description):
+    project_ = session.query(Base.classes["project"]).  \
+                             filter(Base.classes["project"].id_funding == id_funding).  \
+                             filter(Base.classes["project"].description == description ). \
+                             first()
+    return(project_ == None)
+
 def AddProject(udas, session, id):
     
     try:
-        funding = str(udas.iloc[id]["funding_PR"]).upper()
+
+        Ok = True
+
+        funding = udas.iloc[id]["funding_PR"]
+        Ok = VerifyField("funding_PR", funding, id) and Ok
+        funding = str(funding).upper()
+
+        description = udas.iloc[id]["project_name_PR"]
+        Ok = VerifyField("project_name_PR", description, id) and Ok
+
+        if not Ok:
+            raise
+        
         id_funding = session.query(Base.classes["funding"]). \
                                    filter(Base.classes["funding"].description == funding).  \
                                    first().id_funding
-        id_project = session.query(Base.classes["project"]).  \
-                                   filter(Base.classes["project"].id_funding == id_funding).  \
-                                   filter(Base.classes["project"].description == udas.iloc[id]["project_name_PR"] ). \
-                                   first().id_project
-    except:
-        if not 'id_project' in locals():
+
+        if FailProject(id_funding, description):
+
             try:
+
                 session.add(Base.classes["project"](id_funding = id_funding,
-                                                    description = udas.iloc[id]["project_name_PR"]))
-                print("  Creating " + udas.iloc[id]["project_name_PR"])
+                                                    description = description))
+                
+                print("  Creating " + description)
+            
             except:
-                Globals.Bug = True
-                print("ERROR: funding_PR - " + str(id + 2) + " ->  " + str(funding) )
+
+                if not 'id_funding' in locals():
+
+                    Globals.Bug = True
+                    print("ERROR: funding_PR - " + str(id + 2) + " ->  " + str(funding) )
+    except:
+
+        Globals.Bug = True
+
 
 
 
