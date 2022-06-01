@@ -35,10 +35,11 @@ def LoadMasterTables(info_path, mapping, engine):
                             engine = engine,
                             schema = 'bioacustica')
         except:
-            print("Error",sheet)
+            print("Error: ",sheet)
 
 
-LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTablesGenerada.xlsx',
+#LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables2.xlsx',
+LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/MasterTablesGenerada_.xlsx',
                  mapping = Base.classes,
                  engine = engine)
 

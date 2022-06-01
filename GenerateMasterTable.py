@@ -20,6 +20,7 @@ def GenerateMasterTable(file, session):
             infoSheet = pd.DataFrame(session.query(Base.classes[sheet].description).all())
             infoSheet.to_excel(writer, sheet_name = sheet, index = False, header = False)
         except:
+            print("Error: Generating " + sheet)
             infoSheet = pd.DataFrame()
             infoSheet.to_excel(writer, sheet_name = sheet, index = False, header = False)
     
@@ -27,6 +28,6 @@ def GenerateMasterTable(file, session):
 
 
 
-GenerateMasterTable(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTablesGenerada.xlsx',
-                    session = session)
+#GenerateMasterTable(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTablesGenerada.xlsx',
+#                    session = session)
 
