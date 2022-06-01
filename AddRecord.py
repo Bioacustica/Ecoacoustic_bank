@@ -4,6 +4,7 @@ import datetime
 import pandas as pd
 import audio_metadata
 import Globals
+from Globals import VerifyField
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
@@ -11,6 +12,7 @@ from sqlalchemy.orm import Session
 #https://www.altaruru.com/calculando-el-hash-en-python/
 
 session = Session(engine)
+
 
 def GetFingerprint(file):
     try:
@@ -76,8 +78,6 @@ def AddRecords(file, id_catalogue, session):
     try:
         files = os.listdir(file)
         files.sort()
-        # NOTA: la query para obtener el id_catalogue debe pulirse por que es posible 
-        #       que dos catalogos tengan la misma descripción.
         
         for i in range(len(files)):
             
@@ -104,12 +104,38 @@ def AddRecords_(file, session):
     
     for id in range(udas.shape[0]):
         try:
+
+            Ok = True
+
+            project = udas.iloc[id]["project_name_PR"]
+            Ok = VerifyField("project_name_PR", project, id) and Ok
+
+            sampling = udas.iloc[id]["id_DM"]
+            Ok = VerifyField("id_DM", sampling, id) and Ok 
+
             catalogue = udas.iloc[id]["field_number_PR"]
-            id_catalogue = session.query(Base.classes["catalogue"]). \
-                           filter(Base.classes["catalogue"].description == catalogue). \
-                           first().id_catalogue
-            
+            Ok = VerifyField("field_number_PR", catalogue, id) and Ok 
+        
             file = udas.iloc[id]["path_records_PR"]
+            Ok = VerifyField("path_records_PR", file, id) and Ok
+
+            if not Ok:
+                raise
+            
+            id_project = session.query(Base.classes["project"]).  \
+                                    filter(Base.classes["project"].description == project).  \
+                                    first().id_project
+
+            id_sampling = session.query(Base.classes["sampling"]).  \
+                                        filter(Base.classes["sampling"].id_project == id_project). \
+                                        filter(Base.classes["sampling"].description == sampling). \
+                                        first().id_sampling
+            
+            id_catalogue = session.query(Base.classes["catalogue"]). \
+                                         filter(Base.classes["catalogue"].id_sampling == id_sampling). \
+                                         filter(Base.classes["catalogue"].description == catalogue). \
+                                         first().id_catalogue
+
             AddRecords(file, id_catalogue, session)
         except:
             Globals.Bug = True
