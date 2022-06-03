@@ -13,6 +13,11 @@ from sqlalchemy.orm import Session
 
 session = Session(engine)
 
+def IsNewRecord(fingerprint):
+    Record = session.query(Base.classes["record_path"]). \
+                           filter(Base.classes["record_path"].fingerprint == fingerprint).  \
+                           first()
+    return(Record == None)
 
 def GetFingerprint(file):
     try:
@@ -33,17 +38,27 @@ def AddRecordFile(file, id_record):
     #crear directorio usando las primeras letras del fingerprint
     fingerprint = GetFingerprint(file)
     path_db = "/home/andres/Proyectos/Software/Bioacustico/DB/" + fingerprint[0:3]
-    try:
-        os.mkdir(path_db)
-    except OSError:
-        pass
-    record_path = path_db + "/" + fingerprint + ".WAV"
-    command = "cp " + file + " " + record_path
-    os.system(command) 
-    session.add(Base.classes["record_path"](id_record = id_record,
-                                            record_path = record_path,
-                                            fingerprint = fingerprint))
-    session.flush()
+
+    if IsNewRecord(fingerprint):
+
+        try:
+            os.mkdir(path_db)
+        except OSError:
+            pass
+        try:
+            record_path = path_db + "/" + fingerprint + ".WAV"
+            command = "cp " + file + " " + record_path
+            os.system(command) 
+            RecPath = Base.classes["record_path"](id_record = id_record,
+                                                  record_path = record_path,
+                                                  fingerprint = fingerprint)
+            session.add(RecPath)
+            session.flush()
+        except:
+            Globals.Bug = True
+    else:
+        Globals.Bug = True
+        print("  ERROR:  Record " + str(fingerprint) + "already exists")
 
 
 
@@ -52,8 +67,8 @@ def AddRecord(file, id_catalogue, date, chunk, session):
     metadata = audio_metadata.load(file)
     #try para format
     id_format = session.query(Base.classes["format"]). \
-                filter(Base.classes["format"].description == os.path.splitext(file)[1].split('.')[1]).  \
-                first().id_format
+                              filter(Base.classes["format"].description == os.path.splitext(file)[1].split('.')[1]).  \
+                              first().id_format
     
     Rec = Base.classes["record"](id_catalogue = id_catalogue,
                                  id_format = id_format,
