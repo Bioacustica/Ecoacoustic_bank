@@ -31,8 +31,8 @@ def AddSampling(udas, session, id):
             raise
 
         id_project = session.query(Base.classes["project"]).  \
-                                filter(Base.classes["project"].description == project).  \
-                                first().id_project
+                                   filter(Base.classes["project"].description == project).  \
+                                   first().id_project
 
         if FailSampling(id_project, description):
             try:

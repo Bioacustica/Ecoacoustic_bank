@@ -60,8 +60,20 @@ def AddCatalogue(udas, session, id):
                 municipality = udas.iloc[id]["municipality_IG"].replace('"','').upper()
                 Ok = VerifyField("municipality_IG", municipality, id) and Ok
 
+                vereda = udas.iloc[id]["vereda_IG"].replace('"','').upper()
+                Ok = VerifyField("vereda_IG", vereda, id) and Ok
+
+                locality = udas.iloc[id]["locality_IG"].replace('"','').upper()
+                Ok = VerifyField("locality_IG", locality, id) and Ok
+
                 gain = udas.iloc[id]["gain_RE"].replace('"','').upper()
                 Ok = VerifyField("gain_RE", gain, id) and Ok
+
+                hardware = udas.iloc[id]["recorder_RE"].upper()
+                Ok = VerifyField("recorder_RE", hardware, id) and Ok
+
+                h_serial = str(udas.iloc[id]["rec_serial_RE"])
+                Ok = VerifyField("rec_serial_RE", h_serial, id) and Ok
 
                 collector = udas.iloc[id]["collector_email_PR"]
                 Ok = VerifyField("collector_email_PR", collector, id) and Ok
@@ -122,25 +134,41 @@ def AddCatalogue(udas, session, id):
                                                 first().id_department
                     
                     id_m = session.query(Base.classes["municipality"]). \
-                                        filter(Base.classes["municipality"].description == municipality). \
-                                        first().id_municipality
+                                         filter(Base.classes["municipality"].description == municipality). \
+                                         first().id_municipality
                     
-                    id_vereda = 1
-                    id_locality = 1
+                    id_vereda = session.query(Base.classes["vereda"]). \
+                                              filter(Base.classes["vereda"].description == vereda). \
+                                              first().id_vereda
+                    
+                    id_locality = session.query(Base.classes["locality"]). \
+                                              filter(Base.classes["locality"].description == locality). \
+                                              first().id_locality
                     
                     id_gain = session.query(Base.classes["gain"]). \
                                             filter(Base.classes["gain"].description == gain). \
                                             first().id_gain
                     
-                    #id_filter = session.query(Base.classes["filter"]). \
-                    #          filter(Base.classes["filter"].description == udas.iloc[id]["filter"].replace('"','').upper()). \
-                    #          first().id_filter
-                    id_filter = 1
+                    id_filter = session.query(Base.classes["filter"]). \
+                                              filter(Base.classes["filter"].description == udas.iloc[id]["filter"].replace('"','').upper()). \
+                                              first().id_filter
                     
                     id_collector = session.query(Base.classes["user"]). \
                                                 filter(Base.classes["user"].email == collector). \
                                                 first().id_user
-                    id_h_serial = 1
+                    
+                    id_hardware = session.query(Base.classes["hardware"]). \
+                                                filter(Base.classes["hardware"].description == hardware). \
+                                                first().id_hardware
+                    
+                    #id_h_serial = session.query(Base.classes["h_serial"]). \
+                    #                            filter(Base.classes["h_serial"].id_hardware == id_hardware). \
+                    #                            filter(Base.classes["h_serial"].h_serial == h_serial). \
+                    #                            first().id_h_serial
+
+                    id_h_serial = session.query(Base.classes["h_serial"]). \
+                                                filter(Base.classes["h_serial"].id_hardware == id_hardware). \
+                                                first().id_h_serial
                     
                     id_supply = session.query(Base.classes["supply"]). \
                                 filter(Base.classes["supply"].description == udas.iloc[id]["power_source_RE"].replace('"','').upper()). \
@@ -155,8 +183,8 @@ def AddCatalogue(udas, session, id):
                                 first().id_memory
                     
                     id_habitat = session.query(Base.classes["habitat"]). \
-                                    filter(Base.classes["habitat"].description == udas.iloc[id]["habitat_HA"].replace('"','').upper()). \
-                                    first().id_habitat
+                                               filter(Base.classes["habitat"].description == udas.iloc[id]["habitat_HA"].replace('"','').upper()). \
+                                               first().id_habitat
                     
                     id_precision = session.query(Base.classes["precision"]). \
                                     filter(Base.classes["precision"].description == udas.iloc[id]["precision_IG"].replace('"','').upper()). \
@@ -242,11 +270,12 @@ def AddCatalogue(udas, session, id):
                     elif record_dir != record_dir:
                         print("ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(udas.iloc[id]["path_records_PR"]) )
             
-            except:
+            except Exception as e:
                 Globals.Bug = True
-                # agregar 
-    except:
+                print(e)
+    except Exception as e:
         Globals.Bug = True
+        print(e)
 
 
 
