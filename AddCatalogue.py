@@ -51,26 +51,33 @@ def AddCatalogue(udas, session, id):
 
                 Ok = True
 
-                country = udas.iloc[id]["country_IG"].replace('"','').upper()
+                country = udas.iloc[id]["country_IG"]
                 Ok = VerifyField("country_IG", country, id) and Ok
+                country = country.replace('"','').upper()
                 
-                department = udas.iloc[id]["department_IG"].replace('"','').upper()
+                department = udas.iloc[id]["department_IG"]
                 Ok = VerifyField("department_IG", department, id) and Ok
+                department = department.replace('"','').upper()
 
-                municipality = udas.iloc[id]["municipality_IG"].replace('"','').upper()
+                municipality = udas.iloc[id]["municipality_IG"]
                 Ok = VerifyField("municipality_IG", municipality, id) and Ok
+                municipality = municipality.replace('"','').upper()
 
-                vereda = udas.iloc[id]["vereda_IG"].replace('"','').upper()
+                vereda = udas.iloc[id]["vereda_IG"]
                 Ok = VerifyField("vereda_IG", vereda, id) and Ok
+                vereda = vereda.replace('"','').upper()
 
-                locality = udas.iloc[id]["locality_IG"].replace('"','').upper()
+                locality = udas.iloc[id]["locality_IG"]
                 Ok = VerifyField("locality_IG", locality, id) and Ok
+                locality = locality.replace('"','').upper()
 
-                gain = udas.iloc[id]["gain_RE"].replace('"','').upper()
+                gain = udas.iloc[id]["gain_RE"]
                 Ok = VerifyField("gain_RE", gain, id) and Ok
+                gain = gain.replace('"','').upper()
 
-                hardware = udas.iloc[id]["recorder_RE"].upper()
+                hardware = udas.iloc[id]["recorder_RE"]
                 Ok = VerifyField("recorder_RE", hardware, id) and Ok
+                hardware = hardware.upper()
 
                 h_serial = str(udas.iloc[id]["rec_serial_RE"])
                 Ok = VerifyField("rec_serial_RE", h_serial, id) and Ok
@@ -104,6 +111,10 @@ def AddCatalogue(udas, session, id):
                 memory = udas.iloc[id]["memory_card_RE"]
                 Ok = VerifyField("memory_card_RE", memory, id) and Ok
                 memory = memory.replace('"','').upper()
+
+                filter = udas.iloc[id]["filters_RE"]
+                Ok = VerifyField("filters_RE", filter, id) and Ok
+                filter = filter.replace('"','').upper()
                                 
                 habitat = udas.iloc[id]["habitat_HA"]
                 Ok = VerifyField("habitat_HA", habitat, id) and Ok
@@ -150,7 +161,7 @@ def AddCatalogue(udas, session, id):
                                             first().id_gain
                     
                     id_filter = session.query(Base.classes["filter"]). \
-                                              filter(Base.classes["filter"].description == udas.iloc[id]["filter"].replace('"','').upper()). \
+                                              filter(Base.classes["filter"].description == filter). \
                                               first().id_filter
                     
                     id_collector = session.query(Base.classes["user"]). \
@@ -232,49 +243,53 @@ def AddCatalogue(udas, session, id):
                     Globals.Bug = True
                     
                     if not 'id_sampling' in locals():
-                        print("ERROR: id_DM - " + str(id + 2) + " ->  " + str(udas.iloc[id]["id_DM"]) )
+                        print("  ERROR: id_DM - " + str(id + 2) + " ->  " + str(udas.iloc[id]["id_DM"]) )
                     elif not 'id_country' in locals():
-                        print("ERROR: country_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["country_IG"]) )
+                        print("  ERROR: country_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["country_IG"]) )
                     elif not 'id_department' in locals():
-                        print("ERROR: department_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["department_IG"]) ) 
+                        print("  ERROR: department_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["department_IG"]) ) 
                     elif not 'id_m' in locals():
-                        print("ERROR: municipality_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["municipality_IG"]) )
+                        print("  ERROR: municipality_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["municipality_IG"]) )
                     elif not 'id_vereda' in locals():
-                        print("ERROR: id_vereda - " + str(id + 2) + " ->  " + str(udas.iloc[id]["id_vereda"]) )
+                        print("  ERROR: id_vereda - " + str(id + 2) + " ->  " + str(udas.iloc[id]["vereda_IG"]) )
                     elif not 'id_locality' in locals():
-                        print("ERROR: id_locality - " + str(id + 2) + " ->  " + str(udas.iloc[id]["id_locality"]) )
+                        print("  ERROR: id_locality - " + str(id + 2) + " ->  " + str(udas.iloc[id]["locality_IG"]) )
                     elif not 'id_gain' in locals():
-                        print("ERROR: gain_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["gain_RE"]) ) 
+                        print("  ERROR: gain_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["gain_RE"]) ) 
                     elif not 'id_filter' in locals():
-                        print("ERROR: filters_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["filters_RE"]) )
+                        print("  ERROR: filters_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["filters_RE"]) )
                     elif not 'id_collector' in locals():
-                        print("ERROR: collector_email_PR - " + str(id + 2) + " ->  " + str(udas.iloc[id]["collector_email_PR"]) )
+                        print("  ERROR: collector_email_PR - " + str(id + 2) + " ->  " + str(udas.iloc[id]["collector_email_PR"]) )
+                    elif not 'id_hardware' in locals():
+                        print("  ERROR: recorder_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["recorder_RE"]) )
                     elif not 'id_h_serial' in locals():
-                        print("ERROR: rec_serial_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["rec_serial_RE"]) )
+                        print("  ERROR: rec_serial_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["rec_serial_RE"]) )
                     elif not 'id_supply' in locals():
-                        print("ERROR: power_source_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["power_source_RE"]) ) 
+                        print("  ERROR: power_source_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["power_source_RE"]) ) 
                     elif not 'id_case' in locals():
-                        print("ERROR: rec_case_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["rec_case_RE"]) )
+                        print("  ERROR: rec_case_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["rec_case_RE"]) )
                     elif not 'id_memory' in locals():
-                        print("ERROR: memory_card_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["memory_card_RE"]) )
+                        print("  ERROR: memory_card_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["memory_card_RE"]) )
                     elif not 'id_habitat' in locals():
-                        print("ERROR: habitat_HA - " + str(id + 2) + " ->  " + str(udas.iloc[id]["habitat_HA"]) )
+                        print("  ERROR: habitat_HA - " + str(id + 2) + " ->  " + str(udas.iloc[id]["habitat_HA"]) )
                     elif not 'id_precision' in locals():
-                        print("ERROR: precision_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["precision_IG"]) ) 
+                        print("  ERROR: precision_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["precision_IG"]) ) 
                     elif not 'id_datum' in locals():
-                        print("ERROR: datum_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["datum_IG"]) )
+                        print("  ERROR: datum_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["datum_IG"]) )
                     elif not 'id_microphone' in locals():
-                        print("ERROR: microphone_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["microphone_RE"]) )
+                        print("  ERROR: microphone_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["microphone_RE"]) )
                     elif not 'elevation' in locals():
-                        print("ERROR: min_elevation_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["min_elevation_IG"]) )
+                        print("  ERROR: min_elevation_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["min_elevation_IG"]) )
                     elif record_dir != record_dir:
-                        print("ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(udas.iloc[id]["path_records_PR"]) )
+                        print("  ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(udas.iloc[id]["path_records_PR"]) )
             
             except Exception as e:
                 Globals.Bug = True
+                print("2")
                 print(e)
     except Exception as e:
         Globals.Bug = True
+        print("3")
         print(e)
 
 
