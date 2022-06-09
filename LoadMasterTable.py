@@ -1,6 +1,17 @@
 import pandas as pd
 from mapping import Base
 from mapping import engine
+from sqlalchemy.orm import Session
+
+session = Session(engine)
+
+def LoadHSerial():
+    hardwares = session.query(Base.classes["hardware"]).all()
+    for hardware in hardwares:
+        session.add(Base.classes["h_serial"](id_hardware = hardware.id_hardware,
+                                             h_serial = "NO SE CONOCE"))
+    session.commit()
+
 
 
 def LoadMasterTable(mapping, info_path, table_name, engine, schema):
@@ -36,6 +47,8 @@ def LoadMasterTables(info_path, mapping, engine):
                             schema = 'bioacustica')
         except:
             print("Error: ",sheet)
+    
+    LoadHSerial()
 
 
 #LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables2.xlsx',
