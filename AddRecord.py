@@ -43,7 +43,7 @@ def AddRecordFile(file, id_record):
 
         try:
             os.mkdir(path_db)
-        except OSError:
+        except Exception as e:
             pass
         try:
             record_path = path_db + "/" + fingerprint + ".WAV"
@@ -54,7 +54,9 @@ def AddRecordFile(file, id_record):
                                                   fingerprint = fingerprint)
             session.add(RecPath)
             session.flush()
-        except:
+        except Exception as e:
+            print("6")
+            print(e)
             Globals.Bug = True
     else:
         Globals.Bug = True
@@ -79,7 +81,8 @@ def AddRecord(file, id_catalogue, date, chunk, session):
                                  chunk = chunk,
                                  channels = metadata['streaminfo'].channels)
     session.add(Rec)
-    session.flush()
+    #session.flush()
+    session.commit()
     id_record = session.query(Base.classes["record"]). \
                               filter(Base.classes["record"].id_record == Rec.id_record). \
                               first().id_record
@@ -108,8 +111,9 @@ def AddRecords(file, id_catalogue, session):
                       date = date,
                       chunk = i,
                       session = session)
-    except:
-        pass
+    except Exception as e:
+        print("5")
+        raise print(e)
 
 
 
@@ -152,9 +156,12 @@ def AddRecords_(file, session):
                                          first().id_catalogue
 
             AddRecords(file, id_catalogue, session)
-        except:
+        except Exception as e:
             Globals.Bug = True
+            print("4")
+            print(e)
             if not 'id_catalogue' in locals():
+                # el catalogo no fue creado
                 print("  ERROR: field_number_PR - " + str(id + 2) + " ->  " + str(catalogue))
             elif file != file:
                 print("  ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(file))

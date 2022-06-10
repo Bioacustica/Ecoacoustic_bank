@@ -239,7 +239,7 @@ def AddCatalogue(udas, session, id):
                                                         description = description))
                     print("  Creating " + description )
 
-                except:
+                except Exception as e:
                     Globals.Bug = True
                     
                     if not 'id_sampling' in locals():
