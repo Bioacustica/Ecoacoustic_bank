@@ -8,6 +8,7 @@ from Globals import VerifyField
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
+import subprocess
 
 #https://www.altaruru.com/calculando-el-hash-en-python/
 
@@ -47,13 +48,18 @@ def AddRecordFile(file, id_record):
             pass
         try:
             record_path = path_db + "/" + fingerprint + ".WAV"
-            command = "cp " + file + " " + record_path
-            os.system(command) 
+            command = "cp " + file + " " + record_path #+ " &"
+            print(command)
+            #command = "sleep 60"
+            subprocess.run(command, shell = True)
+            #print(status)
+            #os.system(command) 
             RecPath = Base.classes["record_path"](id_record = id_record,
                                                   record_path = record_path,
                                                   fingerprint = fingerprint)
             session.add(RecPath)
             session.flush()
+            session.commit()
         except Exception as e:
             print("6")
             print(e)
@@ -68,8 +74,10 @@ def AddRecord(file, id_catalogue, date, chunk, session):
     
     metadata = audio_metadata.load(file)
     #try para format
+    format = os.path.splitext(file)[1].split('.')[1].upper()
+
     id_format = session.query(Base.classes["format"]). \
-                              filter(Base.classes["format"].description == os.path.splitext(file)[1].split('.')[1]).  \
+                              filter(Base.classes["format"].description == format).  \
                               first().id_format
     
     Rec = Base.classes["record"](id_catalogue = id_catalogue,
@@ -81,8 +89,9 @@ def AddRecord(file, id_catalogue, date, chunk, session):
                                  chunk = chunk,
                                  channels = metadata['streaminfo'].channels)
     session.add(Rec)
-    #session.flush()
+    session.flush()
     session.commit()
+    print(file)
     id_record = session.query(Base.classes["record"]). \
                               filter(Base.classes["record"].id_record == Rec.id_record). \
                               first().id_record
