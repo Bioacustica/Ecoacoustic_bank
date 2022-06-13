@@ -497,6 +497,47 @@ WITH (
     OIDS = FALSE
 );
 
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_case)
+    REFERENCES bioacustica."case" (id_case)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_collector)
+    REFERENCES bioacustica."user" (id_user)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_datum)
+    REFERENCES bioacustica.datum (id_datum)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_h_serial)
+    REFERENCES bioacustica.h_serial (id_h_serial)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_habitat)
+    REFERENCES bioacustica.habitat (id_habitat)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_memory)
+    REFERENCES bioacustica.memory (id_memory)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_precision)
+    REFERENCES bioacustica."precision" (id_precision)
+    NOT VALID;
+
 
 ALTER TABLE bioacustica.catalogue
     ADD FOREIGN KEY (id_habitat)
@@ -918,7 +959,7 @@ begin
             department.description,
             type.description,
             evidence.description,
-            software.descripton
+            software.description
 
         from
             catalogue
@@ -946,7 +987,7 @@ begin
         and   "case".description = (CASE WHEN tipo_case IS NOT NULL THEN tipo_case ELSE "case".description END)
         and   microphone.description = (CASE WHEN tipo_micro IS NOT NULL THEN tipo_micro ELSE microphone.description END)
         --and   evidence.description = (CASE WHEN metodo_etiquetado IS NOT NULL THEN metodo_etiquetado ELSE evidence.description END)
-        --and   software.descripton = (CASE WHEN software_q IS NOT NULL THEN software_q ELSE software.descripton END)
+        --and   software.description = (CASE WHEN software_q IS NOT NULL THEN software_q ELSE software.description END)
         --and   hardware.description = (CASE WHEN tipo_grabadora IS NOT NULL THEN tipo_grabadora ELSE hardware.description END)
         ;
 end;$$

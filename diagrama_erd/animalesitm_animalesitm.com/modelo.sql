@@ -455,7 +455,11 @@ WITH (
 CREATE TABLE bioacustica.filter
 (
     id_filter smallint NOT NULL,
+<<<<<<< HEAD
     decription character varying(100) NOT NULL,
+=======
+    description character varying(100) NOT NULL,
+>>>>>>> a5a309d0c7e6cba47785ec09dd7aec72f57c4a4a
     PRIMARY KEY (id_filter)
 )
 WITH (

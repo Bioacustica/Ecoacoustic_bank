@@ -22,10 +22,8 @@ RUN \
 # RUN ln -s /bin/pip3 /bin/pip
 COPY . /code
 COPY requirements.txt .
-RUN pip install --upgrade pip && \
+RUN pip3 install --upgrade pip && \
     pip install -r requirements.txt
-
-RUN ln -s /bin/python3 /bin/python
 
 WORKDIR /data
 
