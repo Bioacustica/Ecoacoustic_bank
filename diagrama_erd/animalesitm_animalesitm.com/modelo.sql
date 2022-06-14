@@ -404,7 +404,7 @@ WITH (
 CREATE TABLE bioacustica.software
 (
     id_software smallserial NOT NULL,
-    descripton character varying(80) NOT NULL,
+    description character varying(80) NOT NULL,
     PRIMARY KEY (id_software)
 )
 WITH (

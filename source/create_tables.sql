@@ -918,7 +918,7 @@ begin
             department.description,
             type.description,
             evidence.description,
-            software.descripton
+            software.description
 
         from
             catalogue

@@ -6,7 +6,7 @@ Esta seccion de codigo aparace en todos y cada uno de los modelos
 esta sección de codigo está encargada de pernmitir o denegar el acceso a diferentes
 opciones dentro del modelo.
 
-Por ejemplo si un usuario quiere hacer select, update o delete y solo lo pueden hacer los roles registros,admin
+Por ejemplo si un usuario quiere hacer select, update o fdelete y solo lo pueden hacer los roles registros,admin
 o etiquetado y el rol con presenta la persona es diferente  no se le permitirá hacer esa acción.
 
   @staticmethod

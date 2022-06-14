@@ -1,15 +1,88 @@
-import React, {useState}  from "react";
+import React, {useState, useEffect}  from "react";
 import MoreInformationModal from "./MoreInformationModal";
-
+import axios from 'axios';
+import { data } from "autoprefixer";
 require("typeface-poppins");
 require("typeface-rubik");
 function PublicTable() {
+
   const columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const [showModal, setShowModal] = useState(false)
 
   const openModal=()=>setShowModal(true)
 
   const closeModal=()=>setShowModal(false)
+
+ 
+  
+ // const [post,setPost]=useState([]);
+
+ // React.useEffect(async()=>{
+ //   await axios.get(URLBase,{
+ //     "catalogo":"",
+ //     "habitat":"",
+ //     "municipio":"",
+ //     "evento":"",
+ //     "tipo de case":"",
+ //     "tipo de micro":"",
+ //     "metodo etiquetado":"",
+ //     "software":"",
+ //     "tipo de grabadora":""
+ //     }).then((response)=>{
+ //     setPost(response.data)
+ //   });
+ // },[]);
+
+ // if(!post)return null;
+
+ // console.log(post)
+  
+
+  
+  const [list, setList] = useState([]);
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get({
+          url:"http://localhost:3000/public-records/"
+          
+     
+          .then(list => setList(data))
+        });
+        
+        setList(response.data);
+
+        console.log(setList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+     fetchData();
+  }, []);
+
+  if(!list)return null;
+
+  
+ // console.log(list.ciudad)
+//  useEffect(() => {
+//    const fetchData = async () => {
+//      const { data } = await axios.get(
+//        "http://localhost:8000/public-records/"
+//        .then(res => res.json())
+//     
+//       .then(data => setData(data))
+//      );
+//  
+//      console.log(data);
+//    };
+//  
+//    fetchData();
+ // }, []);
+
+
+
 
 
   return (
@@ -67,52 +140,52 @@ function PublicTable() {
           </thead>
 
           <tbody>
-            {columns.map((rowscounter) => (
+            {list.map((list) => (
               <tr className="">
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato_Audio{rowscounter}
+                  {list.ciudad}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato_Audio{rowscounter}
+                  {list}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  Dato_Audio{rowscounter}
+                  {list}
                 </td>
               </tr>
             ))}
