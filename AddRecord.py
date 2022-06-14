@@ -8,10 +8,20 @@ from Globals import VerifyField
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
+import subprocess
 
 # https://www.altaruru.com/calculando-el-hash-en-python/
 
 session = Session(engine)
+
+
+def IsNewRecord(fingerprint):
+    Record = (
+        session.query(Base.classes["record_path"])
+        .filter(Base.classes["record_path"].fingerprint == fingerprint)
+        .first()
+    )
+    return Record == None
 
 
 def GetFingerprint(file):
@@ -33,32 +43,46 @@ def GetFingerprint(file):
 def AddRecordFile(file, id_record):
     # crear directorio usando las primeras letras del fingerprint
     fingerprint = GetFingerprint(file)
-    path_db = "./audios_ejemplo/output/" + fingerprint[0:3]
-    try:
-        os.mkdir(path_db)
-    except OSError:
-        pass
-    record_path = path_db + "/" + fingerprint + ".WAV"
-    command = "cp " + file + " " + record_path
-    os.system(command)
-    session.add(
-        Base.classes["record_path"](
-            id_record=id_record, record_path=record_path, fingerprint=fingerprint
-        )
-    )
-    session.flush()
+    path_db = "/home/victor/JoveInv/bioacustica/audios_ejemplo/output/" + fingerprint[0:3]
+
+    if IsNewRecord(fingerprint):
+
+        try:
+            os.mkdir(path_db)
+        except Exception as e:
+            pass
+        try:
+            record_path = path_db + "/" + fingerprint + ".WAV"
+            command = "cp " + file + " " + record_path  # + " &"
+            print(command)
+            # command = "sleep 60"
+            subprocess.run(command, shell=True)
+            # print(status)
+            # os.system(command)
+            RecPath = Base.classes["record_path"](
+                id_record=id_record, record_path=record_path, fingerprint=fingerprint
+            )
+            session.add(RecPath)
+            session.flush()
+            session.commit()
+        except Exception as e:
+            print("6")
+            print(e)
+            Globals.Bug = True
+    else:
+        Globals.Bug = True
+        print("  ERROR:  Record " + str(fingerprint) + "already exists")
 
 
 def AddRecord(file, id_catalogue, date, chunk, session):
-    print (file)
+
     metadata = audio_metadata.load(file)
     # try para format
+    format = os.path.splitext(file)[1].split(".")[1].upper()
+
     id_format = (
         session.query(Base.classes["format"])
-        .filter(
-            Base.classes["format"].description
-            == os.path.splitext(file)[1].split(".")[1]
-        )
+        .filter(Base.classes["format"].description == format)
         .first()
         .id_format
     )
@@ -75,6 +99,8 @@ def AddRecord(file, id_catalogue, date, chunk, session):
     )
     session.add(Rec)
     session.flush()
+    session.commit()
+    print(file)
     id_record = (
         session.query(Base.classes["record"])
         .filter(Base.classes["record"].id_record == Rec.id_record)
@@ -109,8 +135,9 @@ def AddRecords(file, id_catalogue, session):
                 chunk=i,
                 session=session,
             )
-    except:
-        raise Exception
+    except Exception as e:
+        print("5")
+        raise print(e)
 
 
 def AddRecords_(file, session):
@@ -135,7 +162,7 @@ def AddRecords_(file, session):
             Ok = VerifyField("path_records_PR", file, id) and Ok
 
             if not Ok:
-                raise Exception
+                raise
 
             id_project = (
                 session.query(Base.classes["project"])
@@ -161,12 +188,14 @@ def AddRecords_(file, session):
             )
 
             AddRecords(file, id_catalogue, session)
-        except:
+        except Exception as e:
             Globals.Bug = True
-            raise Exception
+            print("4")
+            print(e)
             if not "id_catalogue" in locals():
-                raise Exception(
-                    "  ERROR 10 : field_number_PR - "
+                # el catalogo no fue creado
+                print(
+                    "  ERROR: field_number_PR - "
                     + str(id + 2)
                     + " ->  "
                     + str(catalogue)
@@ -175,6 +204,6 @@ def AddRecords_(file, session):
                 print("  ERROR: path_records_PR - " + str(id + 2) + " ->  " + str(file))
 
 
-# AddRecords(file = "/home/victor/JoveInv/bioacustica/audios_ejemplo/G1",
+# AddRecords(file = "/home/andres/Proyectos/Software/Bioacustico/G1",
 #           catalogue = 'G1',
 #           session = session)

@@ -1,6 +1,17 @@
 import pandas as pd
 from mapping import Base
 from mapping import engine
+from sqlalchemy.orm import Session
+
+session = Session(engine)
+
+def LoadHSerial():
+    hardwares = session.query(Base.classes["hardware"]).all()
+    for hardware in hardwares:
+        session.add(Base.classes["h_serial"](id_hardware = hardware.id_hardware,
+                                             h_serial = "NO SE CONOCE"))
+    session.commit()
+
 
 
 def LoadMasterTable(mapping, info_path, table_name, engine, schema):
@@ -10,35 +21,38 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     # engine: database conection
     # schema: ('bioacustica')
     columns_names = mapping[table_name].__table__.columns.keys()
-    tableToLoad = pd.read_excel(info_path, sheet_name=table_name, header=None, engine='openpyxl')
-    tableToLoad = tableToLoad.applymap(lambda x: x.replace('"', '').upper())
+    tableToLoad = pd.read_excel(info_path, sheet_name = table_name, header = None, engine = 'openpyxl')
+    tableToLoad = tableToLoad.applymap(lambda x: x.replace('"','').upper())
     tableToLoad.columns = [columns_names[1]]
-    tableToLoad[columns_names[0]] = range(1, tableToLoad.shape[0] + 1)
-    tableToLoad = tableToLoad.reindex(columns=columns_names)
-
+    tableToLoad[columns_names[0]] = range(1,tableToLoad.shape[0]+1)
+    tableToLoad = tableToLoad.reindex(columns = columns_names)
+    
     for i in range(len(tableToLoad)):
         try:
-            tableToLoad.iloc[i:i + 1].to_sql(name=table_name, con=engine, schema='bioacustica', if_exists='append',
-                                             index=False)
-        except Exception:
-            raise
+            tableToLoad.iloc[i:i+1].to_sql(name = table_name, con = engine, schema = 'bioacustica', if_exists = 'append', index = False)
+        except:
+            pass
 
 
 def LoadMasterTables(info_path, mapping, engine):
-    sheets = pd.ExcelFile(info_path, engine='openpyxl').sheet_names
-
+    
+    sheets = pd.ExcelFile(info_path, engine = 'openpyxl').sheet_names
+    
     for sheet in sheets:
         try:
-            LoadMasterTable(mapping=mapping,
-                            info_path=info_path,
-                            table_name=sheet,
-                            engine=engine,
-                            schema='bioacustica')
+            LoadMasterTable(mapping = mapping,
+                            info_path = info_path,
+                            table_name = sheet,
+                            engine = engine,
+                            schema = 'bioacustica')
         except:
-            raise Exception("Error: ", sheet)
+            print("Error: ",sheet)
+    
+    LoadHSerial()
 
 
-# LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables2.xlsx',
-LoadMasterTables(info_path='./MasterTablesGenerada_.xlsx',
-                 mapping=Base.classes,
-                 engine=engine)
+#LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables2.xlsx',
+LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/MasterTablesGenerada_.xlsx',
+                 mapping = Base.classes,
+                 engine = engine)
+
