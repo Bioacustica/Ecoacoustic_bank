@@ -146,6 +146,7 @@ def AddRecords_(file, session):
         
             file = udas.iloc[id]["path_records_PR"]
             Ok = VerifyField("path_records_PR", file, id) and Ok
+            file = file + "/" + catalogue
 
             if not Ok:
                 raise
