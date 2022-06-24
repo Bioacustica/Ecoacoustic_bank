@@ -108,3 +108,12 @@ ya sea para pedir una cuenta de usuario o resolver dudas.
 La petición es de tipo post y debe de contener el email del quién lo envia, la razón y el mensaje.
 
 ![img_2.png](img_2.png)
+
+## Swagger (http://localhost:8000/swagger/)
+Este endpoint tiene encargado de mostar de forma visual y didactica como funcionan algunos de los endpoints
+
+![img_3.png](img_3.png)
+
+
+## Redocs (http://localhost:8000/redoc/)
+![img_4.png](img_4.png)
