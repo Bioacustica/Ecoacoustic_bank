@@ -371,21 +371,21 @@ def downolad_record_views_csv(request):
 @decorators.api_view(["GET"])
 def download_records_files(request):
     """Vista encargada de extraer los paths de records
-    y generar los base 64
-    de forma adcional se crea un diccionario
-
-
+    y generar un comprimido con los audios seleccionados
     :param request: Petición de tipo GET
-    :return: retorna un diccionario con el base 64, su nombre y su tipo de compresión
+    :return: un archivo zip con los audios comprimidos
     """
+    audios = list(request.data["audios"])
+    print(audios)
     filenames = [
 
     ]
     files = os.listdir('/code/apiCRUD/sample_audios/')
 
     c = 0
-    for file in files:
+    for file in audios:
         c += 1
+        # aca debe de ir la ruta de donde se debe guardar los audios en caso que se entregue el path completo
         filenames.append(f"/code/apiCRUD/sample_audios/{file}")
         if c == 100:
             break

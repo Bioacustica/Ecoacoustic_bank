@@ -37,14 +37,14 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
 def LoadMasterTables(info_path, mapping, engine):
     
     sheets = pd.ExcelFile(info_path, engine = 'openpyxl').sheet_names
-    
+
     for sheet in sheets:
         try:
-            LoadMasterTable(mapping = mapping,
-                            info_path = info_path,
-                            table_name = sheet,
-                            engine = engine,
-                            schema = 'bioacustica')
+            LoadMasterTable(mapping=mapping,
+                            info_path=info_path,
+                            table_name=sheet,
+                            engine=engine,
+                            schema='bioacustica')
         except:
             print("Error: ",sheet)
     
@@ -52,7 +52,7 @@ def LoadMasterTables(info_path, mapping, engine):
 
 
 #LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables2.xlsx',
-LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/MasterTablesGenerada_.xlsx',
+LoadMasterTables(info_path = './MasterTablesGenerada_.xlsx',
                  mapping = Base.classes,
                  engine = engine)
 
