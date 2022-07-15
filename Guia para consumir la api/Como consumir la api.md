@@ -54,7 +54,8 @@ deben de ser unicos.
 
 <img src="register.png">
 
-El parametro is_admin no es obligatorio ya que por defecto es False, por lo cual se puede ignorar
+El parametro **is_admin** no es obligatorio, ya que por defecto es False, por lo cual si no es un usuario admin se puede ignorar, de lo contrario es un parametro
+que se debe de pasar como TRUE para los admins únicamente.
 Recuerda que es Muy importante que el username y el email sean unicos.
 
 En caso de exito, obtendŕas una respuesta que dice usuario creado de forma exitosa.

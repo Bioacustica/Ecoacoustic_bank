@@ -3,11 +3,11 @@ En este modulo se encuentran todos los modelos trabajados en el backend
 todos ellos apuntan a la base de datos.
 
 Esta seccion de codigo aparace en todos y cada uno de los modelos
-esta sección de codigo está encargada de pernmitir o denegar el acceso a diferentes
+esta sección de codigo está encargada de permitir o denegar el acceso a diferentes
 opciones dentro del modelo.
 
-Por ejemplo si un usuario quiere hacer select, update o delete y solo lo pueden hacer los roles registros,admin
-o etiquetado y el rol con presenta la persona es diferente  no se le permitirá hacer esa acción.
+Por ejemplo, si un usuario quiere hacer select, update o delete y solo lo pueden hacer los roles registros, admin
+o etiquetado y el rol que presenta la persona es diferente no se le permitirá hacer esa acción.
 
   @staticmethod
     def has_read_permission(request):
@@ -91,21 +91,21 @@ def password_reset_token_created(
     :param sender: Sender provides a simple interface to set up SMTP and send email messages
     :type sender: vista basada en clases que envia la señal
     :param instance: Vista que instancia la señal
-    :param reset_password_token: objecto token
+    :param reset_password_token: objeto token
     :type reset_password_token: token
     """
 
-    email_plaintext_message = "{}?token={}".format(
-        reverse("password_reset:reset-password-request"), reset_password_token.key
+    email_plaintext_message = "Acabas de recibir un token de reseto por favor copialo y pegalo, http://localhost:8000{}?token={}".format(
+        reverse("password_reset_confirm:reset-password-request"), reset_password_token.key
     )
 
     send_mail(
         # title:
-        "Password Reset for {title}".format(title="Some website title"),
+        "Password Reset for {title}".format(title="Software_1 bioacustica"),
         # message:
         email_plaintext_message,
         # from:
-        "noreply@somehost.local",
+        "animalesitm@gmail.com",
         # to:
         [reset_password_token.user.email],
     )
@@ -2221,7 +2221,7 @@ class Voucher(models.Model):
             return True
         return False
 
-
+# TODO agregar permisos -----------------------------------------------------
 class Keys(models.Model):
     username = models.CharField(max_length=200, blank=False, null=False)
     key = models.CharField(max_length=200, blank=False, null=False)
@@ -2229,6 +2229,51 @@ class Keys(models.Model):
     class Meta:
         managed = False
         db_table = "keys"
+
+    @staticmethod
+    def has_read_permission(request):
+        if (
+                request.user.roles == "admin"
+
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+                request.user.roles == "admin"
+
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_destroy_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_destroy_permission(self, request):
+        if request.user.roles == "admin":
+            return True
+        return False
 
 
 class Filter(models.Model):
@@ -2239,6 +2284,50 @@ class Filter(models.Model):
         managed = False
         db_table = 'filter'
 
+    @staticmethod
+    def has_read_permission(request):
+        if (
+                request.user.roles == "admin"
+
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+                request.user.roles == "admin"
+
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_destroy_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_destroy_permission(self, request):
+        if request.user.roles == "admin":
+            return True
+        return False
 
 class Gain(models.Model):
     id_gain = models.SmallIntegerField(primary_key=True)
@@ -2248,6 +2337,50 @@ class Gain(models.Model):
         managed = False
         db_table = 'gain'
 
+    @staticmethod
+    def has_read_permission(request):
+        if (
+                request.user.roles == "admin"
+
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+                request.user.roles == "admin"
+
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_destroy_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_destroy_permission(self, request):
+        if request.user.roles == "admin":
+            return True
+        return False
 
 class Microphone(models.Model):
     id_microphone = models.SmallIntegerField(primary_key=True)
@@ -2256,3 +2389,48 @@ class Microphone(models.Model):
     class Meta:
         managed = False
         db_table = 'microphone'
+
+    @staticmethod
+    def has_read_permission(request):
+        if (
+                request.user.roles == "admin"
+
+        ):
+            return True
+        return False
+
+    def has_object_read_permission(self, request):
+        if (
+                request.user.roles == "admin"
+
+        ):
+            return True
+        return False
+
+    @staticmethod
+    def has_write_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_write_permission(self, request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    @staticmethod
+    def has_destroy_permission(request):
+        if request.user.roles == "admin":
+            return True
+        return False
+
+    def has_object_destroy_permission(self, request):
+        if request.user.roles == "admin":
+            return True
+        return False
