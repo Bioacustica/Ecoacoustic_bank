@@ -1,5 +1,6 @@
 import pandas as pd
 import Globals
+from Globals import VerifyStage
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
@@ -20,34 +21,32 @@ def LoadData(file, session):
 
     print("Stage 1: Projects")
     AddProjects_(file, session)
+    VerifyStage(session)
     
     print("Stage 2: Samplings")
     AddSamplings_(file, session)
+    VerifyStage(session)
     
     print("Stage 3: Catalogues")
     AddCatalogues_(file, session)
+    VerifyStage(session)
     
     print("Stage 4: Records")
     AddRecords_(file, session)
+    VerifyStage(session)
 
     print(" ")
 
-    if Globals.Bug:
-        session.rollback()
-        print("Reversing transaction")
-        print("Generating: Master Table file")
-        GenerateMasterTable(file = "MasterTablesGenerada_.xlsx",
-                            session = session)
-    else:
-        session.commit()
-        print("Successful transaction")
-    
-    Globals.Bug = False
+    session.commit()
+    print("Successful transaction")
     session.close()
 
 
-LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/Tesis_Cano_20211026.xls',
-         session = session) 
+LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/nuevaPrueba/Ultrasonido_Dany_Urrego.xls',
+        session = session) 
+
+#LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/Tesis_Cano_20211026.xls',
+#        session = session) 
 #LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/UDAS_CSG_2018.xls',
 #         session = session) 
 
@@ -64,3 +63,8 @@ LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/Tesis_C
 # TO-DO
 # Se debe generar id_h_serial (en esta oportunidad se genero manual desde el pgadmin)
 # como hacer la consulta para obtener el id_record tiene que crearse primero en la base de datos
+# unificar los nombres de las tablas y del udas
+# tener cuidado con llenar los campos numericos, no se puede colocar no se conoce (definir por defecto un numero)
+
+# el project no se crea como tabla maestra, se crea con loadData ya que este depende  de id_funding
+# verificar si el record fue creado ahora solo se hace a nivel de record_path
