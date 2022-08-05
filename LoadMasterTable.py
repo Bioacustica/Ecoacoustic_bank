@@ -30,7 +30,8 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     for i in range(len(tableToLoad)):
         try:
             tableToLoad.iloc[i:i+1].to_sql(name = table_name, con = engine, schema = 'bioacustica', if_exists = 'append', index = False)
-        except:
+        except Exception as e:
+            print(e)
             pass
 
 
@@ -39,20 +40,23 @@ def LoadMasterTables(info_path, mapping, engine):
     sheets = pd.ExcelFile(info_path, engine = 'openpyxl').sheet_names
     
     for sheet in sheets:
+        if sheet == "funding":
+            print("-")
         try:
             LoadMasterTable(mapping = mapping,
                             info_path = info_path,
                             table_name = sheet,
                             engine = engine,
                             schema = 'bioacustica')
-        except:
+        except Exception as e:
+            print(e)
             print("Error: ",sheet)
     
     LoadHSerial()
 
 
 #LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables2.xlsx',
-LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/MasterTablesGenerada_.xlsx',
+LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/MasterTables_v1.xlsx',
                  mapping = Base.classes,
                  engine = engine)
 
