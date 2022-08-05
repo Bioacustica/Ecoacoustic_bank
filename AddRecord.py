@@ -35,38 +35,33 @@ def GetFingerprint(file):
         return ""
 
 #AddRecordFile
-def AddRecordFile(file, id_record):
+def AddRecordFile(file, fingerprint, id_record):
+
     #crear directorio usando las primeras letras del fingerprint
-    fingerprint = GetFingerprint(file)
     path_db = "/home/andres/Proyectos/Software/Bioacustico/DB/" + fingerprint[0:3]
 
-    if IsNewRecord(fingerprint):
-
-        try:
-            os.mkdir(path_db)
-        except Exception as e:
-            pass
-        try:
-            record_path = path_db + "/" + fingerprint + ".WAV"
-            command = "cp " + file + " " + record_path #+ " &"
-            print(command)
-            #command = "sleep 60"
-            subprocess.run(command, shell = True)
-            #print(status)
-            #os.system(command) 
-            RecPath = Base.classes["record_path"](id_record = id_record,
-                                                  record_path = record_path,
-                                                  fingerprint = fingerprint)
-            session.add(RecPath)
-            session.flush()
-            session.commit()
-        except Exception as e:
-            print("6")
-            print(e)
-            Globals.Bug = True
-    else:
+    try:
+        os.mkdir(path_db)
+    except Exception as e:
+        pass
+    try:
+        record_path = path_db + "/" + fingerprint + ".WAV"
+        command = "cp " + file + " " + record_path #+ " &"
+        print("  Adding " + file[-19:])
+        #command = "sleep 60"
+        subprocess.run(command, shell = True)
+        #print(status)
+        #os.system(command) 
+        RecPath = Base.classes["record_path"](id_record = id_record,
+                                                record_path = record_path,
+                                                fingerprint = fingerprint)
+        session.add(RecPath)
+        session.flush()
+        session.commit()
+    except Exception as e:
+        print("6")
+        print(e)
         Globals.Bug = True
-        print("  ERROR:  Record " + str(fingerprint) + "already exists")
 
 
 
@@ -88,16 +83,23 @@ def AddRecord(file, id_catalogue, date, chunk, session):
                                  sample_rate = metadata['streaminfo'].sample_rate,
                                  chunk = chunk,
                                  channels = metadata['streaminfo'].channels)
-    session.add(Rec)
-    session.flush()
-    session.commit()
-    print(file)
-    id_record = session.query(Base.classes["record"]). \
-                              filter(Base.classes["record"].id_record == Rec.id_record). \
-                              first().id_record
-    AddRecordFile(file = file,
-                  id_record = id_record)
-    #session.commit()
+    
+    fingerprint = GetFingerprint(file)
+    if IsNewRecord(fingerprint):
+
+        session.add(Rec)
+        session.flush()
+        session.commit()
+        #print(file)
+        id_record = session.query(Base.classes["record"]). \
+                                filter(Base.classes["record"].id_record == Rec.id_record). \
+                                first().id_record
+        AddRecordFile(file = file,
+                      fingerprint = fingerprint,
+                      id_record = id_record)
+    else:
+        Globals.Bug = True
+        print(" ERROR:  Record " + str(fingerprint) + " already exists")
 
 
 def AddRecords(file, id_catalogue, session):
