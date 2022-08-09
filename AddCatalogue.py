@@ -240,6 +240,7 @@ def AddCatalogue(udas, session, id):
                     print("  Creating " + description )
 
                 except Exception as e:
+                    print(e)
                     Globals.Bug = True
                     
                     if not 'id_sampling' in locals():
@@ -251,9 +252,9 @@ def AddCatalogue(udas, session, id):
                     elif not 'id_m' in locals():
                         print("  ERROR: municipality_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["municipality_IG"]) )
                     elif not 'id_vereda' in locals():
-                        print("  ERROR: id_vereda - " + str(id + 2) + " ->  " + str(udas.iloc[id]["vereda_IG"]) )
+                        print("  ERROR: vereda_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["vereda_IG"]) )
                     elif not 'id_locality' in locals():
-                        print("  ERROR: id_locality - " + str(id + 2) + " ->  " + str(udas.iloc[id]["locality_IG"]) )
+                        print("  ERROR: locality_IG - " + str(id + 2) + " ->  " + str(udas.iloc[id]["locality_IG"]) )
                     elif not 'id_gain' in locals():
                         print("  ERROR: gain_RE - " + str(id + 2) + " ->  " + str(udas.iloc[id]["gain_RE"]) ) 
                     elif not 'id_filter' in locals():

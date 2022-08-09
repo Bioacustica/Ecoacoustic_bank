@@ -38,6 +38,7 @@ def GetFingerprint(file):
         print("Error desconocido")
         return ""
 
+<<<<<<< HEAD
 
 # AddRecordFile
 def AddRecordFile(file, id_record):
@@ -70,13 +71,42 @@ def AddRecordFile(file, id_record):
             print(e)
             Globals.Bug = True
     else:
+=======
+#AddRecordFile
+def AddRecordFile(file, fingerprint, id_record):
+
+    #crear directorio usando las primeras letras del fingerprint
+    path_db = "/home/andres/Proyectos/Software/Bioacustico/DB/" + fingerprint[0:3]
+
+    try:
+        os.mkdir(path_db)
+    except Exception as e:
+        pass
+    try:
+        record_path = path_db + "/" + fingerprint + ".WAV"
+        command = "cp " + file + " " + record_path #+ " &"
+        print("  Adding " + file[-19:])
+        #command = "sleep 60"
+        subprocess.run(command, shell = True)
+        #print(status)
+        #os.system(command) 
+        RecPath = Base.classes["record_path"](id_record = id_record,
+                                                record_path = record_path,
+                                                fingerprint = fingerprint)
+        session.add(RecPath)
+        session.flush()
+        session.commit()
+    except Exception as e:
+        print("6")
+        print(e)
+>>>>>>> cda1a6a1114c67153389ea076204e801f7f5161c
         Globals.Bug = True
-        print("  ERROR:  Record " + str(fingerprint) + "already exists")
 
 
 def AddRecord(file, id_catalogue, date, chunk, session):
 
     metadata = audio_metadata.load(file)
+<<<<<<< HEAD
     # try para format
     format = os.path.splitext(file)[1].split(".")[1].upper()
 
@@ -109,6 +139,40 @@ def AddRecord(file, id_catalogue, date, chunk, session):
     )
     AddRecordFile(file=file, id_record=id_record)
     # session.commit()
+=======
+    #try para format
+    format = os.path.splitext(file)[1].split('.')[1].upper()
+
+    id_format = session.query(Base.classes["format"]). \
+                              filter(Base.classes["format"].description == format).  \
+                              first().id_format
+    
+    Rec = Base.classes["record"](id_catalogue = id_catalogue,
+                                 id_format = id_format,
+                                 date = date,
+                                 length = metadata['streaminfo'].duration,
+                                 size = metadata.filesize,
+                                 sample_rate = metadata['streaminfo'].sample_rate,
+                                 chunk = chunk,
+                                 channels = metadata['streaminfo'].channels)
+    
+    fingerprint = GetFingerprint(file)
+    if IsNewRecord(fingerprint):
+
+        session.add(Rec)
+        session.flush()
+        session.commit()
+        #print(file)
+        id_record = session.query(Base.classes["record"]). \
+                                filter(Base.classes["record"].id_record == Rec.id_record). \
+                                first().id_record
+        AddRecordFile(file = file,
+                      fingerprint = fingerprint,
+                      id_record = id_record)
+    else:
+        Globals.Bug = True
+        print(" ERROR:  Record " + str(fingerprint) + " already exists")
+>>>>>>> cda1a6a1114c67153389ea076204e801f7f5161c
 
 
 def AddRecords(file, id_catalogue, session):
@@ -160,6 +224,7 @@ def AddRecords_(file, session):
 
             file = udas.iloc[id]["path_records_PR"]
             Ok = VerifyField("path_records_PR", file, id) and Ok
+            file = file + "/" + catalogue
 
             if not Ok:
                 raise

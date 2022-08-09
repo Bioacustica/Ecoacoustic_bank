@@ -10,10 +10,16 @@ session = Session(engine)
 #                                  username = "juanm.daza",
 #                                  roles = "ADMINISTRADOR"))
 
-session.add(Base.classes["user"](name = "ESTEFANY CANO",
-                                 email = "canoestefany@gmail.com",
-                                 username = "estefany.cano",
+#session.add(Base.classes["user"](name = "ESTEFANY CANO",
+#                                 email = "canoestefany@gmail.com",
+#                                 username = "estefany.cano",
+#                                 roles = "ADMINISTRADOR"))
+
+session.add(Base.classes["user"](name = "Dany Urrego",
+                                 email = "dany.urrego@udea.edu.co",
+                                 username = "Dany.Urrego",
                                  roles = "ADMINISTRADOR"))
+                                
 
 session.commit()
 

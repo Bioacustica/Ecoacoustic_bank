@@ -4,6 +4,7 @@ from Globals import VerifyField
 from mapping import Base
 from mapping import engine
 from sqlalchemy.orm import Session
+import sys
 
 session = Session(engine)
 
@@ -42,16 +43,20 @@ def AddProject(udas, session, id):
                 
                 print("  Creating " + description)
             
-            except:
+            except Exception as e:
+
+                Globals.Bug = True
 
                 if not 'id_funding' in locals():
+                    print("  ERROR: funding_PR - " + str(id + 2) + " ->  " + str(funding) )
 
-                    Globals.Bug = True
-                    print("ERROR: funding_PR - " + str(id + 2) + " ->  " + str(funding) )
-    except:
+    except Exception as e:
 
         Globals.Bug = True
         raise Exception
+
+        if not 'id_funding' in locals():
+            print("  ERROR: funding_PR - " + str(id + 2) + " ->  " + str(funding) )
 
 
 
