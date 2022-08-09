@@ -1,5 +1,5 @@
 
-Como consumir la API De django
+Como consumir la API de Django
 ---
 ***
 

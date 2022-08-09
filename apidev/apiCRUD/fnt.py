@@ -55,7 +55,9 @@ def choose_role(username: str, password: str, roles: str) -> str:
 def change_password(username: str, password: str) -> str:
     """
     :param username: recibe el nombre de usuario
+
     :param password: recibe la contraseña de usuario
+
     :return: devuelve un query que será ejecutado por un cursor en postgres
     """
     query = "SELECT bioacustica.change_password('{}', '{}')".format(username, password)
@@ -223,7 +225,7 @@ def consulta_filtros_publicos (
     db_name = settings.DATABASES["animalesitm"]["NAME"]
     db_port = settings.DATABASES["animalesitm"]["PORT"]
     db_host = settings.DATABASES["animalesitm"]["HOST"]
-    # FIXME: Cambiar credenciales de admin por usuario normi
+    # TODO Cambiar credenciales de admin por usuario normi
     credenciales_db_publico = {
         "user": "animalesitm",
         "password": "animalesitm",
