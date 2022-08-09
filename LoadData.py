@@ -10,7 +10,6 @@ from AddSampling import AddSamplings_
 from AddCatalogue import AddCatalogues_
 from AddRecord import AddRecords_
 
-from GenerateMasterTable import GenerateMasterTable
 
 session = Session(engine)
 

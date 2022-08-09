@@ -55,8 +55,8 @@ def LoadMasterTables(info_path, mapping, engine):
     LoadHSerial()
 
 
-#LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables2.xlsx',
-LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/MasterTables_v1.xlsx',
+#LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables_v1.xlsx',  # stable
+LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables_v1.xlsx',
                  mapping = Base.classes,
                  engine = engine)
 
