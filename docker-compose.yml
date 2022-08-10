@@ -8,7 +8,7 @@ services:
     volumes:
       - './source:/data'
     ports:
-      - '8888:8888'
+      - '8900:8888'
     restart: on-failure
   postgres:
     image: postgres
@@ -23,9 +23,9 @@ services:
       - credenciales_postgres.env
     user: root
     ports:
-      - '5432:5432'
+      - '5010:5432'
     volumes:
-      - './postgres-data:/var/lib/postgresql/data'
+      - './postgres-data10:/var/lib/postgresql/data'
       - './source/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql'
   pgadmin:
     image: dpage/pgadmin4
