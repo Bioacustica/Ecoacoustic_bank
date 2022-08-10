@@ -11,7 +11,7 @@ session = Session(engine)
 def FailProject(id_funding, description):
     project_ = session.query(Base.classes["project"]).  \
                              filter(Base.classes["project"].id_funding == id_funding).  \
-                             filter(Base.classes["project"].description == description ). \
+                             filter(Base.classes["project"].description == description). \
                              first()
     return(project_ == None)
 
@@ -29,8 +29,7 @@ def AddProject(udas, session, id):
         Ok = VerifyField("project_name_PR", description, id) and Ok
 
         if not Ok:
-            raise
-        
+            raise Exception
         id_funding = session.query(Base.classes["funding"]). \
                                    filter(Base.classes["funding"].description == funding).  \
                                    first().id_funding
@@ -54,6 +53,7 @@ def AddProject(udas, session, id):
     except Exception as e:
 
         Globals.Bug = True
+        raise Exception
 
         if not 'id_funding' in locals():
             print("  ERROR: funding_PR - " + str(id + 2) + " ->  " + str(funding) )

@@ -1,0 +1,15 @@
+create or replace function bioacustica.create_user_usuario (
+  unm varchar,
+  pwd varchar
+)
+  returns varchar(10) as $$
+begin
+  execute format($f$create role %I login password '%s'$f$,unm,pwd);
+  execute format('alter role %I NOSUPERUSER NOCREATEDB NOCREATEROLE',unm);
+  execute format('alter role %I SET search_path TO bioacustica',unm);
+  execute format('GRANT USAGE ON SCHEMA bioacustica TO %I',unm);
+  execute format('GRANT SELECT ON TABLE bioacustica.label, bioacustica.labeled TO %I ',unm);
+  execute format('GRANT SELECT ON TABLE bioacustica.record, bioacustica.record_obs, bioacustica.record_path, bioacustica.format, bioacustica.season, bioacustica.project, bioacustica.habitat TO %I ',unm);
+  return 'success';
+end;
+$$ language plpgsql;

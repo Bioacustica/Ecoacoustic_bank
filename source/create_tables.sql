@@ -300,10 +300,12 @@ WITH (
 CREATE TABLE bioacustica."user"
 (
     id_user smallserial NOT NULL,
-    name character varying(100) NOT NULL,
+    name character varying(100),
+    password character varying(100),
     email character varying(100) NOT NULL,
     username character varying(100),
     last_login date,
+    is_admin boolean,
     is_active boolean,
     is_staff boolean,
     is_superuser boolean,
@@ -405,7 +407,7 @@ WITH (
 CREATE TABLE bioacustica.software
 (
     id_software smallserial NOT NULL,
-    descripton character varying(80) NOT NULL,
+    description character varying(80) NOT NULL,
     PRIMARY KEY (id_software)
 )
 WITH (
@@ -484,6 +486,56 @@ ALTER TABLE bioacustica.catalogue
 ALTER TABLE bioacustica.catalogue
     ADD FOREIGN KEY (id_h_serial)
     REFERENCES bioacustica.h_serial (id_h_serial)
+    NOT VALID;
+
+CREATE TABLE bioacustica.keys
+(
+    username character varying(200) NOT NULL,
+    key character varying(200)  NOT NULL
+)
+WITH (
+    OIDS = FALSE
+);
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_case)
+    REFERENCES bioacustica."case" (id_case)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_collector)
+    REFERENCES bioacustica."user" (id_user)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_datum)
+    REFERENCES bioacustica.datum (id_datum)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_h_serial)
+    REFERENCES bioacustica.h_serial (id_h_serial)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_habitat)
+    REFERENCES bioacustica.habitat (id_habitat)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_memory)
+    REFERENCES bioacustica.memory (id_memory)
+    NOT VALID;
+
+
+ALTER TABLE bioacustica.catalogue
+    ADD FOREIGN KEY (id_precision)
+    REFERENCES bioacustica."precision" (id_precision)
     NOT VALID;
 
 
@@ -697,4 +749,245 @@ ALTER TABLE bioacustica.catalogue
 
 END;
 
+/* Desde este punto comienzan las funciones que se crearon y se integraron con django */
 
+--Esta es la función que crea el admin en la base de datos
+create or replace function bioacustica.create_user_admin (
+  unm varchar,
+  pwd varchar
+)
+returns varchar(10) as $$
+begin
+
+
+
+  execute format($f$create role %I login password '%s'$f$,unm,pwd);
+  execute format('alter role %I SUPERUSER CREATEDB CREATEROLE',unm);
+  execute format('alter role %I SET search_path TO bioacustica',unm);
+  execute format('GRANT USAGE ON SCHEMA bioacustica TO %I',unm);
+  execute format('SET search_path TO bioacustica');
+  execute format('GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA bioacustica TO %I ',unm);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
+
+
+-- Esta es la función que crea el colaborador de registros
+
+create or replace function bioacustica.create_user_registros (
+  unm varchar,
+  pwd varchar
+)
+  returns varchar(10) as $$
+
+
+
+begin
+
+
+
+  execute format($f$create role %I login password '%s'$f$,unm,pwd);
+  execute format('alter role %I NOSUPERUSER NOCREATEDB NOCREATEROLE',unm);
+  execute format('alter role %I SET search_path TO bioacustica',unm);
+  execute format('REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA bioacustica FROM %I',unm);
+  execute format('REVOKE USAGE ON SCHEMA bioacustica FROM %I',unm);
+  execute format('GRANT USAGE ON SCHEMA bioacustica TO %I',unm);
+  execute format('SET search_path TO bioacustica');
+  execute format('GRANT SELECT, INSERT, UPDATE ON TABLE label, labeled TO %I ',unm);
+  execute format('GRANT SELECT, INSERT, UPDATE ON TABLE record, record_obs, record_path, format, season, project, habitat, hardware, h_serial, memory, precision, sampling, supply, catalogue TO %I ',unm);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
+
+
+-- Esta es la función de el colaborador  de etiquetado
+create or replace function bioacustica.create_user_etiquetado (
+  unm varchar,
+  pwd varchar
+)
+  returns varchar(10) as $$
+
+
+
+begin
+
+
+
+  execute format($f$create role %I login password '%s'$f$,unm,pwd);
+  execute format('alter role %I NOSUPERUSER NOCREATEDB NOCREATEROLE',unm);
+  execute format('alter role %I SET search_path TO bioacustica',unm);
+  execute format('REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA bioacustica FROM %I',unm);
+  execute format('REVOKE USAGE ON SCHEMA bioacustica FROM %I',unm);
+  execute format('GRANT USAGE ON SCHEMA bioacustica TO %I',unm);
+  execute format('SET search_path TO bioacustica');
+  execute format('GRANT SELECT, INSERT, UPDATE ON TABLE label, labeled TO %I ',unm);
+  execute format('GRANT SELECT ON TABLE record, record_obs, record_path, format, season, project, habitat, catalogue TO %I ',unm);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
+
+
+-- Esta es la función para los usuarios
+
+create or replace function bioacustica.create_user_usuario (
+  unm varchar,
+  pwd varchar
+)
+  returns varchar(10) as $$
+
+
+
+begin
+
+
+
+  execute format($f$create role %I login password '%s'$f$,unm,pwd);
+  execute format('alter role %I NOSUPERUSER NOCREATEDB NOCREATEROLE',unm);
+  execute format('alter role %I SET search_path TO bioacustica',unm);
+  execute format('REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA bioacustica FROM %I',unm);
+  execute format('REVOKE USAGE ON SCHEMA bioacustica FROM %I',unm);
+  execute format('GRANT USAGE ON SCHEMA bioacustica TO %I',unm);
+  execute format('SET search_path TO bioacustica');
+  execute format('GRANT SELECT ON TABLE label, labeled TO %I ',unm);
+  execute format('GRANT SELECT ON TABLE record, record_obs, record_path, format, season, project, habitat TO %I ',unm);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
+
+-- Esta función tiene como utilidad cambiar la contraseña dentro de la DB, no afecta la tabla users.
+
+create or replace function bioacustica.change_password (
+  unm varchar,
+  pwd varchar
+)
+  returns varchar(10) as $$
+
+
+
+begin
+  execute format($f$alter role %I with password '%s'$f$,unm,pwd);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
+
+
+create or replace function bioacustica.drop_user (
+  unm varchar
+)
+  returns varchar(10) as $$
+
+
+
+begin
+  execute format('REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA bioacustica FROM %I',unm);
+  execute format('REVOKE USAGE ON SCHEMA bioacustica FROM %I',unm);
+  execute format('DROP USER %I ',unm);
+  return 'success';
+
+
+
+end;
+$$ language plpgsql;
+
+--tabla de filtros  si no se espeficica un parametro se toma como Null--
+
+create or replace function bioacustica.get_join(
+    catalogo varchar default NULL,
+    habitat_q varchar default NULL,
+    municipio varchar default NULL,
+    evento_q varchar default NULL,
+    tipo_case varchar default NULL,
+    tipo_micro varchar default NULL,
+    metodo_etiquetado varchar default NULL,
+    software_q varchar default NULL,
+    tipo_grabadora varchar default NULL
+)
+
+    returns table (
+        id_record integer,
+        formato_ varchar,
+        chunk_ smallint,
+        date_ timestamp,
+        catalogo_ varchar,
+        elevation integer,
+        chunks_ smallint,
+        tipo_grabadora_ varchar,
+        case_ varchar,
+        microphone varchar,
+        sampling_description varchar,
+        habitat_ varchar,
+        ciudad_ varchar,
+        departamento_ varchar,
+        type_ varchar,
+        metodo_etiquetado_ varchar,
+        software_etiquetado_ varchar
+    )
+
+    language plpgsql
+as $$
+begin
+    return query
+        select
+            record.id_record,
+            format.description,
+            record.chunk,
+            record.date,
+            catalogue.description,
+            catalogue.elevation,
+            catalogue.chunks,
+            hardware.description,
+            "case".description,
+            microphone.description,
+            sampling.description,
+            habitat.description,
+            municipality.description,
+            department.description,
+            type.description,
+            evidence.description,
+            software.description
+
+        from
+            catalogue
+        INNER JOIN record ON catalogue.id_catalogue=record.id_catalogue
+        --where catalogue.description = (CASE WHEN catalogo IS NOT NULL THEN catalogo ELSE catalogue.description END)
+        INNER JOIN format ON record.id_format=format.id_format
+        INNER JOIN h_serial ON catalogue.id_h_serial=h_serial.id_h_serial
+        INNER JOIN hardware ON h_serial.id_hardware=hardware.id_hardware
+        INNER JOIN "case" ON catalogue.id_case="case".id_case
+        INNER JOIN microphone ON catalogue.id_microphone=microphone.id_microphone
+        INNER JOIN sampling ON catalogue.id_sampling=sampling.id_sampling
+        INNER JOIN habitat ON catalogue.id_habitat=habitat.id_habitat
+        INNER JOIN municipality ON catalogue.id_municipality=municipality.id_municipality
+        INNER JOIN department ON catalogue.id_department=department.id_department
+        LEFT OUTER JOIN labeled ON record.id_record=labeled.id_record
+        LEFT OUTER JOIN label ON labeled.id_label=label.id_label
+        LEFT OUTER JOIN type ON label.id_type=type.id_type
+        LEFT OUTER JOIN evidence ON labeled.id_evidence=evidence.id_evidence
+        LEFT OUTER JOIN software ON labeled.id_software=software.id_software
+
+        where municipality.description = (CASE WHEN municipio IS NOT NULL THEN municipio ELSE municipality.description END)
+        and   catalogue.description = (CASE WHEN catalogo IS NOT NULL THEN catalogo ELSE catalogue.description END)
+        and   habitat.description = (CASE WHEN habitat_q IS NOT NULL THEN habitat_q ELSE habitat.description END)
+        --and   type.description = (CASE WHEN evento_q IS NOT NULL THEN evento_q ELSE type.description END)
+        and   "case".description = (CASE WHEN tipo_case IS NOT NULL THEN tipo_case ELSE "case".description END)
+        and   microphone.description = (CASE WHEN tipo_micro IS NOT NULL THEN tipo_micro ELSE microphone.description END)
+        --and   evidence.description = (CASE WHEN metodo_etiquetado IS NOT NULL THEN metodo_etiquetado ELSE evidence.description END)
+        --and   software.description = (CASE WHEN software_q IS NOT NULL THEN software_q ELSE software.description END)
+        --and   hardware.description = (CASE WHEN tipo_grabadora IS NOT NULL THEN tipo_grabadora ELSE hardware.description END)
+        ;
+end;$$

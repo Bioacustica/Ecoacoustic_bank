@@ -54,7 +54,7 @@ LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/nuevaPrueba/Ultraso
 # cuando se genere los erroes descargar el ultimo masterTable (ok)
 # quitar tildes
 # precision_IG - 1 y 2 revisar por que sale error en las primeras filas (ok)
-# Agregar al generateMasterTable filter, no se agrego por que en la tabla esta mal escrita el campo 
+# Agregar al generateMasterTable filter, no se agrego por que en la tabla esta mal escrita el campo
 # description aparece como decription (ok)
 # revisar si es el master table generado se puede sobreescibir (si)
 

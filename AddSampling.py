@@ -74,8 +74,8 @@ def AddSampling(udas, session, id):
                 elif not 'id_cataloger' in locals():
                     print("  ERROR: collector_email_PR - " + str(id + 2) + " ->  " + str(udas.iloc[id]["collector_email_PR"]) )  
     except:
-        Globals.Bug = True 
-
+        Globals.Bug = True
+        raise Exception
 
 
 def AddSamplings_(file, session):

@@ -73,20 +73,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>user</h1><p><span id="recordNumber">0</span> rows</p><br />
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <i class="fa fa-file-text-o"></i>
-                            <h3 id="Description" class="box-title">Description</h3>
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                            </div>
-                        </div><!-- /.box-header -->
-                        <div class="box-body clearfix">
-                            <p>Esta tabla relaciona los usuarios registrados en la DB.</p>
-                        </div><!-- /.box-body -->
-                    </div>
+                    <h1>user</h1><p><span id="recordNumber">11</span> rows</p><br />
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -125,12 +112,28 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
+                                                <td title="apiCRUD_historicalfunding.history_user_id references user.id_user via apiCRUD_historicalfu_history_user_id_52526d39_fk_user_id_u"><a href='apiCRUD_historicalfunding.html'>apiCRUD_historicalfunding</a><span class='relatedKey'>.history_user_id</span></td>
+                                                <td class="constraint detail">apiCRUD_historicalfu_history_user_id_52526d39_fk_user_id_u<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
                                                 <td title="catalogue.id_collector references user.id_user via catalogue_id_collector_fkey"><a href='catalogue.html'>catalogue</a><span class='relatedKey'>.id_collector</span></td>
                                                 <td class="constraint detail">catalogue_id_collector_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                             <tr>
+                                                <td title="django_admin_log.user_id references user.id_user via django_admin_log_user_id_c564eba6_fk_user_id_user"><a href='django_admin_log.html'>django_admin_log</a><span class='relatedKey'>.user_id</span></td>
+                                                <td class="constraint detail">django_admin_log_user_id_c564eba6_fk_user_id_user<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="django_rest_passwordreset_resetpasswordtoken.user_id references user.id_user via django_rest_password_user_id_e8015b11_fk_user_id_u"><a href='django_rest_passwordreset_resetpasswordtoken.html'>django_rest_passwordreset_resetpasswordtoken</a><span class='relatedKey'>.user_id</span></td>
+                                                <td class="constraint detail">django_rest_password_user_id_e8015b11_fk_user_id_u<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
                                                 <td title="labeled.id_labeler references user.id_user via labeled_id_labeler_fkey"><a href='labeled.html'>labeled</a><span class='relatedKey'>.id_labeler</span></td>
                                                 <td class="constraint detail">labeled_id_labeler_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="rest_framework_tracking_apirequestlog.user_id references user.id_user via rest_framework_track_user_id_671b70b7_fk_user_id_u"><a href='rest_framework_tracking_apirequestlog.html'>rest_framework_tracking_apirequestlog</a><span class='relatedKey'>.user_id</span></td>
+                                                <td class="constraint detail">rest_framework_track_user_id_671b70b7_fk_user_id_u<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                             <tr>
                                                 <td title="sampling.id_cataloger references user.id_user via sampling_id_cataloger_fkey"><a href='sampling.html'>sampling</a><span class='relatedKey'>.id_cataloger</span></td>
@@ -142,7 +145,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td><p>Id unico y autoincremental que identifica a cada usuario.</p></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td><span id="name">name</span></td>
@@ -159,10 +162,10 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td><p>Nombre del usuario.</p></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="email">email</span></td>
+                                    <td><span id="password">password</span></td>
                                     <td>varchar</td>
                                     <td>100</td>
                                     <td title='nullable'>√</td>
@@ -176,7 +179,143 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td><p>Correo del usuario.</p></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="email">email</span></td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="username">username</span></td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="last_login">last_login</span></td>
+                                    <td>date</td>
+                                    <td>13</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="is_admin">is_admin</span></td>
+                                    <td>bool</td>
+                                    <td>1</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="is_active">is_active</span></td>
+                                    <td>bool</td>
+                                    <td>1</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="is_staff">is_staff</span></td>
+                                    <td>bool</td>
+                                    <td>1</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="is_superuser">is_superuser</span></td>
+                                    <td>bool</td>
+                                    <td>1</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="roles">roles</span></td>
+                                    <td>varchar</td>
+                                    <td>50</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -233,87 +372,112 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="545,5,731,533">
-<area shape="rect" id="node2" href="user.html" target="_top" title="user" alt="" coords="5,211,233,368">
-<area shape="rect" id="node3" href="sampling.html" target="_top" title="sampling" alt="" coords="307,31,471,236">
-<area shape="rect" id="node4" href="labeled.html" target="_top" title="labeled" alt="" coords="277,289,501,671">
+<area shape="rect" id="node1" href="apiCRUD_historicalfunding.html" target="_top" title="apiCRUD_historicalfunding" alt="" coords="421,5,738,181">
+<area shape="rect" id="node2" href="user.html" target="_top" title="user" alt="" coords="5,513,284,905">
+<area shape="rect" id="node3" href="catalogue.html" target="_top" title="catalogue" alt="" coords="875,144,1073,760">
+<area shape="rect" id="node4" href="sampling.html" target="_top" title="sampling" alt="" coords="485,199,674,404">
+<area shape="rect" id="node5" href="django_admin_log.html" target="_top" title="django_admin_log" alt="" coords="457,457,701,633">
+<area shape="rect" id="node6" href="django_rest_passwordreset_resetpasswordtoken.html" target="_top" title="django_rest_passwordreset_resetpasswordtoken" alt="" coords="328,651,831,827">
+<area shape="rect" id="node7" href="labeled.html" target="_top" title="labeled" alt="" coords="467,844,691,1225">
+<area shape="rect" id="node8" href="rest_framework_tracking_apirequestlog.html" target="_top" title="rest_framework_tracking_apirequestlog" alt="" coords="366,1243,793,1536">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/user.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="512,629,697,1157">
-<area shape="rect" id="node2" href="case.html" target="_top" title="case" alt="" coords="307,1001,439,1089">
-<area shape="rect" id="node3" href="user.html" target="_top" title="user" alt="" coords="5,712,233,869">
-<area shape="rect" id="node4" href="country.html" target="_top" title="country" alt="" coords="296,228,449,316">
-<area shape="rect" id="node5" href="datum.html" target="_top" title="datum" alt="" coords="301,1423,444,1511">
-<area shape="rect" id="node6" href="department.html" target="_top" title="department" alt="" coords="279,333,466,421">
-<area shape="rect" id="node7" href="h_serial.html" target="_top" title="h_serial" alt="" coords="296,791,449,879">
-<area shape="rect" id="node8" href="habitat.html" target="_top" title="habitat" alt="" coords="298,1212,447,1300">
-<area shape="rect" id="node9" href="locality.html" target="_top" title="locality" alt="" coords="297,649,448,737">
-<area shape="rect" id="node10" href="memory.html" target="_top" title="memory" alt="" coords="294,1107,451,1195">
-<area shape="rect" id="node11" href="municipality.html" target="_top" title="municipality" alt="" coords="277,439,468,527">
-<area shape="rect" id="node12" href="precision.html" target="_top" title="precision" alt="" coords="290,1317,455,1405">
-<area shape="rect" id="node13" href="sampling.html" target="_top" title="sampling" alt="" coords="291,5,455,211">
-<area shape="rect" id="node14" href="supply.html" target="_top" title="supply" alt="" coords="301,896,445,984">
-<area shape="rect" id="node15" href="vereda.html" target="_top" title="vereda" alt="" coords="299,544,446,632">
-<area shape="rect" id="node27" href="project.html" target="_top" title="project" alt="" coords="45,15,193,103">
-<area shape="rect" id="node28" href="season.html" target="_top" title="season" alt="" coords="45,120,193,208">
-<area shape="rect" id="node16" href="catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="751,1237,958,1325">
-<area shape="rect" id="node17" href="labeled.html" target="_top" title="labeled" alt="" coords="1012,1415,1236,1796">
-<area shape="rect" id="node18" href="evidence.html" target="_top" title="evidence" alt="" coords="773,1132,937,1220">
-<area shape="rect" id="node19" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="741,1985,968,2073">
-<area shape="rect" id="node20" href="label.html" target="_top" title="label" alt="" coords="781,527,929,615">
-<area shape="rect" id="node21" href="measure.html" target="_top" title="measure" alt="" coords="774,1669,935,1757">
-<area shape="rect" id="node22" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="765,1775,944,1863">
-<area shape="rect" id="node23" href="record.html" target="_top" title="record" alt="" coords="781,632,929,720">
-<area shape="rect" id="node24" href="software.html" target="_top" title="software" alt="" coords="773,1564,936,1652">
-<area shape="rect" id="node25" href="time_detail.html" target="_top" title="time_detail" alt="" coords="764,1880,945,1968">
-<area shape="rect" id="node26" href="photo_path.html" target="_top" title="photo_path" alt="" coords="764,737,945,825">
-<area shape="rect" id="node29" href="voucher.html" target="_top" title="voucher" alt="" coords="777,843,933,931">
+<area shape="rect" id="node1" href="apiCRUD_historicalfunding.html" target="_top" title="apiCRUD_historicalfunding" alt="" coords="421,2384,738,2560">
+<area shape="rect" id="node2" href="user.html" target="_top" title="user" alt="" coords="5,1309,284,1701">
+<area shape="rect" id="node3" href="catalogue.html" target="_top" title="catalogue" alt="" coords="875,1248,1073,1864">
+<area shape="rect" id="node4" href="case.html" target="_top" title="case" alt="" coords="511,1716,647,1804">
+<area shape="rect" id="node5" href="country.html" target="_top" title="country" alt="" coords="501,228,657,316">
+<area shape="rect" id="node6" href="datum.html" target="_top" title="datum" alt="" coords="506,2137,653,2225">
+<area shape="rect" id="node7" href="department.html" target="_top" title="department" alt="" coords="483,333,675,421">
+<area shape="rect" id="node8" href="filter.html" target="_top" title="filter" alt="" coords="511,1053,647,1141">
+<area shape="rect" id="node9" href="gain.html" target="_top" title="gain" alt="" coords="511,948,647,1036">
+<area shape="rect" id="node10" href="h_serial.html" target="_top" title="h_serial" alt="" coords="485,1505,674,1593">
+<area shape="rect" id="node11" href="habitat.html" target="_top" title="habitat" alt="" coords="503,1927,655,2015">
+<area shape="rect" id="node12" href="locality.html" target="_top" title="locality" alt="" coords="503,843,655,931">
+<area shape="rect" id="node13" href="memory.html" target="_top" title="memory" alt="" coords="499,1821,659,1909">
+<area shape="rect" id="node14" href="microphone.html" target="_top" title="microphone" alt="" coords="483,2243,675,2331">
+<area shape="rect" id="node15" href="municipality.html" target="_top" title="municipality" alt="" coords="481,439,677,527">
+<area shape="rect" id="node16" href="precision.html" target="_top" title="precision" alt="" coords="495,2032,663,2120">
+<area shape="rect" id="node17" href="sampling.html" target="_top" title="sampling" alt="" coords="485,5,674,211">
+<area shape="rect" id="node18" href="supply.html" target="_top" title="supply" alt="" coords="505,1611,653,1699">
+<area shape="rect" id="node19" href="vereda.html" target="_top" title="vereda" alt="" coords="505,737,654,825">
+<area shape="rect" id="node35" href="project.html" target="_top" title="project" alt="" coords="50,15,239,103">
+<area shape="rect" id="node36" href="season.html" target="_top" title="season" alt="" coords="69,120,220,208">
+<area shape="rect" id="node20" href="catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="1128,1939,1340,2027">
+<area shape="rect" id="node21" href="django_admin_log.html" target="_top" title="django_admin_log" alt="" coords="457,2577,701,2753">
+<area shape="rect" id="node22" href="django_content_type.html" target="_top" title="django_content_type" alt="" coords="11,2609,279,2697">
+<area shape="rect" id="node23" href="django_rest_passwordreset_resetpasswordtoken.html" target="_top" title="django_rest_passwordreset_resetpasswordtoken" alt="" coords="328,544,831,720">
+<area shape="rect" id="node24" href="labeled.html" target="_top" title="labeled" alt="" coords="1395,2235,1619,2616">
+<area shape="rect" id="node25" href="evidence.html" target="_top" title="evidence" alt="" coords="1150,1833,1318,1921">
+<area shape="rect" id="node26" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="1117,2805,1351,2893">
+<area shape="rect" id="node27" href="label.html" target="_top" title="label" alt="" coords="1139,1145,1329,1233">
+<area shape="rect" id="node28" href="measure.html" target="_top" title="measure" alt="" coords="1152,2489,1316,2577">
+<area shape="rect" id="node29" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="1142,2595,1326,2683">
+<area shape="rect" id="node30" href="record.html" target="_top" title="record" alt="" coords="1129,1251,1339,1339">
+<area shape="rect" id="node31" href="software.html" target="_top" title="software" alt="" coords="1151,2384,1317,2472">
+<area shape="rect" id="node32" href="time_detail.html" target="_top" title="time_detail" alt="" coords="1141,2700,1327,2788">
+<area shape="rect" id="node33" href="photo_path.html" target="_top" title="photo_path" alt="" coords="1140,1356,1328,1444">
+<area shape="rect" id="node34" href="rest_framework_tracking_apirequestlog.html" target="_top" title="rest_framework_tracking_apirequestlog" alt="" coords="366,1195,793,1488">
+<area shape="rect" id="node37" href="voucher.html" target="_top" title="voucher" alt="" coords="1149,1461,1319,1549">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/user.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagramImplied" name="oneDegreeRelationshipsDiagramImplied">
-<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="545,5,731,533">
-<area shape="rect" id="node2" href="user.html" target="_top" title="user" alt="" coords="5,211,233,368">
-<area shape="rect" id="node3" href="sampling.html" target="_top" title="sampling" alt="" coords="307,31,471,236">
-<area shape="rect" id="node4" href="labeled.html" target="_top" title="labeled" alt="" coords="277,289,501,671">
+<area shape="rect" id="node1" href="apiCRUD_historicalfunding.html" target="_top" title="apiCRUD_historicalfunding" alt="" coords="421,5,738,181">
+<area shape="rect" id="node2" href="user.html" target="_top" title="user" alt="" coords="5,513,284,905">
+<area shape="rect" id="node3" href="catalogue.html" target="_top" title="catalogue" alt="" coords="875,144,1073,760">
+<area shape="rect" id="node4" href="sampling.html" target="_top" title="sampling" alt="" coords="485,199,674,404">
+<area shape="rect" id="node5" href="django_admin_log.html" target="_top" title="django_admin_log" alt="" coords="457,457,701,633">
+<area shape="rect" id="node6" href="django_rest_passwordreset_resetpasswordtoken.html" target="_top" title="django_rest_passwordreset_resetpasswordtoken" alt="" coords="328,651,831,827">
+<area shape="rect" id="node7" href="labeled.html" target="_top" title="labeled" alt="" coords="467,844,691,1225">
+<area shape="rect" id="node8" href="rest_framework_tracking_apirequestlog.html" target="_top" title="rest_framework_tracking_apirequestlog" alt="" coords="366,1243,793,1536">
 </map>
                                         <a name='diagram'><img id="oneimpliedDegreeImg" src="../diagrams/tables/user.implied1degrees.png" usemap="#oneDegreeRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagramImplied" name="twoDegreesRelationshipsDiagramImplied">
-<area shape="rect" id="node1" href="catalogue.html" target="_top" title="catalogue" alt="" coords="512,668,697,1196">
-<area shape="rect" id="node2" href="case.html" target="_top" title="case" alt="" coords="307,1001,439,1089">
-<area shape="rect" id="node3" href="user.html" target="_top" title="user" alt="" coords="5,712,233,869">
-<area shape="rect" id="node4" href="country.html" target="_top" title="country" alt="" coords="296,228,449,316">
-<area shape="rect" id="node5" href="datum.html" target="_top" title="datum" alt="" coords="301,1423,444,1511">
-<area shape="rect" id="node6" href="department.html" target="_top" title="department" alt="" coords="279,333,466,421">
-<area shape="rect" id="node7" href="h_serial.html" target="_top" title="h_serial" alt="" coords="296,791,449,879">
-<area shape="rect" id="node8" href="habitat.html" target="_top" title="habitat" alt="" coords="298,1212,447,1300">
-<area shape="rect" id="node9" href="locality.html" target="_top" title="locality" alt="" coords="297,649,448,737">
-<area shape="rect" id="node10" href="memory.html" target="_top" title="memory" alt="" coords="294,1107,451,1195">
-<area shape="rect" id="node11" href="municipality.html" target="_top" title="municipality" alt="" coords="277,439,468,527">
-<area shape="rect" id="node12" href="precision.html" target="_top" title="precision" alt="" coords="290,1317,455,1405">
-<area shape="rect" id="node13" href="sampling.html" target="_top" title="sampling" alt="" coords="291,5,455,211">
-<area shape="rect" id="node14" href="supply.html" target="_top" title="supply" alt="" coords="301,896,445,984">
-<area shape="rect" id="node15" href="vereda.html" target="_top" title="vereda" alt="" coords="299,544,446,632">
-<area shape="rect" id="node27" href="project.html" target="_top" title="project" alt="" coords="45,15,193,103">
-<area shape="rect" id="node28" href="season.html" target="_top" title="season" alt="" coords="45,120,193,208">
-<area shape="rect" id="node16" href="catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="751,1197,958,1285">
-<area shape="rect" id="node17" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="741,987,968,1075">
-<area shape="rect" id="node18" href="labeled.html" target="_top" title="labeled" alt="" coords="1012,984,1236,1365">
-<area shape="rect" id="node19" href="evidence.html" target="_top" title="evidence" alt="" coords="773,1092,937,1180">
-<area shape="rect" id="node20" href="label.html" target="_top" title="label" alt="" coords="781,565,929,653">
-<area shape="rect" id="node21" href="measure.html" target="_top" title="measure" alt="" coords="774,1509,935,1597">
-<area shape="rect" id="node22" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="765,1615,944,1703">
-<area shape="rect" id="node23" href="record.html" target="_top" title="record" alt="" coords="781,671,929,759">
-<area shape="rect" id="node24" href="software.html" target="_top" title="software" alt="" coords="773,1404,936,1492">
-<area shape="rect" id="node25" href="time_detail.html" target="_top" title="time_detail" alt="" coords="764,460,945,548">
-<area shape="rect" id="node26" href="photo_path.html" target="_top" title="photo_path" alt="" coords="764,776,945,864">
-<area shape="rect" id="node29" href="voucher.html" target="_top" title="voucher" alt="" coords="777,881,933,969">
+<area shape="rect" id="node1" href="apiCRUD_frequencydetail.html" target="_top" title="apiCRUD_frequencydetail" alt="" coords="1663,1604,1969,1692">
+<area shape="rect" id="node2" href="labeled.html" target="_top" title="labeled" alt="" coords="1395,1601,1619,1983">
+<area shape="rect" id="node4" href="user.html" target="_top" title="user" alt="" coords="5,1309,284,1701">
+<area shape="rect" id="node26" href="frequency_detail.html" target="_top" title="frequency_detail" alt="" coords="1117,1604,1351,1692">
+<area shape="rect" id="node27" href="evidence.html" target="_top" title="evidence" alt="" coords="1150,1709,1318,1797">
+<area shape="rect" id="node28" href="label.html" target="_top" title="label" alt="" coords="1139,1183,1329,1271">
+<area shape="rect" id="node29" href="measure.html" target="_top" title="measure" alt="" coords="1152,2275,1316,2363">
+<area shape="rect" id="node30" href="pulse_type.html" target="_top" title="pulse_type" alt="" coords="1142,2380,1326,2468">
+<area shape="rect" id="node31" href="record.html" target="_top" title="record" alt="" coords="1129,1288,1339,1376">
+<area shape="rect" id="node32" href="software.html" target="_top" title="software" alt="" coords="1151,2169,1317,2257">
+<area shape="rect" id="node33" href="time_detail.html" target="_top" title="time_detail" alt="" coords="1141,1077,1327,1165">
+<area shape="rect" id="node3" href="apiCRUD_historicalfunding.html" target="_top" title="apiCRUD_historicalfunding" alt="" coords="421,2384,738,2560">
+<area shape="rect" id="node5" href="catalogue.html" target="_top" title="catalogue" alt="" coords="875,1285,1073,1901">
+<area shape="rect" id="node6" href="case.html" target="_top" title="case" alt="" coords="511,1716,647,1804">
+<area shape="rect" id="node7" href="country.html" target="_top" title="country" alt="" coords="501,228,657,316">
+<area shape="rect" id="node8" href="datum.html" target="_top" title="datum" alt="" coords="506,2137,653,2225">
+<area shape="rect" id="node9" href="department.html" target="_top" title="department" alt="" coords="483,333,675,421">
+<area shape="rect" id="node10" href="filter.html" target="_top" title="filter" alt="" coords="511,1053,647,1141">
+<area shape="rect" id="node11" href="gain.html" target="_top" title="gain" alt="" coords="511,948,647,1036">
+<area shape="rect" id="node12" href="h_serial.html" target="_top" title="h_serial" alt="" coords="485,1505,674,1593">
+<area shape="rect" id="node13" href="habitat.html" target="_top" title="habitat" alt="" coords="503,1927,655,2015">
+<area shape="rect" id="node14" href="locality.html" target="_top" title="locality" alt="" coords="503,843,655,931">
+<area shape="rect" id="node15" href="memory.html" target="_top" title="memory" alt="" coords="499,1821,659,1909">
+<area shape="rect" id="node16" href="microphone.html" target="_top" title="microphone" alt="" coords="483,2243,675,2331">
+<area shape="rect" id="node17" href="municipality.html" target="_top" title="municipality" alt="" coords="481,439,677,527">
+<area shape="rect" id="node18" href="precision.html" target="_top" title="precision" alt="" coords="495,2032,663,2120">
+<area shape="rect" id="node19" href="sampling.html" target="_top" title="sampling" alt="" coords="485,5,674,211">
+<area shape="rect" id="node20" href="supply.html" target="_top" title="supply" alt="" coords="505,1611,653,1699">
+<area shape="rect" id="node21" href="vereda.html" target="_top" title="vereda" alt="" coords="505,737,654,825">
+<area shape="rect" id="node36" href="project.html" target="_top" title="project" alt="" coords="50,15,239,103">
+<area shape="rect" id="node37" href="season.html" target="_top" title="season" alt="" coords="69,120,220,208">
+<area shape="rect" id="node22" href="catalogue_obs.html" target="_top" title="catalogue_obs" alt="" coords="1128,1815,1340,1903">
+<area shape="rect" id="node23" href="django_admin_log.html" target="_top" title="django_admin_log" alt="" coords="457,2577,701,2753">
+<area shape="rect" id="node24" href="django_content_type.html" target="_top" title="django_content_type" alt="" coords="11,2609,279,2697">
+<area shape="rect" id="node25" href="django_rest_passwordreset_resetpasswordtoken.html" target="_top" title="django_rest_passwordreset_resetpasswordtoken" alt="" coords="328,544,831,720">
+<area shape="rect" id="node34" href="photo_path.html" target="_top" title="photo_path" alt="" coords="1140,1393,1328,1481">
+<area shape="rect" id="node35" href="rest_framework_tracking_apirequestlog.html" target="_top" title="rest_framework_tracking_apirequestlog" alt="" coords="366,1195,793,1488">
+<area shape="rect" id="node38" href="voucher.html" target="_top" title="voucher" alt="" coords="1149,1499,1319,1587">
 </map>
                                         <a name='diagram'><img id="twoimpliedDegreeImg" src="../diagrams/tables/user.implied2degrees.png" usemap="#twoDegreesRelationshipsDiagramImplied" class="diagram" border="0" align="left"></a>
                                     </div>

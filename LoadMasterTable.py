@@ -38,7 +38,7 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
 def LoadMasterTables(info_path, mapping, engine):
     
     sheets = pd.ExcelFile(info_path, engine = 'openpyxl').sheet_names
-    
+
     for sheet in sheets:
         if sheet == "funding":
             print("-")
@@ -54,8 +54,6 @@ def LoadMasterTables(info_path, mapping, engine):
     
     LoadHSerial()
 
-
-#LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables_v1.xlsx',  # stable
 LoadMasterTables(info_path = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/MasterTables_v1.xlsx',
                  mapping = Base.classes,
                  engine = engine)

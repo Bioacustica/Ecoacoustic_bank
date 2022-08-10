@@ -1,7 +1,8 @@
 #!/usr/local/bin/python3
+#TODO FAlta terminarlo
 
 import argparse
-from LoadData import LoadData
+
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 
