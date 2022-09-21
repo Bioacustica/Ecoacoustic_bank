@@ -1,0 +1,1 @@
+cv2.rectangle(img, (xi,yi), (xf,yf), (0, 0, 255), thickness=2)
