@@ -41,3 +41,14 @@ services:
     env_file: Django.env
     depends_on:
       - postgres
+  frontend:
+    build:
+      context: .
+      dockerfile: Node.Dockerfile
+    volumes:
+      - .:/bioacustica
+    ports:
+      - 3000:3000
+    image: app:react
+    container_name: front_container
+    command: npm start

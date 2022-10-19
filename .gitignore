@@ -26,3 +26,4 @@ sample_audios.zip
 __pycache__
 source/__pycache__
 source/.ipynb_checkpoints/
+.pyc
