@@ -10,14 +10,14 @@ RUN pip install -r djangorequirements.txt
 ADD LoadMasterTable.py /
 RUN chmod +x /LoadMasterTable.py
 COPY mapping.py /
-COPY MasterTablesBuenas.xlsx /
-COPY second_tables.xlsx /
-COPY relaciones_data.xlsx /
+COPY MasterTables_v1.xlsx /
+#COPY second_tables.xlsx /
+#COPY relaciones_data.xlsx /
 RUN apt-get update  && \
     apt-get install -y make
 
-ENTRYPOINT  python /LoadMasterTable.py && \
-            python manage.py makemigrations && \
+#ENTRYPOINT  python /LoadMasterTable.py && \
+ENTRYPOINT  python manage.py makemigrations && \
             python manage.py migrate  && \
             python manage.py collectstatic --noinput && \
             python manage.py shell < initAdmin.py && \

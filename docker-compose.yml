@@ -1,15 +1,5 @@
 version: '3'
 services:
-  develop:
-    build:
-      context: .
-      dockerfile: JupyterAlpine.Dockerfile
-    container_name: develop
-    volumes:
-      - './source:/data'
-    ports:
-      - '8900:8888'
-    restart: on-failure
   postgres:
     image: postgres
     command:
@@ -25,7 +15,7 @@ services:
     ports:
       - '5010:5432'
     volumes:
-      - './postgres-data10:/var/lib/postgresql/data'
+      - './postgres-data:/var/lib/postgresql/data'
       - './source/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql'
   pgadmin:
     image: dpage/pgadmin4
