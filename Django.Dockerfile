@@ -16,8 +16,8 @@ COPY MasterTables_v1.xlsx /
 RUN apt-get update  && \
     apt-get install -y make
 
-#ENTRYPOINT  python /LoadMasterTable.py && \
-ENTRYPOINT  python manage.py makemigrations && \
+ENTRYPOINT  python /LoadMasterTable.py && \
+            python manage.py makemigrations && \
             python manage.py migrate  && \
             python manage.py collectstatic --noinput && \
             python manage.py shell < initAdmin.py && \
