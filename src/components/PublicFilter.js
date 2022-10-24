@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import { Component } from "react";
-import { formList } from "../services";
+import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
+import { formList,fetch_audios} from "../services";
 import PublicTable from "./PublicTable";
+
 
 require("typeface-poppins");
 require("typeface-rubik");
@@ -15,9 +17,9 @@ class PublicFilter extends Component
   state = {
     metodo_etiquetado: [],
     tipo_grabadora: [],
-    ciudades: [], //Deshabilitada
+    ciudades: [], 
     eventos: [],
-    habitats: [], //Deshabilitada
+    habitats: [],
     municipios: [],
     software: [],
     tipo_case: [],
@@ -25,12 +27,21 @@ class PublicFilter extends Component
 
   };
 
-
+  valueToState = ({name,value})=>{
+      this.setState((state) =>{
+        return{[name]:value};
+      })
+      console.log(name,value);
+     
+  }
+  
+ 
+  
   componentDidMount= async () => {
 
     const response = await formList();
-    console.log(response);
-
+    //console.log(response);
+    
     this.setState({
       eventos: response.data.evento,
       habitats: response.data.habitat,
@@ -40,10 +51,12 @@ class PublicFilter extends Component
       tipo_microfono:response.data.tipo_de_micro,
       metodo_etiquetado:response.data.Metodo_etiquetado,
       software:response.data.software_etiquetado,
-      municipio:response.data.municipio,
+      municipios:response.data.municipio,
       
     });
   };
+  
+
   render() {
     return (
       <div>
@@ -53,9 +66,8 @@ class PublicFilter extends Component
             <label className="block text-center w-54.25 mr-41.5">
               <span className="text-blue-850 content-center">Ciudades</span>
               <select
-              name="ciudad"
-              onChange={event=>this.valueToState(event.target)}
-                disabled
+                name="ciudad"
+                onChange={event=>this.valueToState(event.target)}
                 className="block w-full border border-blue-850 rounded-md bg-white  shadow-lg focus:border-indigo-200 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75"
               >
                 <option value={null}>seleccionar</option>
@@ -71,7 +83,10 @@ class PublicFilter extends Component
 
             <label className="block text-center w-54.25 mr-41.5">
               <span className="text-blue-850 content-center">Hábitat</span>
-              <select className="block  border border-blue-850 w-full mt-1 rounded-md bg-white  shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50mt-1 h-7.75">
+              <select
+                name="habitat"
+                onChange={event=>this.valueToState(event.target)}
+               className="block  border border-blue-850 w-full mt-1 rounded-md bg-white  shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
                 {this.state.habitats.map((elemento) =>
                   elemento.map((event) => (
@@ -86,7 +101,9 @@ class PublicFilter extends Component
             <label className="block text-center w-54.25 mr-41.5">
               <span className="text-blue-850 content-center">Municipio</span>
               <select
-                disabled
+                
+                name="municipio"
+                onChange={event=>this.valueToState(event.target)}
                 className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75 mt-1"
               >
                 <option value={null}>seleccionar</option>
@@ -102,7 +119,10 @@ class PublicFilter extends Component
 
             <label className="block text-center w-54.25 ">
               <span className="text-blue-850 content-center">Evento</span>
-              <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
+              <select 
+                name="evento"
+                onChange={event=>this.valueToState(event.target)}
+                className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
                 {this.state.eventos.map((elemento) =>
                   elemento.map((event2) => (
@@ -120,7 +140,10 @@ class PublicFilter extends Component
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-41.5">
               <span className="text-blue-850 content-center">Tipo de carcasa</span>
-              <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
+              <select 
+              name="tipo de case"
+              onChange={event=>this.valueToState(event.target)}
+              className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
                 {this.state.tipo_case.map((elemento) =>
                   elemento.map((event) => (
@@ -136,7 +159,10 @@ class PublicFilter extends Component
               <span className="text-blue-850 content-center">
                 Tipo de micrófono
               </span>
-              <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
+              <select 
+              name="tipo de micro"
+              onChange={event=>this.valueToState(event.target)}
+              className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
                 {this.state.tipo_microfono.map((elemento) =>
                   elemento.map((event) => (
@@ -152,7 +178,10 @@ class PublicFilter extends Component
               <span className="text-blue-850 content-center">
                 Método de etiquetado
               </span>
-              <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75 mt-1">
+              <select 
+              name="metodo etiquetado"
+              onChange={event=>this.valueToState(event.target)}
+              className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75 mt-1">
                 <option value={null}>seleccionar</option>
                 {this.state.metodo_etiquetado.map((elemento) =>
                   elemento.map((event) => (
@@ -168,7 +197,10 @@ class PublicFilter extends Component
               <span className="text-blue-850 content-center">
                 Software de etiquetado
               </span>
-              <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
+              <select 
+              name="software"
+              onChange={event=>this.valueToState(event.target)}
+              className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
                 {this.state.software.map((elemento) =>
                   elemento.map((event) => (
@@ -188,7 +220,10 @@ class PublicFilter extends Component
               <span className="text-blue-850 content-center">
                 Tipo de grabadora
               </span>
-              <select className="block w-full mt-1 rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75">
+              <select 
+              name="tipo de grabadora"
+              onChange={event=>this.valueToState(event.target)}
+              className="block w-full mt-1 rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75">
                 <option value={null}>seleccionar</option>
                 {this.state.tipo_grabadora.map((elemento) =>
                   elemento.map((event) => (
@@ -238,8 +273,12 @@ class PublicFilter extends Component
             </label>
 
             <label className="block text-center w-54.25">
+
               <br />
-              <button className="block  font-semibold font-poppins text-white bg-green-550 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
+              <button onClick={fetch_audios} 
+                
+                className="block  font-semibold font-poppins text-white bg-green-550 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
+                
                 Buscar
               </button>
             </label>

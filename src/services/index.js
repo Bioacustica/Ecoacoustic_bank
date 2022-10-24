@@ -1,6 +1,6 @@
 
 import { ContactService } from "./contact/Contacto_Service";
-import { optionsList } from "./filters/Filters_Services";
+import { optionsList,get} from "./filters/Filters_Services";
 import { LoginService } from './login/Login_Service';
 
 
@@ -57,4 +57,28 @@ export async function formList(){
     return {status:false,data:null}
     }
     
+}
+
+export async function fetch_audios(){
+    
+    try{
+        const {data}= await get ("public-records/",{data:{
+        
+        "catalogo":"AFGANISTAN",
+        "habitat":"",
+        "municipio":"",
+        "evento":"",
+        "tipo de case":"",
+        "tipo de micro":"",
+        "metodo etiquetado":"",
+        "software":"",
+        "tipo de grabadora":""
+        }})
+
+        return{status:true,data}
+    } catch (error){
+        alert("Algo salio mal")
+        return {status:false,data:null}
+         }
+
 }
