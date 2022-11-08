@@ -206,7 +206,7 @@ class FundingsView(LoggingMixin, viewsets.ModelViewSet):
     """
 
     queryset = Funding.objects.all()
-    permission_classes = (IsAdmin,)
+    # permission_classes = (IsAdmin,)
     serializer_class = FundingSerializer
 
 
@@ -223,7 +223,6 @@ def filtered_record_view(request):
     el cual solo se genera en el login.
 
     :param request: peticion de tipo Get
-
     :return: retorna un json
     """
     catalogo = request.data["catalogo"].upper()
@@ -241,7 +240,7 @@ def filtered_record_view(request):
 
     token = request.META.get("HTTP_AUTHORIZATION", "access")
     paginator = PageNumberPagination()
-    paginator.page_size = 2
+    paginator.page_size = 10
     context = paginator.paginate_queryset(
         consulta_filtros(
             token,
@@ -260,10 +259,10 @@ def filtered_record_view(request):
     return paginator.get_paginated_response(context)
 
 
-@decorators.api_view(["GET"])
+@decorators.api_view(["POST"])
 def public_record_view(request):
     """
-    Vista encargada de retornar los audios a los que tiene acceso
+    vista encargada de retornar los audios a los que tiene acceso
     el público general
     """
     catalogo = request.data["catalogo"].upper()
@@ -302,9 +301,7 @@ def lista_filtros(request):
     """
     Vista encargada de entregar la listas de los datos existentes
     para posteriormente hacer un filtrado mas efectivo con datos existentes
-
     :param request: Petición de tipo GET
-
     :return: retornar un diccionario con la lista de opciones por las cual
     se puede filtrar
     """
@@ -346,7 +343,6 @@ def downolad_record_views_csv(request):
     el cual solo se genera en el login.
 
     :param request: Petición de tipo GET
-
     :return: Información de los audios
     """
 
@@ -375,17 +371,24 @@ def downolad_record_views_csv(request):
 @decorators.api_view(["GET"])
 def download_records_files(request):
     """Vista encargada de extraer los paths de records
-    y generar un comprimido con los audios seleccionados
+    y generar los base 64
+    de forma adcional se crea un diccionario
+
 
     :param request: Petición de tipo GET
-
-    :return: un archivo zip con los audios comprimidos
+    :return: retorna un diccionario con el base 64, su nombre y su tipo de compresión
     """
-    audios = list(request.data["audios"])
     filenames = [
 
     ]
+    files = os.listdir('/code/apiCRUD/sample_audios/')
 
+    c = 0
+    for file in files:
+        c += 1
+        filenames.append(f"/code/apiCRUD/sample_audios/{file}")
+        if c == 100:
+            break
 
 
     # #metodo1
@@ -417,7 +420,7 @@ def download_records_files(request):
     s = io.BytesIO()
     compression = zipfile.ZIP_STORED
     zf = zipfile.ZipFile(s, "w", compression, allowZip64=True, compresslevel=8)
-    for fpath in audios:
+    for fpath in filenames:
         fdir, fname = os.path.split(fpath)
         zip_path = os.path.join(zip_subdir, fname)
         zf.write(fpath, zip_path)
@@ -881,9 +884,7 @@ def user_delete_view(request, id_user):
     usuarios, recibe como parametro su
     id_user, tambien borra el rol del
     pgadmin
-
     :param id_user: recibe el id_user
-
     :type id_user: string
     """
 
@@ -1010,7 +1011,7 @@ def contactanos_view(request):
                 asunto,
                 "Este es mi correo electronico:" + "\n" + email + "\n" + message,
                 email,
-                ["animalesitm@gmail.com"],
+                ["animalesitm@gmail.com","piedrahita2001@gmail.com"],
             )  # se pueden agregar mas emails.
             return Response("Enviado con exito")
         return Response("ALGO salio mal ", status=status.HTTP_400_BAD_REQUEST)

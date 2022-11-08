@@ -1,6 +1,6 @@
 import React, {useState, useEffect}  from "react";
 import MoreInformationModal from "./MoreInformationModal";
-
+import PublicFilter from "./PublicFilter";
 
 
 require("typeface-poppins");
@@ -16,7 +16,7 @@ function PublicTable() {
   const closeModal=()=>setShowModal(false)
 
 
-  const [list, setList] = useState([]);
+  
   
   
 
@@ -29,7 +29,7 @@ function PublicTable() {
           <thead>
             <tr className="">
               <td className="border-2 font-rubik border-blue-850  text-base h-12.75 px-4 text-center">
-                {list}
+                id
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-12.75 px-4 text-center">
                 Nombre
@@ -44,7 +44,7 @@ function PublicTable() {
                 Departamento
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-12.75 px-4 text-center">
-                    Municipio
+                Municipio
               </td>
               <td className="border-2 font-rubik border-blue-850 text-base h-12.75 px-4 text-center">
                 Ciudad
@@ -77,10 +77,11 @@ function PublicTable() {
           </thead>
 
           <tbody>
-            {list.map((list) => (
+            {((list) => (
               <tr className="">
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  {list}
+                  
+                  {console.log()}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
                   {list}

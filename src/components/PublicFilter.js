@@ -13,7 +13,7 @@ class PublicFilter extends Component
     email: "",
     password: "",
   });*/
-
+  
   state = {
     metodo_etiquetado: [],
     tipo_grabadora: [],
@@ -24,14 +24,25 @@ class PublicFilter extends Component
     software: [],
     tipo_case: [],
     tipo_microfono: [],
-
+    filters:{
+      "catalogo":"",
+      "habitat":"",
+      "municipio":"",
+      "evento":"",
+      "tipo de case":"",
+      "tipo de micro":"",
+      "metodo etiquetado":"",
+      "software":"",
+      "tipo de grabadora":""
+      },
+    List_Audio:{}
   };
 
   valueToState = ({name,value})=>{
       this.setState((state) =>{
-        return{[name]:value};
+        return{...state,filters:{...state.filters,[name]:value}};
       })
-      console.log(name,value);
+      //console.log(name,value);
      
   }
   
@@ -56,7 +67,16 @@ class PublicFilter extends Component
     });
   };
   
-
+  publicAudio= async ()=> {
+    
+    const List_Audio = await fetch_audios(this.state.filters)
+    
+    this.setState((state)=>{
+      
+      return{...state,List_Audio}
+      
+   }) 
+  }
   render() {
     return (
       <div>
@@ -70,7 +90,7 @@ class PublicFilter extends Component
                 onChange={event=>this.valueToState(event.target)}
                 className="block w-full border border-blue-850 rounded-md bg-white  shadow-lg focus:border-indigo-200 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75"
               >
-                <option value={null}>seleccionar</option>
+                <option value="">seleccionar</option>
                 {this.state.ciudades.map((elemento) =>
                   elemento.map((event) => (
                     <option key={event} value={event}>
@@ -87,7 +107,7 @@ class PublicFilter extends Component
                 name="habitat"
                 onChange={event=>this.valueToState(event.target)}
                className="block  border border-blue-850 w-full mt-1 rounded-md bg-white  shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50mt-1 h-7.75">
-                <option value={null}>seleccionar</option>
+                <option value="">seleccionar</option>
                 {this.state.habitats.map((elemento) =>
                   elemento.map((event) => (
                     <option key={event} value={event}>
@@ -275,7 +295,8 @@ class PublicFilter extends Component
             <label className="block text-center w-54.25">
 
               <br />
-              <button onClick={fetch_audios} 
+              
+              <button onClick={this.publicAudio} 
                 
                 className="block  font-semibold font-poppins text-white bg-green-550 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
                 

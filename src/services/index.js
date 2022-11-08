@@ -1,9 +1,9 @@
 
 import { ContactService } from "./contact/Contacto_Service";
-import { optionsList,get} from "./filters/Filters_Services";
+import { optionsList,get, post} from "./filters/Filters_Services";
 import { LoginService } from './login/Login_Service';
 
-
+import axios from "axios";
 const FormData = require('form-data');
 const fs = require('fs');
 
@@ -59,26 +59,27 @@ export async function formList(){
     
 }
 
-export async function fetch_audios(){
-    
+export async function fetch_audios(Items){
+    console.log(Items)
     try{
-        const {data}= await get ("public-records/",{data:{
-        
-        "catalogo":"AFGANISTAN",
-        "habitat":"",
-        "municipio":"",
-        "evento":"",
-        "tipo de case":"",
-        "tipo de micro":"",
-        "metodo etiquetado":"",
-        "software":"",
-        "tipo de grabadora":""
-        }})
-
-        return{status:true,data}
+        const options = {
+            method: 'POST',
+            url: 'http://localhost:8000/public-records/',
+            headers: {'Content-Type': 'application/json'},
+            data: {
+             ...Items
+            }
+          };
+          
+          const {data} = await axios.request(options)
+          
+          return data 
+      
     } catch (error){
         alert("Algo salio mal")
         return {status:false,data:null}
          }
 
 }
+
+
