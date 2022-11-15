@@ -41,7 +41,7 @@ def LoadData(file, session):
     session.close()
 
 
-LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/nuevaPrueba/Ultrasonido_Dany_Urrego.xls',
+LoadData(file = './Test_ETL/Ultrasonido_Dany_Urrego.xls',
         session = session) 
 
 #LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/Tesis_Cano_20211026.xls',
@@ -67,3 +67,10 @@ LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/nuevaPrueba/Ultraso
 
 # el project no se crea como tabla maestra, se crea con loadData ya que este depende  de id_funding
 # verificar si el record fue creado ahora solo se hace a nivel de record_path
+# Se estan generando varios proyect_ID en NO SE CONOCE
+
+# Antes de cargar datos se debe:
+# - Cargar las tablas maestras
+# - Generar los usuarios 
+#   (si sale este  ERROR: collector_email_PR - 2 ->  dany.urrego@udea.edu.co
+#    posiblemente es por que no se a generado el usuario)
