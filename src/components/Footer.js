@@ -11,18 +11,14 @@ class Footer extends Component {
     render() {
       return (
         <div className=" flex bg-white w-341.5   h-25 mb-4">
-        <div className="h-15 ml-3.75 bg-gray-600 mr-10.5 w-23.75 ">
-            <h1>Logo Principal</h1>
-        </div>
+        
         <div className="h-10.5 justify-center mr-10.5 w-23.75">
             <img src={itm} alt=""/>
         </div>
         <div className="h-10.5 mr-10.5 w-42 justify-center ">
             <img src={udea} alt=""/>
         </div>
-        <div className="h-10.5 mr-10.5 w-10.5 justify-center ">
-        <img src={humboldt} alt=""/>
-        </div>
+        
         <div className="h-12 mr-10.5 w-38.75 w-27.5 justify-center">
         <img src={sistemic} alt=""/>
         </div>
