@@ -1,6 +1,13 @@
 import React, { useState } from "react"
+import AddFile from "../components/Addfile";
 
 function AdministratorNavbar() {
+
+  const [showFile, setShowFile] = useState(false)
+  const openFile=()=>setShowFile(true)
+
+  const closeFile=()=>setShowFile(false)
+
   return (
     <div className="">
       <nav className="bg-green-450 flex  h-11 w-341.5 justify-center items-center">
@@ -19,7 +26,12 @@ function AdministratorNavbar() {
           hover:text-whithe border-b-2 border-green-450
           hover:border-b-2 hover:border-white"
         >
-          SUBIR AUDIOS
+          
+          <button onClick={openFile}>
+            
+           SUBIR AUDIOS
+         </button>
+            
         </a>
         <a
           href="/admin-label-filter"
@@ -55,6 +67,7 @@ function AdministratorNavbar() {
         </a>
         
       </nav>
+      {showFile && <AddFile className="z-50" close={closeFile}/>}
 
 
     </div>
