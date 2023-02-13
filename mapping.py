@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 
 
-engine = create_engine('postgresql://animalesitm:animalesitm@172.19.0.2:5432/animalesitm', connect_args={'connect_timeout': 100})
+engine = create_engine('postgresql://animalesitm:animalesitm@172.18.0.2:5432/animalesitm', connect_args={'connect_timeout': 100})
 
 m = MetaData(schema = 'bioacustica')
 Base = automap_base(bind = engine, metadata = m)

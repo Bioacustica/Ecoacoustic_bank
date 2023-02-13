@@ -54,7 +54,7 @@ def LoadMasterTables(info_path, mapping, engine):
     
     LoadHSerial()
 
-#LoadMasterTables(info_path = './Test_ETL/MasterTables_v1.xlsx',
-#                 mapping = Base.classes,
-#                 engine = engine)
+LoadMasterTables(info_path = './Test_ETL/MasterTables_v1.xlsx',
+                 mapping = Base.classes,
+                 engine = engine)
 

@@ -26,11 +26,7 @@ def IsNewRecord(fingerprint):
 
 def GetFingerprint(file):
     try:
-        hashmd5 = hashlib.md5()
-        with open(file, "rb") as f:
-            for bloque in iter(lambda: f.read(4096), b""):
-                hashmd5.update(bloque)
-        return hashmd5.hexdigest()
+        return hashlib.md5(file.read()).hexdigest() 
     except Exception as e:
         print("Error: %s" % (e))
         return ""

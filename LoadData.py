@@ -41,8 +41,8 @@ def LoadData(file, session):
     session.close()
 
 
-LoadData(file = './Test_ETL/Ultrasonido_Dany_Urrego.xls',
-        session = session) 
+#LoadData(file = './Test_ETL/Ultrasonido_Dany_Urrego.xls',
+#        session = session) 
 
 #LoadData(file = '/home/andres/Proyectos/Software/Bioacustico/bioacustica/Tesis_Cano_20211026.xls',
 #        session = session) 
