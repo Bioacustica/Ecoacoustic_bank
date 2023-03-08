@@ -1,26 +1,17 @@
-import React, {useState, useEffect}  from "react";
+import React, { useState, useEffect } from "react";
 import MoreInformationModal from "./MoreInformationModal";
 import PublicFilter from "./PublicFilter";
-
 
 require("typeface-poppins");
 require("typeface-rubik");
 
 function PublicTable() {
-
   const columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
-  const openModal=()=>setShowModal(true)
+  const openModal = () => setShowModal(true);
 
-  const closeModal=()=>setShowModal(false)
-
-
-  
-  
-  
-
-
+  const closeModal = () => setShowModal(false);
 
   return (
     <div className="flex">
@@ -77,12 +68,9 @@ function PublicTable() {
           </thead>
 
           <tbody>
-            {((list) => (
+            {(list) => (
               <tr className="">
-                <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
-                  
-                  {console.log()}
-                </td>
+                <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center"></td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-12.75 px-4 text-center">
                   {list}
                 </td>
@@ -126,7 +114,7 @@ function PublicTable() {
                   {list}
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
@@ -142,9 +130,10 @@ function PublicTable() {
             {columns.map((rowscounter) => (
               <tr>
                 <td className="font-rubik font-light text-base h-12.75 ml-4">
-                  <button 
-                  onClick={openModal}
-                  className=" bg-yellow-400 font-semibold text-xl text-white  w-31.25">
+                  <button
+                    onClick={openModal}
+                    className=" bg-yellow-400 font-semibold text-xl text-white  w-31.25"
+                  >
                     Más
                   </button>
                 </td>
@@ -152,7 +141,9 @@ function PublicTable() {
             ))}
           </tbody>
         </table>
-        {showModal && <MoreInformationModal className="z-50" close={closeModal}/>}
+        {showModal && (
+          <MoreInformationModal className="z-50" close={closeModal} />
+        )}
       </div>
     </div>
   );
