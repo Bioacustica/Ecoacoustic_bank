@@ -20,6 +20,12 @@ PyJWT==2.1.0
 pandas==1.3.2
 pyarrow
 django-utils-six
-sqlalchemy
-openpyxl
+sqlalchemy==1.4.22
+openpyxl==3.0.9
 django-cors-headers
+audio_metadata==0.11.1
+flask==1.1.2
+Jinja2==2.11.3
+MarkupSafe==1.1.1
+itsdangerous==2.0.1
+Werkzeug==2.0.2

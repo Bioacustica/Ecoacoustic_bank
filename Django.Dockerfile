@@ -11,13 +11,25 @@ ADD LoadMasterTable.py /
 RUN chmod +x /LoadMasterTable.py
 COPY mapping.py /
 COPY MasterTables_v1.xlsx /
+COPY LoadData.py /
+COPY Globals.py /
+COPY GenerateMasterTable.py /
+COPY AddCatalogue.py /
+COPY AddProject.py /
+COPY AddRecord.py /
+COPY AddSampling.py /
+COPY AddUser.py /
+
+
+COPY LoadUDAS.py /
 #COPY second_tables.xlsx /
 #COPY relaciones_data.xlsx /
 RUN apt-get update  && \
     apt-get install -y make
 
-ENTRYPOINT  python /LoadMasterTable.py && \
-            python manage.py makemigrations && \
+# ENTRYPOINT  python /LoadMasterTable.py && \
+ENTRYPOINT  python manage.py makemigrations && \
+            python /LoadUDAS.py & \
             python manage.py migrate  && \
             python manage.py collectstatic --noinput && \
             python manage.py shell < initAdmin.py && \
