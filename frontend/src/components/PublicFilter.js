@@ -43,21 +43,21 @@ class PublicFilter extends Component {
     //console.log(name,value);
   };
 
-  componentDidMount = async () => {
-    const response = await formList();
-    //console.log(response);
-    this.setState({
-      eventos: response.data.evento,
-      habitats: response.data.habitat,
-      ciudades: response.data.ciudad,
-      tipo_grabadora: response.data.Tipo_de_grabadora,
-      tipo_case: response.data.tipo_de_case,
-      tipo_microfono: response.data.tipo_de_micro,
-      metodo_etiquetado: response.data.Metodo_etiquetado,
-      software: response.data.software_etiquetado,
-      municipios: response.data.municipio,
-    });
-  };
+  // componentDidMount = async () => {
+  //   const response = await formList();
+  //   //console.log(response);
+  //   this.setState({
+  //     eventos: response.data.evento,
+  //     habitats: response.data.habitat,
+  //     ciudades: response.data.ciudad,
+  //     tipo_grabadora: response.data.Tipo_de_grabadora,
+  //     tipo_case: response.data.tipo_de_case,
+  //     tipo_microfono: response.data.tipo_de_micro,
+  //     metodo_etiquetado: response.data.Metodo_etiquetado,
+  //     software: response.data.software_etiquetado,
+  //     municipios: response.data.municipio,
+  //   });
+  // };
 
   publicAudio = async () => {
     const List_Audio = await fetch_audios(this.state.filters);
@@ -72,7 +72,7 @@ class PublicFilter extends Component {
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-41.5">
-              <span className="text-blue-850 content-center">Ciudades</span>
+              <span className="content-center text-blue-850">Ciudades</span>
               <select
                 name="ciudad"
                 onChange={(event) => this.valueToState(event.target)}
@@ -90,7 +90,7 @@ class PublicFilter extends Component {
             </label>
 
             <label className="block text-center w-54.25 mr-41.5">
-              <span className="text-blue-850 content-center">Hábitat</span>
+              <span className="content-center text-blue-850">Hábitat</span>
               <select
                 name="habitat"
                 onChange={(event) => this.valueToState(event.target)}
@@ -108,7 +108,7 @@ class PublicFilter extends Component {
             </label>
 
             <label className="block text-center w-54.25 mr-41.5">
-              <span className="text-blue-850 content-center">Municipio</span>
+              <span className="content-center text-blue-850">Municipio</span>
               <select
                 name="municipio"
                 onChange={(event) => this.valueToState(event.target)}
@@ -126,7 +126,7 @@ class PublicFilter extends Component {
             </label>
 
             <label className="block text-center w-54.25 ">
-              <span className="text-blue-850 content-center">Evento</span>
+              <span className="content-center text-blue-850">Evento</span>
               <select
                 name="evento"
                 onChange={(event) => this.valueToState(event.target)}
@@ -148,7 +148,7 @@ class PublicFilter extends Component {
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-41.5">
-              <span className="text-blue-850 content-center">
+              <span className="content-center text-blue-850">
                 Tipo de carcasa
               </span>
               <select
@@ -168,7 +168,7 @@ class PublicFilter extends Component {
             </label>
 
             <label className="block text-center w-54.25 mr-41.5">
-              <span className="text-blue-850 content-center">
+              <span className="content-center text-blue-850">
                 Tipo de micrófono
               </span>
               <select
@@ -188,7 +188,7 @@ class PublicFilter extends Component {
             </label>
 
             <label className="block text-center w-54.25 mr-41.5">
-              <span className="text-blue-850 content-center">
+              <span className="content-center text-blue-850">
                 Método de etiquetado
               </span>
               <select
@@ -208,7 +208,7 @@ class PublicFilter extends Component {
             </label>
 
             <label className="block text-center w-54.25 ">
-              <span className="text-blue-850 content-center">
+              <span className="content-center text-blue-850">
                 Software de etiquetado
               </span>
               <select
@@ -232,7 +232,7 @@ class PublicFilter extends Component {
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-41.5">
-              <span className="text-blue-850 content-center">
+              <span className="content-center text-blue-850">
                 Tipo de grabadora
               </span>
               <select
@@ -308,17 +308,17 @@ class PublicFilter extends Component {
 
         <div className="flex items-center justify-center">
           <nav
-            className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+            className="relative z-0 inline-flex -space-x-px rounded-md shadow-sm"
             aria-label="Pagination"
           >
             <a
               href="#"
-              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50"
             >
               <span className="sr-only">Previous</span>
               {/* Heroicon name: solid/chevron-left */}
               <svg
-                className="h-5 w-5"
+                className="w-5 h-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -335,34 +335,34 @@ class PublicFilter extends Component {
             <a
               href="#"
               aria-current="page"
-              className="z-10 bg-green-450 border-green-450 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              className="relative z-10 inline-flex items-center px-4 py-2 text-sm font-medium text-white border bg-green-450 border-green-450"
             >
               1
             </a>
             <a
               href="#"
-              className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-50"
             >
               2
             </a>
 
-            <span className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+            <span className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300">
               ...
             </span>
             <a
               href="#"
-              className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-50"
             >
               10
             </a>
             <a
               href="#"
-              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50"
             >
               <span className="sr-only">Next</span>
               {/* Heroicon name: solid/chevron-right */}
               <svg
-                className="h-5 w-5"
+                className="w-5 h-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"

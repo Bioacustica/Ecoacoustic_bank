@@ -1,20 +1,18 @@
-import React, {useState}from "react"
+import React, { useState } from "react";
 import ContactModal from "./ContactModal";
 
 require("typeface-poppins");
 require("typeface-rubik");
-function Navbar(){
-    
-  const [showModal, setShowModal] = useState(false)
+function Navbar() {
+  const [showModal, setShowModal] = useState(false);
 
-  const openModal=()=>setShowModal(true)
+  const openModal = () => setShowModal(true);
 
-  const closeModal=()=>setShowModal(false)
+  const closeModal = () => setShowModal(false);
 
-  
-      return (
-        <div className="">
-             <nav className="bg-green-450 flex  h-11 w-341.5 justify-center items-center">
+  return (
+    <div className="">
+      <nav className="bg-green-450 flex  h-11 w-341.5 justify-center items-center">
         <a
           href="/"
           className="text-white ml-26.75 mr-26.5 content-center font-poppins   hover:text-white
@@ -32,7 +30,6 @@ function Navbar(){
           SOBRE NOSOTROS
         </a>
         <a
-      
           href="/#visualizacion"
           className=" mr-26.5  font-poppins text-white  content-center hover:text-white
           hover:text-whithe border-b-2 border-green-450
@@ -67,10 +64,9 @@ function Navbar(){
         </a>
       </nav>
 
-      {showModal && <ContactModal close={closeModal}/>}
-        </div>
-       
-      )
-    }
+      {showModal && <ContactModal close={closeModal} />}
+    </div>
+  );
+}
 
-export default Navbar
+export default Navbar;

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { uploadMasterTableData } from "../services/loadFile";
 import closeimg from "../images/06.Contacto/x.png";
-
+import Toggle from "react-toggle";
+import "react-toggle/style.css";
 function AddFile({ close }) {
+  const [toggleUDAS, setToggleUDAS] = useState(false);
   const [archivosT, setArchivosT] = useState(null);
 
   const subirArchivosT = (e) => {
@@ -44,21 +46,7 @@ function AddFile({ close }) {
                 <form onSubmit={sendFiles}>
                   <div className="flex items-end justify-center ">
                     <div className="">
-                      <div>
-                        <div className="inline-flex items-center justify-end w-full ">
-                          <label className="mr-2 text-2xl font-bold font-poppins text-blue-850">
-                            Cargar Udas
-                          </label>
-                          <input
-                            type="file"
-                            multiple
-                            onChange={(u) => subirArchivosU(u.target.files)}
-                            className="placeholder-blue-850 bg-yellow-550 text-center text-xl  w-171.25 h-12.5 font-rubik border-2  border-green border-opacity-0 "
-                          />
-                        </div>
-                      </div>
-
-                      <div className="inline-flex items-center justify-end w-full ">
+                      <div className="inline-flex items-center w-full ">
                         <label className="mr-2 text-2xl font-bold text-center font-poppins text-blue-850">
                           Actualizar Tablas
                         </label>
@@ -68,6 +56,45 @@ function AddFile({ close }) {
                           className="placeholder-blue-850 bg-yellow-550 text-center text-xl  w-171.25 h-12.5 font-rubik border-2  border-green border-opacity-0 "
                         ></input>
                       </div>
+                      <div className="flex align-middle">
+                        <Toggle
+                          id="cheese-status"
+                          icons={false}
+                          defaultChecked={toggleUDAS}
+                          onChange={(e) => setToggleUDAS(e.target.checked)}
+                        />
+                        <label htmlFor="cheese-status">
+                          ¿Cargar audios remotamente?
+                        </label>
+                      </div>
+                      <div>
+                        <div className="inline-flex items-center w-full ">
+                          <label className="mr-2 text-2xl font-bold font-poppins text-blue-850">
+                            Cargar Udas
+                          </label>
+                          <input
+                            type="file"
+                            // multiple
+                            onChange={(u) => subirArchivosU(u.target.files)}
+                            className="placeholder-blue-850 bg-yellow-550 text-center text-xl  w-171.25 h-12.5 font-rubik border-2  border-green border-opacity-0 "
+                          />
+                        </div>
+                      </div>
+                      {toggleUDAS && (
+                        <div>
+                          <div className="inline-flex items-center w-full ">
+                            <label className="mr-2 text-2xl font-bold font-poppins text-blue-850">
+                              Cargar audios
+                            </label>
+                            <input
+                              type="file"
+                              multiple
+                              onChange={(u) => subirArchivosU(u.target.files)}
+                              className="placeholder-blue-850 bg-yellow-550 text-center text-xl  w-171.25 h-12.5 font-rubik border-2  border-green border-opacity-0 "
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="items-center justify-center ">
