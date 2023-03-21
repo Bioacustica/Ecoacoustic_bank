@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 
 
-engine = create_engine('postgresql://animalesitm:animalesitm@localhost:5010/animalesitm',
+engine = create_engine('postgresql://animalesitm:animalesitm@postgres/animalesitm',
                        connect_args={'connect_timeout': 100})
 
 m = MetaData(schema='bioacustica')

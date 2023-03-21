@@ -47,6 +47,7 @@ from .fnt import (
     consulta_filtros,
     base_64_encoding, consulta_filtros_publicos,
 )
+from .loadData import LoadMasterTable, LoadData
 from .serializers import *
 from .custom_permissions import IsAdmin
 from .forms import ContactForm
@@ -99,7 +100,7 @@ def my_obtain_token_view(request):
     }
     conexion1 = psycopg2.connect(**credenciales_db)
     conexion1.autocommit = True
-        # ejecutamos una verifación para saber si el usuario existe
+    # ejecutamos una verifación para saber si el usuario existe
     verificacion = f"SELECT  username FROM bioacustica.keys WHERE username='{user.username}';"
 
     with conexion1.cursor() as cursor1:
@@ -290,7 +291,7 @@ def public_record_view(request):
         metodo_etiquetado,
         software,
         tipo_grabadora,
-        ),
+    ),
         request
     )
     return paginator.get_paginated_response(context)
@@ -318,15 +319,15 @@ def lista_filtros(request):
 
     # TODO  cambiar estructura del diccionario,  agregar departamentos.
     diccionario_filtros = {
-        "ciudad":ciudad,
-        "habitat":habitat,
-        "municipio":municipio,
-        "evento":evento,
-        "tipo_de_case":case,
-        "tipo_de_micro":micro,
-        "Metodo_etiquetado":evidence,
-        "software_etiquetado":software,
-        "Tipo_de_grabadora":hardware,
+        "ciudad": ciudad,
+        "habitat": habitat,
+        "municipio": municipio,
+        "evento": evento,
+        "tipo_de_case": case,
+        "tipo_de_micro": micro,
+        "Metodo_etiquetado": evidence,
+        "software_etiquetado": software,
+        "Tipo_de_grabadora": hardware,
     }
     return Response(diccionario_filtros)
 
@@ -390,7 +391,6 @@ def download_records_files(request):
         if c == 100:
             break
 
-
     # #metodo1
     # # Creamos el base 64
     # lista = []
@@ -425,14 +425,14 @@ def download_records_files(request):
         zip_path = os.path.join(zip_subdir, fname)
         zf.write(fpath, zip_path)
     zf.close()
-    #HttpResponse
-    #FileResponse
-    #StreamingHttpResponse
+    # HttpResponse
+    # FileResponse
+    # StreamingHttpResponse
     resp = HttpResponse(s.getvalue(), content_type="application/zip")
     resp['Content-Disposition'] = f'attachment; filename={zip_filename}'
     return resp
 
-    #metodo3
+    # metodo3
     # lista = []
     # for fname in filenames:
     #     lista.append(base_64_encoding(fname))
@@ -441,6 +441,21 @@ def download_records_files(request):
     # response['Content-Disposition'] = 'attachment; filename= Audios'
     # return response
 
+
+@decorators.api_view(["POST"])
+def load_master_tables(request):
+
+    LoadMasterTable.LoadMasterTables(request.FILES['file'])
+    return Response("load_master_tables")
+
+
+@decorators.api_view(["POST"])
+def load_udas(request):
+    file = request.FILES['file']
+    # file.save("UDAS.xls")
+    LoadData.LoadData(file)
+    # print(GetFingerprint(file))
+    return "done"
 
 
 @authentication_classes([JWTAuthentication])
@@ -1011,7 +1026,7 @@ def contactanos_view(request):
                 asunto,
                 "Este es mi correo electronico:" + "\n" + email + "\n" + message,
                 email,
-                ["animalesitm@gmail.com","piedrahita2001@gmail.com"],
+                ["animalesitm@gmail.com", "piedrahita2001@gmail.com"],
             )  # se pueden agregar mas emails.
             return Response("Enviado con exito")
         return Response("ALGO salio mal ", status=status.HTTP_400_BAD_REQUEST)

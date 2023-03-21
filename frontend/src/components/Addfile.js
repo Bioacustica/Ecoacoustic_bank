@@ -89,7 +89,7 @@ function AddFile({ close }) {
                             <input
                               type="file"
                               multiple
-                              onChange={(u) => subirArchivosU(u.target.files)}
+                              // onChange={(u) => subirArchivosU(u.target.files)}
                               className="placeholder-blue-850 bg-yellow-550 text-center text-xl  w-171.25 h-12.5 font-rubik border-2  border-green border-opacity-0 "
                             />
                           </div>

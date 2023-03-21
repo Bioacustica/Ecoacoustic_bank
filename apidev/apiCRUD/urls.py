@@ -13,7 +13,7 @@ __maintainer__ = "Victor Torres"
 from django.urls import path, include
 from apiCRUD import views
 
-from .views import (ChangePasswordView, registration, filtered_record_view, user_delete_view, my_obtain_token_view ,
+from .views import (ChangePasswordView, registration, filtered_record_view, user_delete_view, my_obtain_token_view,
                     downolad_record_views_csv,
                     download_records_files,
                     lista_filtros
@@ -78,11 +78,16 @@ urlpatterns = [
     ),
     path(
         "password_reset/confirm/",
-        include("django_rest_passwordreset.urls", namespace="password_reset_confirm"),
+        include("django_rest_passwordreset.urls",
+                namespace="password_reset_confirm"),
     ),
     path("delete/<int:id_user>/", views.user_delete_view, name="delete_user"),
     path("lista_filtros/", views.lista_filtros, name="lista_filtros"),
+    path("load_master_tables/", views.load_master_tables,
+         name="load_master_tables"),
+    path("load_udas/", views.load_udas,
+         name="load_udas"),
     path("contactanos/", views.contactanos_view, name="contacto"),
-# URL VISTA AUDIOS PÚBLICOS
+    # URL VISTA AUDIOS PÚBLICOS
     path("public-records/", views.public_record_view, name="public_records"),
 ]
