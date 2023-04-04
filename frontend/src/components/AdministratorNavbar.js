@@ -1,22 +1,20 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import AddFile from "../components/Addfile";
 
 function AdministratorNavbar() {
+  const [showFile, setShowFile] = useState(false);
+  const openFile = () => setShowFile(true);
 
-  const [showFile, setShowFile] = useState(false)
-  const openFile=()=>setShowFile(true)
-
-  const closeFile=()=>setShowFile(false)
+  const closeFile = () => setShowFile(false);
 
   return (
     <div className="">
-      <nav className="bg-green-450 flex  h-11 w-341.5 justify-center items-center">
+      <nav className="bg-green-450 flex  h-11 w-full justify-center items-center">
         <a
           href="/"
           className="text-white ml-26.25 mr-26.25 content-center hover:text-white
           hover:text-whithe border-b-2 border-green-450
           hover:border-b-2 hover:border-white"
-                    
         >
           INICIO
         </a>
@@ -26,12 +24,7 @@ function AdministratorNavbar() {
           hover:text-whithe border-b-2 border-green-450
           hover:border-b-2 hover:border-white"
         >
-          
-          <button onClick={openFile}>
-            
-           SUBIR AUDIOS
-         </button>
-            
+          <button onClick={openFile}>SUBIR AUDIOS</button>
         </a>
         <a
           href="/admin-label-filter"
@@ -65,14 +58,10 @@ function AdministratorNavbar() {
         >
           VISUALIZACIÓN DE METADATOS
         </a>
-        
       </nav>
-      {showFile && <AddFile className="z-50" close={closeFile}/>}
-
-
+      {showFile && <AddFile className="z-50" close={closeFile} />}
     </div>
-
-  )
+  );
 }
 
-export default AdministratorNavbar
+export default AdministratorNavbar;

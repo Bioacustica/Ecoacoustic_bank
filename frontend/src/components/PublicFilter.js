@@ -43,21 +43,21 @@ class PublicFilter extends Component {
     //console.log(name,value);
   };
 
-  // componentDidMount = async () => {
-  //   const response = await formList();
-  //   //console.log(response);
-  //   this.setState({
-  //     eventos: response.data.evento,
-  //     habitats: response.data.habitat,
-  //     ciudades: response.data.ciudad,
-  //     tipo_grabadora: response.data.Tipo_de_grabadora,
-  //     tipo_case: response.data.tipo_de_case,
-  //     tipo_microfono: response.data.tipo_de_micro,
-  //     metodo_etiquetado: response.data.Metodo_etiquetado,
-  //     software: response.data.software_etiquetado,
-  //     municipios: response.data.municipio,
-  //   });
-  // };
+  componentDidMount = async () => {
+    const response = await formList();
+    //console.log(response);
+    this.setState({
+      eventos: response.data.evento,
+      habitats: response.data.habitat,
+      ciudades: response.data.ciudad,
+      tipo_grabadora: response.data.Tipo_de_grabadora,
+      tipo_case: response.data.tipo_de_case,
+      tipo_microfono: response.data.tipo_de_micro,
+      metodo_etiquetado: response.data.Metodo_etiquetado,
+      software: response.data.software_etiquetado,
+      municipios: response.data.municipio,
+    });
+  };
 
   publicAudio = async () => {
     const List_Audio = await fetch_audios(this.state.filters);

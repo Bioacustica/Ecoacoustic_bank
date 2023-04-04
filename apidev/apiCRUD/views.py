@@ -334,6 +334,82 @@ def lista_filtros(request):
 
 @decorators.api_view(["GET"])
 @authentication_classes([JWTAuthentication])
+def get_users(request):
+    users = User.objects.all().values('id_user', 'username',
+                                      'email', "roles", "is_active")
+
+    users_list = list(users)
+    response = {
+        "users": users_list
+    }
+    return JsonResponse(response)
+
+
+@decorators.api_view(["POST"])
+@authentication_classes([JWTAuthentication])
+def add_user(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user = User.objects.create_user(
+            username=data['username'],
+            email=data['email'],
+            password=data['password'],
+            roles=data['roles'])
+        # users_list = list(users)
+        response = {
+            "user": {
+                "id_user": user.id_user,
+                "username": user.username,
+                "email": user.email,
+                "roles": data['roles'],
+            },
+            "message": "¡Usuario creado con éxito!"
+        }
+        return JsonResponse(response)
+
+
+@decorators.api_view(["PUT"])
+@authentication_classes([JWTAuthentication])
+def update_user(request, user_id):
+    if request.method == 'PUT':
+        data = json.loads(request.body)
+        user = User.objects.get(id_user=user_id)
+        user.username = data['username']
+        user.email = data['email']
+        user.roles = data['roles']
+        if 'password' in data and data['password'].strip() != "":
+            user.set_password(data['password'])
+
+        user.save()
+        # users_list = list(users)
+        response = {
+            "user": {
+                "id_user": user.id_user,
+                "username": user.username,
+                "email": user.email,
+                "roles": data['roles'],
+            },
+            "message": "¡Usuario actualizado con éxito!"
+        }
+        return JsonResponse(response)
+
+
+@decorators.api_view(["DELETE"])
+@authentication_classes([JWTAuthentication])
+def delete_user(request, user_id):
+    user = User.objects.get(id_user=user_id)
+    user.is_active = False
+
+    user.save()
+    # users_list = list(users)
+    response = {
+        "message": "¡Usuario eliminado con éxito!"
+    }
+    return JsonResponse(response)
+
+
+@decorators.api_view(["GET"])
+@authentication_classes([JWTAuthentication])
 def downolad_record_views_csv(request):
     """
     Función encargada de la descarga de los datos de los audios, es decir
@@ -455,7 +531,7 @@ def load_udas(request):
     # file.save("UDAS.xls")
     LoadData.LoadData(file)
     # print(GetFingerprint(file))
-    return "done"
+    return Response("load_udas")
 
 
 @authentication_classes([JWTAuthentication])
