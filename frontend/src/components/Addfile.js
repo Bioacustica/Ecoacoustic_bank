@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+
 import { uploadMasterTableData } from "../services/loadFile";
 import closeimg from "../images/06.Contacto/x.png";
 import Toggle from "react-toggle";
@@ -28,6 +30,8 @@ function AddFile({ close }) {
     try {
       if (archivosT) {
         await uploadMasterTableData(archivosT);
+        toast.success(`Archivo MasterTable Cargado!`);
+
         okFileT = true;
       }
     } catch (error) {}
@@ -40,7 +44,7 @@ function AddFile({ close }) {
       <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
 
       <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-        <div className="relative w-auto max-w-3xl mx-auto my-6 flex items-center justify-center ">
+        <div className="relative flex items-center justify-center w-auto max-w-3xl mx-auto my-6 ">
           <div className="bg-yellow-550 justify-center w-263.75 h-119.5">
             <div className="flex w-263.75 justify-end items-end ">
               <button

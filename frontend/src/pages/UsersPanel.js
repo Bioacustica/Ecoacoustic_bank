@@ -12,7 +12,7 @@ require("typeface-rubik");
 
 function UserPanel() {
   const [showModal, setShowModal] = useState(false);
-  const [userList, setUserList] = useState([false]);
+  const [userList, setUserList] = useState([]);
 
   const openModal = () => setShowModal(true);
 
@@ -43,13 +43,13 @@ function UserPanel() {
 
   return (
     <>
-      <header className="sticky top-0 z-30  bg-white">
+      <header className="sticky top-0 z-30 bg-white">
         <Head />
         <AdministratorNavbar />
       </header>
 
       <main>
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <div>
             <img src={imgbanner} alt="" />
           </div>
@@ -65,7 +65,7 @@ function UserPanel() {
           </div>
         </div>
 
-        <div className="flex justify-center items-center mt-5 mb-3 ">
+        <div className="flex items-center justify-center mt-5 mb-3 ">
           <button
             onClick={openModal}
             className="w-87.75 bg-blue-250 text-white h-10.75 font-semibold text-2xl font-poppins"

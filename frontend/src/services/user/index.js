@@ -18,7 +18,11 @@ export async function createUser(user) {
     return { status: true, data: data };
   } catch (error) {
     // alert("Algo salio mal");
-    return { status: false, data: null };
+    return {
+      status: false,
+      data: null,
+      errorMessage: "No se pudo crear el usuario",
+    };
   }
 }
 
@@ -26,10 +30,28 @@ export async function updateUser(user) {
   try {
     const { id_user, ...userEdit } = user;
     const { data } = await Http.put(`/update_user/${id_user}/`, userEdit);
-    console.log("data update:>> ", data);
     return { status: true, data: data };
   } catch (error) {
     // alert("Algo salio mal");
-    return { status: false, data: null };
+    return {
+      status: false,
+      data: null,
+      errorMessage: "No se pudo actualizar el usuario",
+    };
+  }
+}
+
+export async function toggleActiveUser(user) {
+  try {
+    const { id_user } = user;
+    const { data } = await Http.delete(`/delete_user/${id_user}/`);
+    return { status: true, data: data };
+  } catch (error) {
+    // alert("Algo salio mal");
+    return {
+      status: false,
+      data: null,
+      errorMessage: "No se pudo actualizar el usuario",
+    };
   }
 }

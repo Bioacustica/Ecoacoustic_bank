@@ -1,16 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import reportWebVitals from './reportWebVitals';
-import Routers from './routes/Routers';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import "./index.css";
+
+import reportWebVitals from "./reportWebVitals";
+import Routers from "./routes/Routers";
 
 ReactDOM.render(
-    <>
-        <Routers/>
-    </>,
-  
-  document.getElementById('root')
+  <>
+    <Routers />
+    <ToastContainer />
+  </>,
+
+  document.getElementById("root")
 );
 
 reportWebVitals();

@@ -27,18 +27,18 @@ function Login() {
     setShowModal(true);
     const response = await sendCredentialsData(credentials);
     console.log(response.status);
-    console.log(response.data)
+    console.log(response.data);
 
     if (response.status) {
-      if (response.data ==="Logeado con exito") {
+      if (response.data === "Logeado con exito") {
         window.location.href = "./admin";
         setShowModal(false);
-      }else{
+      } else {
         setShowModal(false);
-        alert("Por favor verifique los datos de entrada");
+        //alert("Por favor verifique los datos de entrada");
       }
     } else {
-      alert("Por favor verifique los datos de entrada");
+      //alert("Por favor verifique los datos de entrada");
       setShowModal(false);
     }
 
@@ -72,10 +72,10 @@ function Login() {
 
   return (
     <div>
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <Head />
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <Navbar />
       </div>
       {showModal && <LoadingModal />}
@@ -89,7 +89,7 @@ function Login() {
           </div>
           <div className="h-0.625 bg-blue-850 mx-auto w-79 "></div>
 
-          <div className="mt-14 mb-10 text-white text-center font-rubik font-normal text-xl">
+          <div className="mb-10 text-xl font-normal text-center text-white mt-14 font-rubik">
             <h1>
               Ingrese su dirección de correo electrónico para acceder al sistema{" "}
             </h1>
@@ -97,9 +97,9 @@ function Login() {
 
           <form>
             <div className="flex w-341.5 justify-center items-center">
-              <form className=" pt-6 ">
-                <div className=" mb-6 justify-items-center">
-                  <h1 className="text-left text-white  font-poppins font-semibold text-3xl">
+              <form className="pt-6 ">
+                <div className="mb-6  justify-items-center">
+                  <h1 className="text-3xl font-semibold text-left text-white font-poppins">
                     Email
                   </h1>
                   <input
@@ -113,7 +113,7 @@ function Login() {
                   />
                 </div>
                 <div className="mt-9">
-                  <h1 className="text-left text-white font-poppins font-semibold text-3xl">
+                  <h1 className="text-3xl font-semibold text-left text-white font-poppins">
                     Contraseña
                   </h1>
                   <input
@@ -128,10 +128,7 @@ function Login() {
                 </div>
                 <div className="flex justify-end w-166.25 mb-10 ">
                   <a
-                    className=" text-white text-right
-                    font-rubik font-normal text-xl
-          hover:text-whithe border-b-2 border-green-450
-          hover:border-b-2 hover:border-white"
+                    className="text-xl font-normal text-right text-white border-b-2  font-rubik hover:text-whithe border-green-450 hover:border-b-2 hover:border-white"
                     href="/recoverpassword"
                   >
                     ¿Olvidaste tu contraseña?{" "}
@@ -143,7 +140,7 @@ function Login() {
                     type="button"
                     onClick={() => sendCredentials(credentials)}
                   >
-                    <h1 className="text-white font-poppins font-semibold text-4xl">
+                    <h1 className="text-4xl font-semibold text-white font-poppins">
                       Ingresar
                     </h1>
                   </button>

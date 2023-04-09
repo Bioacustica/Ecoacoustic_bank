@@ -9,7 +9,7 @@ export async function uploadMasterTableData(excelFile) {
     console.log("data :>> ", data);
     return { status: true, data: data };
   } catch (error) {
-    alert("Algo salio mal");
+    //alert("Algo salio mal");
     return { status: false, data: null };
   }
 }

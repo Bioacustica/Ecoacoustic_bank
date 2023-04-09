@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "../components/Head";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -15,11 +15,11 @@ require("typeface-rubik");
 function PrincipalPage() {
   return (
     <div>
-      <header className="sticky top-0 z-30  bg-white">
-        <div className="flex justify-center items-center">
+      <header className="sticky top-0 z-30 bg-white">
+        <div className="flex items-center justify-center">
           <Head />
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <Navbar />
         </div>
       </header>
@@ -52,7 +52,7 @@ function PrincipalPage() {
         </div>
         <div className="h-0.625 bg-blue-850 mx-auto mb-11.5 w-83"></div>
 
-        <div className="flex justify-center items-center mb-7  ">
+        <div className="flex items-center justify-center mb-7 ">
           <div className="flex  w-341.5 ">
             <div className="w-118.5 h-159  ml-37 mr-18.5 ">
               <img src={aboutUs} alt="" />
@@ -84,7 +84,7 @@ function PrincipalPage() {
           </div>
         </div>
 
-        <div className="flex justify-center items-center " id="visualizacion">
+        <div className="flex items-center justify-center " id="visualizacion">
           <div className="bg-blue-250 w-341.5 ">
             <div className="h-0.625 bg-blue-850 mx-auto w-76  mt-7 mb-3"></div>
             <div>
@@ -101,10 +101,10 @@ function PrincipalPage() {
                     <img src={metadata} alt="" />
                   </div>
                   <div className="texto m-6.25">
-                    <h1 className="font-semibold font-poppins text-blue-850 mb-3 text-5xl text-left">
+                    <h1 className="mb-3 text-5xl font-semibold text-left font-poppins text-blue-850">
                       Metadatos
                     </h1>
-                    <p className="text-justify font-normal font-rubik text-xl text-blue-850">
+                    <p className="text-xl font-normal text-justify font-rubik text-blue-850">
                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                       sed diam nonummy nibh euismod tincidunt ut laoreet dolore
                       magna Lorem ipsum dolor sit amet, consectetuer adipiscing
@@ -122,10 +122,10 @@ function PrincipalPage() {
                     <img src={map} alt="" />
                   </div>
                   <div className="texto m-6.25">
-                    <h1 className="font-semibold font-poppins text-blue-850 mb-3 text-5xl text-left">
+                    <h1 className="mb-3 text-5xl font-semibold text-left font-poppins text-blue-850">
                       Mapas
                     </h1>
-                    <p className="text-justify font-normal font-rubik text-xl text-blue-850">
+                    <p className="text-xl font-normal text-justify font-rubik text-blue-850">
                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                       sed diam nonummy nibh euismod tincidunt ut laoreet dolore
                       magna Lorem ipsum dolor sit amet, consectetuer adipiscing
@@ -140,18 +140,19 @@ function PrincipalPage() {
           </div>
         </div>
 
-        <div className=" h-0.625 bg-blue-850 mx-auto w-37 mt-11.25  mb-3" id="filtros"></div>
+        <div
+          className=" h-0.625 bg-blue-850 mx-auto w-37 mt-11.25  mb-3"
+          id="filtros"
+        ></div>
         <div>
           <h1 className="text-center font-extrabold font-poppins text-4.5xl text-blue-850 mb-3">
             Filtros
           </h1>
         </div>
         <div className="h-0.625 bg-blue-850 mx-auto mb-11.25 w-37 "></div>
-
       </body>
-      
-      
-          <PublicFilter />
+
+      <PublicFilter />
 
       <footer>
         <div className="flex justify-center items-center mt-11.25 ">
