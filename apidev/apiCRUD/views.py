@@ -38,7 +38,7 @@ from dry_rest_permissions.generics import DRYPermissions
 from rest_framework_tracking.mixins import LoggingMixin
 from rest_framework_simplejwt.tokens import RefreshToken
 from cryptography.fernet import Fernet
-from django.http import HttpResponse, JsonResponse, StreamingHttpResponse, FileResponse
+from django.http import HttpResponse, JsonResponse,HttpResponseBadRequest, StreamingHttpResponse, FileResponse
 
 from .fnt import (
     choose_role,
@@ -335,7 +335,7 @@ def lista_filtros(request):
 @decorators.api_view(["GET"])
 @authentication_classes([JWTAuthentication])
 def get_users(request):
-    users = User.objects.all().values('id_user', 'username',
+    users = User.objects.all().order_by('id_user').values('id_user', 'username',
                                       'email', "roles", "is_active")
 
     users_list = list(users)
@@ -350,6 +350,10 @@ def get_users(request):
 def add_user(request):
     if request.method == 'POST':
         data = json.loads(request.body)
+        users = User.objects.filter(email=data['email'])
+        print("___________________________________________")
+        if users.exists():
+            return JsonResponse({'message': 'El usuario con ese correo electrónico ya existe.'}, status=400)
         user = User.objects.create_user(
             username=data['username'],
             email=data['email'],
@@ -398,7 +402,7 @@ def update_user(request, user_id):
 @authentication_classes([JWTAuthentication])
 def delete_user(request, user_id):
     user = User.objects.get(id_user=user_id)
-    user.is_active = False
+    user.is_active = not user.is_active
 
     user.save()
     # users_list = list(users)
