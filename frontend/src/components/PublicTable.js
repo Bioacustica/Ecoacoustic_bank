@@ -6,7 +6,7 @@ require("typeface-poppins");
 require("typeface-rubik");
 
 function PublicTable() {
-  const columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const columns = [1];
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => setShowModal(true);
@@ -15,8 +15,8 @@ function PublicTable() {
 
   return (
     <div className="flex">
-      <div className="  border overflow-x-auto">
-        <table className=" border border-collapse">
+      <div className="overflow-x-auto border ">
+        <table className="border border-collapse ">
           <thead>
             <tr className="">
               <td className="border-2 font-rubik border-blue-850  text-base h-12.75 px-4 text-center">
@@ -123,7 +123,7 @@ function PublicTable() {
         <table>
           <thead>
             <tr className="">
-              <td className=" font-rubik font-semibold text-base h-14 px-4 text-center"></td>
+              <td className="px-4 text-base font-semibold text-center  font-rubik h-14"></td>
             </tr>
           </thead>
           <tbody>

@@ -98,7 +98,7 @@ function Login() {
           <form>
             <div className="flex w-341.5 justify-center items-center">
               <form className="pt-6 ">
-                <div className="mb-6  justify-items-center">
+                <div className="mb-6 justify-items-center">
                   <h1 className="text-3xl font-semibold text-left text-white font-poppins">
                     Email
                   </h1>
@@ -128,7 +128,7 @@ function Login() {
                 </div>
                 <div className="flex justify-end w-166.25 mb-10 ">
                   <a
-                    className="text-xl font-normal text-right text-white border-b-2  font-rubik hover:text-whithe border-green-450 hover:border-b-2 hover:border-white"
+                    className="text-xl font-normal text-right text-white border-b-2 font-rubik hover:text-whithe border-green-450 hover:border-b-2 hover:border-white"
                     href="/recoverpassword"
                   >
                     ¿Olvidaste tu contraseña?{" "}
