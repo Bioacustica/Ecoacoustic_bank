@@ -49,7 +49,6 @@ export async function formList() {
 }
 
 export async function fetch_audios(Items) {
-  console.log(Items);
   try {
     const options = {
       method: "POST",

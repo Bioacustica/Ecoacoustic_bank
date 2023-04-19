@@ -1,13 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Component } from "react";
 import { formList } from "../services";
 import PrivateLabelTable from "./PrivateLabelTable";
 
-
 require("typeface-poppins");
 require("typeface-rubik");
-class PrivateLabel extends Component
-{
+class PrivateLabel extends Component {
   /*const [stado, setCredentials] = useState({
     email: "",
     password: "",
@@ -23,39 +21,33 @@ class PrivateLabel extends Component
     software: [],
     tipo_case: [],
     tipo_microfono: [],
-
   };
 
-
-  componentDidMount= async () => {
-
+  componentDidMount = async () => {
     const response = await formList();
-    console.log(response);
 
     this.setState({
       eventos: response.data.evento,
       habitats: response.data.habitat,
       ciudades: response.data.ciudad,
-      tipo_grabadora:response.data.Tipo_de_grabadora,
-      tipo_case:response.data.tipo_de_case,
-      tipo_microfono:response.data.tipo_de_micro,
-      metodo_etiquetado:response.data.Metodo_etiquetado,
-      software:response.data.software_etiquetado,
-      municipio:response.data.municipio,
-      
+      tipo_grabadora: response.data.Tipo_de_grabadora,
+      tipo_case: response.data.tipo_de_case,
+      tipo_microfono: response.data.tipo_de_micro,
+      metodo_etiquetado: response.data.Metodo_etiquetado,
+      software: response.data.software_etiquetado,
+      municipio: response.data.municipio,
     });
   };
   render() {
     return (
       <div>
-        
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850 content-center">Ciudades</span>
+              <span className="content-center text-blue-850">Ciudades</span>
               <select
-              name="ciudad"
-              onChange={event=>this.valueToState(event.target)}
+                name="ciudad"
+                onChange={(event) => this.valueToState(event.target)}
                 disabled
                 className="block w-full border border-blue-850 rounded-md bg-white  shadow-lg focus:border-indigo-200 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75"
               >
@@ -71,7 +63,7 @@ class PrivateLabel extends Component
             </label>
 
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850 content-center">Hábitat</span>
+              <span className="content-center text-blue-850">Hábitat</span>
               <select className="block  border border-blue-850 w-full mt-1 rounded-md bg-white  shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
                 {this.state.habitats.map((elemento) =>
@@ -85,7 +77,7 @@ class PrivateLabel extends Component
             </label>
 
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850 content-center">Municipio</span>
+              <span className="content-center text-blue-850">Municipio</span>
               <select
                 disabled
                 className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75 mt-1"
@@ -102,7 +94,7 @@ class PrivateLabel extends Component
             </label>
 
             <label className="block text-center w-54.25 ">
-              <span className="text-blue-850 content-center">Evento</span>
+              <span className="content-center text-blue-850">Evento</span>
               <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
                 {this.state.eventos.map((elemento) =>
@@ -120,7 +112,9 @@ class PrivateLabel extends Component
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850 content-center">Tipo de carcasa</span>
+              <span className="content-center text-blue-850">
+                Tipo de carcasa
+              </span>
               <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
                 <option value={null}>seleccionar</option>
                 {this.state.tipo_case.map((elemento) =>
@@ -134,7 +128,7 @@ class PrivateLabel extends Component
             </label>
 
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850 content-center">
+              <span className="content-center text-blue-850">
                 Tipo de micrófono
               </span>
               <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
@@ -150,7 +144,7 @@ class PrivateLabel extends Component
             </label>
 
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850 content-center">
+              <span className="content-center text-blue-850">
                 Método de etiquetado
               </span>
               <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75 mt-1">
@@ -166,7 +160,7 @@ class PrivateLabel extends Component
             </label>
 
             <label className="block text-center w-54.25 ">
-              <span className="text-blue-850 content-center">
+              <span className="content-center text-blue-850">
                 Software de etiquetado
               </span>
               <select className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
@@ -186,7 +180,7 @@ class PrivateLabel extends Component
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850 content-center">
+              <span className="content-center text-blue-850">
                 Tipo de grabadora
               </span>
               <select className="block w-full mt-1 rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75">
@@ -200,7 +194,6 @@ class PrivateLabel extends Component
                 )}
               </select>
             </label>
-            
 
             <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850">Fecha de inicio</span>
@@ -247,7 +240,7 @@ class PrivateLabel extends Component
           </div>
         </div>
 
-        <div className="flex justify-center items-center mb-32">
+        <div className="flex items-center justify-center mb-32">
           <div className="w-341.5 h-132.25">
             <PrivateLabelTable />
           </div>
@@ -255,17 +248,17 @@ class PrivateLabel extends Component
 
         <div className="flex items-center justify-center">
           <nav
-            className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+            className="relative z-0 inline-flex -space-x-px rounded-md shadow-sm"
             aria-label="Pagination"
           >
             <a
               href="#"
-              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50"
             >
               <span className="sr-only">Previous</span>
               {/* Heroicon name: solid/chevron-left */}
               <svg
-                className="h-5 w-5"
+                className="w-5 h-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -282,34 +275,34 @@ class PrivateLabel extends Component
             <a
               href="#"
               aria-current="page"
-              className="z-10 bg-green-450 border-green-450 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              className="relative z-10 inline-flex items-center px-4 py-2 text-sm font-medium text-white border bg-green-450 border-green-450"
             >
               1
             </a>
             <a
               href="#"
-              className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-50"
             >
               2
             </a>
 
-            <span className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+            <span className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300">
               ...
             </span>
             <a
               href="#"
-              className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-50"
             >
               10
             </a>
             <a
               href="#"
-              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50"
             >
               <span className="sr-only">Next</span>
               {/* Heroicon name: solid/chevron-right */}
               <svg
-                className="h-5 w-5"
+                className="w-5 h-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -326,6 +319,6 @@ class PrivateLabel extends Component
         </div>
       </div>
     );
-                  }
+  }
 }
 export default PrivateLabel;

@@ -40,12 +40,10 @@ class PublicFilter extends Component {
     this.setState((state) => {
       return { ...state, filters: { ...state.filters, [name]: value } };
     });
-    //console.log(name,value);
   };
 
   componentDidMount = async () => {
     const response = await formList();
-    //console.log(response);
     this.setState({
       eventos: response.data.evento,
       habitats: response.data.habitat,

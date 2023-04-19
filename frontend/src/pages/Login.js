@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
+
 import Head from "../components/Head";
 import LoadingModal from "../components/LoadingModal";
-import Navbar from "../components/Navbar";
 import { sendCredentialsData } from "../services";
+import AdministratorNavbar from "../components/AdministratorNavbar";
 
 require("typeface-poppins");
 require("typeface-rubik");
@@ -26,8 +28,6 @@ function Login() {
   const sendCredentials = async (credentials) => {
     setShowModal(true);
     const response = await sendCredentialsData(credentials);
-    console.log(response.status);
-    console.log(response.data);
 
     if (response.status) {
       if (response.data === "Logeado con exito") {
@@ -38,6 +38,7 @@ function Login() {
         //alert("Por favor verifique los datos de entrada");
       }
     } else {
+      toast.error("Sus credenciales no son correctas");
       //alert("Por favor verifique los datos de entrada");
       setShowModal(false);
     }
@@ -51,7 +52,6 @@ function Login() {
     axios
       .post(baseUrl, formData)
       .then((response) => {
-        console.log(response.data);
         return response.data;
       })
       .then((response) => {
@@ -64,7 +64,6 @@ function Login() {
         window.location.href = "/admin";
       })
       .catch((error) => {
-        console.log(error);
         alert(`Por favor verifique sus datos`);
       });
    */
@@ -72,12 +71,10 @@ function Login() {
 
   return (
     <div>
-      <div className="flex items-center justify-center">
+      <header>
         <Head />
-      </div>
-      <div className="flex items-center justify-center">
-        <Navbar />
-      </div>
+        <AdministratorNavbar />
+      </header>
       {showModal && <LoadingModal />}
       <div className="flex justify-center">
         <div className="justify-center w-341.5 h-165.25 bg-green-450 mt-8">

@@ -6,7 +6,6 @@ export async function uploadMasterTableData(excelFile) {
     formData.append("file", excelFile);
 
     const { data } = await Http.post("/load_master_tables/", formData);
-    console.log("data :>> ", data);
     return { status: true, data: data };
   } catch (error) {
     //alert("Algo salio mal");

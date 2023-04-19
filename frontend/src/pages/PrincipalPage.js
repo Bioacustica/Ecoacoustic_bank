@@ -8,6 +8,7 @@ import imgBanner from "../images/02.banner 1/imgBanner.jpg";
 import aboutUs from "../images/03.Sobre nosotros/aboutUs.jpg";
 import map from "../images/04.Visualización/mapas.jpg";
 import metadata from "../images/04.Visualización/metadatos.jpg";
+import AdministratorNavbar from "../components/AdministratorNavbar";
 
 require("typeface-poppins");
 require("typeface-rubik");
@@ -16,15 +17,11 @@ function PrincipalPage() {
   return (
     <div>
       <header className="sticky top-0 z-30 bg-white">
-        <div className="flex items-center justify-center">
-          <Head />
-        </div>
-        <div className="flex items-center justify-center">
-          <Navbar />
-        </div>
+        <Head />
+        <AdministratorNavbar />
       </header>
 
-      <body>
+      <main>
         <div className="flex justify-center items-center mb-15.75">
           <div className="flex w-341.5 ">
             <img src={imgBanner} alt="" />
@@ -150,7 +147,7 @@ function PrincipalPage() {
           </h1>
         </div>
         <div className="h-0.625 bg-blue-850 mx-auto mb-11.25 w-37 "></div>
-      </body>
+      </main>
 
       <PublicFilter />
 

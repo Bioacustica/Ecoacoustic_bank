@@ -20,7 +20,6 @@ function AddFile({ close }) {
 
   const subirArchivosU = (u) => {
     setArchivosU(u);
-    console.log(u);
   };
 
   const sendFiles = async (e) => {

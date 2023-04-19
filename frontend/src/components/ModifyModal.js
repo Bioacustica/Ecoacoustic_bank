@@ -18,7 +18,6 @@ function ModifyModal({ close, userEdit, updateUserList }) {
     e.preventDefault();
     setLoading(true);
     const { status, data, errorMessage } = await updateUser(user);
-    console.log({ data });
     setLoading(false);
     if (!status) {
       toast.error(errorMessage);

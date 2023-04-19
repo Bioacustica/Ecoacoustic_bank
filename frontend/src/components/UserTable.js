@@ -21,7 +21,6 @@ function UserTable({ userList, updateUserList }) {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = (user) => {
-    console.log("user :>> ", user);
     setUserEdit({ ...user, password: "" });
     setShowModal(true);
   };

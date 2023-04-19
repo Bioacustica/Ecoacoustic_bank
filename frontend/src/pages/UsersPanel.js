@@ -21,7 +21,6 @@ function UserPanel() {
   const getUsers = async () => {
     try {
       const { data } = await getUsersList();
-      console.log("data2 :>> ", data);
       setUserList(data.users);
     } catch (error) {}
   };
@@ -34,7 +33,6 @@ function UserPanel() {
     setUserList((users) =>
       (users || []).map((u) => (u.id_user !== user.id_user ? u : { ...user }))
     );
-    console.log("updateUserList :>> ", user);
   };
 
   useEffect(() => {
