@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-import { uploadMasterTableData } from "../services/loadFile";
+import { uploadMasterTableData, uploadUdasData } from "../services/loadFile";
 import closeimg from "../images/06.Contacto/x.png";
 import Toggle from "react-toggle";
 import LoadingModal from "./LoadingModal";
@@ -12,6 +12,9 @@ function AddFile({ close }) {
   const [archivosT, setArchivosT] = useState(null);
   const [toggleUDAS, setToggleUDAS] = useState(false);
   const [okArchivosT, setOkArchivosT] = useState(false);
+  const [okArchivosU, setOkArchivosU] = useState(false);
+  const [errorArchivosT, setErrorArchivosT] = useState(false);
+  const [errorArchivosU, setErrorArchivosU] = useState(false);
   const [archivosU, setArchivosU] = useState(null);
 
   const subirArchivosT = (e) => {
@@ -19,23 +22,45 @@ function AddFile({ close }) {
   };
 
   const subirArchivosU = (u) => {
-    setArchivosU(u);
+    setArchivosU(u?.[0] || null);
   };
 
   const sendFiles = async (e) => {
     e.preventDefault();
     setLoading(true);
     let okFileT = false;
-    try {
-      if (archivosT) {
-        await uploadMasterTableData(archivosT);
-        toast.success(`Archivo MasterTable Cargado!`);
+    let okFileU = false;
+    if (archivosT) {
+      try {
+        const { status } = await uploadMasterTableData(archivosT);
 
+        if(!status) throw new Error("Error Udas")
+
+        toast.success(`Archivo MasterTable Cargado!`);
         okFileT = true;
+      } catch (error) {
+        setErrorArchivosT(true)
+        toast.success(`Archivo MasterTable tuvo errores!`);
       }
-    } catch (error) {}
+      setOkArchivosT(okFileT);
+    }
+    
+    if(archivosU) {
+      try {
+        const { status } = await uploadUdasData(archivosU)
+        
+        if(!status) throw new Error("Error Udas")
+
+        toast.success(`Archivo UDAS Cargado!`);
+        okFileU = true
+      } catch (error) {
+        setErrorArchivosU(true)
+        toast.success(`Archivo UDAS tuvo errores!`);
+      }
+      setOkArchivosU(okFileU);
+    }
+
     setLoading(false);
-    setOkArchivosT(okFileT);
   };
 
   return (
@@ -77,6 +102,11 @@ function AddFile({ close }) {
                         />
                       </svg>
                     )}
+                    {errorArchivosT && (
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 text-red-600">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )}
                     <label className="mr-2 text-2xl font-bold text-center font-poppins text-blue-850">
                       Actualizar Tablas
                     </label>
@@ -99,6 +129,27 @@ function AddFile({ close }) {
                   </div>
                   <div>
                     <div className="inline-flex items-center w-full ">
+                      {okArchivosU && (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-10 h-10 text-green-600"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      )}
+                      {errorArchivosU && (
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 text-red-600">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      )}
                       <label className="mr-2 text-2xl font-bold font-poppins text-blue-850">
                         Cargar Udas
                       </label>

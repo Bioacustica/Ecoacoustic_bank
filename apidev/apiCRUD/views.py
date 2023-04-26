@@ -411,6 +411,78 @@ def delete_user(request, user_id):
     }
     return JsonResponse(response)
 
+@decorators.api_view(["GET"])
+@authentication_classes([JWTAuthentication])
+def get_hardwares(request):
+    hardwares = Hardware.objects.all().order_by('id_hardware').values('id_hardware', 'description')
+    
+    hardware_list = list(hardwares)
+    response = {
+        "hardwares": hardware_list
+    }
+    return JsonResponse(response)
+
+@decorators.api_view(["GET"])
+@authentication_classes([JWTAuthentication])
+def get_recorders(request):
+    recorders = HSerial.objects.all().order_by('id_h_serial').values('id_h_serial', 'id_hardware', 'h_serial')
+    
+    recorder_list = list(recorders)
+    response = {
+        "recorders": recorder_list
+    }
+    return JsonResponse(response)
+
+
+@decorators.api_view(["POST"])
+@authentication_classes([JWTAuthentication])
+def add_recorder(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        recorders = HSerial.objects.filter(h_serial=data['h_serial'])
+        print("___________________________________________")
+        if recorders.exists():
+            return JsonResponse({'message': 'La grabadora con ese serial ya existe.'}, status=400)
+        
+        hardware = Hardware.objects.get(id_hardware=data['id_hardware'])
+        recorder = HSerial(
+            h_serial=data['h_serial'],
+            id_hardware=hardware)
+        recorder.save()
+        
+        response = {
+            "recorder": {
+                "id_h_serial": recorder.id_h_serial,
+                "h_serial": recorder.h_serial,
+                "id_hardware": int(data['id_hardware']),
+            },
+            "message": "Grabadora creada con éxito!"
+        }
+        return JsonResponse(response)
+
+
+@decorators.api_view(["PUT"])
+@authentication_classes([JWTAuthentication])
+def update_recorder(request, id_h_serial):
+    if request.method == 'PUT':
+        data = json.loads(request.body)
+        hardware = Hardware.objects.get(id_hardware=data['id_hardware'])
+        recorder = HSerial.objects.get(id_h_serial=id_h_serial)
+        recorder.h_serial = data['h_serial']
+        recorder.id_hardware = hardware
+
+        recorder.save()
+        # users_list = list(users)
+        response = {
+            "recorder": {
+                "id_h_serial": recorder.id_h_serial,
+                "h_serial": recorder.h_serial,
+                "id_hardware": int(data['id_hardware']),
+            },
+            "message": "¡Grabadora actualizada con éxito!"
+        }
+        return JsonResponse(response)
+
 
 @decorators.api_view(["GET"])
 @authentication_classes([JWTAuthentication])

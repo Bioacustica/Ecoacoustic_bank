@@ -116,6 +116,11 @@ function AdministratorNavbar() {
     label: "FILTROS",
   };
 
+  const RECORDER = {
+    path: "/recorder-panel",
+    label: "GRABADORAS",
+  };
+
   const USERS = {
     path: "/user-panel",
     label: "USUARIOS",
@@ -131,10 +136,10 @@ function AdministratorNavbar() {
     label: "VISUALIZACIÓN DE METADATOS",
   };
   const navbarRole = {
-    admin: [HOME, UPLOAD_AUDIO, FILTERS, USERS, MAP, METADATA],
-    registro: [HOME, UPLOAD_AUDIO, FILTERS, MAP, METADATA],
-    etiquetado: [HOME, UPLOAD_AUDIO, FILTERS, MAP, METADATA],
-    usuario: [HOME, UPLOAD_AUDIO, FILTERS, MAP, METADATA],
+    admin: [HOME, UPLOAD_AUDIO, FILTERS, RECORDER, USERS, MAP, METADATA],
+    registro: [HOME, UPLOAD_AUDIO, FILTERS, RECORDER, MAP, METADATA],
+    etiquetado: [HOME, FILTERS, MAP, METADATA],
+    usuario: [HOME, FILTERS, MAP, METADATA],
     unknown: [...HOME.children],
   };
 

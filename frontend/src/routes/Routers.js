@@ -8,6 +8,7 @@ import LabelledFilter from "../pages/LabelledFilter-Admin";
 import AssigmentAdmin from "../pages/Assignment-Filter-Admin";
 import DownloadFilter from "../pages/DownloadFilter";
 import UserPanel from "../pages/UsersPanel";
+import RecorderPanel from "../pages/RecorderPanel";
 
 function Routers() {
     return (
@@ -23,6 +24,7 @@ function Routers() {
           <Route exact path="/admin-label-filter" element={<LabelledFilter/>}/>
           <Route exact path="/admin-assignment-filter" element={<AssigmentAdmin/>}/>
           <Route exact path="/admin-dowload-filter" element={<DownloadFilter/>}/>
+          <Route exact path="/recorder-panel" element={<RecorderPanel/>}/>
           <Route exact path="/user-panel" element={<UserPanel/>}/>
         </Routes>
       </BrowserRouter>

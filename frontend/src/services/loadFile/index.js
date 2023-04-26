@@ -12,3 +12,17 @@ export async function uploadMasterTableData(excelFile) {
     return { status: false, data: null };
   }
 }
+
+
+export async function uploadUdasData(excelFile) {
+  try {
+    const formData = new FormData();
+    formData.append("file", excelFile);
+
+    const { data } = await Http.post("/load_udas/", formData);
+    return { status: true, data: data };
+  } catch (error) {
+    //alert("Algo salio mal");
+    return { status: false, data: null };
+  }
+}

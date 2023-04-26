@@ -860,7 +860,7 @@ class HSerial(models.Model):
     h_serial = models.CharField(max_length=64, blank=True, null=True)
 
     def __str__(self):
-        return self.id_h_serial
+        return self.h_serial
 
     class Meta:
         managed = False
@@ -975,7 +975,7 @@ class Hardware(models.Model):
 
     def __str__(self):
         return self.description
-
+    
     class Meta:
         managed = False
         db_table = "hardware"

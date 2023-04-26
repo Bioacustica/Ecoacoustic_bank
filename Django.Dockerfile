@@ -8,7 +8,6 @@ WORKDIR /code
 COPY ./djangorequirements.txt /code
 RUN pip install -r djangorequirements.txt
 
-COPY LoadUDAS.py /
 #COPY second_tables.xlsx /
 #COPY relaciones_data.xlsx /
 RUN apt-get update  && \
@@ -16,7 +15,6 @@ RUN apt-get update  && \
 
 # ENTRYPOINT  python /LoadMasterTable.py && \
 ENTRYPOINT  python manage.py makemigrations && \
-            python /LoadUDAS.py & \
             python manage.py migrate  && \
             python manage.py collectstatic --noinput && \
             python manage.py shell < initAdmin.py && \

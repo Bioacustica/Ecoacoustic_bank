@@ -90,7 +90,7 @@ function PrivateLabelTable() {
 
           <tbody>
             {columns.map((rowscounter) => (
-              <tr className="">
+              <tr className="" key={rowscounter}>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
                 Dato_Audio{rowscounter}
                 </td>
@@ -151,7 +151,7 @@ function PrivateLabelTable() {
           </thead>
           <tbody>
             {columns.map((rowscounter) => (
-              <tr>
+              <tr key={rowscounter}>
                 <td className="font-rubik font-light text-base h-13.5 ">
                   <button 
                   onClick={openModal2}className=" bg-yellow-400 font-semibold text-lg text-white  w-31.25 h-7.75">
