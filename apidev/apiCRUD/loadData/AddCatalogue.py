@@ -20,7 +20,7 @@ def FailCatalogue(id_sampling, description):
     return (catalogue_ == None)
 
 
-def AddCatalogue(udas, session, id):
+def AddCatalogue(udas, session, id, path_usb):
 
     try:
 
@@ -211,7 +211,7 @@ def AddCatalogue(udas, session, id):
                         filter(Base.classes["microphone"].description == udas.iloc[id]["microphone_RE"].replace('"', '').upper()). \
                         first().id_microphone
 
-                    infoDir = os.listdir(record_dir)
+                    infoDir = os.listdir(path_usb+record_dir)
                     chunks = len(infoDir)
                     size = 1
 
@@ -319,13 +319,13 @@ def AddCatalogue(udas, session, id):
         print(e)
 
 
-def AddCatalogues_(file, session):
+def AddCatalogues_(file, session, path_usb):
 
     udas = pd.read_excel(file, sheet_name="UDAS", header=0)
 
     for id in range(udas.shape[0]):
 
-        AddCatalogue(udas, session, id)
+        AddCatalogue(udas, session, id, path_usb)
 
 
 # verificar todos los datos antes de añadirlos a un catalogo

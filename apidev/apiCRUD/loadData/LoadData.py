@@ -9,14 +9,29 @@ from .AddProject import AddProjects_
 from .AddSampling import AddSamplings_
 from .AddCatalogue import AddCatalogues_
 from .AddRecord import AddRecords_
+import subprocess
 
 
 session = Session(engine)
 
 Globals.init()
 
-
 def LoadData(file):
+    path_static = "/code/usb/"
+    path_usb = ""
+    content_usbs = subprocess.check_output(['ls', path_static])
+    resultado_decodificado = content_usbs.decode('utf-8')
+    print("resultado_decodificado", resultado_decodificado)
+    num_usbs_connected = len(resultado_decodificado.split("\n")) -1 
+    print("num_usbs_connected", num_usbs_connected)
+    if(num_usbs_connected != 1):
+        print("Por favor revisar que se tenga conectada una sola USB")
+        Globals.Bug = True
+    else:
+        path_usb = path_static +  resultado_decodificado.strip() + "/"
+
+    VerifyStage(session)
+    
 
     print("Stage 1: Projects")
     AddProjects_(file, session)
@@ -27,11 +42,11 @@ def LoadData(file):
     VerifyStage(session)
 
     print("Stage 3: Catalogues")
-    AddCatalogues_(file, session)
+    AddCatalogues_(file, session, path_usb)
     VerifyStage(session)
 
     print("Stage 4: Records")
-    AddRecords_(file, session)
+    AddRecords_(file, session, path_usb)
     VerifyStage(session)
 
     print(" ")

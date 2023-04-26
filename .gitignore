@@ -34,3 +34,4 @@ venv/
 apidev/**/__pycache__/
 **/apiCRUD_keys*
 **/*keys.json
+audios_db/

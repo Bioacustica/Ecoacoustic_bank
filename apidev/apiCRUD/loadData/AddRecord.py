@@ -26,7 +26,7 @@ def IsNewRecord(fingerprint):
 
 def GetFingerprint(file):
     try:
-        return hashlib.md5(file.read()).hexdigest()
+        return hashlib.md5(open(file, "rb").read()).hexdigest()
     except Exception as e:
         print("Error: %s" % (e))
         return ""
@@ -40,7 +40,7 @@ def GetFingerprint(file):
 def AddRecordFile(file, fingerprint, id_record):
 
     # crear directorio usando las primeras letras del fingerprint
-    path_db = "/home/andres/Proyectos/Software/Bioacustico/DB/" + \
+    path_db = "/code/audios_db/" + \
         fingerprint[0:3]
 
     try:
@@ -68,7 +68,6 @@ def AddRecordFile(file, fingerprint, id_record):
 
 
 def AddRecord(file, id_catalogue, date, chunk, session):
-
     metadata = audio_metadata.load(file)
     # try para format
     format = os.path.splitext(file)[1].split('.')[1].upper()
@@ -133,7 +132,7 @@ def AddRecords(file, id_catalogue, session):
         raise print(e)
 
 
-def AddRecords_(file, session):
+def AddRecords_(file, session, path_usb):
 
     udas = pd.read_excel(file, sheet_name="UDAS", header=0)
 
@@ -153,7 +152,7 @@ def AddRecords_(file, session):
 
             file = udas.iloc[id]["path_records_PR"]
             Ok = VerifyField("path_records_PR", file, id) and Ok
-            file = file + "/" + catalogue
+            file = path_usb + file + "/" + catalogue
 
             if not Ok:
                 raise

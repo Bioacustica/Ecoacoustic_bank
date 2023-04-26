@@ -30,13 +30,12 @@ services:
       - "./diagrama_erd:/var/lib/pgadmin/storage"
     user: root
   djangoweb:
-    devices:
-      - /dev/bus/usb:/dev/bus/usb
     build:
       context: .
       dockerfile: Django.Dockerfile
     container_name: djangoweb
     volumes:
+      - "./audios_db:/code/audios_db"
       - "/media/andres:/code/usb"
       - "./apidev/:/code"
     ports:
