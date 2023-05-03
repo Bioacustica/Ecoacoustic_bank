@@ -137,7 +137,7 @@ function PrincipalPage() {
           </div>
         </div>
 
-        <div
+        {/* <div
           className=" h-0.625 bg-blue-850 mx-auto w-37 mt-11.25  mb-3"
           id="filtros"
         ></div>
@@ -146,10 +146,10 @@ function PrincipalPage() {
             Filtros
           </h1>
         </div>
-        <div className="h-0.625 bg-blue-850 mx-auto mb-11.25 w-37 "></div>
+        <div className="h-0.625 bg-blue-850 mx-auto mb-11.25 w-37 "></div> */}
       </main>
 
-      <PublicFilter />
+      {/* <PublicFilter /> */}
 
       <footer>
         <div className="flex justify-center items-center mt-11.25 ">

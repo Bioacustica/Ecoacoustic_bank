@@ -11,6 +11,8 @@ require("typeface-poppins");
 require("typeface-rubik");
 
 function RecorderPanel() {
+  const userRole = localStorage.getItem("rolename");
+
   const [showModal, setShowModal] = useState(false);
   const [recorderList, setRecorderList] = useState([]);
   const [hardwareList, setHardwareList] = useState([]);
@@ -60,7 +62,7 @@ function RecorderPanel() {
           <div className="absolute self-center justify-center ">
             <div className="space-y-3">
               <h1 className="text-center font-extrabold font-poppins text-4.5xl text-white">
-                Administrador,
+                {userRole},
               </h1>
               <h1 className="text-center font-extrabold font-poppins  text-4.5xl text-white">
                 Grabadoras

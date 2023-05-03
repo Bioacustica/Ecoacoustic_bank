@@ -5,6 +5,12 @@ import { LoginService } from "./login/Login_Service";
 import axios from "axios";
 const FormData = require("form-data");
 const fs = require("fs");
+const roleNames = {
+  admin: "Administrador",
+  registro: "Colaborador de registros",
+  etiquetado: "Colaborador de etiquetado",
+  usuario: "Usuario",
+}
 
 export async function sendMenssage({ subject, from_email, message }) {
   try {
@@ -30,6 +36,8 @@ export async function sendCredentialsData({ email, password }) {
     window.localStorage.setItem("refresh_token", data.refresh);
     window.localStorage.setItem("username", data.username);
     window.localStorage.setItem("rol", data.roles);
+    window.localStorage.setItem("rolename", roleNames[data.roles]);
+
     return { status: true, data: data.status };
   } catch (error) {
     //alert("Algo salio mal")

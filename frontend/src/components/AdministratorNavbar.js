@@ -1,5 +1,6 @@
 import React, { Children, useEffect, useRef, useState } from "react";
 import AddFile from "../components/Addfile";
+import ContactModal from "./ContactModal";
 
 const NavbarItem = ({ item }) => {
   return item.render ? (
@@ -23,6 +24,10 @@ function AdministratorNavbar() {
   const [showFile, setShowFile] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showHomeDropdown, setShowHomeDropdown] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
 
   const dropdownRef = useRef(null);
   const homeDropdownRef = useRef(null);
@@ -61,8 +66,8 @@ function AdministratorNavbar() {
       { path: "/", label: "Inicio" },
       { path: "/#sobre-nosotros", label: "Sobre nosotros" },
       { path: "/#visualizacion", label: "Visualizacion" },
-      { path: "/#filtros", label: "Filtros" },
-      { path: "/#filtros", label: "Contacto" },
+      // { path: "/#filtros", label: "Filtros" },
+      { path: "#", label: "Contacto", render: function () { return <button onClick={openModal}>{username ? this.label : this.label.toUpperCase() }</button> }},
     ],
     render: function () {
       return (
@@ -95,7 +100,7 @@ function AdministratorNavbar() {
                     i === this.children.length - 1 && "rounded-b"
                   } border-zinc-500 hover:bg-gray-100`}
                 >
-                  {child.label}
+                  {child.render ? child.render() : child.label}
                 </a>
               </li>
             ))}
@@ -148,6 +153,8 @@ function AdministratorNavbar() {
     localStorage.removeItem("refresh_token");
     localStorage.removeItem("username");
     localStorage.removeItem("rol");
+    localStorage.removeItem("rolename");
+
     window.location.href = "/";
   };
 
@@ -217,6 +224,8 @@ function AdministratorNavbar() {
         )}
       </nav>
       {showFile && <AddFile className="z-50" close={closeFile} />}
+      {showModal && <ContactModal close={closeModal} />}
+
     </div>
   );
 }

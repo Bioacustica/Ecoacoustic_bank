@@ -13,6 +13,8 @@ require("typeface-poppins");
 require("typeface-rubik");
 
 function LabelledFilter() {
+  const userRole = localStorage.getItem("rolename");
+
   return (
     <>
       <header className="sticky top-0 z-30 bg-white">
@@ -28,7 +30,7 @@ function LabelledFilter() {
           <div className="absolute self-center justify-center ">
             <div className="space-y-3">
               <h1 className="text-center font-extrabold font-poppins text-4.5xl text-white">
-                Administrador,
+                {userRole},
               </h1>
               <h1 className="text-center font-extrabold font-poppins  text-4.5xl text-white">
                 Filtros
