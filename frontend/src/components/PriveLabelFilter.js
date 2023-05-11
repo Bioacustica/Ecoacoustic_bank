@@ -31,6 +31,10 @@ class PrivateLabel extends Component {
       "metodo etiquetado": "",
       software: "",
       "tipo de grabadora": "",
+      "min_date": null,
+      "max_date": null,
+      "min_elevation": null,
+      "max_elevation": null,
     },
     List_Audio: {},
   };
@@ -64,6 +68,21 @@ class PrivateLabel extends Component {
       return { ...state, List_Audio };
     });
   };
+
+  downloadCSV = async () => {
+    let data = "Id,Nombre,Fecha,Hábitat,Departamento,Municipio,Ciudad,Elevación,Formato,Tipo de micrófono,Método de etiquetado,Tipo de grabadora,Software de etiquetado,Tipo de carcasa\n"
+    this.state.List_Audio.results.forEach(audio => {
+      data += `${audio.id_record},${audio.fingerprint_},${audio.date_record_},${audio.habitat_},${audio.departamento_},${audio.ciudad_},${audio.ciudad_},${audio.elevation},${audio.formato_},${audio.microphone},${audio.metodo_etiquetado_},${audio.tipo_grabadora_},${audio.software_etiquetado_},${audio.case_}\n`
+    });
+    const enlaceDescarga = document.createElement('a');
+    enlaceDescarga.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(data);
+    enlaceDescarga.target = '_blank';
+    enlaceDescarga.download = 'archivo.csv';
+    document.body.appendChild(enlaceDescarga);
+    enlaceDescarga.click();
+    document.body.removeChild(enlaceDescarga);
+  }
+
   render() {
     return (
       <div>
@@ -247,7 +266,9 @@ class PrivateLabel extends Component {
             <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850">Fecha de inicio</span>
               <input
+                name="min_date"
                 type="date"
+                onChange={(event) => this.valueToState(event.target)}
                 className="mt-1 block w-full h-7.75 rounded-md border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
             </label>
@@ -255,7 +276,9 @@ class PrivateLabel extends Component {
             <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850">Fecha final</span>
               <input
+                name="max_date"
                 type="date"
+                onChange={(event) => this.valueToState(event.target)}
                 className="mt-1 block w-full rounded-md border border-blue-850 h-7.75 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
             </label>
@@ -263,7 +286,9 @@ class PrivateLabel extends Component {
             <label className="block text-center w-54.25">
               <span className="text-blue-850">Elevación mínima</span>
               <input
+                name="min_elevation"
                 type="text"
+                onChange={(event) => this.valueToState(event.target)}
                 className="mt-1 block w-full h-7.75 rounded-md border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
             </label>
@@ -275,7 +300,9 @@ class PrivateLabel extends Component {
             <label className="block text-center w-54.25 mr-15.666">
               <span className="text-blue-850">Elevación máxima</span>
               <input
+                name="max_elevation"
                 type="text"
+                onChange={(event) => this.valueToState(event.target)}
                 className="mt-1 block w-full rounded-md border border-blue-850 h-7.75 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
             </label>
@@ -290,9 +317,43 @@ class PrivateLabel extends Component {
             </label>
           </div>
         </div>
+        
+        {(this.state.List_Audio.results || []).length > 0 && (
+          <div className="flex justify-center items-center content-center mb-8.5">
+            <div className="flex w-341.5 justify-center items-center">
+              <button
+                onClick={this.downloadCSV}
+                className="block font-semibold font-poppins text-white bg-gray-250 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
+                Descargar
+              </button>
+
+              <label className="block  text-center w-54.25 ">
+                <br />
+                <div className="flex">
+                  <input
+                    className="w-7.75 h-7.75 ml-2 text-white mr-2"
+                    type="checkbox"
+                  />
+                  <label className="block  mb-2 font-semibold text-2xl font-poppins text-white bg-blue-250 w-45.5 h-7.75 ">
+                    Audios
+                  </label>
+                </div>
+                <div className="flex">
+                  <input
+                    className="w-7.75 h-7.75 ml-2 text-white mr-2"
+                    type="checkbox"
+                  />
+                  <label className="block  font-semibold font-poppins text-2xl text-white bg-blue-250 w-45.5 h-7.75 ">
+                    CSV
+                  </label>
+                </div>
+              </label>
+            </div>
+          </div>
+        )}
 
         <div className="flex items-center justify-center mb-32">
-          <div className="w-341.5 max-h-132.25">
+          <div className="w-341.5">
             <PrivateLabelTable List_Audio={this.state.List_Audio} />
           </div>
         </div>

@@ -221,6 +221,10 @@ def consulta_filtros_publicos (
     metodo_etiquetado=None,
     software=None,
     tipo_grabadora=None,
+    min_date=None,
+    max_date=None,
+    min_elevation=None,
+    max_elevation=None,
 ) -> list:
     db_name = settings.DATABASES["animalesitm"]["NAME"]
     db_port = settings.DATABASES["animalesitm"]["PORT"]
@@ -244,12 +248,11 @@ def consulta_filtros_publicos (
         'software': str_none(software),
         'tipo_grabadora': str_none(tipo_grabadora)
     }
-    print(filter_values['habitat'])
     # se hace la consulta y se crea el objecto con los datos consultados}
     # TODO Implementar logica en caso de que se pase un None desde el request
     conexion= psycopg2.connect(**credenciales_db_publico)
 
-    query1 = "SELECT * FROM bioacustica.get_join ({0},{1},{2},{3},{4},{5},{6},{7},{8});".format(
+    query1 = "SELECT * FROM bioacustica.get_join ({0},{1},{2},{3},{4},{5},{6},{7},{8})".format(
 
         filter_values['catalogo'],
         filter_values['habitat'],
@@ -261,6 +264,36 @@ def consulta_filtros_publicos (
         filter_values['software'],
         filter_values['tipo_grabadora']
     )
+
+    where = ""
+    if(min_date != None and min_date != ""):
+        where += "where date_record_ >= '{0}'".format(min_date)
+
+    if(max_date != None and max_date != ""):
+        if where != "" :
+            where += " and date_record_ <= '{0}'".format(max_date)
+        else:
+            where += "where date_record_ <= '{0}'".format(max_date)
+
+    if(min_elevation != None and min_elevation != ""):
+        if where != "" :
+            where += " and elevation >= {0}".format(min_elevation)
+        else:
+            where += "where elevation >= '{0}'".format(min_elevation)
+    
+    if(max_elevation != None and max_elevation != ""):
+        if where != "" :
+            where += " and elevation <= {0}".format(max_elevation)
+        else:
+            where += "where elevation <= '{0}'".format(max_elevation)
+
+    if(where != ""):
+        query1 += " " + where
+
+    query1 += " order by id_record asc;"
+
+    print("query1",query1)
+    print("min_date",min_date)
     query2 = "SET search_path TO bioacustica;"
     with conexion.cursor() as cursor2:
         cursor2.execute(query2)
@@ -268,8 +301,10 @@ def consulta_filtros_publicos (
         fetch = cursor2.fetchall()
         objects_list = []
         column_names = [column[0] for column in cursor2.description]
+        # print("fetch",fetch)
         for record in fetch:
             objects_list.append(dict(zip(column_names, record)))
+    
     return objects_list
 
 

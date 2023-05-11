@@ -14,7 +14,7 @@ create or replace function bioacustica.get_join(
 		id_record integer,
 		formato_ varchar,
 		chunk_ smallint,		-- Número del record asociado al catálogo
-		date_ timestamp,
+		date_record_ timestamp,
 		catalogo_ varchar,
 		elevation integer,
 		chunks_ smallint,
@@ -38,7 +38,7 @@ begin
 			record.id_record,
 			format.description,
 			record.chunk,
-			record.date,
+			record.date as date_record,
 			catalogue.description,
 			catalogue.elevation,
 			catalogue.chunks,

@@ -1,6 +1,7 @@
 import React, { Children, useEffect, useRef, useState } from "react";
 import AddFile from "../components/Addfile";
 import ContactModal from "./ContactModal";
+import AddLabelFile from "./AddLabelfile";
 
 const NavbarItem = ({ item }) => {
   return item.render ? (
@@ -25,9 +26,13 @@ function AdministratorNavbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showHomeDropdown, setShowHomeDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showLabelModal, setShowLabelModal] = useState(false);
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
+
+  const openLabelModal = () => setShowLabelModal(true);
+  const closeLabelModal = () => setShowLabelModal(false);
 
   const dropdownRef = useRef(null);
   const homeDropdownRef = useRef(null);
@@ -121,6 +126,12 @@ function AdministratorNavbar() {
     label: "FILTROS",
   };
 
+  const LABELED = {
+    path: "#",
+    label: "ETIQUETADO",
+    render: () => <button onClick={openLabelModal}>ETIQUETADO</button>,
+  };
+
   const RECORDER = {
     path: "/recorder-panel",
     label: "GRABADORAS",
@@ -141,7 +152,7 @@ function AdministratorNavbar() {
     label: "VISUALIZACIÓN DE METADATOS",
   };
   const navbarRole = {
-    admin: [HOME, UPLOAD_AUDIO, FILTERS, RECORDER, USERS, MAP, METADATA],
+    admin: [HOME, UPLOAD_AUDIO, FILTERS, LABELED, RECORDER, USERS, MAP, METADATA],
     registro: [HOME, UPLOAD_AUDIO, FILTERS, RECORDER, MAP, METADATA],
     etiquetado: [HOME, FILTERS, MAP, METADATA],
     usuario: [HOME, FILTERS, MAP, METADATA],
@@ -225,6 +236,7 @@ function AdministratorNavbar() {
       </nav>
       {showFile && <AddFile className="z-50" close={closeFile} />}
       {showModal && <ContactModal close={closeModal} />}
+      {showLabelModal && <AddLabelFile close={closeLabelModal} />}
 
     </div>
   );

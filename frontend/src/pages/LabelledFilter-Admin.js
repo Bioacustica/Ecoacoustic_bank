@@ -40,16 +40,16 @@ function LabelledFilter() {
         </div>
 
         <div className="flex justify-center divide-x divide-black divide-x-12.25 h-20.25 bg-blue-250 items-center">
-          <div className="hover:bg-blue-200 w-4/12">
-            <Link to="/admin-label-filter">
-              <button className="text-blue-850 text-xl w-full">
-                <label> FILTRO DE </label>
-                <br />
-                <label> ETIQUETADO </label>
-              </button>
-            </Link>
+          <div className="">
+            {/* <Link to="/admin-label-filter"> */}
+              <div className="text-center text-blue-850 text-xl w-full">
+                <label> FILTRO DESCARGA </label>
+                  <br />
+                <label> DE AUDIOS </label>
+              </div>
+            {/* </Link> */}
           </div>
-          <div className="hover:bg-blue-200 w-4/12">
+          {/* <div className="hover:bg-blue-200 w-4/12">
             <Link to="/admin-assignment-filter">
               <button className="text-white text-xl w-full">
                 <label> FILTRO ASIGNACIÓN </label>
@@ -67,7 +67,7 @@ function LabelledFilter() {
                 <label> DE AUDIOS </label>
               </button>
             </Link>
-          </div>
+          </div> */}
         </div>
         <div className="mt-16">
           <PrivateLabel />

@@ -275,12 +275,13 @@ def public_record_view(request):
     metodo_etiquetado = request.data["metodo etiquetado"].upper()
     software = request.data["software"].upper()
     tipo_grabadora = request.data["tipo de grabadora"].upper()
-    # fecha = request.data["fecha"]
-    # fecha_dt = datetime.strptime(fecha, '%d/%m/%Y')
-    # elevation = request.data["elevation"]
+    min_date = request.data["min_date"]
+    max_date = request.data["max_date"]
+    min_elevation = request.data["min_elevation"]
+    max_elevation = request.data["max_elevation"]
 
     paginator = PageNumberPagination()
-    paginator.page_size = 2
+    paginator.page_size = 20
     context = paginator.paginate_queryset(consulta_filtros_publicos(
         catalogo,
         habitat,
@@ -291,6 +292,10 @@ def public_record_view(request):
         metodo_etiquetado,
         software,
         tipo_grabadora,
+        min_date,
+        max_date,
+        min_elevation,
+        max_elevation,
     ),
         request
     )

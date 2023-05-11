@@ -922,7 +922,8 @@ create or replace function bioacustica.get_join(
         id_record integer,
         formato_ varchar,
         chunk_ smallint,
-        date_ timestamp,
+        date_record_ timestamp,
+        fingerprint_ varchar,
         catalogo_ varchar,
         elevation integer,
         chunks_ smallint,
@@ -946,7 +947,8 @@ begin
             record.id_record,
             format.description,
             record.chunk,
-            record.date,
+            record.date as date_record,
+            record_path.fingerprint,
             catalogue.description,
             catalogue.elevation,
             catalogue.chunks,
@@ -964,6 +966,7 @@ begin
         from
             catalogue
         INNER JOIN record ON catalogue.id_catalogue=record.id_catalogue
+        INNER JOIN record_path ON record.id_record=record_path.id_record
         --where catalogue.description = (CASE WHEN catalogo IS NOT NULL THEN catalogo ELSE catalogue.description END)
         INNER JOIN format ON record.id_format=format.id_format
         INNER JOIN h_serial ON catalogue.id_h_serial=h_serial.id_h_serial

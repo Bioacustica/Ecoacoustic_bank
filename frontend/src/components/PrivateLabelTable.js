@@ -65,9 +65,9 @@ function PrivateLabelTable({List_Audio}) {
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
                 Elevación
               </td>
-              <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
+              {/* <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
                 Evento
-              </td>
+              </td> */}
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
                 Formato
               </td>
@@ -86,7 +86,7 @@ function PrivateLabelTable({List_Audio}) {
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
                 Tipo de carcasa
               </td>
-              <td colSpan={2} className="sticky right-0 bg-white border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
+              <td colSpan={1} className="sticky right-0 bg-white border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
                 Acciones
               </td>
             </tr>
@@ -98,10 +98,10 @@ function PrivateLabelTable({List_Audio}) {
                 {rowscounter.id_record}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                {rowscounter.sampling_description}
+                {rowscounter.fingerprint_}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
-                {rowscounter.date_}
+                {rowscounter.date_record_}
                 </td>
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
                 {rowscounter.habitat_}
@@ -118,9 +118,9 @@ function PrivateLabelTable({List_Audio}) {
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
                 {rowscounter.elevation}
                 </td>
-                <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
+                {/* <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
                 {rowscounter.id_record}
-                </td>
+                </td> */}
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
                 {rowscounter.formato_}
                 </td>
@@ -139,12 +139,12 @@ function PrivateLabelTable({List_Audio}) {
                 <td className="border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
                 {rowscounter.case_}
                 </td>
-                <td className="sticky right-40 bg-white border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
+                {/* <td className="sticky right-40 bg-white border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
                   <button 
                     onClick={openModal2}className=" bg-yellow-400 font-semibold text-lg text-white  w-31.25 h-7.75">
                     Más
                   </button>
-                </td>
+                </td> */}
                 <td className="sticky right-0 bg-white border-2 font-rubik border-blue-850 font-light text-base h-13.5 px-4 text-center">
                   <button
                     onClick={openModal}

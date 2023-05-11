@@ -27,12 +27,9 @@ function AssignmentAdmin() {
           </div>
           <div className="absolute self-center justify-center w-full ">
             <div className="space-y-3">
-              <h1 className="text-center font-extrabold font-poppins text-4.5xl text-white">
-                Administrador,
-              </h1>
-              <h1 className="text-center font-extrabold font-poppins  text-4.5xl text-white">
-                Filtros
-              </h1>
+              <label> FILTRO DESCARGA </label>
+                <br />
+              <label> DE AUDIOS </label>
             </div>
           </div>
         </div>
