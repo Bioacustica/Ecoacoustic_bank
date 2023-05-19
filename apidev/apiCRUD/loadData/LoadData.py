@@ -30,7 +30,7 @@ def LoadData(file, usbSelected):
     if (usbSelected != ""):
         path_usb = path_static +  usbSelected + "/"
         
-    elif(num_usbs_connected > 0):
+    elif(num_usbs_connected > 1):
         return resultado_decodificado.split("\n")
 
     elif(num_usbs_connected == 0):
