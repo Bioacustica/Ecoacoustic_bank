@@ -95,6 +95,8 @@ urlpatterns = [
          name="load_master_tables"),
     path("load_udas/", views.load_udas,
          name="load_udas"),
+    path("load_labelfile/", views.load_labelfile,
+         name="load_labelfile"),
     path("contactanos/", views.contactanos_view, name="contacto"),
     # URL VISTA AUDIOS PÚBLICOS
     path("public-records/", views.public_record_view, name="public_records"),

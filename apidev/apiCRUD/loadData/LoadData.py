@@ -10,13 +10,15 @@ from .AddSampling import AddSamplings_
 from .AddCatalogue import AddCatalogues_
 from .AddRecord import AddRecords_
 import subprocess
+import sys
 
 
 session = Session(engine)
 
 Globals.init()
 
-def LoadData(file):
+def LoadData(file, usbSelected):
+
     path_static = "/code/usb/"
     path_usb = ""
     content_usbs = subprocess.check_output(['ls', path_static])
@@ -24,7 +26,14 @@ def LoadData(file):
     print("resultado_decodificado", resultado_decodificado)
     num_usbs_connected = len(resultado_decodificado.split("\n")) -1 
     print("num_usbs_connected", num_usbs_connected)
-    if(num_usbs_connected != 1):
+
+    if (usbSelected != ""):
+        path_usb = path_static +  usbSelected + "/"
+        
+    elif(num_usbs_connected > 0):
+        return resultado_decodificado.split("\n")
+
+    elif(num_usbs_connected == 0):
         print("Por favor revisar que se tenga conectada una sola USB")
         Globals.Bug = True
     else:
@@ -53,7 +62,8 @@ def LoadData(file):
 
     session.commit()
     print("Successful transaction")
-    session.close()
+
+
 
 
 # LoadData(file = './Test_ETL/Ultrasonido_Dany_Urrego.xls',

@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.1.10",
     "autoprefixer": "^9.8.8",
     "axios": "^0.24.0",
+    "file-saver": "2.0.5",
     "form-data": "^4.0.0",
     "fs": "^0.0.1-security",
     "postcss": "^7.0.39",

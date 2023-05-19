@@ -539,12 +539,15 @@ def download_records_files(request):
     filenames = [
 
     ]
-    files = os.listdir('/code/apiCRUD/sample_audios/')
+    files = os.listdir('/code/audios_db/')
 
     c = 0
     for file in files:
         c += 1
-        filenames.append(f"/code/apiCRUD/sample_audios/{file}")
+        fileContent = os.listdir(f'/code/audios_db/{file}/')
+        for content in fileContent:
+
+            filenames.append(f"/code/audios_db/{file}/{content}")
         if c == 100:
             break
 
@@ -608,11 +611,67 @@ def load_master_tables(request):
 
 @decorators.api_view(["POST"])
 def load_udas(request):
-    file = request.FILES['file']
-    # file.save("UDAS.xls")
-    LoadData.LoadData(file)
-    # print(GetFingerprint(file))
-    return Response("load_udas")
+    import sys
+    logs_buffer = io.StringIO()
+    sys.stdout = logs_buffer
+    response = {
+        "response": "",
+        "logs": "",
+        "error": False,
+    }
+    try:
+        file = request.FILES['file']
+        usbSelected = request.POST['usbSelected']
+        res = LoadData.LoadData(file, usbSelected)
+
+        if res != None:
+            response["response"] = res
+
+    except Exception as e:
+        errorType, content = e.args
+
+        response["error"] = True
+        if errorType == "xlsx":
+            response["xlsx"] = content
+        
+    finally:
+
+        sys.stdout = sys.__stdout__
+        logs_string = logs_buffer.getvalue()
+
+        logs_buffer.close()
+
+        response['logs'] = logs_string.split('\n')
+
+        return JsonResponse(response)
+
+@decorators.api_view(["POST"])
+def load_labelfile(request):
+    import sys
+    logs_buffer = io.StringIO()
+    sys.stdout = logs_buffer
+    response = {
+        "logs": "",
+        "error": False,
+    }
+    try:
+        file = request.FILES['file']
+
+        response["response"] = "accept"
+
+    except Exception as e:
+        response["error"] = True
+        
+    finally:
+
+        sys.stdout = sys.__stdout__
+        logs_string = logs_buffer.getvalue()
+
+        logs_buffer.close()
+
+        response['logs'] = logs_string.split('\n')
+
+        return JsonResponse(response)
 
 
 @authentication_classes([JWTAuthentication])

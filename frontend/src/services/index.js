@@ -1,3 +1,4 @@
+import { Http } from "./Http";
 import { ContactService } from "./contact/Contacto_Service";
 import { optionsList, get, post } from "./filters/Filters_Services";
 import { LoginService } from "./login/Login_Service";
@@ -70,6 +71,16 @@ export async function fetch_audios(Items) {
     const { data } = await axios.request(options);
 
     return data;
+  } catch (error) {
+    //alert("Algo salio mal")
+    return { status: false, data: null };
+  }
+}
+
+export async function downloadAudiosZip() {
+  try {
+    const { data } = await Http.get("donwloadzip/", { responseType: 'blob' });
+    return { status: true, data: data };
   } catch (error) {
     //alert("Algo salio mal")
     return { status: false, data: null };

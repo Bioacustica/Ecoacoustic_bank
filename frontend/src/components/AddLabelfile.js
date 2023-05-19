@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 
-import { uploadMasterTableData, uploadUdasData } from "../services/loadFile";
+import { uploadLabelFile } from "../services/loadFile";
 import closeimg from "../images/06.Contacto/x.png";
 import Toggle from "react-toggle";
 import LoadingModal from "./LoadingModal";
@@ -9,38 +9,62 @@ import LoadingModal from "./LoadingModal";
 import "react-toggle/style.css";
 function AddLabelFile({ close }) {
   const [isLoading, setLoading] = useState(false);
-  const [archivosT, setArchivosT] = useState(null);
-  const [toggleUDAS, setToggleUDAS] = useState(false);
-  const [okArchivosT, setOkArchivosT] = useState(false);
-  const [okArchivosU, setOkArchivosU] = useState(false);
-  const [errorArchivosT, setErrorArchivosT] = useState(false);
-  const [errorArchivosU, setErrorArchivosU] = useState(false);
-  const [archivosU, setArchivosU] = useState(null);
+  const [archivo, setArchivo] = useState(null);
+  const [okArchivo, setOkArchivo] = useState(false);
+  const [errorArchivo, setErrorArchivo] = useState(false);
+  const inputFileRef = useRef(null);
 
-  const subirArchivosT = (e) => {
-    setArchivosT(e?.[0] || null);
+  const subirArchivo = (e) => {
+    setArchivo(e?.[0] || null);
+    setOkArchivo(false)
+    setErrorArchivo(false)
   };
 
   const sendFiles = async (e) => {
     e.preventDefault();
-    // setLoading(true);
-    // let okFileT = false;
-    // if (archivosT) {
-    //   try {
-    //     const { status } = await uploadMasterTableData(archivosT);
+    setLoading(true);
+    let okFile = false;
+    let logsContent = []
 
-    //     if(!status) throw new Error("Error Udas")
+    if (archivo) {
+      try {
+        const { status, data } = await uploadLabelFile(archivo);
 
-    //     toast.success(`Archivo MasterTable Cargado!`);
-    //     okFileT = true;
-    //   } catch (error) {
-    //     setErrorArchivosT(true)
-    //     toast.success(`Archivo MasterTable tuvo errores!`);
-    //   }
-    //   setOkArchivosT(okFileT);
-    // }
+        if(!status) throw new Error("Error etiquetado")
 
-    // setLoading(false);
+        if(data.error) {
+          logsContent = data.logs
+          throw new Error("Error etiquetado")
+        }
+
+        toast.success(`Archivo de etiquetado Cargado!`);
+        okFile = true;
+
+        if (inputFileRef.current) {
+          inputFileRef.current.value = '';
+        }
+      } catch (error) {
+        setErrorArchivo(true)
+        toast.error(`Archivo de etiquetado errores!`);
+        
+        const txtContent = logsContent.join("\n");
+        if(txtContent.length > 0) {
+
+          const downloadLinkTXT = document.createElement("a");
+          const blobTXT = new Blob([txtContent], { type: "text/plain" });
+          const urlTXT = URL.createObjectURL(blobTXT);
+          downloadLinkTXT.href = urlTXT;
+          downloadLinkTXT.download = "logs.txt";
+          downloadLinkTXT.style.display = "none";
+          document.body.appendChild(downloadLinkTXT);
+          downloadLinkTXT.click();
+          document.body.removeChild(downloadLinkTXT);
+        }
+      }
+      setOkArchivo(okFile);
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -66,7 +90,7 @@ function AddLabelFile({ close }) {
               <div className="flex items-end justify-center ">
                 <div className="">
                   <div className="inline-flex items-center w-full ">
-                    {okArchivosT && (
+                    {okArchivo && (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -82,7 +106,7 @@ function AddLabelFile({ close }) {
                         />
                       </svg>
                     )}
-                    {errorArchivosT && (
+                    {errorArchivo && (
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 text-red-600">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
@@ -92,7 +116,8 @@ function AddLabelFile({ close }) {
                     </label>
                     <input
                       type="file"
-                      onChange={(e) => subirArchivosT(e.target.files)}
+                      ref={inputFileRef}
+                      onChange={(e) => subirArchivo(e.target.files)}
                       className="placeholder-blue-850 bg-yellow-550 text-center text-xl my-auto h-12.5 font-rubik border-2  border-green border-opacity-0 "
                     ></input>
                   </div>

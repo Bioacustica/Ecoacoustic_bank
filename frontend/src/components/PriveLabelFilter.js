@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Component } from "react";
-import { formList, fetch_audios } from "../services";
+import { formList, fetch_audios, downloadAudiosZip } from "../services";
 import PrivateLabelTable from "./PrivateLabelTable";
+import { saveAs } from 'file-saver';
 
 require("typeface-poppins");
 require("typeface-rubik");
@@ -21,6 +22,8 @@ class PrivateLabel extends Component {
     software: [],
     tipo_case: [],
     tipo_microfono: [],
+    downloadCSV: false,
+    downloadAudios: false,
     filters: {
       catalogo: "",
       habitat: "",
@@ -61,6 +64,8 @@ class PrivateLabel extends Component {
     });
   };
 
+
+
   publicAudio = async () => {
     const List_Audio = await fetch_audios(this.state.filters);
 
@@ -70,17 +75,30 @@ class PrivateLabel extends Component {
   };
 
   downloadCSV = async () => {
-    let data = "Id,Nombre,Fecha,Hábitat,Departamento,Municipio,Ciudad,Elevación,Formato,Tipo de micrófono,Método de etiquetado,Tipo de grabadora,Software de etiquetado,Tipo de carcasa\n"
-    this.state.List_Audio.results.forEach(audio => {
-      data += `${audio.id_record},${audio.fingerprint_},${audio.date_record_},${audio.habitat_},${audio.departamento_},${audio.ciudad_},${audio.ciudad_},${audio.elevation},${audio.formato_},${audio.microphone},${audio.metodo_etiquetado_},${audio.tipo_grabadora_},${audio.software_etiquetado_},${audio.case_}\n`
-    });
-    const enlaceDescarga = document.createElement('a');
-    enlaceDescarga.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(data);
-    enlaceDescarga.target = '_blank';
-    enlaceDescarga.download = 'archivo.csv';
-    document.body.appendChild(enlaceDescarga);
-    enlaceDescarga.click();
-    document.body.removeChild(enlaceDescarga);
+    new Promise((resolve, reject) => {
+      if (this.state.downloadCSV) {
+        let data = "Id,Nombre,Fecha,Hábitat,Departamento,Municipio,Ciudad,Elevación,Formato,Tipo de micrófono,Método de etiquetado,Tipo de grabadora,Software de etiquetado,Tipo de carcasa\n"
+        this.state.List_Audio.results.forEach(audio => {
+          data += `${audio.id_record},${audio.fingerprint_},${audio.date_record_},${audio.habitat_},${audio.departamento_},${audio.ciudad_},${audio.ciudad_},${audio.elevation},${audio.formato_},${audio.microphone},${audio.metodo_etiquetado_},${audio.tipo_grabadora_},${audio.software_etiquetado_},${audio.case_}\n`
+        });
+        const enlaceDescarga = document.createElement('a');
+        enlaceDescarga.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(data);
+        enlaceDescarga.target = '_blank';
+        enlaceDescarga.download = 'archivo.csv';
+        document.body.appendChild(enlaceDescarga);
+        enlaceDescarga.click();
+        document.body.removeChild(enlaceDescarga);
+      }
+      resolve()
+    }).then(async () => {
+      if(this.state.downloadAudios) {
+        const { data } = await downloadAudiosZip()
+        const blob = new Blob([data], { type: 'application/zip' });
+        saveAs(blob, 'audios.zip');
+      }
+    })
+
+
   }
 
   render() {
@@ -322,6 +340,7 @@ class PrivateLabel extends Component {
           <div className="flex justify-center items-center content-center mb-8.5">
             <div className="flex w-341.5 justify-center items-center">
               <button
+              disabled={!this.state.downloadAudios && !this.state.downloadAudios}
                 onClick={this.downloadCSV}
                 className="block font-semibold font-poppins text-white bg-gray-250 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
                 Descargar
@@ -333,6 +352,8 @@ class PrivateLabel extends Component {
                   <input
                     className="w-7.75 h-7.75 ml-2 text-white mr-2"
                     type="checkbox"
+                    checked={this.state.downloadAudios}
+                    onChange={(e) => this.setState((state) => ({...state, downloadAudios: e.target.checked }))}
                   />
                   <label className="block  mb-2 font-semibold text-2xl font-poppins text-white bg-blue-250 w-45.5 h-7.75 ">
                     Audios
@@ -342,6 +363,8 @@ class PrivateLabel extends Component {
                   <input
                     className="w-7.75 h-7.75 ml-2 text-white mr-2"
                     type="checkbox"
+                    checked={this.state.downloadCSV}
+                    onChange={(e) => this.setState((state) => ({...state, downloadCSV: e.target.checked }))}
                   />
                   <label className="block  font-semibold font-poppins text-2xl text-white bg-blue-250 w-45.5 h-7.75 ">
                     CSV

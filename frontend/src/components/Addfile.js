@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { toast } from "react-toastify";
 
 import { uploadMasterTableData, uploadUdasData } from "../services/loadFile";
@@ -16,13 +16,21 @@ function AddFile({ close }) {
   const [errorArchivosT, setErrorArchivosT] = useState(false);
   const [errorArchivosU, setErrorArchivosU] = useState(false);
   const [archivosU, setArchivosU] = useState(null);
+  const [usbSelected, setUsbSelected] = useState("");
+  const [usbOptions, setUsbOptions] = useState([]);
+  const inputTFileRef = useRef(null);
+  const inputUFileRef = useRef(null);
 
   const subirArchivosT = (e) => {
     setArchivosT(e?.[0] || null);
+    setOkArchivosT(false)
+    setErrorArchivosT(false)
   };
 
   const subirArchivosU = (u) => {
     setArchivosU(u?.[0] || null);
+    setOkArchivosU(false)
+    setErrorArchivosU(false)
   };
 
   const sendFiles = async (e) => {
@@ -37,25 +45,73 @@ function AddFile({ close }) {
         if(!status) throw new Error("Error Udas")
 
         toast.success(`Archivo MasterTable Cargado!`);
+        setArchivosT(null)
+        if (inputTFileRef.current) {
+          inputTFileRef.current.value = '';
+        }
         okFileT = true;
       } catch (error) {
         setErrorArchivosT(true)
-        toast.success(`Archivo MasterTable tuvo errores!`);
+        toast.error(`Archivo MasterTable tuvo errores!`);
       }
       setOkArchivosT(okFileT);
     }
     
     if(archivosU) {
+      let xlsxContent = ""
+      let logsContent = []
       try {
-        const { status } = await uploadUdasData(archivosU)
-        
-        if(!status) throw new Error("Error Udas")
 
+        const { status, data } = await uploadUdasData(archivosU, usbSelected)
+        if(!status) throw new Error("Error Udas")
+        if(data.error) {
+          xlsxContent = data.xlsx
+          logsContent = data.logs
+          throw new Error("Error Udas")
+        }
+
+        if(data.response) {
+          setLoading(false);
+          setUsbOptions(data.response)
+          setUsbSelected(data.response[0])
+          return
+        } 
+        
+        setUsbOptions([])
+        setUsbSelected("")
+        setArchivosU(null)
+        if (inputUFileRef.current) {
+          inputUFileRef.current.value = '';
+        }
         toast.success(`Archivo UDAS Cargado!`);
         okFileU = true
       } catch (error) {
         setErrorArchivosU(true)
-        toast.success(`Archivo UDAS tuvo errores!`);
+        toast.error(`Archivo UDAS tuvo errores!`);
+        new Promise(function (resolve, reject) {
+          const base64ContentXLSX = xlsxContent;
+          const downloadLinkXLSX = document.createElement("a");
+          downloadLinkXLSX.href = "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64," + base64ContentXLSX;
+          downloadLinkXLSX.download = "MasterTablesGenerada_v1.xlsx";
+          downloadLinkXLSX.style.display = "none";
+          document.body.appendChild(downloadLinkXLSX);
+          downloadLinkXLSX.click();
+          document.body.removeChild(downloadLinkXLSX);
+          resolve()
+          
+        }).then(() => {
+          // Descargar archivo TXT
+          const txtContent = logsContent.join("\n");
+          const downloadLinkTXT = document.createElement("a");
+          const blobTXT = new Blob([txtContent], { type: "text/plain" });
+          const urlTXT = URL.createObjectURL(blobTXT);
+          downloadLinkTXT.href = urlTXT;
+          downloadLinkTXT.download = "logs.txt";
+          downloadLinkTXT.style.display = "none";
+          document.body.appendChild(downloadLinkTXT);
+          downloadLinkTXT.click();
+          document.body.removeChild(downloadLinkTXT);
+        })
       }
       setOkArchivosU(okFileU);
     }
@@ -112,6 +168,7 @@ function AddFile({ close }) {
                     </label>
                     <input
                       type="file"
+                      ref={inputTFileRef}
                       onChange={(e) => subirArchivosT(e.target.files)}
                       className="placeholder-blue-850 bg-yellow-550 text-center text-xl my-auto h-12.5 font-rubik border-2  border-green border-opacity-0 "
                     ></input>
@@ -155,12 +212,26 @@ function AddFile({ close }) {
                       </label>
                       <input
                         type="file"
+                        ref={inputUFileRef}
                         // multiple
                         onChange={(u) => subirArchivosU(u.target.files)}
                         className="placeholder-blue-850 bg-yellow-550 text-center text-xl  w-171.25 h-12.5 font-rubik border-2  border-green border-opacity-0 "
                       />
                     </div>
                   </div>
+                  {
+                  usbOptions.length > 0 && (
+                      <>
+                      <span>Seleccione la memoria usb: </span>
+                      <select value={usbSelected} onChange={(e) => setUsbSelected(e.target.value)}>
+                        {usbOptions.filter(usbname => usbname).map((usbname) => (
+                          <option key={usbname} type="radio" value={usbname}>{usbname}</option>
+                        ))}
+                      </select>
+                      {console.log({usbSelected})}
+                      </>
+                  )}
+
                   {toggleUDAS && (
                     <div>
                       <div className="inline-flex items-center w-full ">
