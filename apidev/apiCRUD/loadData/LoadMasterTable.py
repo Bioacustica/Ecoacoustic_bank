@@ -20,9 +20,23 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     # table_name: string with table name ('evidence')
     # engine: database conection
     # schema: ('bioacustica')
+    def withoutAccent(s):
+        # Replace accent marks
+        replacements = (
+            ("á", "a"),
+            ("é", "e"),
+            ("í", "i"),
+            ("ó", "o"),
+            ("ú", "u"),
+        )
+        for a, b in replacements:
+            s = s.replace(a, b).replace(a.upper(), b.upper())
+        return s
+    # ----------
     columns_names = mapping[table_name].__table__.columns.keys()
     tableToLoad = pd.read_excel(
         info_path, sheet_name=table_name, header=None, engine='openpyxl')
+    tableToLoad = tableToLoad.applymap(lambda x: withoutAccent(x))
     tableToLoad = tableToLoad.applymap(lambda x: x.replace('"', '').upper())
     tableToLoad.columns = [columns_names[1]]
     tableToLoad[columns_names[0]] = range(1, tableToLoad.shape[0]+1)
