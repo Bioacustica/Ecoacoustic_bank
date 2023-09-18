@@ -35,9 +35,12 @@ services:
       dockerfile: Django.Dockerfile
     container_name: djangoweb
     volumes:
-      - "./audios_db:/code/audios_db"
-      - "/media/andres:/code/usb"
-      - "./apidev/:/code"
+      - ./audios_db:/code/audios_db
+      # remplazar ./media por el punto de montaje de la usb, y para eso se necita el nombre
+      #- "/media/${USER:?err}:/code/usb"
+      #- /media/mirp_ai:/code/usb  # funciona
+      - ./Media:/code/usb
+      - ./apidev/:/code
     ports:
       - "8000:8000"
     env_file: Django.env

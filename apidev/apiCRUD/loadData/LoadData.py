@@ -13,12 +13,13 @@ import subprocess
 import sys
 
 
+
 session = Session(engine)
 
 Globals.init()
 
 def LoadData(file, usbSelected):
-
+    Globals.init()
     path_static = "/code/usb/"
     path_usb = ""
     content_usbs = subprocess.check_output(['ls', path_static])
@@ -27,17 +28,19 @@ def LoadData(file, usbSelected):
     num_usbs_connected = len(resultado_decodificado.split("\n")) -1 
     print("num_usbs_connected", num_usbs_connected)
 
+    print(Globals.Bug)
+
     if (usbSelected != ""):
-        path_usb = path_static +  usbSelected + "/"
-        
+        path_usb = path_static +  usbSelected + "/"  
     elif(num_usbs_connected > 1):
         return resultado_decodificado.split("\n")
-
     elif(num_usbs_connected == 0):
         print("Por favor revisar que se tenga conectada una sola USB")
         Globals.Bug = True
     else:
         path_usb = path_static +  resultado_decodificado.strip() + "/"
+    
+    print(path_usb)
 
     VerifyStage(session)
     
@@ -85,7 +88,6 @@ def LoadData(file, usbSelected):
 
 
 # TO-DO
-# Se debe generar id_h_serial (en esta oportunidad se genero manual desde el pgadmin)
 # como hacer la consulta para obtener el id_record tiene que crearse primero en la base de datos
 # unificar los nombres de las tablas y del udas
 # tener cuidado con llenar los campos numericos, no se puede colocar no se conoce (definir por defecto un numero)
@@ -99,3 +101,4 @@ def LoadData(file, usbSelected):
 # - Generar los usuarios
 #   (si sale este  ERROR: collector_email_PR - 2 ->  dany.urrego@udea.edu.co
 #    posiblemente es por que no se a generado el usuario)
+# - Generar las grabadoras

@@ -18,9 +18,9 @@ def FailProject(id_funding, description):
 
 
 def AddProject(udas, session, id):
-    print("udas", udas)
-    print("session", session)
-    print("id", id)
+    #print("udas", udas)
+    #print("session", session)
+    #print("id", id)
     try:
 
         Ok = True
@@ -29,8 +29,8 @@ def AddProject(udas, session, id):
         Ok = VerifyField("funding_PR", funding, id) and Ok
         funding = str(funding).upper()
 
-        description = udas.iloc[id]["project_name_PR"]
-        Ok = VerifyField("project_name_PR", description, id) and Ok
+        project = udas.iloc[id]["project_name_PR"]
+        Ok = VerifyField("project_name_PR", project, id) and Ok
 
         if not Ok:
             raise Exception
@@ -38,16 +38,26 @@ def AddProject(udas, session, id):
             filter(Base.classes["funding"].description == funding).  \
             first().id_funding
 
-        if FailProject(id_funding, description):
+        if FailProject(id_funding, project):
 
             try:
 
-                session.add(Base.classes["project"](id_funding=id_funding,
-                                                    description=description))
+                id_project = (
+                    session.query(Base.classes["project"])
+                    .filter(Base.classes["project"].description == project)
+                    .first()
+                )
+                
+                print(id_project)
 
-                print("  Creating " + description)
+                if id_project == None:
+                    session.add(Base.classes["project"](id_funding = id_funding,
+                                                        description = project))
+                    print("  Creating " + project)
 
             except Exception as e:
+
+                print(e)
 
                 Globals.Bug = True
 

@@ -56,26 +56,18 @@ function PrincipalPage() {
             </div>
             <div className="w-128.25 h-159  ">
               <p className="text-justify font-normal font-rubik text-1.5xl text-blue-850">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                aliquip.Lorem ipsum dolor sit amet, consectetuer adipiscing
-                elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                aliquip.
+              Este software es producto del Programa de Investigación: “Conservación Biológica usando Inteligencia Artificial”
+              con Código 111585269779 financiado por MinCiencias, la Universidad de Antioquia-UdeA,
+              la Institución Universitaria ITM de Medellín y el Instituto Alexander von Humboldt -IAvH.  
+              Los algoritmos fueron desarrollados por profesores/investigadores y estudiantes de la UdeA, el ITM.
+              El Programa es liderado por los profesores Claudia Isaza (Facultad de Ingeniería – UdeA),
+              Juan Manuel Daza (Instituto de Biología –UdeA), José David López (Facultad de Ingeniería – UdeA)
+              y Paula Andrea Rodríguez (Facultad de Ingeniería – ITM).
               </p>
               <p className="text-justify font-normal font-rubik text-1.5xl text-blue-850 mt-8.75">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                aliquip.Lorem ipsum dolor sit amet, consectetuer adipiscing
-                elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                aliquip.
+              Además, los siguientes profesores, estudiantes, investigadores y programadores hicieron parte de
+              este desarrollo: 
+              Andres Felipe Giraldo Forero (Facultad de Ingeniería – ITM).
               </p>
             </div>
           </div>
