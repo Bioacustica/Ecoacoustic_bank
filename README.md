@@ -1,9 +1,7 @@
 <img src="https://sibcolombia.net/wp-content/uploads/2016/05/Logo-itm.png" width="150">
 
-# Bioacústica
-Bioacústica es un proyecto que, en primera instancia, busca ofrecer a través de 
-diversas técnicas y tecnologías, una interfaz de usuario amigable para enriquecer 
-una base de datos.
+# Ecoacustics bank
+Ecoacustics bank a software for managing and storing passive acoustic monitoring (PAM) data, specializing in tropical forest species such as anurans, insects, and birds, but not exclusively to these. The software allows integrating audio with other commonly collected data types, such as information on acquisition systems used and spatial-temporal conditions.
 
 
 ## Instalación
