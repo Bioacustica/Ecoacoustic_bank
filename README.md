@@ -22,3 +22,16 @@ git clone https://github.com/Bioacustica/bioacustica.git
 docker-compose up
 ```
 
+## Citation
+If you use this code in a scientific publication, we would appreciate citations to the following paper:
+
+<pre>
+@article{pending...,
+  title={Ecoacustics bank: a software for ecoacoustics data management},
+  author={pending...},
+  journal={SoftwareX},
+  pages={pending...},
+  year={2023},
+  publisher={Elsevier}
+}
+</pre>
