@@ -20,6 +20,13 @@ git clone https://github.com/Bioacustica/bioacustica.git
 ```bash 
 docker-compose up
 ```
+## Usage
+
+### Upload recordings
+
+![home](https://github.com/Bioacustica/Ecoacustic_bank/assets/70040642/8e37bdb9-2406-49db-a64c-88470a6137b8)
+
+
 
 ## Citation
 If you use this code in a scientific publication, we would appreciate citations to the following paper:
