@@ -26,7 +26,9 @@ docker-compose up
 
 ![home](https://github.com/Bioacustica/Ecoacustic_bank/assets/70040642/8e37bdb9-2406-49db-a64c-88470a6137b8)
 
+![login](https://github.com/Bioacustica/Ecoacustic_bank/assets/70040642/8d7c7d72-096e-452e-a121-9e78a11459ed)
 
+![home_admin](https://github.com/Bioacustica/Ecoacustic_bank/assets/70040642/99a1e134-9133-440f-a229-00031b63e274)
 
 ## Citation
 If you use this code in a scientific publication, we would appreciate citations to the following paper:
