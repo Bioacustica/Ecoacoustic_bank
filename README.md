@@ -38,6 +38,9 @@ docker-compose up
 
 <img src="https://github.com/Bioacustica/Ecoacustic_bank/assets/70040642/5718ffb5-ce43-4832-90be-f28e7845669d.png" width="700">
 
+<img src="https://github.com/Bioacustica/Ecoacustic_bank/assets/70040642/6611686d-0bf4-49b0-9da9-507c4ff55bfa.png" width="700">
+
+
 ## Citation
 If you use this code in a scientific publication, we would appreciate citations to the following paper:
 
