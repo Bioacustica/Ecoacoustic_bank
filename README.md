@@ -34,8 +34,9 @@ docker-compose up
 
 ![recorders](https://github.com/Bioacustica/Ecoacustic_bank/assets/70040642/efe40f9e-6cf1-4384-bc8e-058af3919d5e)
 
-<img src="https://github.com/Bioacustica/Ecoacustic_bank/assets/70040642/ddd4117a-aa49-4986-9511-7b3db045e85c" width="40">
+<img src="https://github.com/Bioacustica/Ecoacustic_bank/assets/70040642/af640836-5f66-49e9-96cc-da7d92a84069.png" width="700">
 
+<img src="https://github.com/Bioacustica/Ecoacustic_bank/assets/70040642/5718ffb5-ce43-4832-90be-f28e7845669d.png" width="700">
 
 ## Citation
 If you use this code in a scientific publication, we would appreciate citations to the following paper:
