@@ -20,4 +20,5 @@ If you use this code in a scientific publication, we would appreciate citations 
 }
 </pre>
 
-
+## License
+This code is licensed under GNU (GPL)
