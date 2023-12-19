@@ -48,7 +48,7 @@ def AddProject(udas, session, id):
                     .first()
                 )
                 
-                print(id_project)
+                #print(id_project)
 
                 if id_project == None:
                     session.add(Base.classes["project"](id_funding = id_funding,

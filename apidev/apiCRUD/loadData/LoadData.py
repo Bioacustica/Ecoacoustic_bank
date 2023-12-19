@@ -24,7 +24,7 @@ def LoadData(file, usbSelected):
     path_usb = ""
     content_usbs = subprocess.check_output(['ls', path_static])
     resultado_decodificado = content_usbs.decode('utf-8')
-    print("resultado_decodificado", resultado_decodificado)
+    #print("resultado_decodificado", resultado_decodificado)
     num_usbs_connected = len(resultado_decodificado.split("\n")) -1 
     print("num_usbs_connected", num_usbs_connected)
 
