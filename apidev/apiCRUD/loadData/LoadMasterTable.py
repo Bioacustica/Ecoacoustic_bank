@@ -60,14 +60,15 @@ def LoadMasterTables(info_path):
         if sheet == "funding":
             print("-")
         try:
-            LoadMasterTable(mapping=Base.classes,
-                            info_path=info_path,
-                            table_name=sheet,
-                            engine=engine,
-                            schema='bioacustica')
+            LoadMasterTable(mapping = Base.classes,
+                            info_path = info_path,
+                            table_name = sheet,
+                            engine = engine,
+                            schema = 'bioacustica')
         except Exception as e:
             print(e)
             print("Error: ", sheet)
+            #return("Error ")
 
     # LoadHSerial()
 
