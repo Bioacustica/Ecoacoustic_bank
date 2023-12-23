@@ -76,9 +76,10 @@ def AddProject(udas, session, id):
 
 
 def AddProjects_(file, session):
-
-    udas = pd.read_excel(file, sheet_name="UDAS", header=0)
-
+    
+    udas = pd.read_excel(file, sheet_name = "UDAS", header = 0)
+    # se podria pensar en poner un try catch por si hay problemas con la lectura del excel 
+    # o esta mal especificado el sheet_name 
     for id in range(udas.shape[0]):
 
         AddProject(udas, session, id)

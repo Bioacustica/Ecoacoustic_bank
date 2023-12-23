@@ -615,8 +615,8 @@ def load_master_tables(request):
     response = {
         "response": "",
         "logs": "",
-        #"error": False,
         "error": True,
+        #"error": True,
     }
     try:
         file = request.FILES['file']

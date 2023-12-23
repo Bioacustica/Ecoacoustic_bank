@@ -13,6 +13,11 @@ def LoadHSerial():
                                              h_serial="NO SE CONOCE"))
     session.commit()
 
+def RemoverDuplicados(dataframe, descriptions):
+    description_list = [desc[0] for desc in descriptions]
+    dataframe_filtrado = dataframe[~dataframe['description'].isin(description_list)]
+    return dataframe_filtrado
+
 
 def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     # mapping: sqlalchemy.ext.automap (Base.classes)
@@ -35,40 +40,45 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     # ----------
     columns_names = mapping[table_name].__table__.columns.keys()
     tableToLoad = pd.read_excel(
-        info_path, sheet_name=table_name, header=None, engine='openpyxl')
+        info_path, sheet_name = table_name, header = None, engine = 'openpyxl')
     tableToLoad = tableToLoad.applymap(lambda x: withoutAccent(x))
     tableToLoad = tableToLoad.applymap(lambda x: x.replace('"', '').upper())
     tableToLoad.columns = [columns_names[1]]
     tableToLoad[columns_names[0]] = range(1, tableToLoad.shape[0]+1)
-    tableToLoad = tableToLoad.reindex(columns=columns_names)
+    tableToLoad = tableToLoad.reindex(columns = columns_names)
 
-    for i in range(len(tableToLoad)):
-        try:
-            tableToLoad.iloc[i:i+1].to_sql(name=table_name, con=engine,
-                                           schema='bioacustica', if_exists='append', index=False)
-        except Exception as e:
-            print(e)
-            pass
+    descriptions = session.query(Base.classes[table_name].description).all()
+    #print(tableToLoad)
+    #print(descriptions)
+    tableToLoad = RemoverDuplicados(tableToLoad, descriptions)
+    #print(descriptions)
+
+    try:
+        if(len(tableToLoad) > 0):
+            tableToLoad["description"].to_sql(name = table_name, con = engine,
+                            schema = 'bioacustica', if_exists = 'append', index = False)
+            print("Updating",table_name,"...")
+            print(tableToLoad)
+    except Exception as e:
+        print(e)
 
 
 def LoadMasterTables(info_path):
-    print("llega2", info_path)
-    sheets = pd.ExcelFile(info_path, engine='openpyxl').sheet_names
+    print("Loading", info_path, "...")
+    sheets = pd.ExcelFile(info_path, engine = 'openpyxl').sheet_names
 
     # print("sheets", sheets)
     for sheet in sheets:
-        if sheet == "funding":
-            print("-")
         try:
             LoadMasterTable(mapping = Base.classes,
                             info_path = info_path,
                             table_name = sheet,
                             engine = engine,
                             schema = 'bioacustica')
+            print("Table",sheet,"was updated.")
+
         except Exception as e:
-            print(e)
-            print("Error: ", sheet)
-            #return("Error ")
+            print(sheet," ",e)
 
     # LoadHSerial()
 
