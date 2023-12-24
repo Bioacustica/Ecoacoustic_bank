@@ -438,7 +438,7 @@ WITH (
 CREATE TABLE bioacustica.microphone
 (
     id_microphone smallint NOT NULL,
-    description character varying(100),
+    description character varying(100) NOT NULL,
     PRIMARY KEY (id_microphone)
 )
 WITH (

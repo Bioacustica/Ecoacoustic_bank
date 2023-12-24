@@ -615,7 +615,7 @@ def load_master_tables(request):
     response = {
         "response": "",
         "logs": "",
-        "error": True,
+        "error": False,
         #"error": True,
     }
     try:
@@ -651,8 +651,8 @@ def load_udas(request):
     response = {
         "response": "",
         "logs": "",
-        #"error": False,
-        "error": True,
+        "error": False,
+        #"error": True,
     }
     try:
         file = request.FILES['file']

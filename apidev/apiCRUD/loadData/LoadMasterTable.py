@@ -41,17 +41,20 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     columns_names = mapping[table_name].__table__.columns.keys()
     tableToLoad = pd.read_excel(
         info_path, sheet_name = table_name, header = None, engine = 'openpyxl')
+    #print("44",tableToLoad)
     tableToLoad = tableToLoad.applymap(lambda x: withoutAccent(x))
     tableToLoad = tableToLoad.applymap(lambda x: x.replace('"', '').upper())
     tableToLoad.columns = [columns_names[1]]
     tableToLoad[columns_names[0]] = range(1, tableToLoad.shape[0]+1)
     tableToLoad = tableToLoad.reindex(columns = columns_names)
+    #print("50",tableToLoad)
 
     descriptions = session.query(Base.classes[table_name].description).all()
     #print(tableToLoad)
     #print(descriptions)
+    #print("55",descriptions)
     tableToLoad = RemoverDuplicados(tableToLoad, descriptions)
-    #print(descriptions)
+    #print("57",tableToLoad)
 
     try:
         if(len(tableToLoad) > 0):
@@ -59,13 +62,22 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
                             schema = 'bioacustica', if_exists = 'append', index = False)
             print("Updating",table_name,"...")
             print(tableToLoad)
+            print(" |-> Table",table_name,"was updated.")
+        else:
+            print(" |-> Table",table_name,"is updated.")
     except Exception as e:
+        print("ERROR in",table_name)
+        print(tableToLoad)
         print(e)
 
 
 def LoadMasterTables(info_path):
+    print("---------------------------------")
     print("Loading", info_path, "...")
+    print("---------------------------------")
     sheets = pd.ExcelFile(info_path, engine = 'openpyxl').sheet_names
+    #sheets.remove('project') # saldria error si project no esta en la lista
+    #sheets = ["gain","country"]
 
     # print("sheets", sheets)
     for sheet in sheets:
@@ -75,7 +87,6 @@ def LoadMasterTables(info_path):
                             table_name = sheet,
                             engine = engine,
                             schema = 'bioacustica')
-            print("Table",sheet,"was updated.")
 
         except Exception as e:
             print(sheet," ",e)
