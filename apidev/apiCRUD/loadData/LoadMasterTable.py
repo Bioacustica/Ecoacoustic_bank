@@ -43,7 +43,7 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     elements = session.query(Base.classes[table_name]).all()
     #print("44",len(elements))
     if len(elements) == 0:
-        id_end = 1
+        id_end = 0
     else:
         end_element = elements[-1]
         id_end = getattr(end_element, columns_names[0])
@@ -54,8 +54,6 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     tableToLoad = tableToLoad.applymap(lambda x: withoutAccent(x))
     tableToLoad = tableToLoad.applymap(lambda x: x.replace('"', '').upper())
     tableToLoad.columns = [columns_names[1]]
-    tableToLoad[columns_names[0]] = range(id_end, id_end + tableToLoad.shape[0])
-    tableToLoad = tableToLoad.reindex(columns = columns_names)
     #print("50",tableToLoad)
 
     #print("52",id_end)
@@ -64,8 +62,9 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     #print(descriptions)
     #print("55",descriptions)
 
-
     tableToLoad = RemoverDuplicados(tableToLoad, descriptions)
+    tableToLoad[columns_names[0]] = range(id_end + 1, id_end + tableToLoad.shape[0] + 1)
+    tableToLoad = tableToLoad.reindex(columns = columns_names)
     #print("69",tableToLoad)
 
     try:
