@@ -546,12 +546,6 @@ ALTER TABLE bioacustica.catalogue
 
 
 ALTER TABLE bioacustica.catalogue
-    ADD FOREIGN KEY (id_memory)
-    REFERENCES bioacustica.memory (id_memory)
-    NOT VALID;
-
-
-ALTER TABLE bioacustica.catalogue
     ADD FOREIGN KEY (id_precision)
     REFERENCES bioacustica."precision" (id_precision)
     NOT VALID;
@@ -797,8 +791,8 @@ begin
   execute format('GRANT USAGE ON SCHEMA bioacustica TO %I',unm);
   execute format('SET search_path TO bioacustica');
   execute format('GRANT SELECT, INSERT, UPDATE ON TABLE label, labeled TO %I ',unm);
-  execute format('GRANT SELECT, INSERT, UPDATE ON TABLE record, record_obs, record_path, format, season, project, habitat, hardware, h_serial, memory, precision, sampling, supply, catalogue TO %I ',unm);
-  return 'success';
+  execute format('GRANT SELECT, INSERT, UPDATE ON TABLE record, record_obs, record_path, format, season, project, habitat, hardware, h_serial, memory, gain, filter, microphone, precision, sampling, supply, catalogue TO %I ',unm);
+  return 'success'; 
 
 
 
@@ -904,7 +898,7 @@ begin
 end;
 $$ language plpgsql;
 
---tabla de filtros  si no se espeficica un parametro se toma como Null--
+--tabla de filtros si no se espeficica un parametro se toma como Null--
 
 create or replace function bioacustica.get_join(
     catalogo varchar default NULL,
