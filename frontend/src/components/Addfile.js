@@ -39,21 +39,35 @@ function AddFile({ close }) {
     let okFileT = false;
     let okFileU = false;
     if (archivosT) {
+      let logsContentT = []
       try {
-        const { status } = await uploadMasterTableData(archivosT);
-
-        if(!status) throw new Error("Error Udas")
+        const { status , data } = await uploadMasterTableData(archivosT);
+        logsContentT = data.logs
+        if(!status) throw new Error("Error MasterTable")
+        //if(data.error) {
+        //  logsContentT = data.logs
+        //  throw new Error("Error MasterTable")
+        //}
+        setArchivosT(null)
 
         toast.success(`Archivo MasterTable Cargado!`);
-        setArchivosT(null)
-        if (inputTFileRef.current) {
-          inputTFileRef.current.value = '';
-        }
         okFileT = true;
+
       } catch (error) {
         setErrorArchivosT(true)
         toast.error(`Archivo MasterTable tuvo errores!`);
       }
+      // Descargar archivo TXT
+      const txtContent = logsContentT.join("\n");
+      const downloadLinkTXT = document.createElement("a");
+      const blobTXT = new Blob([txtContent], { type: "text/plain" });
+      const urlTXT = URL.createObjectURL(blobTXT);
+      downloadLinkTXT.href = urlTXT;
+      downloadLinkTXT.download = "logs_MasterTable.txt";
+      downloadLinkTXT.style.display = "none";
+      document.body.appendChild(downloadLinkTXT);
+      downloadLinkTXT.click();
+      document.body.removeChild(downloadLinkTXT);
       setOkArchivosT(okFileT);
     }
     
@@ -63,10 +77,23 @@ function AddFile({ close }) {
       try {
 
         const { status, data } = await uploadUdasData(archivosU, usbSelected)
+        logsContent = data.logs
         if(!status) throw new Error("Error Udas")
+        // Descargar archivo TXT
+        const txtContent = logsContent.join("\n");
+        const downloadLinkTXT = document.createElement("a");
+        const blobTXT = new Blob([txtContent], { type: "text/plain" });
+        const urlTXT = URL.createObjectURL(blobTXT);
+        downloadLinkTXT.href = urlTXT;
+        downloadLinkTXT.download = "logs.txt";
+        downloadLinkTXT.style.display = "none";
+        document.body.appendChild(downloadLinkTXT);
+        downloadLinkTXT.click();
+        document.body.removeChild(downloadLinkTXT);
+        setOkArchivosU(okFileU);
+        
         if(data.error) {
           xlsxContent = data.xlsx
-          logsContent = data.logs
           throw new Error("Error Udas")
         }
 
@@ -98,22 +125,8 @@ function AddFile({ close }) {
           downloadLinkXLSX.click();
           document.body.removeChild(downloadLinkXLSX);
           resolve()
-          
-        }).then(() => {
-          // Descargar archivo TXT
-          const txtContent = logsContent.join("\n");
-          const downloadLinkTXT = document.createElement("a");
-          const blobTXT = new Blob([txtContent], { type: "text/plain" });
-          const urlTXT = URL.createObjectURL(blobTXT);
-          downloadLinkTXT.href = urlTXT;
-          downloadLinkTXT.download = "logs.txt";
-          downloadLinkTXT.style.display = "none";
-          document.body.appendChild(downloadLinkTXT);
-          downloadLinkTXT.click();
-          document.body.removeChild(downloadLinkTXT);
         })
       }
-      setOkArchivosU(okFileU);
     }
 
     setLoading(false);

@@ -602,12 +602,46 @@ def download_records_files(request):
     # return response
 
 
+# @decorators.api_view(["POST"])
+# def load_master_tables(request):
+#    LoadMasterTable.LoadMasterTables(request.FILES['file'])
+#    return Response("load_master_tables")
+
 @decorators.api_view(["POST"])
 def load_master_tables(request):
+    import sys
+    logs_buffer = io.StringIO()
+    sys.stdout = logs_buffer
+    response = {
+        "response": "",
+        "logs": "",
+        "error": False,
+        #"error": True,
+    }
+    try:
+        file = request.FILES['file']
+        res = LoadMasterTable.LoadMasterTables(file)
 
-    LoadMasterTable.LoadMasterTables(request.FILES['file'])
-    return Response("load_master_tables")
+        if res != None:
+            response["response"] = res
+    
+    except Exception as e:
+        errorType, content = e.args
 
+        response["error"] = True
+        if errorType == "xlsx":
+            response["xlsx"] = content
+    
+    finally:
+
+        sys.stdout = sys.__stdout__
+        logs_string = logs_buffer.getvalue()
+
+        logs_buffer.close()
+
+        response['logs'] = logs_string.split('\n')
+
+        return JsonResponse(response)
 
 @decorators.api_view(["POST"])
 def load_udas(request):
@@ -618,6 +652,7 @@ def load_udas(request):
         "response": "",
         "logs": "",
         "error": False,
+        #"error": True,
     }
     try:
         file = request.FILES['file']

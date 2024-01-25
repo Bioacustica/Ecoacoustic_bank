@@ -13,6 +13,11 @@ def LoadHSerial():
                                              h_serial="NO SE CONOCE"))
     session.commit()
 
+def RemoverDuplicados(dataframe, descriptions):
+    description_list = [desc[0] for desc in descriptions]
+    dataframe_filtrado = dataframe[~dataframe['description'].isin(description_list)]
+    return dataframe_filtrado
+
 
 def LoadMasterTable(mapping, info_path, table_name, engine, schema):
     # mapping: sqlalchemy.ext.automap (Base.classes)
@@ -34,40 +39,68 @@ def LoadMasterTable(mapping, info_path, table_name, engine, schema):
         return s
     # ----------
     columns_names = mapping[table_name].__table__.columns.keys()
+
+    elements = session.query(Base.classes[table_name]).all()
+    #print("44",len(elements))
+    if len(elements) == 0:
+        id_end = 0
+    else:
+        end_element = elements[-1]
+        id_end = getattr(end_element, columns_names[0])
+
     tableToLoad = pd.read_excel(
-        info_path, sheet_name=table_name, header=None, engine='openpyxl')
+        info_path, sheet_name = table_name, header = None, engine = 'openpyxl')
+    #print("44",tableToLoad)
     tableToLoad = tableToLoad.applymap(lambda x: withoutAccent(x))
     tableToLoad = tableToLoad.applymap(lambda x: x.replace('"', '').upper())
     tableToLoad.columns = [columns_names[1]]
-    tableToLoad[columns_names[0]] = range(1, tableToLoad.shape[0]+1)
-    tableToLoad = tableToLoad.reindex(columns=columns_names)
+    #print("50",tableToLoad)
 
-    for i in range(len(tableToLoad)):
-        try:
-            tableToLoad.iloc[i:i+1].to_sql(name=table_name, con=engine,
-                                           schema='bioacustica', if_exists='append', index=False)
-        except Exception as e:
-            print(e)
-            pass
+    #print("52",id_end)
+    descriptions = session.query(Base.classes[table_name].description).all()
+    #print(tableToLoad)
+    #print(descriptions)
+    #print("55",descriptions)
+
+    tableToLoad = RemoverDuplicados(tableToLoad, descriptions)
+    tableToLoad[columns_names[0]] = range(id_end + 1, id_end + tableToLoad.shape[0] + 1)
+    tableToLoad = tableToLoad.reindex(columns = columns_names)
+    #print("69",tableToLoad)
+
+    try:
+        if(len(tableToLoad) > 0):
+            tableToLoad.to_sql(name = table_name, con = engine,
+                               schema = 'bioacustica', if_exists = 'append', index = False)
+            print("Updating",table_name,"...")
+            print(tableToLoad)
+            print(" |-> Table",table_name,"was updated.")
+        else:
+            print(" |-> Table",table_name,"is updated.")
+    except Exception as e:
+        print("ERROR in",table_name)
+        print(tableToLoad)
+        print(e)
 
 
 def LoadMasterTables(info_path):
-    print("llega2", info_path)
-    sheets = pd.ExcelFile(info_path, engine='openpyxl').sheet_names
+    print("---------------------------------")
+    print("Loading", info_path, "...")
+    print("---------------------------------")
+    sheets = pd.ExcelFile(info_path, engine = 'openpyxl').sheet_names
+    #sheets.remove('project') # saldria error si project no esta en la lista
+    #sheets = ["gain","country"]
 
     # print("sheets", sheets)
     for sheet in sheets:
-        if sheet == "funding":
-            print("-")
         try:
-            LoadMasterTable(mapping=Base.classes,
-                            info_path=info_path,
-                            table_name=sheet,
-                            engine=engine,
-                            schema='bioacustica')
+            LoadMasterTable(mapping = Base.classes,
+                            info_path = info_path,
+                            table_name = sheet,
+                            engine = engine,
+                            schema = 'bioacustica')
+
         except Exception as e:
-            print(e)
-            print("Error: ", sheet)
+            print(sheet," ",e)
 
     # LoadHSerial()
 
