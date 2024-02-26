@@ -61,7 +61,7 @@ export async function fetch_audios(Items) {
   try {
     const options = {
       method: "POST",
-      url: "http://localhost:8000/public-records/",
+      url: "http://192.168.0.2:8000/public-records/",
       headers: { "Content-Type": "application/json" },
       data: {
         ...Items,

@@ -4,7 +4,7 @@ import PublicFilter from "./PublicFilter";
 function Filter_Public() {
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("localhost:3000/lista_filtros/");
+      const { data } = await axios.get("192.168.0.2:3000/lista_filtros/");
     };
 
     fetchData();
@@ -14,7 +14,7 @@ function Filter_Public() {
 function Table_Public() {
   useEffect(() => {
     const fetchDota = async () => {
-      const { dato } = await axios.get("http://localhost:3000/public-records/");
+      const { dato } = await axios.get("http://192.168.0.2:3000/public-records/");
     };
 
     fetchDota();

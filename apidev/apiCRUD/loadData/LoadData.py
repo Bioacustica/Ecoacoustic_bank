@@ -40,6 +40,7 @@ def LoadData(file, usbSelected):
     else:
         path_usb = path_static +  resultado_decodificado.strip() + "/"
     
+    path_usb = "/code/usb"
     print(path_usb)
 
     VerifyStage(session)

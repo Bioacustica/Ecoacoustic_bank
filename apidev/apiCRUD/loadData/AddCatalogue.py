@@ -211,7 +211,7 @@ def AddCatalogue(udas, session, id, path_usb):
                         filter(Base.classes["microphone"].description == udas.iloc[id]["microphone_RE"].replace('"', '').upper()). \
                         first().id_microphone
 
-                    infoDir = os.listdir(path_usb+record_dir)
+                    infoDir = os.listdir(path_usb + record_dir)
                     chunks = len(infoDir)
                     size = 1
 
@@ -320,9 +320,10 @@ def AddCatalogue(udas, session, id, path_usb):
 
 
 def AddCatalogues_(file, session, path_usb):
-
+    print(file)
+    print(os.listdir("./"))
     udas = pd.read_excel(file, sheet_name="UDAS", header=0)
-
+    
     for id in range(udas.shape[0]):
 
         AddCatalogue(udas, session, id, path_usb)
