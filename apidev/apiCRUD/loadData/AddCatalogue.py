@@ -320,8 +320,7 @@ def AddCatalogue(udas, session, id, path_usb):
 
 
 def AddCatalogues_(file, session, path_usb):
-    print(file)
-    print(os.listdir("./"))
+    
     udas = pd.read_excel(file, sheet_name="UDAS", header=0)
     
     for id in range(udas.shape[0]):

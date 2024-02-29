@@ -39,9 +39,6 @@ def GetFingerprint(file):
 
 def AddRecordFile(file, fingerprint, id_record):
 
-    # crear directorio usando las primeras letras del fingerprint
-    print(os.getcwd())
-    print(os.listdir("./"))
     #path_db = "/share/Audios_DB/audios_db/" + fingerprint[0:3]
     path_db = "/code/audios_db/" + fingerprint[0:3]
 
@@ -108,34 +105,32 @@ def AddRecord(file, id_catalogue, date, chunk, session):
 def AddRecords(file, id_catalogue, session):
     # catalogue: udas.iloc[i]["field_number_PR"]
     try:
-        print("|-----> ",file)
-        #print(os.getcwd())
-        #print(os.listdir("/"))
+
         files = os.listdir(file)
-        print(files)
-        print("---------")
+
         # Quitar archivos ocultos (aquellos archivos que empiecen con punto)
         files = [elemento for elemento in files if not elemento.startswith('.')]
         files.sort()
-        print(files)
+
         for i in range(len(files)):
 
             date = datetime.datetime(
-                year=int(files[i][0:4]),
-                month=int(files[i][4:6]),
-                day=int(files[i][6:8]),
-                hour=int(files[i][9:11]),
-                minute=int(files[i][11:13]),
-                second=int(files[i][13:15]),
+                year = int(files[i][0:4]),
+                month = int(files[i][4:6]),
+                day = int(files[i][6:8]),
+                hour = int(files[i][9:11]),
+                minute = int(files[i][11:13]),
+                second = int(files[i][13:15]),
             )
-            print("----->" + os.path.join(file, files[i]))
+
             AddRecord(
-                file=os.path.join(file, files[i]),
-                id_catalogue=id_catalogue,
-                date=date,
-                chunk=i,
-                session=session,
+                file = os.path.join(file, files[i]),
+                id_catalogue = id_catalogue,
+                date = date,
+                chunk = i,
+                session = session,
             )
+
     except Exception as e:
         print("5")
         raise print(e)
@@ -162,7 +157,6 @@ def AddRecords_(file, session, path_usb):
             file = udas.iloc[id]["path_records_PR"]
             Ok = VerifyField("path_records_PR", file, id) and Ok
             file = path_usb + file + "/" + catalogue
-            print("--->" + file)
 
             if not Ok:
                 raise
