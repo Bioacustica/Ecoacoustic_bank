@@ -1,4 +1,5 @@
 import os
+import re
 import hashlib
 import datetime
 import pandas as pd
@@ -13,6 +14,16 @@ import subprocess
 # https://www.altaruru.com/calculando-el-hash-en-python/
 
 session = Session(engine)
+
+def PrefixRemover(texto, caracter = "_"):
+    # Elimina todos los caracteres que están antes del primer guion bajo en el texto.
+    
+    if texto.count(caracter) < 2:
+        return texto
+    
+    index = texto.find(caracter)
+    
+    return texto[(index+1):]
 
 
 def IsNewRecord(fingerprint):
@@ -114,17 +125,20 @@ def AddRecords(file, id_catalogue, session):
 
         for i in range(len(files)):
 
+            # Quitar prefijo
+            file_ = PrefixRemover(files[i])
+
             date = datetime.datetime(
-                year = int(files[i][0:4]),
-                month = int(files[i][4:6]),
-                day = int(files[i][6:8]),
-                hour = int(files[i][9:11]),
-                minute = int(files[i][11:13]),
-                second = int(files[i][13:15]),
+                year = int(file_[0:4]),
+                month = int(file_[4:6]),
+                day = int(file_[6:8]),
+                hour = int(file_[9:11]),
+                minute = int(file_[11:13]),
+                second = int(file_[13:15]),
             )
 
             AddRecord(
-                file = os.path.join(file, files[i]),
+                file = os.path.join(file, file_),
                 id_catalogue = id_catalogue,
                 date = date,
                 chunk = i,
