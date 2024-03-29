@@ -81,14 +81,14 @@ function Login() {
           <div className="h-0.625 bg-blue-850 mx-auto mt-14 w-79 mb-3"></div>
           <div className="text-center">
             <h1 className=" font-poppins font-extrabold text-4.5xl text-blue-850 mb-3">
-              Iniciar Sesión
+              LOG IN
             </h1>
           </div>
           <div className="h-0.625 bg-blue-850 mx-auto w-79 "></div>
 
           <div className="mb-10 text-xl font-normal text-center text-white mt-14 font-rubik">
             <h1>
-              Ingrese su dirección de correo electrónico para acceder al sistema{" "}
+            Enter your email address to access the system.{" "}
             </h1>
           </div>
 
@@ -105,13 +105,13 @@ function Login() {
                     required
                     onChange={handleChange}
                     valor="usuario"
-                    placeholder="Ingrese usuario"
+                    placeholder="Enter email"
                     className="placeholder-blue-850 bg-white w-166.25 h-10.75 font-rubik font-light  border-2 border-white border-opacity-100 "
                   />
                 </div>
                 <div className="mt-9">
                   <h1 className="text-3xl font-semibold text-left text-white font-poppins">
-                    Contraseña
+                    Password
                   </h1>
                   <input
                     name="password"
@@ -119,7 +119,7 @@ function Login() {
                     type="password"
                     valor="contraseña"
                     required
-                    placeholder="Ingrese contraseña"
+                    placeholder="Enter password"
                     className="placeholder-blue-850 w-166.25 h-10.75 mb-4 font-rubik font-light bg-white border-2 border-white border-opacity-100 "
                   />
                 </div>
@@ -128,7 +128,7 @@ function Login() {
                     className="text-xl font-normal text-right text-white border-b-2 font-rubik hover:text-whithe border-green-450 hover:border-b-2 hover:border-white"
                     href="/recoverpassword"
                   >
-                    ¿Olvidaste tu contraseña?{" "}
+                    Forgot your password?{" "}
                   </a>
                 </div>
                 <div className="flex justify-center w-166.25">
@@ -138,7 +138,7 @@ function Login() {
                     onClick={() => sendCredentials(credentials)}
                   >
                     <h1 className="text-4xl font-semibold text-white font-poppins">
-                      Ingresar
+                     Access
                     </h1>
                   </button>
                 </div>

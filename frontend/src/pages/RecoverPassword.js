@@ -52,7 +52,7 @@ class Recuperar extends Component {
                     href="/log-in"
                     className="text-xl font-semibold text-right text-white border-b-2 font-rubik hover:text-whithe border-green-450 hover:border-b-2 hover:border-white"
                   >
-                    Iniciar Sesión
+                    LOG IN
                   </a>
                 </div>
                 <div className="flex justify-center w-166.25">

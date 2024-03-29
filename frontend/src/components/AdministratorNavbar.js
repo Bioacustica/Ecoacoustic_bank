@@ -68,11 +68,11 @@ function AdministratorNavbar() {
     path: "#",
     label: "INICIO",
     children: [
-      { path: "/", label: "Inicio" },
-      { path: "/#sobre-nosotros", label: "Sobre nosotros" },
-      { path: "/#visualizacion", label: "Visualizacion" },
+      { path: "/", label: "HOME" },
+      { path: "/#sobre-nosotros", label: "ABOUT US" },
+      { path: "/#visualizacion", label: "Visualisation" },
       // { path: "/#filtros", label: "Filtros" },
-      { path: "#", label: "Contacto", render: function () { return <button onClick={openModal}>{username ? this.label : this.label.toUpperCase() }</button> }},
+      { path: "#", label: "Contact", render: function () { return <button onClick={openModal}>{username ? this.label : this.label.toUpperCase() }</button> }},
     ],
     render: function () {
       return (
@@ -180,7 +180,7 @@ function AdministratorNavbar() {
             href="/log-in"
             className="content-center text-white border-b-2 hover:text-white hover:text-whithe border-green-450 hover:border-b-2 hover:border-white"
           >
-            INICIAR SESIÓN
+            LOG IN
           </a>
         ) : (
           <a

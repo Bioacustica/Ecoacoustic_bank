@@ -49,14 +49,14 @@ function ContactModal({ close }) {
                   <div className="flex ">
                     <div className="ml-12 w-1/2">
                       <h1 className="text-left font-extrabold font-poppins text-5.5xl text-blue-850">
-                        Contacto
+                        Contact
                       </h1>
                       <div className="mt-10">
                         <h1 className="text-left font-semibold font-poppins text-2.5xl text-blue-850">
-                        Nombre de contacto UdeA
+                        Claudia Victoria Isaza Narvaez
                         </h1>
                         <h1 className="text-left font-semibold font-poppins text-2.5xl text-blue-850">
-                          contactoUdeA@udea.edu.co
+                        victoria.isaza@udea.edu.co
                         </h1>
                         <h1 className="text-left italic font-rubik text-2.5xl text-blue-850">
                           Universidad de Antioquia
@@ -65,19 +65,19 @@ function ContactModal({ close }) {
 
                       <div className="mt-13.25">
                         <h1 className="text-left font-semibold font-poppins text-2.5xl text-blue-850">
-                          Nombre de contacto ITM
+                          Andrés Felipe Giraldo Forero
                         </h1>
                         <h1 className="text-left font-semibold font-poppins text-2.5xl text-blue-850">
-                          contactoITM@itm.edu.co
+                          felipegiraldo@itm.edu.co
                         </h1>
                         <h1 className="text-left italic font-rubik text-2.5xl text-blue-850">
-                          ITM Institución Universitaria
+                          Instituto Tecnológico Metropolitano
                         </h1>
                       </div>
                       {success && (
                         <div>
                           <h2 className="text-left font-semibold font-poppins mt-3 text-2.5xl text-blue-900">
-                            Mensaje enviado con exito
+                          Message sent successfully.
                           </h2>
                         </div>
                       )}
@@ -85,7 +85,7 @@ function ContactModal({ close }) {
                       {success === false && (
                         <div>
                           <h2 className="text-left font-semibold font-poppins mt-3 text-xl text-red-600">
-                            Error al enviar el mensaje, intentelo nuevamente.
+                          Error sending message, please try again.
                           </h2>
                         </div>
                       )}
@@ -96,7 +96,7 @@ function ContactModal({ close }) {
                         name="subject"
                         type="text"
                         onChange={handleChange}
-                        placeholder="Nombre"
+                        placeholder="Name"
                         required
                         className="placeholder-blue-850 bg-white p-3 w-126.75 h-17.25 font-poppins font-semibold rounded-lg border-2 text-4xl  border-white border-opacity-100 "
                       />
@@ -106,7 +106,7 @@ function ContactModal({ close }) {
                         type="text"
                         onChange={handleChange}
                         required
-                        placeholder="Correo"
+                        placeholder="Email"
                         className="placeholder-blue-850 mt-5 bg-white p-3 w-126.75 h-17.25 font-poppins font-semibold rounded-lg text-4xl  border-2 border-white border-opacity-100 "
                       />
 
@@ -115,7 +115,7 @@ function ContactModal({ close }) {
                         rows="10"
                         name="message"
                         onChange={handleChange}
-                        placeholder="Mensaje"
+                        placeholder="Message"
                         required
                       ></textarea>
                     </div>
@@ -126,7 +126,7 @@ function ContactModal({ close }) {
                       type="submit"
                       className=" bg-blue-850 text-3xl text-white font-semibold hover:shadow-2xl font-poppins h-14.25 py-2 px-4 w-48  rounded"
                     >
-                      Enviar
+                      Send
                     </button>
                   </div>
                 </div>

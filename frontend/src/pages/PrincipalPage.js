@@ -29,10 +29,10 @@ function PrincipalPage() {
           <div className="absolute self-center justify-center w-341.5 ">
             <div className="space-y-3">
               <h1 className="text-center font-extrabold font-poppins text-4.5xl text-white">
-                CONSERVACIÓN BIOLÓGICA
+               BIOLOGICAL CONSERVATION
               </h1>
               <h1 className="text-center font-extrabold font-poppins  text-4.5xl text-white">
-                USANDO INTELIGENCIA ARTIFICIAL
+               USING ARTIFICIAL INTELLIGENCE
               </h1>
             </div>
           </div>
@@ -44,30 +44,49 @@ function PrincipalPage() {
         ></div>
         <div>
           <h1 className="text-center font-extrabold font-poppins text-4.5xl text-blue-850 mb-3">
-            Sobre nosotros
+            About us
           </h1>
         </div>
         <div className="h-0.625 bg-blue-850 mx-auto mb-11.5 w-83"></div>
 
         <div className="flex items-center justify-center mb-7 ">
           <div className="flex  w-341.5 ">
-            <div className="w-118.5 h-159  ml-37 mr-18.5 ">
+            <div className="w-120 h-175  ml-1 mr-12 ">
               <img src={aboutUs} alt="" />
             </div>
-            <div className="w-128.25 h-159  ">
-              <p className="text-justify font-normal font-rubik text-1.5xl text-blue-850">
-              Este software es producto del Programa de Investigación: “Conservación Biológica usando Inteligencia Artificial”
-              con Código 111585269779 financiado por MinCiencias, la Universidad de Antioquia-UdeA,
-              la Institución Universitaria ITM de Medellín y el Instituto Alexander von Humboldt -IAvH.  
-              Los algoritmos fueron desarrollados por profesores/investigadores y estudiantes de la UdeA, el ITM.
-              El Programa es liderado por los profesores Claudia Isaza (Facultad de Ingeniería – UdeA),
-              Juan Manuel Daza (Instituto de Biología –UdeA), José David López (Facultad de Ingeniería – UdeA)
-              y Paula Andrea Rodríguez (Facultad de Ingeniería – ITM).
+            <div className="w-128.25 h-159  mr-10">
+              <p className="text-justify font-normal font-rubik text-base text-blue-850">
+              This software was supported by Universidad de Antioquia, Instituto Tecnológico Metropolitano, 
+              Alexander von Humboldt Institute for Research on Biological Resources and Colombian National Fund for Science, 
+              Technology and Innovation, Francisco Jose de Caldas - MINCIENCIAS (Colombia). [Program No. 111585269779]
+              
               </p>
-              <p className="text-justify font-normal font-rubik text-1.5xl text-blue-850 mt-8.75">
-              Además, los siguientes profesores, estudiantes, investigadores y programadores hicieron parte de
-              este desarrollo: 
-              Andres Felipe Giraldo Forero (Facultad de Ingeniería – ITM).
+              <p className="text-justify font-normal font-rubik text-base text-blue-850 mt-8.75">
+              The programme is led by professors:
+              <br />
+              <br />
+              Claudia Isaza (Faculty of Engineering - UdeA), 
+              <br />
+              Juan Manuel Daza (Institute of Biology - UdeA), 
+              <br />
+              José David López (Faculty of Engineering - UdeA),
+              <br />
+              Paula Andrea Rodríguez (Faculty of Engineering - ITM).
+              <br />
+              <br />
+              The software were developed by professors and students:
+              <br />
+              <br />
+              Andres Felipe Giraldo Forero (Faculty of Engineering - ITM),
+              <br />
+              Santiago Morales Jaramillo (Faculty of Engineering - ITM),
+              <br />
+              Alejandro Piedrahita Carvajal (Faculty of Engineering - ITM),
+              <br />
+              Victor Manuel Torres (Faculty of Engineering - ITM),
+              <br />
+              Daniel Terraza Arciniegas (Faculty of Engineering - ITM).
+
               </p>
             </div>
           </div>
@@ -78,7 +97,7 @@ function PrincipalPage() {
             <div className="h-0.625 bg-blue-850 mx-auto w-76  mt-7 mb-3"></div>
             <div>
               <h1 className="text-center font-extrabold font-poppins text-4.5xl text-blue-850 mb-3">
-                Visualización
+               Visualisation
               </h1>
             </div>
             <div className="h-0.625 bg-blue-850 mx-auto mb-11.5 w-76"></div>
@@ -91,7 +110,7 @@ function PrincipalPage() {
                   </div>
                   <div className="texto m-6.25">
                     <h1 className="mb-3 text-5xl font-semibold text-left font-poppins text-blue-850">
-                      Metadatos
+                      Metadata
                     </h1>
                     <p className="text-xl font-normal text-justify font-rubik text-blue-850">
                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
