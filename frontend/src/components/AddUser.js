@@ -107,7 +107,7 @@ function AddUser({ close, addUserList }) {
                             value=""
                             className="text-xl text-center font-rubik"
                           >
-                            Select
+                            Choose
                           </option>
                           <option
                             value="admin"

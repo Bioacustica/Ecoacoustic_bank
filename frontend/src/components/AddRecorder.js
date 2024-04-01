@@ -53,7 +53,7 @@ function AddRecorder({ close, addRecorderList, hardwareList }) {
                   </button>
                 </div>
                 <div className="justify-center text-4xl font-extrabold text-center font-poppins text-blue-850 mb-11">
-                  <h1>Agregar grabadora</h1>
+                  <h1>Add recorder</h1>
                 </div>
                 <form onSubmit={handleSubmit}>
                   <div className="flex items-end justify-center ">
@@ -73,7 +73,7 @@ function AddRecorder({ close, addRecorderList, hardwareList }) {
                             value=""
                             className="text-xl text-center font-rubik"
                           >
-                            Seleccionar
+                            Choose
                           </option>
                           {(hardwareList || []).map((hardware) => (
                             <option
@@ -106,13 +106,13 @@ function AddRecorder({ close, addRecorderList, hardwareList }) {
                         onClick={close}
                         className="w-40 h-10 mr-4 text-2xl font-semibold text-white bg-blue-850 hover:shadow-2xl font-poppins"
                       >
-                        Cancelar
+                        Cancel
                       </button>
                       <button
                         type="submit"
                         className="w-40 h-10 text-2xl font-semibold text-white bg-gray-250 hover:shadow-2xl font-poppins"
                       >
-                        Guardar
+                        Save
                       </button>
                     </div>
                   </div>

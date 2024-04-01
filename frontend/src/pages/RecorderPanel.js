@@ -76,7 +76,7 @@ function RecorderPanel() {
             onClick={openModal}
             className="w-87.75 bg-blue-250 text-white h-10.75 font-semibold text-2xl font-poppins"
           >
-            Add recorders
+            Add recorder
           </button>
         </div>
 
