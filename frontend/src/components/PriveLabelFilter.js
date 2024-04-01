@@ -107,14 +107,14 @@ class PrivateLabel extends Component {
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="content-center text-blue-850">Ciudades</span>
+              <span className="content-center text-blue-850">Country</span>
               <select
                 disabled
                 name="ciudad"
                 onChange={(event) => this.valueToState(event.target)}
                 className="block w-full border border-blue-850 rounded-md bg-white  shadow-lg focus:border-indigo-200 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75"
               >
-                <option value="">seleccionar</option>
+                <option value="">choose</option>
                 {this.state.ciudades.map((elemento) =>
                   elemento.map((event) => (
                     <option key={event} value={event}>
@@ -126,12 +126,12 @@ class PrivateLabel extends Component {
             </label>
 
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="content-center text-blue-850">Hábitat</span>
+              <span className="content-center text-blue-850">Habitat</span>
               <select
                 name="habitat"
                 onChange={(event) => this.valueToState(event.target)}
                 className="block  border border-blue-850 w-full mt-1 rounded-md bg-white  shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50mt-1 h-7.75">
-                <option value="">seleccionar</option>
+                <option value="">choose</option>
                 {this.state.habitats.map((elemento) =>
                   elemento.map((event) => (
                     <option key={event} value={event}>
@@ -143,14 +143,14 @@ class PrivateLabel extends Component {
             </label>
 
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="content-center text-blue-850">Municipio</span>
+              <span className="content-center text-blue-850">Municipality</span>
               <select
                 disabled
                 name="municipio"
                 onChange={(event) => this.valueToState(event.target)}
                 className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75 mt-1"
               >
-                <option value="">seleccionar</option>
+                <option value="">choose</option>
                 {this.state.municipios.map((elemento) =>
                   elemento.map((event) => (
                     <option key={event} value={event}>
@@ -162,12 +162,12 @@ class PrivateLabel extends Component {
             </label>
 
             <label className="block text-center w-54.25 ">
-              <span className="content-center text-blue-850">Evento</span>
+              <span className="content-center text-blue-850">Event</span>
               <select 
                 name="evento"
                 onChange={(event) => this.valueToState(event.target)}
                 className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
-                <option value="">seleccionar</option>
+                <option value="">choose</option>
                 {this.state.eventos.map((elemento) =>
                   elemento.map((event2) => (
                     <option key={event2} value={event2}>
@@ -184,13 +184,13 @@ class PrivateLabel extends Component {
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-15.666">
               <span className="content-center text-blue-850">
-                Tipo de carcasa
+                Case
               </span>
               <select 
                 name="tipo de case"
                 onChange={(event) => this.valueToState(event.target)}
                 className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
-                <option value="">seleccionar</option>
+                <option value="">choose</option>
                 {this.state.tipo_case.map((elemento) =>
                   elemento.map((event) => (
                     <option key={event} value={event}>
@@ -203,13 +203,13 @@ class PrivateLabel extends Component {
 
             <label className="block text-center w-54.25 mr-15.666">
               <span className="content-center text-blue-850">
-                Tipo de micrófono
+                Microphone
               </span>
               <select 
                 name="tipo de micro"
                 onChange={(event) => this.valueToState(event.target)}
                 className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
-                <option value="">seleccionar</option>
+                <option value="">choose</option>
                 {this.state.tipo_microfono.map((elemento) =>
                   elemento.map((event) => (
                     <option key={event} value={event}>
@@ -222,13 +222,13 @@ class PrivateLabel extends Component {
 
             <label className="block text-center w-54.25 mr-15.666">
               <span className="content-center text-blue-850">
-                Método de etiquetado
+                Evidence
               </span>
               <select 
                 name="metodo etiquetado"
                 onChange={(event) => this.valueToState(event.target)}
                 className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75 mt-1">
-                <option value="">seleccionar</option>
+                <option value="">choose</option>
                 {this.state.metodo_etiquetado.map((elemento) =>
                   elemento.map((event) => (
                     <option key={event} value={event}>
@@ -241,13 +241,13 @@ class PrivateLabel extends Component {
 
             <label className="block text-center w-54.25 ">
               <span className="content-center text-blue-850">
-                Software de etiquetado
+                Software
               </span>
               <select 
                 name="software"
                 onChange={(event) => this.valueToState(event.target)}
                 className="block w-full rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 h-7.75">
-                <option value="">seleccionar</option>
+                <option value="">choose</option>
                 {this.state.software.map((elemento) =>
                   elemento.map((event) => (
                     <option key={event} value={event}>
@@ -264,13 +264,13 @@ class PrivateLabel extends Component {
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-15.666">
               <span className="content-center text-blue-850">
-                Tipo de grabadora
+                Hardware
               </span>
               <select 
                 name="tipo de grabadora"
                 onChange={(event) => this.valueToState(event.target)}
                 className="block w-full mt-1 rounded-md bg-white border border-blue-850 shadow-lg focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 h-7.75">
-                <option value="">seleccionar</option>
+                <option value="">choose</option>
                 {this.state.tipo_grabadora.map((elemento) =>
                   elemento.map((event) => (
                     <option key={event} value={event}>
@@ -282,7 +282,7 @@ class PrivateLabel extends Component {
             </label>
 
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850">Fecha de inicio</span>
+              <span className="text-blue-850">Start date</span>
               <input
                 name="min_date"
                 type="date"
@@ -292,7 +292,7 @@ class PrivateLabel extends Component {
             </label>
 
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850">Fecha final</span>
+              <span className="text-blue-850">End date</span>
               <input
                 name="max_date"
                 type="date"
@@ -302,7 +302,7 @@ class PrivateLabel extends Component {
             </label>
 
             <label className="block text-center w-54.25">
-              <span className="text-blue-850">Elevación mínima</span>
+              <span className="text-blue-850">Minimum elevation</span>
               <input
                 name="min_elevation"
                 type="text"
@@ -316,7 +316,7 @@ class PrivateLabel extends Component {
         <div className="flex justify-center items-center content-center mb-8.5">
           <div className="flex w-341.5 justify-center items-center">
             <label className="block text-center w-54.25 mr-15.666">
-              <span className="text-blue-850">Elevación máxima</span>
+              <span className="text-blue-850">Maximum elevation</span>
               <input
                 name="max_elevation"
                 type="text"
@@ -330,7 +330,7 @@ class PrivateLabel extends Component {
               <button
                 onClick={this.publicAudio}
                 className="block font-semibold font-poppins text-white bg-gray-250 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
-                Buscar
+                Search
               </button>
             </label>
           </div>
@@ -343,7 +343,7 @@ class PrivateLabel extends Component {
               disabled={!this.state.downloadAudios && !this.state.downloadAudios}
                 onClick={this.downloadCSV}
                 className="block font-semibold font-poppins text-white bg-gray-250 hover:shadow-lg hover:opacity-70 w-54.25 h-7.75 ">
-                Descargar
+                Download
               </button>
 
               <label className="block  text-center w-54.25 ">

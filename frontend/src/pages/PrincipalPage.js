@@ -97,7 +97,7 @@ function PrincipalPage() {
             <div className="h-0.625 bg-blue-850 mx-auto w-76  mt-7 mb-3"></div>
             <div>
               <h1 className="text-center font-extrabold font-poppins text-4.5xl text-blue-850 mb-3">
-               Visualisation
+               Summary
               </h1>
             </div>
             <div className="h-0.625 bg-blue-850 mx-auto mb-11.5 w-76"></div>

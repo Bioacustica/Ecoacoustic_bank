@@ -31,7 +31,7 @@ function DownloadFilter() {
                 Administrador,
               </h1>
               <h1 className="text-center font-extrabold font-poppins  text-4.5xl text-white">
-                Filtros
+                Queries
               </h1>
             </div>
           </div>
@@ -60,7 +60,7 @@ function DownloadFilter() {
           <div className="hover:bg-blue-200  w-4/12">
             <Link to="/admin-dowload-filter">
               <button className="text-blue-850 w-full text-xl">
-                <label> FILTRO DESCARGA </label>
+                <label>  </label>
                 <br />
                 <label> DE AUDIOS </label>
               </button>

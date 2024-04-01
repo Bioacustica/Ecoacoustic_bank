@@ -41,7 +41,7 @@ function RecorderTable({ recorderList, updateRecorderList,hardwareList }) {
                 colSpan={2}
                 className="border-2 font-rubik border-blue-850  w-48.5 text-base h-11.25  text-center"
               >
-                Acciones
+                Actions
               </td>
             </tr>
           </thead>
@@ -63,7 +63,7 @@ function RecorderTable({ recorderList, updateRecorderList,hardwareList }) {
                     onClick={() => openModal(recorder)}
                     className=" bg-yellow-400 font-semibold text-white  w-31.25 h-7.75 mx-3"
                   >
-                    Modificar
+                    Change
                   </button>
                 </td>
               </tr>

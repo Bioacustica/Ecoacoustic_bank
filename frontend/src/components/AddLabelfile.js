@@ -83,7 +83,7 @@ function AddLabelFile({ close }) {
               </button>
             </div>
             <div className="justify-center text-4xl font-extrabold text-center font-poppins text-blue-850 mb-11">
-              <h1>Cargar Etiquetado</h1>
+              <h1>Upload Labelling</h1>
             </div>
 
             <form onSubmit={sendFiles}>
@@ -112,7 +112,7 @@ function AddLabelFile({ close }) {
                       </svg>
                     )}
                     <label className="mr-2 text-2xl font-bold text-center font-poppins text-blue-850">
-                      Subir archivo
+                      Upload file
                     </label>
                     <input
                       type="file"
@@ -129,13 +129,13 @@ function AddLabelFile({ close }) {
                     onClick={close}
                     className="w-40 h-10 mr-4 text-2xl font-semibold text-white bg-blue-850 hover:shadow-2xl font-poppins"
                   >
-                    Cancelar
+                    Cancel
                   </button>
                   <button
                     type="submit"
                     className="w-40 h-10 text-2xl font-semibold text-white bg-gray-250 hover:shadow-2xl font-poppins"
                   >
-                    Subir
+                    Upload
                   </button>
                 </div>
               </div>

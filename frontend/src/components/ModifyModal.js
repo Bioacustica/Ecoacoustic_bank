@@ -43,7 +43,7 @@ function ModifyModal({ close, userEdit, updateUserList }) {
                   </button>
                 </div>
                 <div className="justify-center text-4xl font-extrabold text-center font-poppins text-blue-850 mb-11">
-                  <h1>Modificar</h1>
+                  <h1>Change</h1>
                 </div>
 
                 <form onSubmit={handleSubmit}>

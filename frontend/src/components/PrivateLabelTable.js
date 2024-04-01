@@ -45,49 +45,49 @@ function PrivateLabelTable({List_Audio}) {
                 Id
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Nombre
+                Fingerprint
               </td>
               <td className="border-2 font-rubik border-blue-850 text-base h-11.25 px-4 text-center">
-                Fecha
+                Date
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Hábitat
+                Habitat
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Departamento
+                Department
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Municipio
+                Municipality
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Ciudad
+                Country
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Elevación
+                Elevation
               </td>
               {/* <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
                 Evento
               </td> */}
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Formato
+                Format
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Tipo de micrófono
+                Microphone
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Método de etiquetado
+                Evidence
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Tipo de grabadora
+                Hardware
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Software de etiquetado
+                Software
               </td>
               <td className="border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Tipo de carcasa
+                Case
               </td>
               <td colSpan={1} className="sticky right-0 bg-white border-2 font-rubik border-blue-850  text-base h-11.25 px-4 text-center">
-                Acciones
+                Actions
               </td>
             </tr>
           </thead>

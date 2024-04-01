@@ -26,7 +26,7 @@ class Footer extends Component {
           </div>
         </div>
         <div className="flex items-center">
-          <label className="ml-64 font-bold text-xl mr-3">Apoya:</label>
+          <label className="ml-64 font-bold text-xl mr-3">Supports:</label>
           <div className=" h-11 w-59.75">
             <img src={minciencias} alt="" />
           </div>

@@ -51,7 +51,7 @@ function UserTable({ userList, updateUserList }) {
                 Id
               </td>
               <td className="border-2 font-rubik border-blue-850 w-46.75 text-base h-11.25  text-center">
-                Nombre
+                User
               </td>
               <td className="border-2 font-rubik border-blue-850 w-80.25 text-base h-11.25 text-center">
                 Email
@@ -63,7 +63,7 @@ function UserTable({ userList, updateUserList }) {
                 colSpan={2}
                 className="border-2 font-rubik border-blue-850  w-48.5 text-base h-11.25  text-center"
               >
-                Acciones
+                Actions
               </td>
             </tr>
           </thead>
@@ -91,7 +91,7 @@ function UserTable({ userList, updateUserList }) {
                     onClick={() => openModal(user)}
                     className=" bg-yellow-400 font-semibold text-white  w-31.25 h-7.75 mx-3"
                   >
-                    Modificar
+                    Change
                   </button>
                 </td>
                 <td className="font-rubik font-light text-base h-13.5 ">
@@ -103,7 +103,7 @@ function UserTable({ userList, updateUserList }) {
                       onChange={(e) => toggleStateUser(user)}
                     />
                     <label htmlFor="cheese-status" className="ml-2">
-                      {user.is_active ? "Inactivar" : "Activar"}
+                      {user.is_active ? "Deactivate" : "Activate"}
                     </label>
                   </div>
                   {/* <button className=" bg-blue-850 ml-2 font-semibold text-white  w-31.25 h-7.75">

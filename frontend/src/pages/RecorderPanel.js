@@ -65,7 +65,7 @@ function RecorderPanel() {
                 {userRole},
               </h1>
               <h1 className="text-center font-extrabold font-poppins  text-4.5xl text-white">
-                Grabadoras
+                Recorders
               </h1>
             </div>
           </div>
@@ -76,7 +76,7 @@ function RecorderPanel() {
             onClick={openModal}
             className="w-87.75 bg-blue-250 text-white h-10.75 font-semibold text-2xl font-poppins"
           >
-            Agregar Grabadora
+            Add recorders
           </button>
         </div>
 

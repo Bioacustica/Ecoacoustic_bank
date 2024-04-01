@@ -57,7 +57,7 @@ function AddUser({ close, addUserList }) {
                   </button>
                 </div>
                 <div className="justify-center text-4xl font-extrabold text-center font-poppins text-blue-850 mb-11">
-                  <h1>Agregar usuario</h1>
+                  <h1>Add user</h1>
                 </div>
                 <form onSubmit={handleSubmit}>
                   <div className="flex items-end justify-center ">
@@ -65,7 +65,7 @@ function AddUser({ close, addUserList }) {
                       <div>
                         <div className="inline-flex items-center justify-end w-full ">
                           <label className="mr-2 text-2xl font-bold font-poppins text-blue-850">
-                            Nombre:{" "}
+                            Name:{" "}
                           </label>
                           <input
                             name="username"
@@ -80,7 +80,7 @@ function AddUser({ close, addUserList }) {
 
                       <div className="inline-flex items-center justify-end w-full ">
                         <label className="mt-2 mr-2 text-2xl font-bold text-center font-poppins text-blue-850">
-                          Mail:{" "}
+                          Email:{" "}
                         </label>
                         <input
                           type="email"
@@ -107,38 +107,38 @@ function AddUser({ close, addUserList }) {
                             value=""
                             className="text-xl text-center font-rubik"
                           >
-                            Seleccionar
+                            Select
                           </option>
                           <option
                             value="admin"
                             className="text-xl text-center font-rubik"
                           >
-                            Administrador
+                            Administrator
                           </option>
                           <option
                             value="registro"
                             className="text-xl text-center font-rubik"
                           >
-                            Colaborador de registros
+                            Registry collaborator
                           </option>
                           <option
                             value="etiquetado"
                             className="text-xl text-center font-rubik"
                           >
-                            Colaborador de etiquetado
+                            Labeler
                           </option>
                           <option
                             value="usuario"
                             className="text-xl text-center font-rubik"
                           >
-                            Usuario
+                            Basic user
                           </option>
                         </select>
                       </div>
 
                       <div className="inline-flex items-center justify-end w-full ">
                         <label className="mr-2 text-2xl font-bold text-center font-poppins text-blue-850">
-                          Contraseña:{" "}
+                          Password:{" "}
                         </label>
                         <input
                           type="password"
@@ -157,13 +157,13 @@ function AddUser({ close, addUserList }) {
                         onClick={close}
                         className="w-40 h-10 mr-4 text-2xl font-semibold text-white bg-blue-850 hover:shadow-2xl font-poppins"
                       >
-                        Cancelar
+                        Cancel
                       </button>
                       <button
                         type="submit"
                         className="w-40 h-10 text-2xl font-semibold text-white bg-gray-250 hover:shadow-2xl font-poppins"
                       >
-                        Guardar
+                        Save
                       </button>
                     </div>
                   </div>

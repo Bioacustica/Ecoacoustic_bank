@@ -33,7 +33,7 @@ function LabelledFilter() {
                 {userRole},
               </h1>
               <h1 className="text-center font-extrabold font-poppins  text-4.5xl text-white">
-                Filtros
+                Queries
               </h1>
             </div>
           </div>
@@ -43,9 +43,9 @@ function LabelledFilter() {
           <div className="">
             {/* <Link to="/admin-label-filter"> */}
               <div className="text-center text-blue-850 text-xl w-full">
-                <label> FILTRO DESCARGA </label>
+                <label> AUDIO QUERY </label>
                   <br />
-                <label> DE AUDIOS </label>
+                <label> TO DOWNLOAD </label>
               </div>
             {/* </Link> */}
           </div>

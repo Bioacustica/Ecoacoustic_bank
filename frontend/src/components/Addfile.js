@@ -148,7 +148,7 @@ function AddFile({ close }) {
               </button>
             </div>
             <div className="justify-center text-4xl font-extrabold text-center font-poppins text-blue-850 mb-11">
-              <h1>Cargar Archivos</h1>
+              <h1>Upload Files</h1>
             </div>
 
             <form onSubmit={sendFiles}>
@@ -177,7 +177,7 @@ function AddFile({ close }) {
                       </svg>
                     )}
                     <label className="mr-2 text-2xl font-bold text-center font-poppins text-blue-850">
-                      Actualizar Tablas
+                      Update Tables
                     </label>
                     <input
                       type="file"
@@ -194,7 +194,7 @@ function AddFile({ close }) {
                       onChange={(e) => setToggleUDAS(e.target.checked)}
                     />
                     <label htmlFor="cheese-status">
-                      ¿Cargar audios remotamente?
+                      &nbsp; Upload audios remotely?
                     </label>
                   </div>
                   <div>
@@ -221,7 +221,7 @@ function AddFile({ close }) {
                         </svg>
                       )}
                       <label className="mr-2 text-2xl font-bold font-poppins text-blue-850">
-                        Cargar Udas
+                        Update UDAS
                       </label>
                       <input
                         type="file"
@@ -235,7 +235,7 @@ function AddFile({ close }) {
                   {
                   usbOptions.length > 0 && (
                       <>
-                      <span>Seleccione la memoria usb: </span>
+                      <span>Select the usb flash drive: </span>
                       <select value={usbSelected} onChange={(e) => setUsbSelected(e.target.value)}>
                         {usbOptions.filter(usbname => usbname).map((usbname) => (
                           <option key={usbname} type="radio" value={usbname}>{usbname}</option>
@@ -249,7 +249,7 @@ function AddFile({ close }) {
                     <div>
                       <div className="inline-flex items-center w-full ">
                         <label className="mr-2 text-2xl font-bold font-poppins text-blue-850">
-                          Cargar audios
+                          Upload Audios
                         </label>
                         <input
                           type="file"
@@ -268,13 +268,13 @@ function AddFile({ close }) {
                     onClick={close}
                     className="w-40 h-10 mr-4 text-2xl font-semibold text-white bg-blue-850 hover:shadow-2xl font-poppins"
                   >
-                    Cancelar
+                    Cancel
                   </button>
                   <button
                     type="submit"
                     className="w-40 h-10 text-2xl font-semibold text-white bg-gray-250 hover:shadow-2xl font-poppins"
                   >
-                    Subir
+                    Upload
                   </button>
                 </div>
               </div>

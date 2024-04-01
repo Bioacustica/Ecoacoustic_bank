@@ -25,7 +25,7 @@ function Administrator() {
           <div className="absolute self-center justify-center ">
             <div className="space-y-3">
               <h1 className="text-center font-extrabold font-poppins text-4.5xl text-white">
-                Bienvenido {userRole}
+                Welcome {userRole}
               </h1>
               <h1 className="text-center font-extrabold font-poppins  text-4.5xl text-white">
                 {

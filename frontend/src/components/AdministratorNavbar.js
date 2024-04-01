@@ -66,11 +66,12 @@ function AdministratorNavbar() {
 
   const HOME = {
     path: "#",
-    label: "INICIO",
+    label: "HOME",
     children: [
-      { path: "/", label: "HOME" },
-      { path: "/#sobre-nosotros", label: "ABOUT US" },
-      { path: "/#visualizacion", label: "Visualisation" },
+      { path: "/", label: "Home" },
+      { path: "/#sobre-nosotros", label: "About us" },
+      { path: "/#visualizacion", label: "Summary" },
+      { path: "https://github.com/Bioacustica/Ecoacoustic_bank/wiki", label: "Wiki" },
       // { path: "/#filtros", label: "Filtros" },
       { path: "#", label: "Contact", render: function () { return <button onClick={openModal}>{username ? this.label : this.label.toUpperCase() }</button> }},
     ],
@@ -118,38 +119,38 @@ function AdministratorNavbar() {
   const UPLOAD_AUDIO = {
     path: "#",
     label: "SUBIR AUDIOS",
-    render: () => <button onClick={openFile}>SUBIR AUDIOS</button>,
+    render: () => <button onClick={openFile}>UPLOAD</button>,
   };
 
   const FILTERS = {
     path: "/admin-label-filter",
-    label: "FILTROS",
+    label: "QUERIES",
   };
 
   const LABELED = {
     path: "#",
     label: "ETIQUETADO",
-    render: () => <button onClick={openLabelModal}>ETIQUETADO</button>,
+    render: () => <button onClick={openLabelModal}>LABELLING</button>,
   };
 
   const RECORDER = {
     path: "/recorder-panel",
-    label: "GRABADORAS",
+    label: "RECORDERS",
   };
 
   const USERS = {
     path: "/user-panel",
-    label: "USUARIOS",
+    label: "USERS",
   };
 
   const MAP = {
     path: "#",
-    label: "MAPA",
+    label: "MAP",
   };
 
   const METADATA = {
     path: "#",
-    label: "VISUALIZACIÓN DE METADATOS",
+    label: "SUMMARY",
   };
   const navbarRole = {
     admin: [HOME, UPLOAD_AUDIO, FILTERS, LABELED, RECORDER, USERS, MAP, METADATA],
@@ -226,7 +227,7 @@ function AdministratorNavbar() {
                     onClick={() => handleLogout()}
                     className="block px-4 py-2 whitespace-no-wrap bg-white border-2 rounded border-zinc-500 hover:bg-gray-100 "
                   >
-                    Cerrar sesión
+                    Log out
                   </button>
                 </li>
               </ul>
