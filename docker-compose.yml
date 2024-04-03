@@ -15,7 +15,7 @@ services:
     ports:
       - "5010:5432"
     volumes:
-      - "/share/Audios_DB/postgres-data:/var/lib/postgresql/data"
+      - "./postgres-data:/var/lib/postgresql/data"
       - "./source/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql"
   pgadmin:
     image: dpage/pgadmin4
@@ -35,12 +35,12 @@ services:
       dockerfile: Django.Dockerfile
     container_name: djangoweb
     volumes:
-      - /share/Audios_DB/audios_db:/code/audios_db
+      - ./audios_db:/code/audios_db
       # remplazar ./media por el punto de montaje de la usb, y para eso se necita el nombre
       #- "/media/${USER:?err}:/code/usb"
       #- /media/mirp_ai:/code/usb  # funciona
-      #- ./Media:/code/usb
-      - /share/Audios_Temporal/audios_temp:/code/usb
+      - ./Media:/code/usb
+      #- /share/Audios_Temporal/audios_temp:/code/usb
       - ./apidev/:/code
     ports:
       - "8000:8000"
