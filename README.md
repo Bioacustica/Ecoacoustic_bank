@@ -14,7 +14,7 @@ If you use this code in a scientific publication, we would appreciate citations 
 
 <pre>
 @article{pending...,
-  title={Ecoacoustics bank: a software for ecoacoustics data management},
+  title={Ecoacoustic bank: a software for ecoacoustics data management},
   author={pending...},
   journal={SoftwareX},
   pages={pending...},
