@@ -104,7 +104,7 @@ function PrincipalPage() {
 
             <div className="flex justify-center items-center mb-11.25 ">
               <div>
-                <button className=" bg-white mr-7.5 border-solid border-2 w-128.75 h-147.25 border-black hover:bg-gray-300">
+                <button className=" bg-white mr-7.5 border-solid border-2 w-128.75 h-130 border-black hover:bg-gray-300">
                   <div className="imagen bg-pink-100 w-128.5 h-73">
                     <img src={metadata} alt="" />
                   </div>
@@ -113,33 +113,23 @@ function PrincipalPage() {
                       Metadata
                     </h1>
                     <p className="text-xl font-normal text-justify font-rubik text-blue-850">
-                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                      sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                      magna Lorem ipsum dolor sit amet, consectetuer adipiscing
-                      elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                      dolore magnaLorem ipsum dolor sit amet, consectetuer
-                      adipiscing elit, sed diam
+                    Details of the metadata used to describe the conditions under which audios were collected.
                     </p>
                   </div>
                 </button>
               </div>
 
               <div>
-                <button className=" bg-white  border-solid border-2 w-128.75 h-147.25 border-black hover:bg-gray-300">
+                <button className=" bg-white  border-solid border-2 w-128.75 h-130 border-black hover:bg-gray-300">
                   <div className="imagen bg-pink-100 w-128.5 h-73">
                     <img src={map} alt="" />
                   </div>
                   <div className="texto m-6.25">
                     <h1 className="mb-3 text-5xl font-semibold text-left font-poppins text-blue-850">
-                      Mapas
+                      Maps
                     </h1>
                     <p className="text-xl font-normal text-justify font-rubik text-blue-850">
-                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                      sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                      magna Lorem ipsum dolor sit amet, consectetuer adipiscing
-                      elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                      dolore magnaLorem ipsum dolor sit amet, consectetuer
-                      adipiscing elit, sed diam
+                    Display information about the locations where the recordings were taken.
                     </p>
                   </div>
                 </button>

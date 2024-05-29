@@ -81,7 +81,8 @@ def AddCatalogue(udas, session, id, path_usb):
                 Ok = VerifyField("recorder_RE", hardware, id) and Ok
                 hardware = hardware.upper()
 
-                h_serial = str(udas.iloc[id]["rec_serial_RE"])
+                print(udas.iloc[id]["rec_serial_RE"])
+                h_serial = udas.iloc[id]["rec_serial_RE"]
                 Ok = VerifyField("rec_serial_RE", h_serial, id) and Ok
 
                 collector = udas.iloc[id]["collector_email_PR"]
@@ -179,6 +180,7 @@ def AddCatalogue(udas, session, id, path_usb):
                     #                            filter(Base.classes["h_serial"].h_serial == h_serial). \
                     #                            first().id_h_serial
 
+                    #cambiar id_harware por h_serial revisar por que se generan errores
                     id_h_serial = session.query(Base.classes["h_serial"]). \
                         filter(Base.classes["h_serial"].id_hardware == id_hardware). \
                         first().id_h_serial
@@ -214,7 +216,9 @@ def AddCatalogue(udas, session, id, path_usb):
                     infoDir = os.listdir(path_usb + record_dir)
                     chunks = len(infoDir)
                     size = 1
-
+                    print("ok-------------->")
+                    print(elevation)
+                    print(height)
                     session.add(Base.classes["catalogue"](id_sampling=id_sampling,
                                                           id_country=id_country,
                                                           id_department=id_department,
