@@ -29,10 +29,7 @@ function PrincipalPage() {
           <div className="absolute self-center justify-center w-341.5 ">
             <div className="space-y-3">
               <h1 className="text-center font-extrabold font-poppins text-4.5xl text-white">
-               BIOLOGICAL CONSERVATION
-              </h1>
-              <h1 className="text-center font-extrabold font-poppins  text-4.5xl text-white">
-               USING ARTIFICIAL INTELLIGENCE
+               Ecoacoustic bank
               </h1>
             </div>
           </div>
