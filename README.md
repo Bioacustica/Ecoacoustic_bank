@@ -10,11 +10,12 @@ Ecoacoustic bank is a software for managing and storing passive acoustic monitor
 If you use this code in a scientific publication, we would appreciate citations to the following paper:
 
 <pre>
-@article{pending...,
-  title={Ecoacoustic bank: a software for ecoacoustics data management},
-  author={pending...},
+@article{giraldo2024ecoacoustic,
+  title={Ecoacoustic bank: A software for ecoacoustics data management},
+  author={Giraldo-Forero, Andrés Felipe and Rodríguez-Marín, Paula Andrea and Isaza-Narváez, Claudia and Daza-Rojas, Juan Manuel},
   journal={SoftwareX},
-  pages={pending...},
+  volume={27},
+  pages={101822},
   year={2024},
   publisher={Elsevier}
 }
